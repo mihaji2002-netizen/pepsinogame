@@ -1,6 +1,6 @@
-:HL["/pepsinogame/_next/static/chunks/3vxu1mcds57ry.css","style"]
-:HL["/pepsinogame/_next/static/media/173f0f83f71fd8cd-s.p.1lef-am24b6cs.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/pepsinogame/_next/static/media/52acd2ded95ac6cd-s.p.1ybfybs3k8tn2.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/pepsinogame/_next/static/media/890431f0a0104557-s.p.3pc31ksexexjr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/pepsinogame/_next/static/media/bdbeee9d91ec0c78-s.p.10yd3ypge-a6n.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"mentor","param":null,"prefetchHints":0,"slots":{"children":{"name":"exams","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"IR9CuKt9JuFJSEM4K8FDs"}
+:HL["/pepsinogame/_next/static/chunks/1mhncjh1lfu_k.css","style"]
+:HL["/pepsinogame/_next/static/media/098850a6eb1f8577-s.p.1e7lfzpvfrh7f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/pepsinogame/_next/static/media/7f42a8e9555596ef-s.p.2f-i73o4rzyqh.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/pepsinogame/_next/static/media/c9f6ebf08ddd616b-s.p.0sv86lbjkn8rn.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/pepsinogame/_next/static/media/d2d77445b12e820b-s.p.1w2v8gz7u-qop.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"mentor","param":null,"prefetchHints":0,"slots":{"children":{"name":"exams","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"O_ZpThgkLEswyvIif6ke_"}
