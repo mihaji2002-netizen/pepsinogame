@@ -19,13 +19,13 @@ import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/student/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/student/missions", label: "Missions", icon: Target },
-  { href: "/student/logbook", label: "Logbook", icon: BookOpen },
-  { href: "/student/planner", label: "Planner", icon: CalendarDays },
-  { href: "/student/id-card", label: "ID Card", icon: CreditCard },
-  { href: "/student/leaderboard", label: "Ranks", icon: Trophy },
-  { href: "/student/profile", label: "Profile", icon: UserRound },
+  { href: "/student/dashboard", label: "داشبورد", icon: LayoutDashboard },
+  { href: "/student/missions", label: "مأموریت‌ها", icon: Target },
+  { href: "/student/logbook", label: "دفترچه", icon: BookOpen },
+  { href: "/student/planner", label: "برنامه‌ریز", icon: CalendarDays },
+  { href: "/student/id-card", label: "کارت شناسایی", icon: CreditCard },
+  { href: "/student/leaderboard", label: "رتبه‌بندی", icon: Trophy },
+  { href: "/student/profile", label: "پروفایل", icon: UserRound },
 ];
 
 export function StudentShell({ children }: { children: React.ReactNode }) {
@@ -47,7 +47,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
   if (!hydrated || !currentStudent) {
     return (
       <div className="grid min-h-screen place-items-center text-[var(--ink-soft)]">
-        Loading PEPSINO LAB…
+        در حال بارگذاری PEPSINO LAB…
       </div>
     );
   }
@@ -58,7 +58,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
         <BrandMark />
         <nav className="mt-6 space-y-1">
           {links.map(({ href, label, icon: Icon }) => {
-            const active = pathname === href;
+            const active = pathname === href || pathname === `${href}/`;
             return (
               <Link
                 key={href}
@@ -85,7 +85,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
           }}
         >
           <LogOut size={16} />
-          Sign out
+          خروج
         </Button>
       </aside>
       <main className="min-w-0 flex-1 pb-10">{children}</main>

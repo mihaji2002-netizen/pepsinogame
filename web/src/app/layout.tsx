@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import { Figtree, Syne } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
-const figtree = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
-});
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic", "latin"],
+  variable: "--font-vazirmatn",
 });
 
 export const metadata: Metadata = {
-  title: "PEPSINO LAB — Gamified Education OS",
+  title: "PEPSINO LAB — سیستم‌عامل آموزشی گیمیفای‌شده",
   description:
-    "Planning, mentoring, gamification, analytics, and motivation in one unified educational ecosystem.",
+    "برنامه‌ریزی، منتورینگ، گیمیفیکیشن، آنالیتیکس و انگیزه در یک تجربه یکپارچه آموزشی.",
 };
 
 export default function RootLayout({
@@ -26,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${figtree.variable} ${syne.variable} antialiased`}>
+    <html lang="fa" dir="rtl">
+      <body className={`${vazirmatn.variable} antialiased`}>
         <AppProvider>
           <div className="relative z-10 min-h-screen">{children}</div>
           <XpToast />

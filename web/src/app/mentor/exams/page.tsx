@@ -7,16 +7,16 @@ import { formatDate } from "@/lib/utils";
 
 export default function ExamsPage() {
   const { exams, addExam } = useApp();
-  const [subject, setSubject] = useState("Mathematics");
+  const [subject, setSubject] = useState("ریاضی");
   const [score, setScore] = useState(85);
   const [comment, setComment] = useState("");
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Exam System</h1>
+        <h1 className="display text-4xl font-bold">سیستم آزمون</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Create exams with subject, score, percentage, rank, and mentor commentary.
+          ساخت آزمون با درس، نمره، درصد، رتبه و نظر منتور.
         </p>
       </div>
 
@@ -30,13 +30,13 @@ export default function ExamsPage() {
             score,
             percentage: score,
             rank: Math.max(1, Math.round((100 - score) / 8) + 1),
-            comment: comment || "Solid attempt. Keep drilling weak topics.",
+            comment: comment || "تلاش خوب. روی نقاط ضعف بیشتر تمرین کن.",
           });
           setComment("");
         }}
       >
         <div>
-          <label className="text-sm font-medium">Subject</label>
+          <label className="text-sm font-medium">درس</label>
           <input
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -44,7 +44,7 @@ export default function ExamsPage() {
           />
         </div>
         <div>
-          <label className="text-sm font-medium">Score / Percentage</label>
+          <label className="text-sm font-medium">نمره / درصد</label>
           <input
             type="number"
             min={0}
@@ -52,20 +52,21 @@ export default function ExamsPage() {
             value={score}
             onChange={(e) => setScore(Number(e.target.value))}
             className="mt-2 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none ring-[var(--brand)] focus:ring-2"
+            dir="ltr"
           />
         </div>
         <div className="md:col-span-2">
-          <label className="text-sm font-medium">Mentor Comment</label>
+          <label className="text-sm font-medium">نظر منتور</label>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             rows={3}
             className="mt-2 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none ring-[var(--brand)] focus:ring-2"
-            placeholder="Strengths, weaknesses, next focus…"
+            placeholder="نقاط قوت، ضعف، تمرکز بعدی…"
           />
         </div>
         <Button type="submit" className="md:col-span-2 md:w-fit">
-          Create Exam Record
+          ثبت آزمون
         </Button>
       </form>
 
@@ -76,12 +77,12 @@ export default function ExamsPage() {
               <div>
                 <div className="display text-2xl font-bold">{exam.subject}</div>
                 <div className="mt-1 text-sm text-[var(--ink-soft)]">
-                  {formatDate(exam.date)} · Rank #{exam.rank}
+                  {formatDate(exam.date)} · رتبه #{exam.rank}
                 </div>
               </div>
-              <div className="text-right">
-                <div className="display text-3xl font-bold">{exam.percentage}%</div>
-                <div className="text-sm text-[var(--ink-soft)]">Score {exam.score}</div>
+              <div className="text-left">
+                <div className="display text-3xl font-bold">{exam.percentage}٪</div>
+                <div className="text-sm text-[var(--ink-soft)]">نمره {exam.score}</div>
               </div>
             </div>
             <p className="mt-4 text-sm text-[var(--ink-soft)]">{exam.comment}</p>

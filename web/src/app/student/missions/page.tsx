@@ -14,12 +14,12 @@ export default function MissionsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Mission Board</h1>
+        <h1 className="display text-4xl font-bold">بورد مأموریت</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Routine + six targets. Complete to earn XP and coins. Mentors approve quality.
+          روتین + شش هدف. با تکمیل، XP و سکه می‌گیری. منتور کیفیت را تأیید می‌کند.
         </p>
         <div className="mt-4 text-sm font-semibold">
-          {completed}/{missions.length} cleared today
+          {completed}/{missions.length} امروز پاک شد
         </div>
       </div>
 
@@ -37,14 +37,14 @@ export default function MissionsPage() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-[var(--ink-soft)]">
-                    {mission.key === "routine" ? "Daily" : `Target`}
+                  <div className="text-xs text-[var(--ink-soft)]">
+                    {mission.key === "routine" ? "روزانه" : "هدف"}
                   </div>
                   <div className="display mt-1 text-2xl font-bold">{mission.title}</div>
                 </div>
                 {mission.completed ? (
                   <span className="inline-flex items-center gap-1 rounded-full bg-[var(--success)]/15 px-3 py-1 text-xs font-semibold text-[var(--success)]">
-                    <Check size={14} /> Done
+                    <Check size={14} /> انجام
                   </span>
                 ) : locked ? (
                   <Lock size={18} className="text-[var(--ink-soft)]" />
@@ -53,10 +53,10 @@ export default function MissionsPage() {
               <p className="mt-3 text-sm text-[var(--ink-soft)]">{mission.description}</p>
               <div className="mt-4 flex items-center justify-between text-sm">
                 <span>
-                  +{mission.xpReward} XP · +{mission.coinReward} coins
+                  +{mission.xpReward} XP · +{mission.coinReward} سکه
                 </span>
                 <span className="text-[var(--ink-soft)]">
-                  {mission.approved ? "Mentor approved" : "Pending approval"}
+                  {mission.approved ? "تأیید منتور" : "در انتظار تأیید"}
                 </span>
               </div>
               <Button
@@ -64,7 +64,7 @@ export default function MissionsPage() {
                 disabled={mission.completed || locked}
                 onClick={() => completeMission(mission.key)}
               >
-                {mission.completed ? "Completed" : locked ? "Locked" : "Mark complete"}
+                {mission.completed ? "انجام شد" : locked ? "قفل" : "علامت به‌عنوان انجام‌شده"}
               </Button>
             </motion.div>
           );

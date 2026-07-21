@@ -17,10 +17,10 @@ import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/mentor/dashboard", label: "Command Center", icon: LayoutDashboard },
-  { href: "/mentor/attendance", label: "Attendance", icon: ClipboardList },
-  { href: "/mentor/exams", label: "Exams", icon: GraduationCap },
-  { href: "/mentor/reports", label: "Reports", icon: FileText },
+  { href: "/mentor/dashboard", label: "مرکز فرمان", icon: LayoutDashboard },
+  { href: "/mentor/attendance", label: "حضور و غیاب", icon: ClipboardList },
+  { href: "/mentor/exams", label: "آزمون‌ها", icon: GraduationCap },
+  { href: "/mentor/reports", label: "گزارش‌ها", icon: FileText },
 ];
 
 export function MentorShell({ children }: { children: React.ReactNode }) {
@@ -36,7 +36,7 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
   if (!hydrated || !user || user.role !== "mentor") {
     return (
       <div className="grid min-h-screen place-items-center text-[var(--ink-soft)]">
-        Loading mentor console…
+        در حال بارگذاری کنسول منتور…
       </div>
     );
   }
@@ -48,9 +48,9 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
         <div className="mt-5 rounded-2xl bg-[var(--paper-deep)] p-3 text-sm">
           <div className="flex items-center gap-2 font-semibold">
             <Users size={16} />
-            Active roster
+            فهرست فعال
           </div>
-          <div className="mt-1 text-[var(--ink-soft)]">{students.length} students</div>
+          <div className="mt-1 text-[var(--ink-soft)]">{students.length} دانش‌آموز</div>
         </div>
         <nav className="mt-6 space-y-1">
           {links.map(({ href, label, icon: Icon }) => {
@@ -81,7 +81,7 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
           }}
         >
           <LogOut size={16} />
-          Sign out
+          خروج
         </Button>
       </aside>
       <main className="min-w-0 flex-1 pb-10">{children}</main>

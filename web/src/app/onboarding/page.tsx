@@ -29,7 +29,7 @@ export default function OnboardingPage() {
   if (!currentStudent) {
     return (
       <div className="grid min-h-screen place-items-center text-[var(--ink-soft)]">
-        Preparing your Lab…
+        در حال آماده‌سازی لاب…
       </div>
     );
   }
@@ -46,17 +46,16 @@ export default function OnboardingPage() {
             initial={false}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.55 }}
             className="text-center"
           >
             <div className="display text-5xl font-bold md:text-6xl">
-              Welcome to PEPSINO LAB
+              به PEPSINO LAB خوش آمدی
             </div>
             <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">
-              Your season starts now. Identity first. Then the mission.
+              فصل از همین‌جا شروع می‌شود. اول هویت، بعد مأموریت.
             </p>
             <Button className="mt-8" onClick={() => setStep(1)}>
-              Reveal my ID Card
+              نمایش کارت شناسایی
             </Button>
           </motion.div>
         )}
@@ -70,13 +69,13 @@ export default function OnboardingPage() {
             className="space-y-6"
           >
             <div>
-              <div className="display text-4xl font-bold">Your Digital ID</div>
+              <div className="display text-4xl font-bold">کارت دیجیتال تو</div>
               <p className="mt-2 text-[var(--ink-soft)]">
-                Permanent Student ID · never encodes Lab · never changes.
+                شناسه ثابت دانش‌آموز · هرگز لاب داخلش کد نمی‌شود · هرگز عوض نمی‌شود.
               </p>
             </div>
             <IdCard student={currentStudent} />
-            <Button onClick={() => setStep(2)}>Continue</Button>
+            <Button onClick={() => setStep(2)}>ادامه</Button>
           </motion.div>
         )}
 
@@ -90,18 +89,15 @@ export default function OnboardingPage() {
           >
             <div
               className="h-36 rounded-[24px]"
-              style={{
-                background: `linear-gradient(145deg, ${lab.color}, #102027)`,
-              }}
+              style={{ background: `linear-gradient(145deg, ${lab.color}, #102027)` }}
             />
-            <div className="display mt-6 text-4xl font-bold">{lab.name} Lab</div>
+            <div className="display mt-6 text-4xl font-bold">لاب {lab.name}</div>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
             <p className="mt-4 text-sm text-[var(--ink-soft)]">
-              You begin at Level 1. Climb through Research, Catalyst, and Pioneer
-              with XP and mentor stamps.
+              از سطح ۱ شروع می‌کنی. با XP و مهر منتور از ریسرچ، کاتالیست و پایونیر عبور کن.
             </p>
             <Button className="mt-6" onClick={() => setStep(3)}>
-              Meet the Mission Board
+              آشنایی با بورد مأموریت
             </Button>
           </motion.div>
         )}
@@ -114,22 +110,19 @@ export default function OnboardingPage() {
             exit={{ opacity: 0, y: -16 }}
             className="surface p-8"
           >
-            <div className="display text-4xl font-bold">First Mission</div>
+            <div className="display text-4xl font-bold">اولین مأموریت</div>
             <p className="mt-3 text-[var(--ink-soft)]">
-              Complete Routine, then Targets 1–6. Each action grants XP. Mentors
-              approve quality and award stamps.
+              روتین و سپس هدف‌های ۱ تا ۶ را کامل کن. هر عمل XP می‌دهد. منتور کیفیت را تأیید می‌کند.
             </p>
             <div className="mt-6 rounded-2xl bg-[var(--paper-deep)] p-4">
-              <div className="text-sm uppercase tracking-[0.18em] text-[var(--ink-soft)]">
-                Today
-              </div>
-              <div className="display mt-2 text-2xl font-bold">Routine</div>
+              <div className="text-sm text-[var(--ink-soft)]">امروز</div>
+              <div className="display mt-2 text-2xl font-bold">روتین</div>
               <p className="mt-1 text-sm text-[var(--ink-soft)]">
-                Complete your daily study ritual and warm-up. +40 XP
+                مراسم مطالعه روزانه و گرم‌کردن را کامل کن. +۴۰ XP
               </p>
             </div>
             <Button className="mt-6" onClick={() => setStep(4)}>
-              Ready
+              آماده‌ام
             </Button>
           </motion.div>
         )}
@@ -139,12 +132,11 @@ export default function OnboardingPage() {
             key="start"
             initial={false}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
             className="text-center"
           >
-            <div className="display text-5xl font-bold">Enter the dashboard</div>
+            <div className="display text-5xl font-bold">ورود به داشبورد</div>
             <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">
-              Mission. Progress. XP. Level. Coins. Action first.
+              مأموریت. پیشرفت. XP. سطح. سکه. اول اقدام.
             </p>
             <Button
               className="mt-8"
@@ -153,7 +145,7 @@ export default function OnboardingPage() {
                 router.push("/student/dashboard");
               }}
             >
-              Start
+              شروع
             </Button>
           </motion.div>
         )}

@@ -14,8 +14,8 @@
   --success: #2a9d6e;
   --shadow: 0 24px 60px rgba(16, 32, 39, 0.12);
   --radius: 18px;
-  --font-display: var(--font-syne), "Syne", sans-serif;
-  --font-body: var(--font-figtree), "Figtree", sans-serif;
+  --font-display: var(--font-vazirmatn), "Vazirmatn", sans-serif;
+  --font-body: var(--font-vazirmatn), "Vazirmatn", sans-serif;
 }
 
 @theme inline {
@@ -36,7 +36,7 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--ink);
-  font-family: var(--font-figtree), var(--font-body), sans-serif;
+  font-family: var(--font-vazirmatn), var(--font-body), sans-serif;
   background:
     radial-gradient(1200px 600px at 10% -10%, rgba(15, 138, 138, 0.18), transparent 55%),
     radial-gradient(900px 500px at 90% 0%, rgba(212, 160, 23, 0.14), transparent 50%),
@@ -76,7 +76,8 @@ select {
 
 .display {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
+  font-weight: 800;
 }
 
 .glass {

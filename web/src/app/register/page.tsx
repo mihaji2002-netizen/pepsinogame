@@ -18,11 +18,10 @@ export default function RegisterPage() {
       <div>
         <BrandMark />
         <h1 className="display mt-8 text-5xl font-bold tracking-tight">
-          Claim your seat in Neuro Lab
+          جایت را در لاب نورو بگیر
         </h1>
         <p className="mt-3 max-w-md text-[var(--ink-soft)]">
-          Registration generates your permanent Student ID, digital ID card, and
-          Level 1 assignment automatically.
+          ثبت‌نام، شناسه ثابت دانش‌آموز، کارت دیجیتال و سطح ۱ را خودکار می‌سازد.
         </p>
       </div>
 
@@ -36,17 +35,17 @@ export default function RegisterPage() {
         }}
       >
         <div>
-          <label className="block text-sm font-medium">Full name</label>
+          <label className="block text-sm font-medium">نام کامل</label>
           <input
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="mt-2 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none ring-[var(--brand)] focus:ring-2"
-            placeholder="Ava Karimi"
+            placeholder="آوا کریمی"
           />
         </div>
         <div>
-          <label className="block text-sm font-medium">Email</label>
+          <label className="block text-sm font-medium">ایمیل</label>
           <input
             required
             type="email"
@@ -54,15 +53,16 @@ export default function RegisterPage() {
             onChange={(e) => setEmail(e.target.value)}
             className="mt-2 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none ring-[var(--brand)] focus:ring-2"
             placeholder="ava@school.edu"
+            dir="ltr"
           />
         </div>
         <Button type="submit" className="w-full">
-          Create account & open ID card
+          ساخت حساب و نمایش کارت
         </Button>
         <p className="text-sm text-[var(--ink-soft)]">
-          Already registered?{" "}
+          قبلاً ثبت‌نام کردی؟{" "}
           <Link href="/login" className="font-semibold text-[var(--brand-deep)]">
-            Sign in
+            ورود
           </Link>
         </p>
       </form>

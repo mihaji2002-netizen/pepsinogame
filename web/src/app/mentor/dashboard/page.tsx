@@ -34,24 +34,24 @@ export default function MentorDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Mentor Command Center</h1>
+        <h1 className="display text-4xl font-bold">مرکز فرمان منتور</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Manage students, approve missions, award stamps, and steer the season without paper.
+          مدیریت دانش‌آموزان، تأیید مأموریت، اعطای مهر و هدایت فصل بدون کاغذ.
         </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
         {[
-          { label: "Students", value: students.length },
-          { label: "Pending approvals", value: pending.length },
+          { label: "دانش‌آموزان", value: students.length },
+          { label: "تأییدهای در انتظار", value: pending.length },
           {
-            label: "Avg level",
+            label: "میانگین سطح",
             value: (
               students.reduce((sum, s) => sum + s.level, 0) / Math.max(students.length, 1)
             ).toFixed(1),
           },
           {
-            label: "Total stamps",
+            label: "مجموع مهرها",
             value: students.reduce((sum, s) => sum + s.stamps, 0),
           },
         ].map((stat) => (
@@ -67,13 +67,13 @@ export default function MentorDashboardPage() {
           <div className="relative flex-1">
             <Search
               size={16}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ink-soft)]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--ink-soft)]"
             />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search name or Student ID"
-              className="w-full rounded-2xl border border-[var(--line)] bg-white py-3 pl-10 pr-4 outline-none ring-[var(--brand)] focus:ring-2"
+              placeholder="جستجوی نام یا شناسه دانش‌آموز"
+              className="w-full rounded-2xl border border-[var(--line)] bg-white py-3 pr-10 pl-4 outline-none ring-[var(--brand)] focus:ring-2"
             />
           </div>
           <select
@@ -81,7 +81,7 @@ export default function MentorDashboardPage() {
             onChange={(e) => setLabFilter(e.target.value)}
             className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none"
           >
-            <option value="all">All Labs</option>
+            <option value="all">همه لاب‌ها</option>
             {LABS.map((lab) => (
               <option key={lab.id} value={lab.id}>
                 {lab.name}
@@ -93,7 +93,7 @@ export default function MentorDashboardPage() {
 
       {pending.length > 0 && (
         <div className="surface p-5">
-          <h2 className="display text-2xl font-bold">Mission Approval Queue</h2>
+          <h2 className="display text-2xl font-bold">صف تأیید مأموریت</h2>
           <ul className="mt-4 space-y-3">
             {pending.map((mission) => (
               <li
@@ -103,7 +103,7 @@ export default function MentorDashboardPage() {
                 <div>
                   <div className="font-semibold">{mission.title}</div>
                   <div className="text-sm text-[var(--ink-soft)]">
-                    Awaiting quality approval · +{mission.xpReward} XP already granted
+                    در انتظار تأیید کیفیت · +{mission.xpReward} XP قبلاً داده شده
                   </div>
                 </div>
                 <Button
@@ -111,7 +111,7 @@ export default function MentorDashboardPage() {
                   onClick={() => approveMission(students[0]?.id ?? "", mission.key)}
                 >
                   <CheckCheck size={16} />
-                  Approve
+                  تأیید
                 </Button>
               </li>
             ))}
@@ -120,13 +120,13 @@ export default function MentorDashboardPage() {
       )}
 
       <div className="surface overflow-hidden">
-        <div className="grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3 text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] max-md:hidden">
-          <span>Student</span>
-          <span>Lab</span>
-          <span>Level</span>
+        <div className="grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3 text-xs text-[var(--ink-soft)] max-md:hidden">
+          <span>دانش‌آموز</span>
+          <span>لاب</span>
+          <span>سطح</span>
           <span>XP</span>
-          <span>Coins</span>
-          <span>Actions</span>
+          <span>سکه</span>
+          <span>اقدامات</span>
         </div>
         {filtered.map((student) => {
           const lab = LABS.find((l) => l.id === student.lab)?.name ?? student.lab;
@@ -142,7 +142,7 @@ export default function MentorDashboardPage() {
                 >
                   {student.name}
                 </Link>
-                <div className="font-mono text-xs tracking-wider text-[var(--ink-soft)]">
+                <div className="font-mono text-xs tracking-wider text-[var(--ink-soft)]" dir="ltr">
                   {student.studentId}
                 </div>
               </div>
@@ -155,15 +155,15 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => awardStamp(student.id)}
-                  title="Award stamp"
+                  title="اعطای مهر"
                 >
                   <Stamp size={14} />
                 </Button>
                 <Button
                   variant="secondary"
                   className="px-3 py-2"
-                  onClick={() => adjustXp(student.id, 50, "Mentor XP boost")}
-                  title="Grant XP"
+                  onClick={() => adjustXp(student.id, 50, "تقویت XP منتور")}
+                  title="اعطای XP"
                 >
                   <Zap size={14} />
                 </Button>
@@ -171,7 +171,7 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => adjustCoins(student.id, 10)}
-                  title="Grant coins"
+                  title="اعطای سکه"
                 >
                   <Coins size={14} />
                 </Button>

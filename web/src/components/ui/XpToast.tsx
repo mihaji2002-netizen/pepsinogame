@@ -23,7 +23,7 @@ export function XpToast() {
           className="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2"
         >
           <div className="rounded-full bg-[var(--brand-deep)] px-5 py-3 text-sm font-semibold text-white shadow-lg">
-            +{xpToast} XP
+            +{xpToast} امتیاز
           </div>
         </motion.div>
       )}

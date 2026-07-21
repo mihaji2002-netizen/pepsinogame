@@ -10,21 +10,21 @@ export default function PlannerPage() {
 
   const done = planner.filter((t) => t.done).length;
   const pct = Math.round((done / planner.length) * 100);
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const days = ["دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه", "یکشنبه"];
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Weekly Planner</h1>
+        <h1 className="display text-4xl font-bold">برنامه‌ریز هفتگی</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Digital version of the printable planner. Check tasks. Track completion.
+          نسخه دیجیتال برنامه‌ریز چاپی. تسک‌ها را تیک بزن. درصد تکمیل را ببین.
         </p>
       </div>
 
       <div className="surface p-6">
         <div className="flex items-center justify-between text-sm">
-          <span className="font-semibold">Week completion</span>
-          <span>{pct}%</span>
+          <span className="font-semibold">تکمیل هفته</span>
+          <span>{pct}٪</span>
         </div>
         <ProgressBar value={pct} className="mt-3" />
       </div>
@@ -42,7 +42,7 @@ export default function PlannerPage() {
                     <button
                       onClick={() => togglePlannerTask(task.id)}
                       className={cn(
-                        "flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm transition",
+                        "flex w-full items-center gap-3 rounded-xl px-3 py-2 text-right text-sm transition",
                         task.done
                           ? "bg-[var(--success)]/10 text-[var(--ink)]"
                           : "bg-[var(--paper-deep)] hover:bg-white",

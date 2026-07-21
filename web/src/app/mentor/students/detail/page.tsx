@@ -3,13 +3,20 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { formatDate } from "@/lib/utils";
+
+const attendanceLabel: Record<string, string> = {
+  present: "حاضر",
+  late: "تأخیر",
+  absent: "غایب",
+  excused: "موجه",
+};
 
 function MentorStudentDetailContent() {
   const searchParams = useSearchParams();
@@ -30,9 +37,9 @@ function MentorStudentDetailContent() {
   if (!student) {
     return (
       <div className="surface p-8">
-        <p>Student not found.</p>
+        <p>دانش‌آموز پیدا نشد.</p>
         <Link href="/mentor/dashboard" className="mt-4 inline-block text-[var(--brand-deep)]">
-          Back to roster
+          بازگشت به فهرست
         </Link>
       </div>
     );
@@ -48,24 +55,27 @@ function MentorStudentDetailContent() {
         href="/mentor/dashboard"
         className="no-print inline-flex items-center gap-2 text-sm text-[var(--ink-soft)]"
       >
-        <ArrowLeft size={16} />
-        Back to command center
+        <ArrowRight size={16} />
+        بازگشت به مرکز فرمان
       </Link>
 
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="display text-4xl font-bold">{student.name}</h1>
           <p className="mt-2 text-[var(--ink-soft)]">
-            Full timeline, charts, growth, attendance, exams, coins, XP, reports, and notes.
+            تایم‌لاین کامل، نمودار، رشد، حضور، آزمون، سکه، XP، گزارش و یادداشت.
           </p>
         </div>
         <div className="no-print flex flex-wrap gap-2">
-          <Button onClick={() => awardStamp(student.id)}>Award stamp</Button>
-          <Button variant="secondary" onClick={() => adjustXp(student.id, 100, "Mentor adjustment")}>
-            +100 XP
+          <Button onClick={() => awardStamp(student.id)}>اعطای مهر</Button>
+          <Button
+            variant="secondary"
+            onClick={() => adjustXp(student.id, 100, "تعدیل منتور")}
+          >
+            +۱۰۰ XP
           </Button>
           <Button variant="secondary" onClick={() => adjustCoins(student.id, 15)}>
-            +15 Coins
+            +۱۵ سکه
           </Button>
         </div>
       </div>
@@ -73,13 +83,13 @@ function MentorStudentDetailContent() {
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <IdCard student={student} />
         <div className="surface p-6">
-          <h2 className="display text-2xl font-bold">Growth Snapshot</h2>
+          <h2 className="display text-2xl font-bold">نمای رشد</h2>
           <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {[
-              ["Lab", lab.name],
-              ["Level", String(student.level)],
-              ["Stamps", String(student.stamps)],
-              ["Attendance", `${presentCount}/6`],
+              ["لاب", lab.name],
+              ["سطح", String(student.level)],
+              ["مهرها", String(student.stamps)],
+              ["حضور", `${presentCount}/6`],
             ].map(([label, value]) => (
               <div key={label} className="rounded-2xl bg-[var(--paper-deep)] p-3">
                 <div className="text-xs text-[var(--ink-soft)]">{label}</div>
@@ -89,7 +99,7 @@ function MentorStudentDetailContent() {
           </div>
           <div className="mt-6">
             <div className="mb-2 flex justify-between text-sm">
-              <span>XP progress</span>
+              <span>پیشرفت XP</span>
               <span>
                 {progress.current}/{progress.total}
               </span>
@@ -101,10 +111,13 @@ function MentorStudentDetailContent() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">XP Timeline</h2>
+          <h2 className="display text-2xl font-bold">تایم‌لاین XP</h2>
           <ul className="mt-4 space-y-3 text-sm">
             {xpHistory.map((event) => (
-              <li key={event.id} className="flex justify-between gap-4 border-b border-[var(--line)] pb-3 last:border-none">
+              <li
+                key={event.id}
+                className="flex justify-between gap-4 border-b border-[var(--line)] pb-3 last:border-none"
+              >
                 <div>
                   <div className="font-medium">{event.reason}</div>
                   <div className="text-[var(--ink-soft)]">{formatDate(event.at)}</div>
@@ -116,13 +129,13 @@ function MentorStudentDetailContent() {
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">Exams</h2>
+          <h2 className="display text-2xl font-bold">آزمون‌ها</h2>
           <ul className="mt-4 space-y-3">
             {exams.map((exam) => (
               <li key={exam.id} className="rounded-2xl bg-[var(--paper-deep)] p-4">
                 <div className="flex justify-between font-semibold">
                   <span>{exam.subject}</span>
-                  <span>{exam.percentage}%</span>
+                  <span>{exam.percentage}٪</span>
                 </div>
                 <p className="mt-2 text-sm text-[var(--ink-soft)]">{exam.comment}</p>
               </li>
@@ -131,31 +144,31 @@ function MentorStudentDetailContent() {
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">Attendance</h2>
+          <h2 className="display text-2xl font-bold">حضور و غیاب</h2>
           <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
             {attendance.map((a) => (
               <div key={a.session} className="rounded-xl bg-[var(--paper-deep)] p-3 text-center text-xs">
-                <div className="font-semibold">S{a.session}</div>
-                <div className="mt-1 capitalize">{a.status}</div>
+                <div className="font-semibold">جلسه {a.session}</div>
+                <div className="mt-1">{attendanceLabel[a.status] ?? a.status}</div>
               </div>
             ))}
           </div>
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">Missions & Notes</h2>
+          <h2 className="display text-2xl font-bold">مأموریت‌ها و یادداشت‌ها</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {missions.map((m) => (
               <li key={m.key} className="flex justify-between">
                 <span>{m.title}</span>
                 <span className="text-[var(--ink-soft)]">
-                  {m.completed ? (m.approved ? "Approved" : "Pending") : "Open"}
+                  {m.completed ? (m.approved ? "تأییدشده" : "در انتظار") : "باز"}
                 </span>
               </li>
             ))}
           </ul>
           <div className="mt-5 rounded-2xl bg-[var(--paper-deep)] p-4 text-sm">
-            <div className="font-semibold">Mentor Notes</div>
+            <div className="font-semibold">یادداشت منتور</div>
             <p className="mt-2 text-[var(--ink-soft)]">{logbook.mentorNotes}</p>
           </div>
         </section>
@@ -169,7 +182,7 @@ export default function MentorStudentDetailPage() {
     <Suspense
       fallback={
         <div className="grid min-h-[40vh] place-items-center text-[var(--ink-soft)]">
-          Loading student…
+          در حال بارگذاری دانش‌آموز…
         </div>
       }
     >

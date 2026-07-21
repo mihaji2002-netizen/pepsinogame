@@ -10,24 +10,24 @@ export default function LogbookPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Mission Logbook</h1>
+        <h1 className="display text-4xl font-bold">دفترچه مأموریت</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Daily reflection for {logbook.date}. Capture the win, the challenge, and tomorrow’s focus.
+          بازتاب روزانه برای {logbook.date}. برد، چالش و تمرکز فردا را ثبت کن.
         </p>
       </div>
 
       <div className="surface space-y-5 p-6">
         {[
-          { key: "win" as const, label: "Today’s Win", placeholder: "What moved the needle?" },
+          { key: "win" as const, label: "برد امروز", placeholder: "چه چیزی جلو برد؟" },
           {
             key: "challenge" as const,
-            label: "Today’s Challenge",
-            placeholder: "Where did friction appear?",
+            label: "چالش امروز",
+            placeholder: "کجا اصطکاک بود؟",
           },
           {
             key: "tomorrowFocus" as const,
-            label: "Tomorrow Focus",
-            placeholder: "One sharp intention for tomorrow.",
+            label: "تمرکز فردا",
+            placeholder: "یک نیت تیز برای فردا.",
           },
         ].map((field) => (
           <div key={field.key}>
@@ -43,12 +43,12 @@ export default function LogbookPage() {
         ))}
 
         <div className="rounded-2xl bg-[var(--paper-deep)] p-4">
-          <div className="text-sm font-semibold">Mentor Notes</div>
+          <div className="text-sm font-semibold">یادداشت منتور</div>
           <p className="mt-2 text-sm text-[var(--ink-soft)]">{logbook.mentorNotes}</p>
           <div className="mt-3 text-sm font-semibold">
-            Mentor Stamp:{" "}
+            مهر منتور:{" "}
             <span className={logbook.stamped ? "text-[var(--success)]" : "text-[var(--ink-soft)]"}>
-              {logbook.stamped ? "Awarded" : "Not yet"}
+              {logbook.stamped ? "اعطا شد" : "هنوز نه"}
             </span>
           </div>
         </div>
@@ -56,13 +56,13 @@ export default function LogbookPage() {
         <Button
           onClick={() =>
             updateLogbook({
-              win: logbook.win || "Completed deep work without phone.",
-              challenge: logbook.challenge || "Started Target 3 too late.",
-              tomorrowFocus: logbook.tomorrowFocus || "Protect the first focus block.",
+              win: logbook.win || "کار عمیق را بدون گوشی تمام کردم.",
+              challenge: logbook.challenge || "هدف ۳ را دیر شروع کردم.",
+              tomorrowFocus: logbook.tomorrowFocus || "اولین بلاک تمرکز را محافظت کنم.",
             })
           }
         >
-          Save reflection
+          ذخیره بازتاب
         </Button>
       </div>
     </div>
