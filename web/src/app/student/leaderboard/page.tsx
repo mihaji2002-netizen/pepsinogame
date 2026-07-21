@@ -14,17 +14,17 @@ export default function LeaderboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Leaderboards</h1>
+        <h1 className="display text-4xl font-bold">رتبه‌بندی</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Global XP ranking for the current season demo roster.
+          رتبه‌بندی سراسری XP برای فهرست نمایشی فصل جاری.
         </p>
       </div>
 
       <div className="surface overflow-hidden">
-        <div className="grid grid-cols-[64px_1fr_100px_100px] gap-3 border-b border-[var(--line)] px-5 py-3 text-xs uppercase tracking-[0.16em] text-[var(--ink-soft)]">
-          <span>Rank</span>
-          <span>Student</span>
-          <span>Lab</span>
+        <div className="grid grid-cols-[64px_1fr_100px_100px] gap-3 border-b border-[var(--line)] px-5 py-3 text-xs text-[var(--ink-soft)]">
+          <span>رتبه</span>
+          <span>دانش‌آموز</span>
+          <span>لاب</span>
           <span>XP</span>
         </div>
         {ranked.map((student, index) => {
@@ -40,7 +40,7 @@ export default function LeaderboardPage() {
               <span className="font-semibold">#{index + 1}</span>
               <span className="font-semibold">
                 {student.name}
-                {isYou ? " · You" : ""}
+                {isYou ? " · تو" : ""}
               </span>
               <span>{lab}</span>
               <span>{student.xp + (student.level - 1) * 1200}</span>

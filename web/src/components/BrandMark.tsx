@@ -1,29 +1,56 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { PepsinoLogo } from "@/components/PepsinoLogo";
 import { BRAND } from "@/lib/constants";
+import { springSoft } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export function BrandMark({
   className,
   compact = false,
+  light = false,
+  size = 44,
 }: {
   className?: string;
   compact?: boolean;
+  light?: boolean;
+  size?: number;
 }) {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
-      <div className="relative grid h-11 w-11 place-items-center rounded-2xl bg-[var(--brand-deep)] text-white shadow-[0_10px_30px_rgba(11,95,99,0.35)]">
-        <span className="display text-lg font-bold tracking-tight">P</span>
-        <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-[var(--accent)]" />
-      </div>
+    <motion.div
+      className={cn("flex items-center gap-3", className)}
+      whileHover={{ scale: 1.02 }}
+      transition={springSoft}
+    >
+      <PepsinoLogo size={size} />
       {!compact && (
-        <div>
-          <div className="display text-lg font-bold leading-none tracking-tight">
-            {BRAND.name}
+        <div className="leading-tight">
+          <div
+            className={cn(
+              "text-lg font-extrabold tracking-tight",
+              light ? "text-white" : "text-[var(--ink)]",
+            )}
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            pepsiño
           </div>
-          <div className="mt-1 text-xs uppercase tracking-[0.18em] text-[var(--ink-soft)]">
-            Education OS
+          <div
+            className="text-[10px] font-extrabold tracking-[0.28em]"
+            style={{ color: "var(--brand)" }}
+          >
+            LAB
+          </div>
+          <div
+            className={cn(
+              "mt-0.5 text-[8px] font-bold tracking-[0.16em]",
+              light ? "text-white/70" : "text-[var(--ink-soft)]",
+            )}
+          >
+            {BRAND.tagline}
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

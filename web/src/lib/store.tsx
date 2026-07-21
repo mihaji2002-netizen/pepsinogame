@@ -79,14 +79,14 @@ interface PersistedState {
   exams: ExamRecord[];
 }
 
-const STORAGE_KEY = "pepsino-lab-mvp-v1";
+const STORAGE_KEY = "pepsino-lab-mvp-v2";
 
 const defaultLogbook: LogbookEntry = {
   date: todayKey(),
   win: "",
   challenge: "",
   tomorrowFocus: "",
-  mentorNotes: "Keep the focus blocks tight. You’re building Neuro habits.",
+  mentorNotes: "بلاک‌های تمرکز را فشرده نگه دار. داری عادت‌های نورو را می‌سازی.",
   stamped: false,
 };
 
@@ -102,14 +102,14 @@ const defaultAttendance: AttendanceRecord[] = [
 const defaultAnnouncements: Announcement[] = [
   {
     id: "an-1",
-    title: "Season Pulse",
-    body: "Neuro Lab intensives start this week. Clear Target 1 before Friday.",
+    title: "نبض فصل",
+    body: "این هفته اینتنسیوهای لاب نورو شروع می‌شود. هدف ۱ را قبل از جمعه تمام کن.",
     at: "2026-07-18",
   },
   {
     id: "an-2",
-    title: "Mentor Office Hours",
-    body: "Stamps and mission reviews every evening at 19:00.",
+    title: "ساعت‌های حضور منتور",
+    body: "هر شب ساعت ۱۹ مهر و بررسی مأموریت انجام می‌شود.",
     at: "2026-07-19",
   },
 ];
@@ -118,13 +118,13 @@ const defaultXpHistory: XpEvent[] = [
   {
     id: "xp-1",
     amount: 40,
-    reason: "Routine completed",
+    reason: "روتین کامل شد",
     at: "2026-07-18T10:00:00Z",
   },
   {
     id: "xp-2",
     amount: 60,
-    reason: "Target 1 completed",
+    reason: "هدف ۱ کامل شد",
     at: "2026-07-18T12:00:00Z",
   },
 ];
@@ -383,7 +383,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
             )
           : prev.achievements,
       }));
-      grantXp(currentStudent.id, mission.xpReward, `${mission.title} completed`);
+      grantXp(currentStudent.id, mission.xpReward, `${mission.title} کامل شد`);
     },
     approveMission: (_studentId, key) => {
       patchState((prev) => ({
@@ -406,7 +406,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           a.id === "a1" ? { ...a, unlocked: true } : a,
         ),
       }));
-      grantXp(studentId, 25, "Mentor stamp awarded");
+      grantXp(studentId, 25, "مهر منتور اعطا شد");
     },
     togglePlannerTask: (id) => {
       patchState((prev) => ({

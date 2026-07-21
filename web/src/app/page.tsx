@@ -1,257 +1,299 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Compass,
-  Flame,
-  Sparkles,
-} from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { BrandMark } from "@/components/BrandMark";
-import { Button } from "@/components/ui/Button";
-import { BRAND, LABS } from "@/lib/constants";
+import { PepsinoLogo } from "@/components/PepsinoLogo";
+import { Button } from "@/components/ui/button";
+import { KineticText } from "@/components/ui/kinetic-text";
+import { Magnetic } from "@/components/ui/magnetic";
+import { easeOut, fadeUp, scaleIn, stagger, wipeIn } from "@/lib/motion";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-};
+const marqueeItems = [
+  "مأموریت",
+  "حضور",
+  "آزمون",
+  "XP",
+  "سطح",
+  "کارنامه",
+  "لاب",
+  "منتور",
+];
 
 export default function LandingPage() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.35]);
+  const slashX = useTransform(scrollYProgress, [0, 1], [0, -80]);
+
   return (
-    <div>
-      <header className="no-print mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
-        <BrandMark />
-        <nav className="hidden items-center gap-6 text-sm text-[var(--ink-soft)] md:flex">
-          <a href="#labs">Labs</a>
-          <a href="#how">How it works</a>
-          <a href="#faq">FAQ</a>
-          <Link href="/login" className="font-semibold text-[var(--ink)]">
-            Sign in
+    <div className="min-h-screen overflow-x-hidden bg-[var(--paper)] text-[var(--ink)]">
+      <motion.header
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: easeOut }}
+        className="absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 py-5 md:px-10"
+      >
+        <BrandMark compact size={40} />
+        <nav className="flex items-center gap-1">
+          <Link href="/login">
+            <Button variant="ghost" className="px-4 py-2">
+              ورود
+            </Button>
           </Link>
+          <Magnetic>
+            <Link href="/register">
+              <Button variant="flare" className="px-4 py-2">
+                شروع
+              </Button>
+            </Link>
+          </Magnetic>
         </nav>
-        <Link href="/register">
-          <Button>
-            Enter the Lab
-            <ArrowRight size={16} />
-          </Button>
-        </Link>
-      </header>
+      </motion.header>
 
-      <section className="relative min-h-[calc(100vh-88px)] overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(120deg, rgba(11,95,99,0.92) 0%, rgba(16,32,39,0.88) 45%, rgba(15,138,138,0.75) 100%), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22 viewBox=%220 0 160 160%22%3E%3Cpath fill=%22none%22 stroke=%22rgba(255,255,255,0.08)%22 stroke-width=%221%22 d=%22M0 40h160M0 80h160M0 120h160M40 0v160M80 0v160M120 0v160%22/%3E%3C/svg%3E')",
-            backgroundSize: "cover, 160px 160px",
-          }}
+      <section ref={heroRef} className="relative min-h-[100svh] overflow-hidden">
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="absolute inset-0">
+          <div className="mesh">
+            <div className="mesh-blob mesh-blob--a" />
+            <div className="mesh-blob mesh-blob--b" />
+            <div className="mesh-blob mesh-blob--c" />
+            <motion.div className="mesh-slash" style={{ x: slashX }} aria-hidden />
+          </div>
+        </motion.div>
+
+        <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:px-10 md:pb-24">
+          <div className="flex max-w-4xl flex-col items-start gap-8 md:flex-row md:items-end md:gap-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.86, rotate: -6 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, ease: easeOut }}
+              className="shrink-0"
+            >
+              <PepsinoLogo size={200} className="md:h-[240px] md:w-[240px]" />
+            </motion.div>
+
+            <div className="max-w-xl">
+              <KineticText
+                text="pepsiño"
+                className="block text-[clamp(2.8rem,10vw,5.5rem)] font-extrabold leading-[0.9] tracking-tight text-[var(--ink)]"
+                as="p"
+              />
+              <motion.div
+                initial={{ opacity: 0, x: 40, scale: 0.96 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ delay: 0.45, duration: 0.7, ease: easeOut }}
+              >
+                <span className="block text-[clamp(1.6rem,5vw,2.4rem)] font-extrabold tracking-[0.35em] text-[var(--brand)]">
+                  LAB
+                </span>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5, ease: easeOut }}
+                className="mt-3 text-xs font-extrabold tracking-[0.22em] text-[var(--ink-soft)]"
+              >
+                GET ACTIVE TO GROW
+              </motion.p>
+
+              <motion.h1
+                variants={fadeUp}
+                initial="hidden"
+                animate="show"
+                transition={{ delay: 0.7 }}
+                className="display mt-6 max-w-xl text-2xl md:text-3xl"
+              >
+                آزمایشگاه رشد برای مسیر تحصیلی
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.82, duration: 0.55, ease: easeOut }}
+                className="mt-4 max-w-md text-base leading-relaxed text-[var(--ink-soft)] md:text-lg"
+              >
+                مأموریت، روتین، XP و کارنامه — در یک شیت زنده برای دانش‌آموز و منتور.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.95, duration: 0.55, ease: easeOut }}
+                className="mt-10 flex flex-wrap gap-3"
+              >
+                <Magnetic strength={22}>
+                  <Link href="/register">
+                    <Button variant="flare" className="px-8 py-4 text-base">
+                      ورود به آزمایشگاه
+                    </Button>
+                  </Link>
+                </Magnetic>
+                <Magnetic strength={14}>
+                  <Link href="/login">
+                    <Button variant="ink" className="px-8 py-4 text-base">
+                      قبلاً حساب دارم
+                    </Button>
+                  </Link>
+                </Magnetic>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+
+        <motion.div
+          aria-hidden
+          className="absolute bottom-0 left-0 h-1.5 origin-right bg-[var(--flare)]"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 1, duration: 1, ease: easeOut }}
+          style={{ width: "100%" }}
         />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--paper)] to-transparent" />
+      </section>
 
-        <div className="relative mx-auto flex min-h-[calc(100vh-88px)] max-w-7xl flex-col justify-end px-5 pb-16 pt-20 md:px-8 md:pb-24">
+      {/* Kinetic marquee strip */}
+      <div className="overflow-hidden border-y border-[var(--line)] bg-white py-4">
+        <div className="marquee-track" dir="ltr">
+          {[...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
+            <span
+              key={`${item}-${i}`}
+              className="display whitespace-nowrap text-2xl text-[var(--ink)] md:text-3xl"
+            >
+              {item}
+              <span className="mx-4 text-[var(--flare)]">/</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <motion.section
+        variants={wipeIn}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.35 }}
+        className="lab-band lab-band--ink"
+      >
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-12 md:px-10 md:py-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl text-white"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="md:col-span-5"
           >
-            <div className="display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl">
-              {BRAND.name}
-            </div>
-            <h1 className="mt-5 max-w-2xl text-2xl font-medium leading-snug text-white/90 md:text-3xl">
-              The education OS where missions, mentors, and momentum live together.
-            </h1>
-            <p className="mt-4 max-w-xl text-base text-white/70 md:text-lg">
-              Plan the week. Clear the board. Earn XP. Unlock Labs. Stay motivated
-              for the entire season.
+            <p className="display text-sm tracking-[0.18em] text-[var(--mint)]">برای دانش‌آموز</p>
+            <h2 className="display mt-4 text-3xl md:text-5xl">هر روز یک سیگنال واضح</h2>
+          </motion.div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="md:col-span-7 md:flex md:flex-col md:justify-end"
+          >
+            <p className="max-w-xl text-lg leading-relaxed text-white/75">
+              داشبورد، مأموریت‌ها، لاگ‌بوک و کارت شناسایی — پیشرفت را مثل یک مسیر زنده
+              می‌بینی، نه یک جدول خشک.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/register">
-                <Button className="bg-white text-[var(--ink)] hover:bg-[var(--paper)]">
-                  Start as Student
-                  <Sparkles size={16} />
-                </Button>
-              </Link>
-              <Link href="/login">
-                <Button variant="secondary" className="border-white/20 bg-white/10 text-white hover:bg-white/20">
-                  Mentor Console
-                </Button>
-              </Link>
+            <div className="mt-8">
+              <Magnetic>
+                <Link href="/register">
+                  <Button variant="flare">ساخت حساب دانش‌آموز</Button>
+                </Link>
+              </Magnetic>
             </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: easeOut }}
+        className="lab-band lab-band--brand"
+      >
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-12 md:px-10 md:py-24">
+          <div className="md:col-span-7 md:order-2">
+            <p className="display text-sm tracking-[0.18em] text-white/70">برای منتور</p>
+            <h2 className="display mt-4 text-3xl text-white md:text-5xl">
+              کلاس را مثل یک اتاق کنترل ببین
+            </h2>
+          </div>
+          <div className="md:col-span-5 md:order-1 md:flex md:flex-col md:justify-end">
+            <p className="max-w-md text-lg leading-relaxed text-white/80">
+              حضور، آزمون، گزارش و وضعیت هر دانش‌آموز — بدون شلوغی داشبوردهای اداری.
+            </p>
+            <div className="mt-8">
+              <Magnetic>
+                <Link href="/register">
+                  <Button variant="ink">حساب منتور</Button>
+                </Link>
+              </Magnetic>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <section className="bg-[var(--paper)]">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="display max-w-2xl text-3xl md:text-5xl"
+          >
+            از ثبت‌نام تا کارنامه — یک جریان پیوسته.
+          </motion.p>
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            className="mt-14 grid gap-px bg-[var(--line)] md:grid-cols-3"
+          >
+            {[
+              { n: "۰۱", t: "هویت", d: "ثبت‌نام، نقش، و کارت شناسایی شخصی." },
+              { n: "۰۲", t: "اجرا", d: "مأموریت روزانه، حضور، و آزمون‌های زمان‌دار." },
+              { n: "۰۳", t: "بازتاب", d: "لاگ‌بوک، سطح، و گزارش قابل چاپ." },
+            ].map((step) => (
+              <motion.div
+                key={step.n}
+                variants={scaleIn}
+                whileHover={{ y: -6, backgroundColor: "#ffffff" }}
+                transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                className="bg-[var(--paper)] p-8"
+              >
+                <p className="display text-5xl text-[var(--flare)]">{step.n}</p>
+                <h3 className="display mt-4 text-2xl">{step.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">{step.d}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      <section id="labs" className="mx-auto max-w-7xl px-5 py-20 md:px-8">
-        <motion.div {...fadeUp}>
-          <div className="display text-4xl font-bold md:text-5xl">Four Labs. One climb.</div>
-          <p className="mt-3 max-w-2xl text-[var(--ink-soft)]">
-            Neuro → Research → Catalyst → Pioneer. Each lab carries its own theme,
-            badge, and energy as students level through the season.
-          </p>
-        </motion.div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {LABS.map((lab, i) => (
-            <motion.div
-              key={lab.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.6 }}
-              className="surface overflow-hidden p-5"
-            >
-              <div
-                className="mb-5 h-28 rounded-2xl"
-                style={{
-                  background: `linear-gradient(145deg, ${lab.color}, #102027)`,
-                }}
-              />
-              <div className="display text-2xl font-bold">{lab.name}</div>
-              <p className="mt-2 text-sm text-[var(--ink-soft)]">{lab.tagline}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-10 md:px-8">
-        <motion.div {...fadeUp} className="surface grid gap-8 p-8 md:grid-cols-[1.1fr_0.9fr] md:p-12">
-          <div>
-            <div className="display text-4xl font-bold">Built for daily return.</div>
-            <p className="mt-3 text-[var(--ink-soft)]">
-              Students see the mission first — not menus. Mentors run attendance,
-              exams, stamps, and reports without paper.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm">
-              {[
-                "Mission Board with Routine + 6 Targets",
-                "XP, Coins, Levels, and Mentor Stamps",
-                "Digital ID Card with permanent Student ID",
-                "Mentor command center with PDF-ready reports",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 text-[var(--brand)]" size={18} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="relative overflow-hidden rounded-[24px] bg-[var(--ink)] p-6 text-white">
-            <motion.div
-              className="floaty absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[var(--brand)]/40 blur-2xl"
-              aria-hidden
-            />
-            <div className="relative">
-              <Flame className="text-[var(--accent)]" />
-              <div className="display mt-4 text-3xl font-bold">Today’s Mission</div>
-              <p className="mt-2 text-white/70">
-                Clear Target 1. Log the win. Earn XP before the stamp window closes.
-              </p>
-              <div className="mt-8 h-2 rounded-full bg-white/10">
-                <motion.div
-                  className="h-full rounded-full bg-[var(--brand)]"
-                  initial={{ width: "18%" }}
-                  whileInView={{ width: "62%" }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                />
-              </div>
-              <div className="mt-3 text-sm text-white/60">Level progress · 62%</div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      <section id="how" className="mx-auto max-w-7xl px-5 py-20 md:px-8">
-        <motion.div {...fadeUp}>
-          <div className="display text-4xl font-bold">How it works</div>
-          <p className="mt-3 max-w-xl text-[var(--ink-soft)]">
-            From registration to Pioneer — a single continuous loop of action and feedback.
-          </p>
-        </motion.div>
-        <div className="mt-10 grid gap-4 md:grid-cols-4">
-          {[
-            { title: "Register", copy: "Get a permanent Student ID and Neuro Lab assignment." },
-            { title: "Mission", copy: "Complete Routine and Targets. Reflect in the Logbook." },
-            { title: "Stamp", copy: "Mentors approve quality and award growth stamps." },
-            { title: "Ascend", copy: "Level up through Labs with XP and stamps." },
-          ].map((step, i) => (
-            <motion.div
-              key={step.title}
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.06 }}
-              className="surface p-5"
-            >
-              <div className="text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">
-                0{i + 1}
-              </div>
-              <div className="display mt-3 text-2xl font-bold">{step.title}</div>
-              <p className="mt-2 text-sm text-[var(--ink-soft)]">{step.copy}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section id="faq" className="mx-auto max-w-7xl px-5 py-16 md:px-8">
-        <motion.div {...fadeUp} className="surface p-8 md:p-12">
-          <div className="display text-4xl font-bold">FAQ</div>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {[
-              {
-                q: "Does my Student ID change when I switch Labs?",
-                a: "Never. IDs like PPL-250001 stay permanent. Labs evolve; identity does not.",
-              },
-              {
-                q: "What is required to level up?",
-                a: "1200 XP and 12 mentor stamps per level across 16 levels and 4 Labs.",
-              },
-              {
-                q: "Can mentors export reports?",
-                a: "Yes. Weekly, monthly, and season summaries are print/PDF ready.",
-              },
-              {
-                q: "Is parent access available?",
-                a: "Planned as a future read-only role for progress, attendance, and exams.",
-              },
-            ].map((item) => (
-              <div key={item.q}>
-                <div className="font-semibold">{item.q}</div>
-                <p className="mt-2 text-sm text-[var(--ink-soft)]">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 pb-20 md:px-8">
+      <footer className="border-t border-[var(--line)] bg-white px-5 py-10 md:px-10">
         <motion.div
-          {...fadeUp}
-          className="relative overflow-hidden rounded-[32px] bg-[var(--brand-deep)] px-8 py-14 text-white md:px-14"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
-          <Compass className="absolute right-10 top-10 opacity-20" size={120} />
-          <div className="display relative max-w-2xl text-4xl font-bold md:text-5xl">
-            Ready to run a season that students actually return to?
+          <div>
+            <BrandMark />
+            <p className="mt-3 text-sm text-[var(--ink-soft)]">Gamified Education OS</p>
           </div>
-          <p className="relative mt-4 max-w-xl text-white/75">
-            Join PEPSINO LAB and turn daily study into a living operating system.
-          </p>
-          <div className="relative mt-8">
-            <Link href="/register">
-              <Button className="bg-white text-[var(--ink)] hover:bg-[var(--paper)]">
-                Create student account
-              </Button>
-            </Link>
-          </div>
+          <p className="text-xs text-[var(--ink-soft)]">© {new Date().getFullYear()} PEPSINO LAB</p>
         </motion.div>
-      </section>
-
-      <footer className="border-t border-[var(--line)] px-5 py-8 text-sm text-[var(--ink-soft)] md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <BrandMark />
-          <div>Contact · studio@pepsinolab.dev</div>
-        </div>
       </footer>
     </div>
   );
