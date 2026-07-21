@@ -2,41 +2,59 @@
 
 import { motion } from "framer-motion";
 import {
-  Atom,
-  Beaker,
   Brain,
   Check,
+  Compass,
   Crown,
   Droplets,
   Dumbbell,
-  FlaskConical,
+  Mountain,
   Moon,
   BookOpen,
   Settings2,
   ClipboardList,
-  Microscope,
   Star,
   Flame,
   ScanLine,
+  Trophy,
+  Landmark,
+  Heart,
+  Feather,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
+import { BRAND, LABS, ROUTINES, xpProgress } from "@/lib/constants";
 import {
-  BOARD_COLUMNS,
-  BRAND,
-  LABS,
-  ROUTINES,
-  WEEK_DAYS,
-  xpProgress,
-} from "@/lib/constants";
+  LAB_SHEETS,
+  PIONEER_PASTELS,
+  SAMPLE_BOARD,
+  SHEET_DAYS,
+  TARGET_COLS,
+  WEEKLY_MISSION_SAMPLES,
+  type DayId,
+} from "@/lib/lab-sheet";
 import { useApp } from "@/lib/store";
 import type { MissionKey } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { springSoft } from "@/lib/motion";
 
-const dayIcons = [Beaker, Microscope, Atom, FlaskConical, Brain, Star, Moon];
-
 const routineIcons = [Moon, ClipboardList, Dumbbell, BookOpen, Droplets, Settings2];
+
+function ArchMark({ color }: { color: string }) {
+  return (
+    <svg width="64" height="72" viewBox="0 0 64 72" aria-hidden>
+      <path
+        d="M8 68V28c0-14 10-24 24-24s24 10 24 24v40"
+        fill="none"
+        stroke="rgba(255,255,255,0.85)"
+        strokeWidth="2.2"
+      />
+      <path d="M18 68V32c0-8 6-14 14-14s14 6 14 14v36" fill={color} opacity="0.35" />
+      <circle cx="32" cy="36" r="6" fill="none" stroke="#c7d2fe" strokeWidth="1.5" />
+      <path d="M32 28v4M32 40v4M26 36h-4M42 36h-4" stroke="#c7d2fe" strokeWidth="1.4" />
+    </svg>
+  );
+}
 
 function HexMark({ color }: { color: string }) {
   return (
@@ -71,8 +89,8 @@ function CheckDot({
       whileTap={{ scale: 0.85 }}
       onClick={onToggle}
       className={cn(
-        "grid h-5 w-5 place-items-center border transition",
-        checked ? "text-white" : "bg-white/80 text-transparent",
+        "grid h-4 w-4 shrink-0 place-items-center border transition",
+        checked ? "text-white" : "bg-white/90 text-transparent",
       )}
       style={{
         borderColor: accent,
@@ -80,7 +98,7 @@ function CheckDot({
       }}
       aria-pressed={checked}
     >
-      <Check size={12} strokeWidth={3} />
+      <Check size={10} strokeWidth={3} />
     </motion.button>
   );
 }
@@ -90,31 +108,27 @@ export default function StudentDashboardPage() {
   const [routineGrid, setRoutineGrid] = useState<Record<string, boolean[]>>(() =>
     Object.fromEntries(ROUTINES.map((r) => [r.id, Array(7).fill(false)])),
   );
-  const [board, setBoard] = useState<Record<string, Record<string, boolean>>>(() =>
-    Object.fromEntries(
-      WEEK_DAYS.map((d) => [
-        d.id,
-        Object.fromEntries(BOARD_COLUMNS.map((c) => [c.key, false])),
-      ]),
-    ),
+  const [board, setBoard] = useState<Record<DayId, boolean[]>>(() =>
+    Object.fromEntries(SHEET_DAYS.map((d) => [d.id, Array(7).fill(false)])) as Record<
+      DayId,
+      boolean[]
+    >,
   );
   const [weeklyMissions, setWeeklyMissions] = useState(() =>
-    Array.from({ length: 7 }, (_, i) => ({
-      id: i + 1,
-      text: missions[i]?.title ?? `مأموریت ${i + 1}`,
-      done: false,
-    })),
+    WEEKLY_MISSION_SAMPLES.map((text, i) => ({ id: i + 1, text, done: false })),
   );
 
   const student = currentStudent;
   if (!student) return null;
 
   const lab = LABS.find((l) => l.id === student.lab) ?? LABS[0];
+  const sheet = LAB_SHEETS[lab.id];
   const progress = xpProgress(student.xp);
   const avgExam =
     exams.length > 0
       ? Math.round(exams.reduce((s, e) => s + e.percentage, 0) / exams.length)
-      : 0;
+      : 82;
+  const isPioneer = sheet.motif === "pioneer";
 
   const cssVars = useMemo(
     () =>
@@ -122,33 +136,34 @@ export default function StudentDashboardPage() {
         "--lab": lab.color,
         "--lab-accent": lab.accent,
         "--lab-soft": lab.soft,
-      }) as React.CSSProperties,
+      }) as CSSProperties,
     [lab],
   );
 
-  const toggleBoard = (dayId: string, key: string) => {
+  const toggleCell = (dayId: DayId, col: number) => {
     setBoard((prev) => {
-      const next = {
-        ...prev,
-        [dayId]: { ...prev[dayId], [key]: !prev[dayId][key] },
-      };
-      if (dayId === "mon" && !prev[dayId][key] && key !== "routine") {
-        const mission = missions.find((m) => m.key === key);
-        if (mission && !mission.completed) completeMission(key as MissionKey);
+      const row = [...prev[dayId]];
+      const nextVal = !row[col];
+      row[col] = nextVal;
+      if (dayId === "tue" && nextVal && col < 6) {
+        const key = TARGET_COLS[col].key;
+        if (key !== "extra") {
+          const mission = missions.find((m) => m.key === key);
+          if (mission && !mission.completed) completeMission(key as MissionKey);
+        }
       }
-      return next;
+      return { ...prev, [dayId]: row };
     });
   };
 
   return (
-    <div className="lab-sheet" style={cssVars}>
+    <div className={cn("lab-sheet", isPioneer && "lab-sheet--pioneer")} style={cssVars}>
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="lab-sheet__frame"
       >
-        {/* TOP ROW */}
         <div className="lab-sheet__top">
           <motion.div
             className="lab-brand-card"
@@ -156,7 +171,7 @@ export default function StudentDashboardPage() {
             whileHover={{ y: -2 }}
             transition={springSoft}
           >
-            <HexMark color="rgba(0,0,0,0.25)" />
+            {isPioneer ? <ArchMark color="rgba(0,0,0,0.2)" /> : <HexMark color="rgba(0,0,0,0.25)" />}
             <div>
               <div className="lab-brand-card__name">pepsino</div>
               <div className="lab-brand-card__lab">LAB</div>
@@ -166,13 +181,23 @@ export default function StudentDashboardPage() {
 
           <div className="lab-title-block">
             <div className="lab-title-block__illo" aria-hidden>
-              <div className="lab-illo-core" style={{ background: lab.accent }} />
-              <div className="lab-illo-ring" style={{ borderColor: lab.accent }} />
-              <div className="lab-illo-ring lab-illo-ring--2" style={{ borderColor: lab.color }} />
+              {isPioneer ? (
+                <Compass size={56} style={{ color: lab.accent }} strokeWidth={1.2} />
+              ) : (
+                <>
+                  <div className="lab-illo-core" style={{ background: lab.accent }} />
+                  <div className="lab-illo-ring" style={{ borderColor: lab.accent }} />
+                  <div
+                    className="lab-illo-ring lab-illo-ring--2"
+                    style={{ borderColor: lab.color }}
+                  />
+                </>
+              )}
             </div>
             <div>
               <h1 className="lab-title-block__h">
-                {lab.nameEn.split(" ")[0]} <span style={{ color: lab.accent }}>LAB</span>
+                {lab.nameEn.replace(" LAB", "")}{" "}
+                <span style={{ color: lab.accent }}>LAB</span>
               </h1>
               <p className="lab-title-block__sub">{lab.department}</p>
               <p className="lab-title-block__tag">{BRAND.tagline}</p>
@@ -204,7 +229,7 @@ export default function StudentDashboardPage() {
                         : undefined
                     }
                   >
-                    {l.badge} {l.nameEn.split(" ")[0]}
+                    {l.nameEn.replace(" LAB", "")}
                   </span>
                 ))}
               </div>
@@ -212,7 +237,11 @@ export default function StudentDashboardPage() {
 
             <div className="lab-status">
               <div className="lab-stat">
-                <FlaskConical size={16} style={{ color: lab.accent }} />
+                {isPioneer ? (
+                  <Mountain size={16} style={{ color: lab.accent }} />
+                ) : (
+                  <Brain size={16} style={{ color: lab.accent }} />
+                )}
                 <div>
                   <span>LEVEL</span>
                   <strong>{student.level}</strong>
@@ -229,7 +258,7 @@ export default function StudentDashboardPage() {
                 <Crown size={16} style={{ color: lab.accent }} />
                 <div>
                   <span>RANK</span>
-                  <strong>#{Math.max(1, 12 - student.level)}</strong>
+                  <strong>{sheet.rankLabel(student.level)}</strong>
                 </div>
               </div>
               <div className="lab-next">
@@ -250,8 +279,17 @@ export default function StudentDashboardPage() {
             </div>
 
             <div className="lab-id-slot" style={{ borderColor: lab.accent }}>
-              <div className="lab-id-slot__art" style={{ background: `linear-gradient(145deg, ${lab.accent}, ${lab.color})` }}>
-                <Brain size={36} color="white" strokeWidth={1.4} />
+              <div
+                className={cn("lab-id-slot__art", isPioneer && "lab-id-slot__art--arch")}
+                style={{
+                  background: `linear-gradient(145deg, ${lab.accent}, ${lab.color})`,
+                }}
+              >
+                {isPioneer ? (
+                  <Landmark size={32} color="white" strokeWidth={1.4} />
+                ) : (
+                  <Brain size={36} color="white" strokeWidth={1.4} />
+                )}
               </div>
               <span>INSERT YOUR ID CARD HERE</span>
               <Link href="/student/id-card" className="lab-id-slot__link">
@@ -261,15 +299,14 @@ export default function StudentDashboardPage() {
           </div>
         </div>
 
-        {/* MIDDLE */}
-        <div className="lab-sheet__mid">
+        <div className="lab-sheet__mid lab-sheet__mid--pioneer">
           <aside className="lab-side">
             <section className="lab-panel">
               <header>ROUTINE TRACKER</header>
               <div className="routine-head">
                 <span />
-                {WEEK_DAYS.map((d) => (
-                  <span key={d.id}>{d.en[0]}</span>
+                {SHEET_DAYS.map((d) => (
+                  <span key={d.id}>{d.letter}</span>
                 ))}
               </div>
               <ul className="routine-list">
@@ -282,7 +319,7 @@ export default function StudentDashboardPage() {
                         <span>{r.titleEn}</span>
                       </div>
                       <div className="routine-dots">
-                        {WEEK_DAYS.map((d, di) => (
+                        {SHEET_DAYS.map((d, di) => (
                           <CheckDot
                             key={d.id}
                             accent={lab.accent}
@@ -340,107 +377,122 @@ export default function StudentDashboardPage() {
                 <strong>HQ ACCESS</strong>
                 <p>SCAN TO ACCESS HQ</p>
               </div>
+              {isPioneer && (
+                <Landmark size={28} className="lab-qr__deco" style={{ color: lab.accent }} />
+              )}
             </section>
           </aside>
 
           <section className="lab-board lab-panel">
             <header>WEEKLY MISSION BOARD</header>
-            <div className="board-grid">
-              <div className="board-row board-row--head">
-                <div className="board-day-col">DAY</div>
-                {BOARD_COLUMNS.map((c) => (
+            <div className="board-grid board-grid--filled">
+              <div className="board-row board-row--head board-row--7">
+                {TARGET_COLS.map((c) => (
                   <div key={c.key} className="board-cell board-cell--head">
                     {c.labelEn}
                   </div>
                 ))}
               </div>
-              {WEEK_DAYS.map((day, di) => {
-                const DayIcon = dayIcons[di];
-                return (
-                  <motion.div
-                    key={day.id}
-                    className="board-row"
-                    initial={{ opacity: 0, x: 12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: di * 0.04 }}
-                  >
-                    <div className="board-day-col">
-                      <DayIcon size={14} style={{ color: lab.accent }} />
-                      <strong>{day.en}</strong>
-                    </div>
-                    {BOARD_COLUMNS.map((c) => (
-                      <div key={c.key} className="board-cell">
-                        <CheckDot
-                          accent={lab.accent}
-                          checked={board[day.id][c.key]}
-                          onToggle={() => toggleBoard(day.id, c.key)}
-                        />
-                        <span className="board-line" />
-                      </div>
-                    ))}
-                  </motion.div>
-                );
-              })}
+              {SHEET_DAYS.map((day, di) => (
+                <motion.div
+                  key={day.id}
+                  className="board-row board-row--7"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: di * 0.04 }}
+                >
+                  {TARGET_COLS.map((col, ci) => {
+                    const text = SAMPLE_BOARD[day.id][ci];
+                    const checked = board[day.id][ci];
+                    const pastel = sheet.boardPastels
+                      ? PIONEER_PASTELS[(di + ci) % PIONEER_PASTELS.length]
+                      : "#fff";
+                    const isHeart = day.id === "tue" && ci === 3;
+                    return (
+                      <button
+                        key={col.key}
+                        type="button"
+                        className={cn("board-cell board-cell--task", checked && "is-checked")}
+                        style={{ background: pastel }}
+                        onClick={() => toggleCell(day.id, ci)}
+                      >
+                        <div className="board-cell__top">
+                          <CheckDot
+                            accent={lab.accent}
+                            checked={checked}
+                            onToggle={() => toggleCell(day.id, ci)}
+                          />
+                          {isHeart && <Heart size={12} fill={lab.accent} color={lab.accent} />}
+                        </div>
+                        <span className="board-cell__text">{text}</span>
+                      </button>
+                    );
+                  })}
+                </motion.div>
+              ))}
             </div>
           </section>
+
+          <aside className="lab-days">
+            <section className="lab-panel lab-days__panel">
+              <header>WEEK PATH</header>
+              <ul>
+                {sheet.dayStages.map((d) => {
+                  const meta = SHEET_DAYS.find((x) => x.id === d.id)!;
+                  return (
+                    <li key={d.id}>
+                      <strong>{meta.fa}</strong>
+                      <span className="lab-days__stage">{d.stage}</span>
+                      {d.hint && <em className="lab-days__hint">{d.hint}</em>}
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          </aside>
         </div>
 
-        {/* BOTTOM */}
         <div className="lab-sheet__bottom">
           <section className="lab-panel">
             <header>WEEKLY REPORT</header>
             <div className="report-grid">
               <div>
                 <span>TOTAL STUDY HOURS</span>
-                <strong>12.5</strong>
+                <strong>14</strong>
               </div>
               <div>
                 <span>TEST PERCENTAGE</span>
-                <strong>{avgExam || 82}%</strong>
+                <strong>{avgExam}%</strong>
               </div>
               <div>
                 <span>STRENGTHS</span>
-                <strong>تمرکز عمیق</strong>
+                <strong>پایداری مسیر</strong>
               </div>
               <div>
                 <span>WEAKNESSES</span>
-                <strong>سرعت آزمون</strong>
+                <strong>شروع کند صبح</strong>
               </div>
               <div className="report-next">
                 <span>NEXT WEEK MISSION</span>
-                <strong>{missions.find((m) => !m.completed)?.title ?? "پاک‌سازی بورد"}</strong>
+                <strong>پاک‌سازی کامل بورد</strong>
               </div>
-            </div>
-            <div className="report-bars">
-              {[72, 86, 64, 90, 58].map((v, i) => (
-                <motion.div
-                  key={i}
-                  className="report-bar"
-                  initial={{ scaleY: 0 }}
-                  animate={{ scaleY: 1 }}
-                  transition={{ delay: 0.2 + i * 0.05, duration: 0.45 }}
-                  style={{ height: `${v}%`, background: lab.accent, transformOrigin: "bottom" }}
-                />
-              ))}
             </div>
           </section>
 
           <section className="lab-panel">
-            <header>WEEKLY NOTES</header>
-            <p className="lab-notes">
-              {logbook.win || "یادداشت هفته را اینجا بنویس — یافته‌ها، مشاهدات، سیگنال‌ها."}
+            <header>
+              WEEKLY NOTES <Feather size={12} className="inline" style={{ color: lab.accent }} />
+            </header>
+            <p className="lab-notes lab-notes--hand">
+              {logbook.win || "ما می‌ترکونیم :)"}
             </p>
           </section>
 
           <section className="lab-panel">
             <header>WEEKLY REFLECTION</header>
             <p className="lab-notes">
-              {logbook.challenge ||
-                "بازتاب: چه چیزی سخت بود؟ فردا روی چه چیزی قفل می‌کنی؟"}
+              {logbook.challenge || "این هفته چه مرزی را جابه‌جا کردی؟"}
             </p>
-            <div className="lab-brain" style={{ color: lab.accent }}>
-              <Brain size={40} strokeWidth={1.2} />
-            </div>
           </section>
 
           <section className="lab-panel lab-sotw">
@@ -457,10 +509,16 @@ export default function StudentDashboardPage() {
               <div>
                 <span>STREAK</span>
                 <strong className="inline-flex items-center gap-1">
-                  <Flame size={14} style={{ color: lab.accent }} /> 3
+                  <Flame size={14} style={{ color: lab.accent }} /> 5
                 </strong>
               </div>
             </div>
+            <Trophy
+              size={36}
+              className="lab-sotw__trophy"
+              style={{ color: lab.accent }}
+              strokeWidth={1.2}
+            />
           </section>
         </div>
 
@@ -469,14 +527,9 @@ export default function StudentDashboardPage() {
             {lab.nameEn} · {lab.department}
           </span>
           <div className="lab-footer-nav__actions">
-            {[
-              { t: "FOCUS", href: "/student/missions" },
-              { t: "LEARN", href: "/student/logbook" },
-              { t: "ADAPT", href: "/student/planner" },
-              { t: "EVOLVE", href: "/student/profile" },
-            ].map((a) => (
-              <Link key={a.t} href={a.href} className="lab-footer-nav__btn">
-                {a.t}
+            {sheet.footer.map((a) => (
+              <Link key={a.label} href={a.href} className="lab-footer-nav__btn">
+                {a.label}
               </Link>
             ))}
           </div>

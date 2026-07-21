@@ -79,7 +79,7 @@ interface PersistedState {
   exams: ExamRecord[];
 }
 
-const STORAGE_KEY = "pepsino-lab-mvp-v1";
+const STORAGE_KEY = "pepsino-lab-mvp-v2";
 
 const defaultLogbook: LogbookEntry = {
   date: todayKey(),
