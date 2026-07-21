@@ -14,10 +14,10 @@ import { Button } from "@/components/ui/Button";
 import { BRAND, LABS } from "@/lib/constants";
 
 const fadeUp = {
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 1, y: 12 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+  viewport: { once: true, amount: 0.25 },
+  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
 };
 
 export default function LandingPage() {
@@ -54,9 +54,9 @@ export default function LandingPage() {
 
         <div className="relative mx-auto flex min-h-[calc(100vh-88px)] max-w-7xl flex-col justify-end px-5 pb-16 pt-20 md:px-8 md:pb-24">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl text-white"
           >
             <div className="display text-5xl font-bold leading-[0.95] tracking-tight md:text-7xl">
@@ -98,10 +98,10 @@ export default function LandingPage() {
           {LABS.map((lab, i) => (
             <motion.div
               key={lab.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.6 }}
+              transition={{ delay: i * 0.08, duration: 0.5 }}
               className="surface overflow-hidden p-5"
             >
               <div
@@ -153,9 +153,10 @@ export default function LandingPage() {
               <div className="mt-8 h-2 rounded-full bg-white/10">
                 <motion.div
                   className="h-full rounded-full bg-[var(--brand)]"
-                  initial={{ width: "18%" }}
+                  initial={false}
                   whileInView={{ width: "62%" }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  style={{ width: "62%" }}
+                  transition={{ duration: 1.0, ease: "easeOut" }}
                 />
               </div>
               <div className="mt-3 text-sm text-white/60">Level progress · 62%</div>

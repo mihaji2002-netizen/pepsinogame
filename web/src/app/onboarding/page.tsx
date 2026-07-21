@@ -43,7 +43,7 @@ export default function OnboardingPage() {
         {key === "welcome" && (
           <motion.div
             key="welcome"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.55 }}
@@ -64,7 +64,7 @@ export default function OnboardingPage() {
         {key === "id" && (
           <motion.div
             key="id"
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             className="space-y-6"
@@ -83,7 +83,7 @@ export default function OnboardingPage() {
         {key === "lab" && (
           <motion.div
             key="lab"
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             className="surface p-8"
@@ -109,7 +109,7 @@ export default function OnboardingPage() {
         {key === "mission" && (
           <motion.div
             key="mission"
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             className="surface p-8"
@@ -137,7 +137,7 @@ export default function OnboardingPage() {
         {key === "start" && (
           <motion.div
             key="start"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             className="text-center"

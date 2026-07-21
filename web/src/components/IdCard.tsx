@@ -18,7 +18,7 @@ export function IdCard({
 
   return (
     <motion.div
-      initial={interactive ? { opacity: 0, y: 18, rotateX: 8 } : false}
+      initial={interactive ? false : false}
       animate={interactive ? { opacity: 1, y: 0, rotateX: 0 } : undefined}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={cn(

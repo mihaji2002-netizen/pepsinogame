@@ -30,7 +30,7 @@ export default function StudentDashboardPage() {
   return (
     <div className="space-y-6">
       <motion.section
-        initial={{ opacity: 0, y: 16 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         className="surface overflow-hidden p-6 md:p-8"
         style={{ boxShadow: `0 24px 60px ${lab.soft}` }}

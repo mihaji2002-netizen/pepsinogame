@@ -30,7 +30,7 @@ export default function MissionsPage() {
           return (
             <motion.div
               key={mission.key}
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.04 }}
               className="surface p-5"
