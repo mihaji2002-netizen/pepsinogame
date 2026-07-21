@@ -4,11 +4,18 @@
 
 Planning, mentoring, gamification, analytics, reports, and motivation in one unified product experience.
 
+## Live demo (GitHub Pages)
+
+https://mihaji2002-netizen.github.io/pepsinogame/
+
+> GitHub does **not** run Next.js by itself. Pages only serves static files. This repo publishes a static export of `web/` so the Pages URL works.
+
 ## Repository Structure
 
 ```text
 docs/srs/          Software Requirements Specification documents
-web/               Next.js MVP web application (primary platform)
+web/               Next.js MVP source (primary platform)
+index.html / …     Static export published for GitHub Pages
 ```
 
 ## Documentation
@@ -37,6 +44,15 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+### Rebuild GitHub Pages export
+
+```bash
+cd web
+GITHUB_PAGES=true npm run build
+cp -a out/. ..
+touch ../.nojekyll
+```
 
 ### Demo access
 

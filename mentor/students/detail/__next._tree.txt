@@ -1,0 +1,4 @@
+:HL["/pepsinogame/_next/static/chunks/3ysk2mp4-w3tl.css","style"]
+:HL["/pepsinogame/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/pepsinogame/_next/static/media/f7aa21714c1c53f8-s.p.0-95eo-012xnf.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"mentor","param":null,"prefetchHints":0,"slots":{"children":{"name":"students","param":null,"prefetchHints":0,"slots":{"children":{"name":"detail","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}}}},"staleTime":300,"buildId":"8mfqZICBH1LL81MaTpGNH"}

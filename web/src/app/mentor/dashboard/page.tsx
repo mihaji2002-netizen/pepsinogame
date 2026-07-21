@@ -137,7 +137,7 @@ export default function MentorDashboardPage() {
             >
               <div>
                 <Link
-                  href={`/mentor/students/${student.id}`}
+                  href={`/mentor/students/detail/?id=${student.id}`}
                   className="font-semibold hover:text-[var(--brand-deep)]"
                 >
                   {student.name}

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { ArrowLeft } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
@@ -10,8 +11,9 @@ import { LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { formatDate } from "@/lib/utils";
 
-export default function MentorStudentDetailPage() {
-  const params = useParams<{ id: string }>();
+function MentorStudentDetailContent() {
+  const searchParams = useSearchParams();
+  const studentId = searchParams.get("id") ?? "";
   const {
     students,
     attendance,
@@ -24,7 +26,7 @@ export default function MentorStudentDetailPage() {
     logbook,
   } = useApp();
 
-  const student = students.find((s) => s.id === params.id);
+  const student = students.find((s) => s.id === studentId);
   if (!student) {
     return (
       <div className="surface p-8">
@@ -159,5 +161,19 @@ export default function MentorStudentDetailPage() {
         </section>
       </div>
     </div>
+  );
+}
+
+export default function MentorStudentDetailPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="grid min-h-[40vh] place-items-center text-[var(--ink-soft)]">
+          Loading student…
+        </div>
+      }
+    >
+      <MentorStudentDetailContent />
+    </Suspense>
   );
 }

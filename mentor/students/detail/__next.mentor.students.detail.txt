@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[39756,["/pepsinogame/_next/static/chunks/24_3d55-da238.js","/pepsinogame/_next/static/chunks/39rz59-spsx2k.js","/pepsinogame/_next/static/chunks/14mrh2-p_w84d.js"],"default"]
+3:I[37457,["/pepsinogame/_next/static/chunks/24_3d55-da238.js","/pepsinogame/_next/static/chunks/39rz59-spsx2k.js","/pepsinogame/_next/static/chunks/14mrh2-p_w84d.js"],"default"]
+4:[]
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"8mfqZICBH1LL81MaTpGNH"}
