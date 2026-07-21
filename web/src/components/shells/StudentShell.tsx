@@ -12,9 +12,11 @@ import {
   Target,
   Trophy,
   UserRound,
+  Zap,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
+import { LABS } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
@@ -52,11 +54,53 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
     );
   }
 
+  const lab = LABS.find((l) => l.id === currentStudent.lab) ?? LABS[0];
+
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-5 md:flex-row md:px-6">
-      <aside className="no-print surface sticky top-4 h-fit w-full shrink-0 p-4 md:w-64">
+      <aside className="no-print glass sticky top-4 z-30 h-fit w-full shrink-0 rounded-[20px] p-4 md:w-64">
         <BrandMark />
-        <nav className="mt-6 space-y-1">
+
+        {/* Identity strip */}
+        <div
+          className="mt-5 rounded-2xl border p-3.5"
+          style={{
+            borderColor: `${lab.color}33`,
+            background: `linear-gradient(150deg, ${lab.color}14, transparent 70%)`,
+          }}
+        >
+          <div className="flex items-center gap-3">
+            <div
+              className="grid h-10 w-10 place-items-center rounded-xl border text-sm font-bold"
+              style={{
+                color: lab.color,
+                borderColor: `${lab.color}55`,
+                background: `${lab.color}14`,
+              }}
+            >
+              {currentStudent.avatar}
+            </div>
+            <div className="min-w-0">
+              <div className="truncate text-sm font-bold">
+                {currentStudent.name}
+              </div>
+              <div className="mono text-[10px] tracking-[0.14em] text-[var(--ink-faint)]">
+                {currentStudent.studentId}
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 flex items-center justify-between text-xs">
+            <span style={{ color: lab.color }} className="font-bold">
+              {lab.name} · L{currentStudent.level}
+            </span>
+            <span className="mono flex items-center gap-1 text-[var(--ink-soft)]">
+              <Zap size={11} className="text-[var(--brand)]" />
+              {currentStudent.xp}
+            </span>
+          </div>
+        </div>
+
+        <nav className="mt-5 space-y-1">
           {links.map(({ href, label, icon: Icon }) => {
             const active = pathname === href;
             return (
@@ -64,10 +108,10 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition",
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                   active
-                    ? "bg-[var(--brand)] text-white"
-                    : "text-[var(--ink-soft)] hover:bg-white/70",
+                    ? "bg-[var(--brand)] font-bold text-[var(--brand-ink)] shadow-[0_8px_24px_rgba(47,214,195,0.3)]"
+                    : "text-[var(--ink-soft)] hover:bg-[rgba(148,210,216,0.08)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />

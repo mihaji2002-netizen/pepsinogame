@@ -1,25 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #102027;
-  --ink-soft: #3a4f57;
-  --paper: #f3f7f6;
-  --paper-deep: #e7efed;
-  --line: rgba(16, 32, 39, 0.1);
-  --brand: #0f8a8a;
-  --brand-deep: #0b5f63;
-  --brand-glow: rgba(15, 138, 138, 0.28);
-  --accent: #d4a017;
-  --danger: #d1495b;
-  --success: #2a9d6e;
-  --shadow: 0 24px 60px rgba(16, 32, 39, 0.12);
-  --radius: 18px;
-  --font-display: var(--font-syne), "Syne", sans-serif;
-  --font-body: var(--font-figtree), "Figtree", sans-serif;
+  /* Surfaces */
+  --bg: #05090c;
+  --bg-raised: #0a1218;
+  --paper: #05090c;
+  --paper-deep: rgba(148, 210, 216, 0.06);
+  --line: rgba(148, 210, 216, 0.14);
+  --line-strong: rgba(148, 210, 216, 0.26);
+
+  /* Text */
+  --ink: #e9f4f2;
+  --ink-soft: #93a8ad;
+  --ink-faint: #5d7278;
+
+  /* Brand */
+  --brand: #2fd6c3;
+  --brand-deep: #6fe8d8;
+  --brand-ink: #04211d;
+  --brand-glow: rgba(47, 214, 195, 0.35);
+
+  /* Semantics */
+  --accent: #f2b544;
+  --danger: #ff6b81;
+  --success: #4ade9a;
+
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  --radius: 20px;
+
+  --font-display: var(--font-grotesk), "Space Grotesk", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+  --font-mono: var(--font-jbmono), "JetBrains Mono", monospace;
 }
 
 @theme inline {
-  --color-background: var(--paper);
+  --color-background: var(--bg);
   --color-foreground: var(--ink);
   --font-sans: var(--font-body);
 }
@@ -36,25 +51,27 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--ink);
-  font-family: var(--font-figtree), var(--font-body), sans-serif;
+  font-family: var(--font-body), sans-serif;
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(15, 138, 138, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 90% 0%, rgba(212, 160, 23, 0.14), transparent 50%),
-    linear-gradient(180deg, #f7fbfa 0%, #eef5f3 48%, #f3f7f6 100%);
+    radial-gradient(1100px 620px at 12% -12%, rgba(47, 214, 195, 0.13), transparent 58%),
+    radial-gradient(900px 540px at 88% -8%, rgba(242, 181, 68, 0.07), transparent 52%),
+    radial-gradient(1200px 800px at 50% 118%, rgba(47, 214, 195, 0.06), transparent 60%),
+    linear-gradient(180deg, #070d11 0%, #05090c 55%, #060b0f 100%);
   background-attachment: fixed;
 }
 
+/* Blueprint grid overlay */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.5;
   background-image:
-    linear-gradient(rgba(16, 32, 39, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 32, 39, 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 85%);
+    linear-gradient(rgba(148, 210, 216, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 210, 216, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(1200px 720px at 50% 0%, rgba(0, 0, 0, 0.85), transparent 78%);
   z-index: 0;
 }
 
@@ -68,33 +85,132 @@ input,
 textarea,
 select {
   font: inherit;
+  color: inherit;
 }
 
 ::selection {
-  background: rgba(15, 138, 138, 0.24);
+  background: rgba(47, 214, 195, 0.32);
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 210, 216, 0.18);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Typography helpers ---------- */
 
 .display {
   font-family: var(--font-display);
   letter-spacing: -0.03em;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
+.mono {
+  font-family: var(--font-mono);
 }
 
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--ink-soft);
+}
+
+/* ---------- Surfaces ---------- */
+
 .surface {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid var(--line);
+  position: relative;
   border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(148, 210, 216, 0.07) 0%, rgba(148, 210, 216, 0.025) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(233, 244, 242, 0.06),
+    0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.surface-flat {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(148, 210, 216, 0.045);
+}
+
+.panel-dark {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #0b141a 0%, #071016 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(233, 244, 242, 0.05),
+    0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* White printable sheet (reports) */
+.sheet {
+  border-radius: var(--radius);
+  background: #fbfdfc;
+  color: #12232a;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+}
+.sheet .eyebrow {
+  color: #6c8288;
+}
+
+.glass {
+  background: rgba(10, 18, 24, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px);
 }
 
 .lab-glow {
-  box-shadow: 0 0 0 1px rgba(15, 138, 138, 0.12), 0 18px 40px var(--brand-glow);
+  box-shadow: 0 0 0 1px rgba(47, 214, 195, 0.22), 0 14px 44px var(--brand-glow);
 }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(148, 210, 216, 0.06);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* ---------- Form fields ---------- */
+
+.field {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(5, 9, 12, 0.6);
+  padding: 12px 16px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field::placeholder {
+  color: var(--ink-faint);
+}
+.field:focus {
+  border-color: rgba(47, 214, 195, 0.6);
+  box-shadow: 0 0 0 3px rgba(47, 214, 195, 0.16);
+}
+select.field option {
+  background: var(--bg-raised);
+  color: var(--ink);
+}
+
+/* ---------- Motion ---------- */
 
 @keyframes floaty {
   0%,
@@ -120,6 +236,27 @@ select {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes scan {
+  0%,
+  100% {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(30%);
+    opacity: 1;
+  }
+}
+
 .floaty {
   animation: floaty 5s ease-in-out infinite;
 }
@@ -128,7 +265,42 @@ select {
   animation: pulse-ring 0.9s ease-out;
 }
 
+.shimmer-text {
+  background: linear-gradient(
+    100deg,
+    var(--ink) 40%,
+    var(--brand-deep) 50%,
+    var(--ink) 60%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floaty,
+  .shimmer-text {
+    animation: none;
+  }
+}
+
+/* ---------- Print ---------- */
+
 @media print {
+  :root {
+    --ink: #12232a;
+    --ink-soft: #52676d;
+    --ink-faint: #7d9096;
+    --line: rgba(18, 35, 42, 0.16);
+    --paper-deep: rgba(18, 35, 42, 0.05);
+  }
+
+  body {
+    background: #fff !important;
+  }
+
   body::before {
     display: none;
   }
@@ -137,8 +309,15 @@ select {
     display: none !important;
   }
 
+  .surface,
+  .surface-flat,
+  .sheet {
+    box-shadow: none !important;
+    border-color: rgba(18, 35, 42, 0.18) !important;
+    background: #fff !important;
+  }
+
   .print-sheet {
     box-shadow: none !important;
-    border: none !important;
   }
 }

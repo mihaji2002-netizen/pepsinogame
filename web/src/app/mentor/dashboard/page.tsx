@@ -34,20 +34,25 @@ export default function MentorDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Mentor Command Center</h1>
-        <p className="mt-2 text-[var(--ink-soft)]">
-          Manage students, approve missions, award stamps, and steer the season without paper.
+        <div className="eyebrow">Season 26 operations</div>
+        <h1 className="display mt-2 text-4xl font-bold">
+          Mentor Command Center
+        </h1>
+        <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
+          Manage students, approve missions, award stamps, and steer the season
+          without paper.
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
         {[
           { label: "Students", value: students.length },
           { label: "Pending approvals", value: pending.length },
           {
             label: "Avg level",
             value: (
-              students.reduce((sum, s) => sum + s.level, 0) / Math.max(students.length, 1)
+              students.reduce((sum, s) => sum + s.level, 0) /
+              Math.max(students.length, 1)
             ).toFixed(1),
           },
           {
@@ -56,7 +61,9 @@ export default function MentorDashboardPage() {
           },
         ].map((stat) => (
           <div key={stat.label} className="surface p-5">
-            <div className="text-sm text-[var(--ink-soft)]">{stat.label}</div>
+            <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+              {stat.label}
+            </div>
             <div className="display mt-2 text-3xl font-bold">{stat.value}</div>
           </div>
         ))}
@@ -67,19 +74,19 @@ export default function MentorDashboardPage() {
           <div className="relative flex-1">
             <Search
               size={16}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ink-soft)]"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--ink-faint)]"
             />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search name or Student ID"
-              className="w-full rounded-2xl border border-[var(--line)] bg-white py-3 pl-10 pr-4 outline-none ring-[var(--brand)] focus:ring-2"
+              className="field pl-11"
             />
           </div>
           <select
             value={labFilter}
             onChange={(e) => setLabFilter(e.target.value)}
-            className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none"
+            className="field md:w-44"
           >
             <option value="all">All Labs</option>
             {LABS.map((lab) => (
@@ -92,23 +99,31 @@ export default function MentorDashboardPage() {
       </div>
 
       {pending.length > 0 && (
-        <div className="surface p-5">
-          <h2 className="display text-2xl font-bold">Mission Approval Queue</h2>
+        <div className="surface border-[rgba(242,181,68,0.3)] p-5">
+          <h2 className="display flex items-center gap-2 text-2xl font-bold">
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-[rgba(242,181,68,0.14)] text-[var(--accent)]">
+              <CheckCheck size={16} />
+            </span>
+            Mission Approval Queue
+          </h2>
           <ul className="mt-4 space-y-3">
             {pending.map((mission) => (
               <li
                 key={mission.key}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-[var(--paper-deep)] px-4 py-3"
+                className="surface-flat flex flex-wrap items-center justify-between gap-3 px-4 py-3"
               >
                 <div>
-                  <div className="font-semibold">{mission.title}</div>
+                  <div className="font-bold">{mission.title}</div>
                   <div className="text-sm text-[var(--ink-soft)]">
-                    Awaiting quality approval · +{mission.xpReward} XP already granted
+                    Awaiting quality approval · +{mission.xpReward} XP already
+                    granted
                   </div>
                 </div>
                 <Button
                   variant="secondary"
-                  onClick={() => approveMission(students[0]?.id ?? "", mission.key)}
+                  onClick={() =>
+                    approveMission(students[0]?.id ?? "", mission.key)
+                  }
                 >
                   <CheckCheck size={16} />
                   Approve
@@ -120,7 +135,7 @@ export default function MentorDashboardPage() {
       )}
 
       <div className="surface overflow-hidden">
-        <div className="grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3 text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] max-md:hidden">
+        <div className="mono grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)] max-md:hidden">
           <span>Student</span>
           <span>Lab</span>
           <span>Level</span>
@@ -129,27 +144,32 @@ export default function MentorDashboardPage() {
           <span>Actions</span>
         </div>
         {filtered.map((student) => {
-          const lab = LABS.find((l) => l.id === student.lab)?.name ?? student.lab;
+          const lab = LABS.find((l) => l.id === student.lab) ?? LABS[0];
           return (
             <div
               key={student.id}
-              className="grid items-center gap-3 border-b border-[var(--line)] px-5 py-4 last:border-none md:grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr]"
+              className="grid items-center gap-3 border-b border-[var(--line)] px-5 py-4 transition last:border-none hover:bg-[rgba(148,210,216,0.04)] md:grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr]"
             >
               <div>
                 <Link
                   href={`/mentor/students/${student.id}`}
-                  className="font-semibold hover:text-[var(--brand-deep)]"
+                  className="font-bold transition hover:text-[var(--brand)]"
                 >
                   {student.name}
                 </Link>
-                <div className="font-mono text-xs tracking-wider text-[var(--ink-soft)]">
+                <div className="mono text-xs tracking-wider text-[var(--ink-faint)]">
                   {student.studentId}
                 </div>
               </div>
-              <div className="text-sm">{lab}</div>
-              <div className="text-sm">{student.level}</div>
-              <div className="text-sm">{student.xp}</div>
-              <div className="text-sm">{student.coins}</div>
+              <div
+                className="text-xs font-bold"
+                style={{ color: lab.color }}
+              >
+                {lab.name}
+              </div>
+              <div className="mono text-sm">{student.level}</div>
+              <div className="mono text-sm">{student.xp}</div>
+              <div className="mono text-sm">{student.coins}</div>
               <div className="flex flex-wrap gap-2">
                 <Button
                   variant="secondary"

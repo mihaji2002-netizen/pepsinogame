@@ -43,16 +43,18 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-5 md:flex-row md:px-6">
-      <aside className="no-print surface sticky top-4 h-fit w-full shrink-0 p-4 md:w-72">
+      <aside className="no-print glass sticky top-4 z-30 h-fit w-full shrink-0 rounded-[20px] p-4 md:w-72">
         <BrandMark />
-        <div className="mt-5 rounded-2xl bg-[var(--paper-deep)] p-3 text-sm">
-          <div className="flex items-center gap-2 font-semibold">
-            <Users size={16} />
+        <div className="surface-flat mt-5 p-3.5 text-sm">
+          <div className="flex items-center gap-2 font-bold">
+            <Users size={15} className="text-[var(--accent)]" />
             Active roster
           </div>
-          <div className="mt-1 text-[var(--ink-soft)]">{students.length} students</div>
+          <div className="mono mt-1.5 text-xs text-[var(--ink-soft)]">
+            {students.length} students · Season 26
+          </div>
         </div>
-        <nav className="mt-6 space-y-1">
+        <nav className="mt-5 space-y-1">
           {links.map(({ href, label, icon: Icon }) => {
             const active = pathname === href || pathname.startsWith(`${href}/`);
             return (
@@ -60,10 +62,10 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition",
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                   active
-                    ? "bg-[var(--ink)] text-white"
-                    : "text-[var(--ink-soft)] hover:bg-white/70",
+                    ? "bg-[var(--accent)] font-bold text-[#2b1c02] shadow-[0_8px_24px_rgba(242,181,68,0.28)]"
+                    : "text-[var(--ink-soft)] hover:bg-[rgba(148,210,216,0.08)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />

@@ -39,6 +39,21 @@ export default function OnboardingPage() {
 
   return (
     <div className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-5 py-12">
+      {/* Step indicator */}
+      <div className="mb-10 flex justify-center gap-2">
+        {steps.map((s, i) => (
+          <div
+            key={s}
+            className="h-1 w-10 rounded-full transition-all duration-500"
+            style={{
+              background:
+                i <= step ? "var(--brand)" : "rgba(148,210,216,0.15)",
+              boxShadow: i <= step ? "0 0 10px rgba(47,214,195,0.5)" : "none",
+            }}
+          />
+        ))}
+      </div>
+
       <AnimatePresence mode="wait">
         {key === "welcome" && (
           <motion.div
@@ -49,13 +64,22 @@ export default function OnboardingPage() {
             transition={{ duration: 0.55 }}
             className="text-center"
           >
-            <div className="display text-5xl font-bold md:text-6xl">
-              Welcome to PEPSINO LAB
-            </div>
-            <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">
-              Your season starts now. Identity first. Then the mission.
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }}
+              className="mx-auto grid h-20 w-20 place-items-center rounded-3xl border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.12)] text-4xl"
+            >
+              🎉
+            </motion.div>
+            <h1 className="display mt-8 text-5xl font-bold md:text-6xl">
+              Welcome to <span className="shimmer-text">PEPSINO LAB</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
+              Your season starts now, {currentStudent.name.split(" ")[0]}.
+              Identity first. Then the mission.
             </p>
-            <Button className="mt-8" onClick={() => setStep(1)}>
+            <Button className="mt-10 px-7 py-3" onClick={() => setStep(1)}>
               Reveal my ID Card
             </Button>
           </motion.div>
@@ -67,16 +91,23 @@ export default function OnboardingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <div>
-              <div className="display text-4xl font-bold">Your Digital ID</div>
-              <p className="mt-2 text-[var(--ink-soft)]">
+            <div className="text-center">
+              <div className="eyebrow">Step 02 · Identity</div>
+              <h1 className="display mt-3 text-4xl font-bold">
+                Your Digital ID
+              </h1>
+              <p className="mt-3 text-[var(--ink-soft)]">
                 Permanent Student ID · never encodes Lab · never changes.
               </p>
             </div>
             <IdCard student={currentStudent} />
-            <Button onClick={() => setStep(2)}>Continue</Button>
+            <div className="text-center">
+              <Button className="px-7 py-3" onClick={() => setStep(2)}>
+                Continue
+              </Button>
+            </div>
           </motion.div>
         )}
 
@@ -86,21 +117,38 @@ export default function OnboardingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            className="surface p-8"
+            className="surface overflow-hidden p-8"
           >
             <div
-              className="h-36 rounded-[24px]"
+              className="relative h-40 overflow-hidden rounded-[18px] border"
               style={{
-                background: `linear-gradient(145deg, ${lab.color}, #102027)`,
+                borderColor: `${lab.color}44`,
+                background: `linear-gradient(150deg, ${lab.color}30, #0a1218 70%)`,
               }}
-            />
-            <div className="display mt-6 text-4xl font-bold">{lab.name} Lab</div>
+            >
+              <div
+                className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-40 blur-2xl"
+                style={{ background: lab.color }}
+              />
+              <div
+                className="absolute bottom-4 left-5 grid h-14 w-14 place-items-center rounded-2xl border text-2xl font-bold"
+                style={{
+                  color: lab.color,
+                  borderColor: `${lab.color}55`,
+                  background: "rgba(5,9,12,0.5)",
+                }}
+              >
+                {lab.badge}
+              </div>
+            </div>
+            <div className="eyebrow mt-6">Step 03 · Your Lab</div>
+            <h1 className="display mt-2 text-4xl font-bold">{lab.name} Lab</h1>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
-            <p className="mt-4 text-sm text-[var(--ink-soft)]">
-              You begin at Level 1. Climb through Research, Catalyst, and Pioneer
-              with XP and mentor stamps.
+            <p className="mt-4 text-sm leading-relaxed text-[var(--ink-soft)]">
+              You begin at Level 1. Climb through Research, Catalyst, and
+              Pioneer with XP and mentor stamps.
             </p>
-            <Button className="mt-6" onClick={() => setStep(3)}>
+            <Button className="mt-8" onClick={() => setStep(3)}>
               Meet the Mission Board
             </Button>
           </motion.div>
@@ -114,21 +162,25 @@ export default function OnboardingPage() {
             exit={{ opacity: 0, y: -16 }}
             className="surface p-8"
           >
-            <div className="display text-4xl font-bold">First Mission</div>
-            <p className="mt-3 text-[var(--ink-soft)]">
-              Complete Routine, then Targets 1–6. Each action grants XP. Mentors
-              approve quality and award stamps.
+            <div className="eyebrow">Step 04 · The Loop</div>
+            <h1 className="display mt-2 text-4xl font-bold">First Mission</h1>
+            <p className="mt-3 leading-relaxed text-[var(--ink-soft)]">
+              Complete Routine, then Targets 1–6. Each action grants XP.
+              Mentors approve quality and award stamps.
             </p>
-            <div className="mt-6 rounded-2xl bg-[var(--paper-deep)] p-4">
-              <div className="text-sm uppercase tracking-[0.18em] text-[var(--ink-soft)]">
+            <div className="surface-flat mt-7 p-5">
+              <div className="mono text-[10px] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
                 Today
               </div>
               <div className="display mt-2 text-2xl font-bold">Routine</div>
               <p className="mt-1 text-sm text-[var(--ink-soft)]">
-                Complete your daily study ritual and warm-up. +40 XP
+                Complete your daily study ritual and warm-up.
               </p>
+              <div className="mono mt-3 text-sm font-bold text-[var(--brand)]">
+                +40 XP · +5 coins
+              </div>
             </div>
-            <Button className="mt-6" onClick={() => setStep(4)}>
+            <Button className="mt-8" onClick={() => setStep(4)}>
               Ready
             </Button>
           </motion.div>
@@ -142,12 +194,12 @@ export default function OnboardingPage() {
             exit={{ opacity: 0 }}
             className="text-center"
           >
-            <div className="display text-5xl font-bold">Enter the dashboard</div>
-            <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">
+            <h1 className="display text-5xl font-bold">Enter the dashboard</h1>
+            <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
               Mission. Progress. XP. Level. Coins. Action first.
             </p>
             <Button
-              className="mt-8"
+              className="mt-10 px-9 py-3.5 text-base"
               onClick={() => {
                 completeOnboarding();
                 router.push("/student/dashboard");

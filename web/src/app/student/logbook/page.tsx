@@ -1,5 +1,6 @@
 "use client";
 
+import { Stamp } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useApp } from "@/lib/store";
 
@@ -10,15 +11,21 @@ export default function LogbookPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Mission Logbook</h1>
+        <div className="eyebrow">Daily reflection</div>
+        <h1 className="display mt-2 text-4xl font-bold">Mission Logbook</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Daily reflection for {logbook.date}. Capture the win, the challenge, and tomorrow’s focus.
+          Reflection for <span className="mono text-[var(--brand)]">{logbook.date}</span>.
+          Capture the win, the challenge, and tomorrow&apos;s focus.
         </p>
       </div>
 
-      <div className="surface space-y-5 p-6">
+      <div className="surface space-y-6 p-6 md:p-8">
         {[
-          { key: "win" as const, label: "Today’s Win", placeholder: "What moved the needle?" },
+          {
+            key: "win" as const,
+            label: "Today’s Win",
+            placeholder: "What moved the needle?",
+          },
           {
             key: "challenge" as const,
             label: "Today’s Challenge",
@@ -31,26 +38,34 @@ export default function LogbookPage() {
           },
         ].map((field) => (
           <div key={field.key}>
-            <label className="text-sm font-semibold">{field.label}</label>
+            <label className="text-sm font-bold">{field.label}</label>
             <textarea
               value={logbook[field.key]}
               onChange={(e) => updateLogbook({ [field.key]: e.target.value })}
               rows={3}
               placeholder={field.placeholder}
-              className="mt-2 w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 outline-none ring-[var(--brand)] focus:ring-2"
+              className="field mt-2 resize-none"
             />
           </div>
         ))}
 
-        <div className="rounded-2xl bg-[var(--paper-deep)] p-4">
-          <div className="text-sm font-semibold">Mentor Notes</div>
-          <p className="mt-2 text-sm text-[var(--ink-soft)]">{logbook.mentorNotes}</p>
-          <div className="mt-3 text-sm font-semibold">
-            Mentor Stamp:{" "}
-            <span className={logbook.stamped ? "text-[var(--success)]" : "text-[var(--ink-soft)]"}>
-              {logbook.stamped ? "Awarded" : "Not yet"}
-            </span>
+        <div className="surface-flat p-5">
+          <div className="flex items-center justify-between">
+            <div className="text-sm font-bold">Mentor Notes</div>
+            <div
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold ${
+                logbook.stamped
+                  ? "border-[rgba(242,181,68,0.5)] bg-[rgba(242,181,68,0.12)] text-[var(--accent)]"
+                  : "border-[var(--line)] text-[var(--ink-faint)]"
+              }`}
+            >
+              <Stamp size={13} />
+              {logbook.stamped ? "Stamp awarded" : "No stamp yet"}
+            </div>
           </div>
+          <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)]">
+            {logbook.mentorNotes}
+          </p>
         </div>
 
         <Button
@@ -58,7 +73,8 @@ export default function LogbookPage() {
             updateLogbook({
               win: logbook.win || "Completed deep work without phone.",
               challenge: logbook.challenge || "Started Target 3 too late.",
-              tomorrowFocus: logbook.tomorrowFocus || "Protect the first focus block.",
+              tomorrowFocus:
+                logbook.tomorrowFocus || "Protect the first focus block.",
             })
           }
         >

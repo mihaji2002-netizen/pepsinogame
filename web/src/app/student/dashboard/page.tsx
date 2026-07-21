@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Coins, Flame, Star, Zap } from "lucide-react";
+import { ArrowRight, Coins, Flame, Megaphone, Star, Zap } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
@@ -29,35 +29,46 @@ export default function StudentDashboardPage() {
 
   return (
     <div className="space-y-6">
+      {/* ---------- Hero mission panel ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="surface overflow-hidden p-6 md:p-8"
-        style={{ boxShadow: `0 24px 60px ${lab.soft}` }}
+        className="relative overflow-hidden rounded-[22px] border p-6 md:p-8"
+        style={{
+          borderColor: `${lab.color}33`,
+          background: `radial-gradient(640px 300px at 8% -20%, ${lab.color}22, transparent 65%), linear-gradient(180deg, #0b141a, #070f14)`,
+        }}
       >
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <div
+          className="absolute -right-16 -top-16 h-52 w-52 rounded-full opacity-20 blur-3xl"
+          style={{ background: lab.color }}
+        />
+        <div className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
-            <div className="text-xs uppercase tracking-[0.2em] text-[var(--ink-soft)]">
+            <div
+              className="mono text-[10px] font-bold uppercase tracking-[0.26em]"
+              style={{ color: lab.color }}
+            >
               {lab.name} Lab · Level {currentStudent.level}
             </div>
-            <h1 className="display mt-2 text-4xl font-bold tracking-tight md:text-5xl">
-              Today’s Mission
+            <h1 className="display mt-3 text-4xl font-bold tracking-tight md:text-5xl">
+              Today&apos;s Mission
             </h1>
-            <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
+            <p className="mt-3 max-w-xl leading-relaxed text-[var(--ink-soft)]">
               {nextMission.completed
                 ? "Board cleared. Reflect in the logbook and prepare tomorrow."
                 : nextMission.description}
             </p>
           </div>
           <Link href="/student/missions">
-            <Button>
+            <Button className="px-6 py-3">
               Open Mission Board
               <ArrowRight size={16} />
             </Button>
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="relative mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {[
             {
               label: "Current Mission",
@@ -83,25 +94,31 @@ export default function StudentDashboardPage() {
               icon: Coins,
               tone: "var(--success)",
             },
-          ].map((stat) => (
-            <div
+          ].map((stat, i) => (
+            <motion.div
               key={stat.label}
-              className="rounded-2xl bg-white/70 p-4"
-              style={{ border: `1px solid ${stat.tone}22` }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 + i * 0.07 }}
+              className="surface-flat p-4"
             >
-              <div className="flex items-center justify-between text-sm text-[var(--ink-soft)]">
-                {stat.label}
-                <stat.icon size={16} style={{ color: stat.tone }} />
+              <div className="flex items-center justify-between">
+                <span className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
+                  {stat.label}
+                </span>
+                <stat.icon size={15} style={{ color: stat.tone }} />
               </div>
-              <div className="display mt-2 text-3xl font-bold">{stat.value}</div>
-            </div>
+              <div className="display mt-2 truncate text-2xl font-bold md:text-3xl">
+                {stat.value}
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="mt-8">
+        <div className="relative mt-8">
           <div className="mb-2 flex items-center justify-between text-sm">
-            <span>Level progress</span>
-            <span className="text-[var(--ink-soft)]">
+            <span className="font-semibold">Level progress</span>
+            <span className="mono text-xs text-[var(--ink-soft)]">
               {progress.current} / {progress.total} XP
             </span>
           </div>
@@ -111,43 +128,63 @@ export default function StudentDashboardPage() {
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <section className="space-y-6">
+          {/* Planner */}
           <div className="surface p-6">
             <div className="flex items-center justify-between">
               <h2 className="display text-2xl font-bold">Weekly Planner</h2>
-              <span className="text-sm text-[var(--ink-soft)]">{plannerPct}% done</span>
+              <span className="chip">{plannerPct}% done</span>
             </div>
             <ProgressBar value={plannerPct} className="mt-4" />
             <ul className="mt-5 space-y-2">
               {planner.slice(0, 5).map((task) => (
                 <li
                   key={task.id}
-                  className="flex items-center justify-between rounded-xl bg-[var(--paper-deep)] px-3 py-2 text-sm"
+                  className="surface-flat flex items-center justify-between px-3.5 py-2.5 text-sm"
                 >
-                  <span>
-                    <span className="mr-2 font-semibold text-[var(--ink-soft)]">
+                  <span className="flex items-center gap-3">
+                    <span className="mono w-8 text-[10px] font-bold uppercase tracking-wider text-[var(--ink-faint)]">
                       {task.day}
                     </span>
-                    {task.title}
+                    <span className={task.done ? "text-[var(--ink-faint)] line-through" : ""}>
+                      {task.title}
+                    </span>
                   </span>
-                  <span className={task.done ? "text-[var(--success)]" : "text-[var(--ink-soft)]"}>
-                    {task.done ? "Done" : "Open"}
+                  <span
+                    className={
+                      task.done
+                        ? "mono text-xs font-bold text-[var(--success)]"
+                        : "mono text-xs text-[var(--ink-faint)]"
+                    }
+                  >
+                    {task.done ? "DONE" : "OPEN"}
                   </span>
                 </li>
               ))}
             </ul>
-            <Link href="/student/planner" className="mt-4 inline-block text-sm font-semibold text-[var(--brand-deep)]">
+            <Link
+              href="/student/planner"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--brand)]"
+            >
               Open full planner
+              <ArrowRight size={14} />
             </Link>
           </div>
 
+          {/* Activity */}
           <div className="surface p-6">
             <h2 className="display text-2xl font-bold">Recent Activity</h2>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 divide-y divide-[var(--line)]">
               {xpHistory.slice(0, 5).map((event) => (
-                <li key={event.id} className="flex items-center justify-between text-sm">
-                  <span>{event.reason}</span>
-                  <span className="font-semibold text-[var(--brand-deep)]">
-                    +{event.amount} XP
+                <li
+                  key={event.id}
+                  className="flex items-center justify-between py-2.5 text-sm"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Zap size={13} className="text-[var(--brand)]" />
+                    {event.reason}
+                  </span>
+                  <span className="mono font-bold text-[var(--brand)]">
+                    +{event.amount}
                   </span>
                 </li>
               ))}
@@ -157,31 +194,42 @@ export default function StudentDashboardPage() {
 
         <section className="space-y-6">
           <IdCard student={currentStudent} />
+
+          {/* Achievements */}
           <div className="surface p-6">
             <h2 className="display text-2xl font-bold">Achievements</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               {achievements.map((a) => (
                 <div
                   key={a.id}
-                  className={`rounded-2xl p-3 text-sm ${
+                  className={`rounded-2xl border p-3.5 text-sm transition ${
                     a.unlocked
-                      ? "bg-[var(--brand)]/10 text-[var(--ink)]"
-                      : "bg-[var(--paper-deep)] text-[var(--ink-soft)]"
+                      ? "border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.08)]"
+                      : "border-[var(--line)] bg-transparent opacity-50"
                   }`}
                 >
-                  <div className="font-semibold">{a.title}</div>
-                  <div className="mt-1 text-xs opacity-80">{a.description}</div>
+                  <div className="font-bold">{a.title}</div>
+                  <div className="mt-1 text-xs leading-relaxed text-[var(--ink-soft)]">
+                    {a.description}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Announcements */}
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Announcements</h2>
+            <h2 className="display flex items-center gap-2 text-2xl font-bold">
+              <Megaphone size={20} className="text-[var(--accent)]" />
+              Announcements
+            </h2>
             <ul className="mt-4 space-y-4">
               {announcements.map((a) => (
-                <li key={a.id}>
-                  <div className="font-semibold">{a.title}</div>
-                  <p className="mt-1 text-sm text-[var(--ink-soft)]">{a.body}</p>
+                <li key={a.id} className="surface-flat p-4">
+                  <div className="font-bold">{a.title}</div>
+                  <p className="mt-1 text-sm leading-relaxed text-[var(--ink-soft)]">
+                    {a.body}
+                  </p>
                 </li>
               ))}
             </ul>

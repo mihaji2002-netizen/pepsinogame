@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
-import { Figtree, Syne } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
-const figtree = Figtree({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-figtree",
+  variable: "--font-inter",
 });
 
-const syne = Syne({
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-syne",
+  variable: "--font-grotesk",
+});
+
+const jbMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jbmono",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${figtree.variable} ${syne.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${grotesk.variable} ${jbMono.variable} antialiased`}
+      >
         <AppProvider>
           <div className="relative z-10 min-h-screen">{children}</div>
           <XpToast />

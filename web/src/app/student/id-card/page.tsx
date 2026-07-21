@@ -1,5 +1,6 @@
 "use client";
 
+import { Download, ShieldCheck } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
 import { useApp } from "@/lib/store";
@@ -11,17 +12,23 @@ export default function IdCardPage() {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div>
-        <h1 className="display text-4xl font-bold">Digital ID Card</h1>
+        <div className="eyebrow">Permanent identity</div>
+        <h1 className="display mt-2 text-4xl font-bold">Digital ID Card</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Automatically generated. Premium design. Downloadable. Future wallet support.
+          Automatically generated. Premium design. Downloadable. Future wallet
+          support.
         </p>
       </div>
       <div className="print-sheet">
         <IdCard student={currentStudent} />
       </div>
-      <div className="no-print flex flex-wrap gap-3">
-        <Button onClick={() => window.print()}>Download / Print PDF</Button>
-        <div className="rounded-full bg-white/70 px-4 py-2 text-sm text-[var(--ink-soft)]">
+      <div className="no-print flex flex-wrap items-center gap-3">
+        <Button onClick={() => window.print()}>
+          <Download size={16} />
+          Download / Print PDF
+        </Button>
+        <div className="chip">
+          <ShieldCheck size={13} className="text-[var(--brand)]" />
           Student ID never changes · Lab can change
         </div>
       </div>
