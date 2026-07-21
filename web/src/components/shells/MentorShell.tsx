@@ -45,12 +45,12 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
     <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-5 md:flex-row md:px-6">
       <aside className="no-print surface sticky top-4 h-fit w-full shrink-0 p-4 md:w-72">
         <BrandMark />
-        <div className="mt-5 rounded-2xl bg-[var(--paper-deep)] p-3 text-sm">
-          <div className="flex items-center gap-2 font-semibold">
+        <div className="mt-5 rounded-2xl bg-[var(--void)] p-3 text-sm text-white">
+          <div className="flex items-center gap-2 font-semibold text-[var(--signal)]">
             <Users size={16} />
             فهرست فعال
           </div>
-          <div className="mt-1 text-[var(--ink-soft)]">{students.length} دانش‌آموز</div>
+          <div className="mt-1 text-white/60">{students.length} دانش‌آموز</div>
         </div>
         <nav className="mt-6 space-y-1">
           {links.map(({ href, label, icon: Icon }) => {
@@ -60,9 +60,9 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition",
+                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition",
                   active
-                    ? "bg-[var(--ink)] text-white"
+                    ? "bg-[var(--void)] text-[var(--signal)]"
                     : "text-[var(--ink-soft)] hover:bg-white/70",
                 )}
               >

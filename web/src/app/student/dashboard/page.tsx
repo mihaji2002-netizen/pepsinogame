@@ -33,25 +33,26 @@ export default function StudentDashboardPage() {
       <motion.section
         initial={false}
         animate={{ opacity: 1, y: 0 }}
-        className="surface overflow-hidden p-6 md:p-8"
-        style={{ boxShadow: `0 24px 60px ${lab.soft}` }}
+        className="overflow-hidden rounded-[28px] p-6 text-white md:p-8"
+        style={{
+          background: `linear-gradient(145deg, ${lab.color} 0%, #061416 72%)`,
+          boxShadow: "0 30px 80px rgba(6,20,22,0.28)",
+        }}
       >
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <div className="text-xs text-[var(--ink-soft)]">
+            <div className="text-xs text-white/60">
               لاب {lab.name} · سطح {currentStudent.level}
             </div>
-            <h1 className="display mt-2 text-4xl font-bold tracking-tight md:text-5xl">
-              مأموریت امروز
-            </h1>
-            <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
+            <h1 className="display mt-2 text-4xl md:text-5xl">مأموریت امروز</h1>
+            <p className="mt-2 max-w-xl text-white/70">
               {nextMission.completed
                 ? "بورد پاک شد. در دفترچه بازتاب بنویس و فردا را آماده کن."
                 : nextMission.description}
             </p>
           </div>
           <Link href="/student/missions">
-            <Button>
+            <Button variant="signal">
               باز کردن بورد مأموریت
               <ArrowLeft size={16} />
             </Button>
@@ -60,21 +61,20 @@ export default function StudentDashboardPage() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {[
-            { label: "مأموریت فعلی", value: nextMission.title, icon: Flame, tone: lab.color },
-            { label: "XP", value: `${currentStudent.xp}`, icon: Zap, tone: "var(--brand)" },
-            { label: "سطح", value: `${currentStudent.level}`, icon: Star, tone: "var(--accent)" },
-            { label: "سکه", value: `${currentStudent.coins}`, icon: Coins, tone: "var(--success)" },
+            { label: "مأموریت فعلی", value: nextMission.title, icon: Flame },
+            { label: "XP", value: `${currentStudent.xp}`, icon: Zap },
+            { label: "سطح", value: `${currentStudent.level}`, icon: Star },
+            { label: "سکه", value: `${currentStudent.coins}`, icon: Coins },
           ].map((stat) => (
             <div
               key={stat.label}
-              className="rounded-2xl bg-white/70 p-4"
-              style={{ border: `1px solid ${stat.tone}22` }}
+              className="rounded-2xl border border-white/10 bg-white/5 p-4"
             >
-              <div className="flex items-center justify-between text-sm text-[var(--ink-soft)]">
+              <div className="flex items-center justify-between text-sm text-white/55">
                 {stat.label}
-                <stat.icon size={16} style={{ color: stat.tone }} />
+                <stat.icon size={16} className="text-[var(--signal)]" />
               </div>
-              <div className="display mt-2 text-3xl font-bold">
+              <div className="display mt-2 text-3xl">
                 {stat.label === "XP" || stat.label === "سکه" || stat.label === "سطح" ? (
                   <NumberTicker value={Number(stat.value)} />
                 ) : (
@@ -86,13 +86,13 @@ export default function StudentDashboardPage() {
         </div>
 
         <div className="mt-8">
-          <div className="mb-2 flex items-center justify-between text-sm">
+          <div className="mb-2 flex items-center justify-between text-sm text-white/70">
             <span>پیشرفت سطح</span>
-            <span className="text-[var(--ink-soft)]">
+            <span>
               {progress.current} / {progress.total} XP
             </span>
           </div>
-          <ProgressBar value={progress.percent} color={lab.color} />
+          <ProgressBar value={progress.percent} color="var(--signal)" />
         </div>
       </motion.section>
 
@@ -100,10 +100,10 @@ export default function StudentDashboardPage() {
         <section className="space-y-6">
           <div className="surface p-6">
             <div className="flex items-center justify-between">
-              <h2 className="display text-2xl font-bold">برنامه‌ریز هفتگی</h2>
+              <h2 className="display text-3xl">برنامه‌ریز هفتگی</h2>
               <span className="text-sm text-[var(--ink-soft)]">{plannerPct}٪ انجام‌شده</span>
             </div>
-            <ProgressBar value={plannerPct} className="mt-4" />
+            <ProgressBar value={plannerPct} className="mt-4" color="var(--brand)" />
             <ul className="mt-5 space-y-2">
               {planner.slice(0, 5).map((task) => (
                 <li
@@ -129,7 +129,7 @@ export default function StudentDashboardPage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">فعالیت‌های اخیر</h2>
+            <h2 className="display text-3xl">فعالیت‌های اخیر</h2>
             <ul className="mt-4 space-y-3">
               {xpHistory.slice(0, 5).map((event) => (
                 <li key={event.id} className="flex items-center justify-between text-sm">
@@ -144,14 +144,14 @@ export default function StudentDashboardPage() {
         <section className="space-y-6">
           <IdCard student={currentStudent} />
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">دستاوردها</h2>
+            <h2 className="display text-3xl">دستاوردها</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               {achievements.map((a) => (
                 <div
                   key={a.id}
                   className={`rounded-2xl p-3 text-sm ${
                     a.unlocked
-                      ? "bg-[var(--brand)]/10 text-[var(--ink)]"
+                      ? "bg-[var(--void)] text-[var(--signal)]"
                       : "bg-[var(--paper-deep)] text-[var(--ink-soft)]"
                   }`}
                 >
@@ -162,7 +162,7 @@ export default function StudentDashboardPage() {
             </div>
           </div>
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">اعلان‌ها</h2>
+            <h2 className="display text-3xl">اعلان‌ها</h2>
             <ul className="mt-4 space-y-4">
               {announcements.map((a) => (
                 <li key={a.id}>

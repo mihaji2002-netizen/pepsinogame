@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-import { Vazirmatn } from "next/font/google";
+import { Changa, IBM_Plex_Sans_Arabic } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
-const vazirmatn = Vazirmatn({
+const changa = Changa({
   subsets: ["arabic", "latin"],
-  variable: "--font-vazirmatn",
+  variable: "--font-changa",
+  weight: ["500", "600", "700", "800"],
+});
+
+const plex = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-plex",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirmatn.variable} antialiased`}>
+      <body className={`${changa.variable} ${plex.variable} antialiased`}>
         <AppProvider>
           <div className="relative z-10 min-h-screen">{children}</div>
           <XpToast />

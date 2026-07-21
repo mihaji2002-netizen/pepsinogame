@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[39756,["/pepsinogame/_next/static/chunks/2sz-kol-9nic7.js","/pepsinogame/_next/static/chunks/1zu24zqnilhjb.js","/pepsinogame/_next/static/chunks/14mrh2-p_w84d.js","/pepsinogame/_next/static/chunks/0n8qet175iljs.js"],"default"]
-3:I[37457,["/pepsinogame/_next/static/chunks/2sz-kol-9nic7.js","/pepsinogame/_next/static/chunks/1zu24zqnilhjb.js","/pepsinogame/_next/static/chunks/14mrh2-p_w84d.js","/pepsinogame/_next/static/chunks/0n8qet175iljs.js"],"default"]
+2:I[39756,["/pepsinogame/_next/static/chunks/2yw4b-nn663xd.js","/pepsinogame/_next/static/chunks/1zu24zqnilhjb.js","/pepsinogame/_next/static/chunks/14mrh2-p_w84d.js","/pepsinogame/_next/static/chunks/0n8qet175iljs.js"],"default"]
+3:I[37457,["/pepsinogame/_next/static/chunks/2yw4b-nn663xd.js","/pepsinogame/_next/static/chunks/1zu24zqnilhjb.js","/pepsinogame/_next/static/chunks/14mrh2-p_w84d.js","/pepsinogame/_next/static/chunks/0n8qet175iljs.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"K0u2LRRS8JM917WC2IcK6"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"nl2WBEbc-XwvtTpCJVCWf"}

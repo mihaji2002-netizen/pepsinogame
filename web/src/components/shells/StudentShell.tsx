@@ -64,9 +64,9 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium transition",
+                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition",
                   active
-                    ? "bg-[var(--brand)] text-white"
+                    ? "bg-[var(--void)] text-[var(--signal)]"
                     : "text-[var(--ink-soft)] hover:bg-white/70",
                 )}
               >
