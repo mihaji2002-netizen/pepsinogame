@@ -103,7 +103,7 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="surface overflow-hidden p-5"
+              className="surface surface-interactive overflow-hidden p-5"
             >
               <div
                 className="mb-5 h-28 rounded-2xl"
@@ -168,7 +168,7 @@ export default function LandingPage() {
             { title: "مهر", copy: "منتور کیفیت را تأیید و مهر رشد می‌دهد." },
             { title: "صعود", copy: "با XP و مهر از لاب‌ها بالا برو." },
           ].map((step, i) => (
-            <motion.div key={step.title} {...fadeUp} className="surface p-5">
+            <motion.div key={step.title} {...fadeUp} className="surface surface-interactive p-5">
               <div className="text-xs text-[var(--ink-soft)]">۰{i + 1}</div>
               <div className="display mt-3 text-2xl font-bold">{step.title}</div>
               <p className="mt-2 text-sm text-[var(--ink-soft)]">{step.copy}</p>
