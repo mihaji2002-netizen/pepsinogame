@@ -16,6 +16,7 @@ web/               Next.js MVP web application (primary platform)
 | Document | Description |
 | --- | --- |
 | [SRS Document 02 — PRD](docs/srs/02-product-requirements-document.md) | Product Requirements Document — the starting specification for implementation |
+| [SRS Document 03 — Database Design](docs/srs/03-database-design.md) | ERD + PostgreSQL schema — the data backbone every module connects to |
 
 ## MVP Web App
 
