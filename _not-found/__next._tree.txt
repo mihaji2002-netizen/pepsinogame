@@ -1,2 +1,2 @@
-:HL["/pepsinogame/_next/static/chunks/1mhncjh1lfu_k.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"O_ZpThgkLEswyvIif6ke_"}
+:HL["/pepsinogame/_next/static/chunks/0fhvczq5c8g54.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"JjqaMl2cO7-StP3YbHpM8"}
