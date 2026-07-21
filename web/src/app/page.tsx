@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { BrandMark } from "@/components/BrandMark";
+import { PepsinoLogo } from "@/components/PepsinoLogo";
 import { Button } from "@/components/ui/button";
 import { KineticText } from "@/components/ui/kinetic-text";
 import { Magnetic } from "@/components/ui/magnetic";
@@ -38,7 +39,7 @@ export default function LandingPage() {
         transition={{ duration: 0.6, ease: easeOut }}
         className="absolute inset-x-0 top-0 z-30 flex items-center justify-between px-5 py-5 md:px-10"
       >
-        <BrandMark compact />
+        <BrandMark compact size={40} />
         <nav className="flex items-center gap-1">
           <Link href="/login">
             <Button variant="ghost" className="px-4 py-2">
@@ -66,61 +67,82 @@ export default function LandingPage() {
         </motion.div>
 
         <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-5 pb-16 pt-28 md:justify-center md:px-10 md:pb-24">
-          <div className="max-w-3xl">
-            <KineticText
-              text="PEPSINO"
-              className="display block text-[clamp(3.6rem,14vw,8.5rem)] leading-[0.86] text-[var(--ink)]"
-            />
+          <div className="flex max-w-4xl flex-col items-start gap-8 md:flex-row md:items-end md:gap-12">
             <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.96 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ delay: 0.45, duration: 0.7, ease: easeOut }}
+              initial={{ opacity: 0, scale: 0.86, rotate: -6 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, ease: easeOut }}
+              className="shrink-0"
             >
-              <span className="display block text-[clamp(3.6rem,14vw,8.5rem)] leading-[0.86] text-[var(--brand)]">
-                LAB
-              </span>
+              <PepsinoLogo size={200} className="md:h-[240px] md:w-[240px]" />
             </motion.div>
 
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              transition={{ delay: 0.55 }}
-              className="display mt-8 max-w-xl text-2xl md:text-4xl"
-            >
-              آزمایشگاه سیگنال برای مسیر تحصیلی
-            </motion.h1>
+            <div className="max-w-xl">
+              <KineticText
+                text="pepsiño"
+                className="block text-[clamp(2.8rem,10vw,5.5rem)] font-extrabold leading-[0.9] tracking-tight text-[var(--ink)]"
+                as="p"
+              />
+              <motion.div
+                initial={{ opacity: 0, x: 40, scale: 0.96 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ delay: 0.45, duration: 0.7, ease: easeOut }}
+              >
+                <span className="block text-[clamp(1.6rem,5vw,2.4rem)] font-extrabold tracking-[0.35em] text-[var(--brand)]">
+                  LAB
+                </span>
+              </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.72, duration: 0.55, ease: easeOut }}
-              className="mt-4 max-w-md text-base leading-relaxed text-[var(--ink-soft)] md:text-lg"
-            >
-              GET ACTIVE TO GROW — شیت آزمایشگاهی برای مأموریت، روتین، XP و رشد هفتگی.
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5, ease: easeOut }}
+                className="mt-3 text-xs font-extrabold tracking-[0.22em] text-[var(--ink-soft)]"
+              >
+                GET ACTIVE TO GROW
+              </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.88, duration: 0.55, ease: easeOut }}
-              className="mt-10 flex flex-wrap gap-3"
-            >
-              <Magnetic strength={22}>
-                <Link href="/register">
-                  <Button variant="flare" className="px-8 py-4 text-base">
-                    ورود به آزمایشگاه
-                  </Button>
-                </Link>
-              </Magnetic>
-              <Magnetic strength={14}>
-                <Link href="/login">
-                  <Button variant="ink" className="px-8 py-4 text-base">
-                    قبلاً حساب دارم
-                  </Button>
-                </Link>
-              </Magnetic>
-            </motion.div>
+              <motion.h1
+                variants={fadeUp}
+                initial="hidden"
+                animate="show"
+                transition={{ delay: 0.7 }}
+                className="display mt-6 max-w-xl text-2xl md:text-3xl"
+              >
+                آزمایشگاه رشد برای مسیر تحصیلی
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.82, duration: 0.55, ease: easeOut }}
+                className="mt-4 max-w-md text-base leading-relaxed text-[var(--ink-soft)] md:text-lg"
+              >
+                مأموریت، روتین، XP و کارنامه — در یک شیت زنده برای دانش‌آموز و منتور.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.95, duration: 0.55, ease: easeOut }}
+                className="mt-10 flex flex-wrap gap-3"
+              >
+                <Magnetic strength={22}>
+                  <Link href="/register">
+                    <Button variant="flare" className="px-8 py-4 text-base">
+                      ورود به آزمایشگاه
+                    </Button>
+                  </Link>
+                </Magnetic>
+                <Magnetic strength={14}>
+                  <Link href="/login">
+                    <Button variant="ink" className="px-8 py-4 text-base">
+                      قبلاً حساب دارم
+                    </Button>
+                  </Link>
+                </Magnetic>
+              </motion.div>
+            </div>
           </div>
         </div>
 

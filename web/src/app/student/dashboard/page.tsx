@@ -24,6 +24,7 @@ import {
 import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { BRAND, LABS, ROUTINES, xpProgress } from "@/lib/constants";
+import { PepsinoLogo } from "@/components/PepsinoLogo";
 import {
   LAB_SHEETS,
   PIONEER_PASTELS,
@@ -39,40 +40,6 @@ import { cn } from "@/lib/utils";
 import { springSoft } from "@/lib/motion";
 
 const routineIcons = [Moon, ClipboardList, Dumbbell, BookOpen, Droplets, Settings2];
-
-function ArchMark({ color }: { color: string }) {
-  return (
-    <svg width="64" height="72" viewBox="0 0 64 72" aria-hidden>
-      <path
-        d="M8 68V28c0-14 10-24 24-24s24 10 24 24v40"
-        fill="none"
-        stroke="rgba(255,255,255,0.85)"
-        strokeWidth="2.2"
-      />
-      <path d="M18 68V32c0-8 6-14 14-14s14 6 14 14v36" fill={color} opacity="0.35" />
-      <circle cx="32" cy="36" r="6" fill="none" stroke="#c7d2fe" strokeWidth="1.5" />
-      <path d="M32 28v4M32 40v4M26 36h-4M42 36h-4" stroke="#c7d2fe" strokeWidth="1.4" />
-    </svg>
-  );
-}
-
-function HexMark({ color }: { color: string }) {
-  return (
-    <svg width="56" height="64" viewBox="0 0 56 64" aria-hidden>
-      <polygon
-        points="28,2 52,16 52,48 28,62 4,48 4,16"
-        fill={color}
-        stroke="rgba(255,255,255,0.25)"
-        strokeWidth="1.5"
-      />
-      <g transform="translate(16,20)" fill="none" stroke="#9ef" strokeWidth="1.6">
-        <circle cx="12" cy="10" r="6" />
-        <path d="M12 2v3M12 15v3M4 10H1M23 10h-3" />
-        <circle cx="12" cy="10" r="2" fill="#9ef" stroke="none" />
-      </g>
-    </svg>
-  );
-}
 
 function CheckDot({
   checked,
@@ -166,17 +133,11 @@ export default function StudentDashboardPage() {
       >
         <div className="lab-sheet__top">
           <motion.div
-            className="lab-brand-card"
-            style={{ background: lab.color }}
+            className="lab-brand-card lab-brand-card--logo"
             whileHover={{ y: -2 }}
             transition={springSoft}
           >
-            {isPioneer ? <ArchMark color="rgba(0,0,0,0.2)" /> : <HexMark color="rgba(0,0,0,0.25)" />}
-            <div>
-              <div className="lab-brand-card__name">pepsino</div>
-              <div className="lab-brand-card__lab">LAB</div>
-              <div className="lab-brand-card__tag">{BRAND.tagline}</div>
-            </div>
+            <PepsinoLogo size={132} />
           </motion.div>
 
           <div className="lab-title-block">

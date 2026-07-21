@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0b1c22;
-  --ink-soft: #4d646e;
-  --paper: #f4faf8;
-  --paper-2: #e4f1ed;
-  --paper-deep: #e4f1ed;
-  --line: rgba(11, 28, 34, 0.12);
-  --brand: #0d9488;
-  --brand-deep: #0f766e;
-  --flare: #ff4d1a;
-  --flare-soft: rgba(255, 77, 26, 0.16);
-  --mint: #5eead4;
+  --ink: #1a1a1a;
+  --ink-soft: #5a635c;
+  --paper: #f3f7f2;
+  --paper-2: #e5efe3;
+  --paper-deep: #e5efe3;
+  --line: rgba(26, 26, 26, 0.12);
+  --brand: #2db84b;
+  --brand-deep: #178a34;
+  --flare: #2db84b;
+  --flare-soft: rgba(45, 184, 75, 0.16);
+  --mint: #7cff4a;
   --danger: #e11d48;
-  --success: #059669;
+  --success: #178a34;
   --font-display: var(--font-marhey), "Marhey", sans-serif;
   --font-body: var(--font-rubik), "Rubik", sans-serif;
 }
@@ -107,9 +107,9 @@ select:focus-visible {
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(94, 234, 212, 0.55), transparent 60%),
-    radial-gradient(ellipse 50% 45% at 10% 85%, rgba(255, 77, 26, 0.22), transparent 55%),
-    linear-gradient(160deg, #e8f7f3 0%, #f4faf8 45%, #eef6f8 100%);
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(124, 255, 74, 0.35), transparent 60%),
+    radial-gradient(ellipse 50% 45% at 10% 85%, rgba(45, 184, 75, 0.22), transparent 55%),
+    linear-gradient(160deg, #e8f6e4 0%, #f3f7f2 45%, #eef4ef 100%);
 }
 
 .mesh-blob {
@@ -124,7 +124,7 @@ select:focus-visible {
 .mesh-blob--a {
   width: min(52vw, 520px);
   height: min(52vw, 520px);
-  background: #5eead4;
+  background: #7cff4a;
   top: -8%;
   left: -6%;
   animation-duration: 16s;
@@ -133,7 +133,7 @@ select:focus-visible {
 .mesh-blob--b {
   width: min(44vw, 440px);
   height: min(44vw, 440px);
-  background: #0d9488;
+  background: #2db84b;
   top: 18%;
   right: -8%;
   opacity: 0.45;
@@ -144,7 +144,7 @@ select:focus-visible {
 .mesh-blob--c {
   width: min(38vw, 380px);
   height: min(38vw, 380px);
-  background: #ff4d1a;
+  background: #178a34;
   bottom: -10%;
   left: 28%;
   opacity: 0.28;
@@ -155,7 +155,7 @@ select:focus-visible {
 .mesh-slash {
   position: absolute;
   inset: -10% 42% -10% -8%;
-  background: linear-gradient(145deg, #0d9488 0%, #0f766e 42%, #0b1c22 100%);
+  background: linear-gradient(145deg, #2db84b 0%, #178a34 42%, #1a1a1a 100%);
   clip-path: polygon(22% 0, 100% 0, 78% 100%, 0 100%);
   animation: slashPulse 8s ease-in-out infinite alternate;
 }
@@ -298,6 +298,14 @@ select:focus-visible {
   gap: 10px;
   min-height: 160px;
   justify-content: space-between;
+}
+
+.lab-brand-card--logo {
+  background: transparent;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
 }
 
 .lab-brand-card__name {

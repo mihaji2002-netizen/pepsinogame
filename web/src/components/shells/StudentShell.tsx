@@ -70,7 +70,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
         animate={{ opacity: 1, x: 0 }}
         className="no-print sticky top-3 h-fit w-full shrink-0 border border-black/10 bg-white p-3 md:w-52"
       >
-        <BrandMark compact />
+        <BrandMark compact size={48} />
         <div className="mt-3 px-1 text-[10px] font-extrabold tracking-[0.14em]" style={{ color: lab.color }}>
           {lab.nameEn}
         </div>
