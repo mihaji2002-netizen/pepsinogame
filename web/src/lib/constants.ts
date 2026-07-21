@@ -3,7 +3,8 @@ import type { Achievement, ExamRecord, LabTheme, MissionItem, PlannerTask, Stude
 export const BRAND = {
   name: "PEPSINO LAB",
   short: "PPL",
-  tagline: "سیستم‌عامل آموزشی گیمیفای‌شده",
+  tagline: "GET ACTIVE TO GROW",
+  taglineFa: "فعال شو تا رشد کنی",
 };
 
 export const XP_PER_LEVEL = 1200;
@@ -15,36 +16,77 @@ export const LABS: LabTheme[] = [
   {
     id: "neuro",
     name: "نورو",
+    nameEn: "NEURO LAB",
+    department: "NEURO DEPARTMENT",
     tagline: "پایه‌ها را بساز. تمرکز را زیر فشار قوی کن.",
-    color: "#0F8A8A",
-    soft: "rgba(15, 138, 138, 0.12)",
+    color: "#0d5c54",
+    accent: "#14b8a6",
+    soft: "rgba(13, 92, 84, 0.1)",
     badge: "N",
   },
   {
     id: "research",
     name: "ریسرچ",
+    nameEn: "RESEARCH LAB",
+    department: "RESEARCH DEPARTMENT",
     tagline: "سؤال‌های تیزتر بپرس. هر ادعا را ثابت کن.",
-    color: "#C27803",
-    soft: "rgba(194, 120, 3, 0.12)",
+    color: "#1e3a8a",
+    accent: "#3b82f6",
+    soft: "rgba(30, 58, 138, 0.1)",
     badge: "R",
   },
   {
     id: "catalyst",
     name: "کاتالیست",
+    nameEn: "CATALYST LAB",
+    department: "CATALYST DEPARTMENT",
     tagline: "خروجی را شتاب بده. مطالعه را به سیستم تبدیل کن.",
-    color: "#D1495B",
-    soft: "rgba(209, 73, 91, 0.12)",
+    color: "#9f1239",
+    accent: "#f43f5e",
+    soft: "rgba(159, 18, 57, 0.1)",
     badge: "C",
   },
   {
     id: "pioneer",
     name: "پایونیر",
+    nameEn: "PIONEER LAB",
+    department: "PIONEER DEPARTMENT",
     tagline: "مرز را رهبری کن. فصل را مال خودت کن.",
-    color: "#2A9D6E",
-    soft: "rgba(42, 157, 110, 0.12)",
+    color: "#065f46",
+    accent: "#10b981",
+    soft: "rgba(6, 95, 70, 0.1)",
     badge: "P",
   },
 ];
+
+export const WEEK_DAYS = [
+  { id: "mon", fa: "دوشنبه", en: "MON", short: "ش" },
+  { id: "tue", fa: "سه‌شنبه", en: "TUE", short: "ی" },
+  { id: "wed", fa: "چهارشنبه", en: "WED", short: "د" },
+  { id: "thu", fa: "پنج‌شنبه", en: "THU", short: "س" },
+  { id: "fri", fa: "جمعه", en: "FRI", short: "چ" },
+  { id: "sat", fa: "شنبه", en: "SAT", short: "پ" },
+  { id: "sun", fa: "یکشنبه", en: "SUN", short: "ج" },
+] as const;
+
+export const ROUTINES = [
+  { id: "sleep", title: "خواب خوب", titleEn: "SLEEP WELL" },
+  { id: "report", title: "گزارش شب", titleEn: "NIGHT REPORT" },
+  { id: "workout", title: "تمرین بدنی", titleEn: "WORKOUT" },
+  { id: "memory", title: "مرور حافظه", titleEn: "REVIEW MEMORY" },
+  { id: "water", title: "آب کافی", titleEn: "DRINK WATER" },
+  { id: "focus", title: "بدون تعویق", titleEn: "NO PROCRASTINATION" },
+] as const;
+
+export const BOARD_COLUMNS = [
+  { key: "routine", label: "روتین", labelEn: "ROUTINE" },
+  { key: "target6", label: "هدف ۶", labelEn: "TARGET 6" },
+  { key: "target5", label: "هدف ۵", labelEn: "TARGET 5" },
+  { key: "target4", label: "هدف ۴", labelEn: "TARGET 4" },
+  { key: "target3", label: "هدف ۳", labelEn: "TARGET 3" },
+  { key: "target2", label: "هدف ۲", labelEn: "TARGET 2" },
+  { key: "target1", label: "هدف ۱", labelEn: "TARGET 1" },
+] as const;
 
 export const DEFAULT_MISSIONS: MissionItem[] = [
   {

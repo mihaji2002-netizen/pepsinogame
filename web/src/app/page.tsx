@@ -97,7 +97,7 @@ export default function LandingPage() {
               transition={{ delay: 0.72, duration: 0.55, ease: easeOut }}
               className="mt-4 max-w-md text-base leading-relaxed text-[var(--ink-soft)] md:text-lg"
             >
-              مأموریت، حضور، آزمون و کارنامه — یک سیستم زنده برای دانش‌آموز و منتور.
+              GET ACTIVE TO GROW — شیت آزمایشگاهی برای مأموریت، روتین، XP و رشد هفتگی.
             </motion.p>
 
             <motion.div
