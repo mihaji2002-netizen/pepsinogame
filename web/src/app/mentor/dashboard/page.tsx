@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Search, Stamp, CheckCheck, Coins, Zap } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { LABS } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 

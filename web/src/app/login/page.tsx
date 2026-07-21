@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BrandMark } from "@/components/BrandMark";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useApp } from "@/lib/store";
 
 export default function LoginPage() {

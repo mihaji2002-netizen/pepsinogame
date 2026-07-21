@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { BrandMark } from "@/components/BrandMark";
 import { LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";

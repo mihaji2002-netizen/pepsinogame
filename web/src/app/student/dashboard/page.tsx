@@ -4,7 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, Coins, Flame, Star, Zap } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
@@ -73,7 +74,13 @@ export default function StudentDashboardPage() {
                 {stat.label}
                 <stat.icon size={16} style={{ color: stat.tone }} />
               </div>
-              <div className="display mt-2 text-3xl font-bold">{stat.value}</div>
+              <div className="display mt-2 text-3xl font-bold">
+                {stat.label === "XP" || stat.label === "سکه" || stat.label === "سطح" ? (
+                  <NumberTicker value={Number(stat.value)} />
+                ) : (
+                  stat.value
+                )}
+              </div>
             </div>
           ))}
         </div>

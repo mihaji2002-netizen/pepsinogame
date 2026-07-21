@@ -10,7 +10,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
+import { NumberTicker } from "@/components/ui/number-ticker";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { BRAND, LABS } from "@/lib/constants";
 
 const fadeUp = {
@@ -70,10 +72,10 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/register">
-                <Button className="bg-white text-[var(--ink)] hover:bg-[var(--paper)]">
+                <ShimmerButton className="gap-2 text-sm font-semibold">
                   شروع به‌عنوان دانش‌آموز
                   <Sparkles size={16} />
-                </Button>
+                </ShimmerButton>
               </Link>
               <Link href="/login">
                 <Button
@@ -85,6 +87,23 @@ export default function LandingPage() {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-10 md:px-8">
+        <div className="surface grid gap-6 p-6 sm:grid-cols-3 md:p-8">
+          {[
+            { label: "سطح در مسیر", value: 16 },
+            { label: "لاب فعال", value: 4 },
+            { label: "XP در هر سطح", value: 1200 },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="display text-4xl font-bold text-[var(--brand-deep)]">
+                <NumberTicker value={stat.value} />
+              </div>
+              <div className="mt-2 text-sm text-[var(--ink-soft)]">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -222,9 +241,9 @@ export default function LandingPage() {
           </p>
           <div className="relative mt-8">
             <Link href="/register">
-              <Button className="bg-white text-[var(--ink)] hover:bg-[var(--paper)]">
-                ساخت حساب دانش‌آموز
-              </Button>
+              <ShimmerButton className="text-sm font-semibold" background="#ffffff" shimmerColor="#0F8A8A">
+                <span className="text-[var(--ink)]">ساخت حساب دانش‌آموز</span>
+              </ShimmerButton>
             </Link>
           </div>
         </motion.div>

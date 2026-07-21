@@ -14,7 +14,7 @@ import {
   UserRound,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";
 

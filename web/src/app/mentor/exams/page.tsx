@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useApp } from "@/lib/store";
 import { formatDate } from "@/lib/utils";
 

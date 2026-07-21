@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, Lock } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useApp } from "@/lib/store";
 
 export default function MissionsPage() {

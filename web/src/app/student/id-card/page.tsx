@@ -1,7 +1,7 @@
 "use client";
 
 import { IdCard } from "@/components/IdCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useApp } from "@/lib/store";
 
 export default function IdCardPage() {

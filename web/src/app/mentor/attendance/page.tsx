@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import type { AttendanceStatus } from "@/lib/types";
 import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";

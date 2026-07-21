@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IdCard } from "@/components/IdCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { LABS } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 
