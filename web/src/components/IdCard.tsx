@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { LABS } from "@/lib/constants";
 import type { Student } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -14,21 +15,42 @@ export function IdCard({
   interactive?: boolean;
 }) {
   const lab = LABS.find((l) => l.id === student.lab) ?? LABS[0];
+  const ref = useRef<HTMLDivElement>(null);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const rx = useSpring(useTransform(my, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
+  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-10, 10]), { stiffness: 200, damping: 20 });
 
   return (
     <motion.div
-      initial={false}
-      className={cn("relative overflow-hidden p-6 text-white", className)}
-      style={{
-        background: `linear-gradient(150deg, ${lab.color} 0%, #134e4a 45%, #14212b 100%)`,
+      ref={ref}
+      initial={{ opacity: 0, y: 24, rotateX: 8 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      style={{ rotateX: rx, rotateY: ry, transformPerspective: 900 }}
+      onMouseMove={(e) => {
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        mx.set((e.clientX - r.left) / r.width - 0.5);
+        my.set((e.clientY - r.top) / r.height - 0.5);
       }}
+      onMouseLeave={() => {
+        mx.set(0);
+        my.set(0);
+      }}
+      className={cn("relative overflow-hidden p-6 text-white", className)}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 15% 20%, rgba(153,246,228,0.45), transparent 35%), radial-gradient(circle at 85% 0%, rgba(234,88,12,0.28), transparent 28%)",
+          background: `linear-gradient(150deg, ${lab.color} 0%, #0f766e 45%, #0b1c22 100%)`,
         }}
+      />
+      <motion.div
+        className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[var(--mint)]/30 blur-2xl"
+        animate={{ x: [0, 18, 0], y: [0, 12, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
       <div className="relative flex items-start justify-between gap-4">
         <div>
@@ -44,9 +66,12 @@ export function IdCard({
 
       <div className="relative mt-8 flex items-end justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="grid h-16 w-16 place-items-center bg-[var(--mint)] text-xl font-bold text-[var(--ink)]">
+          <motion.div
+            className="grid h-16 w-16 place-items-center bg-[var(--mint)] text-xl font-bold text-[var(--ink)]"
+            whileHover={{ scale: 1.08, rotate: -4 }}
+          >
             {student.avatar}
-          </div>
+          </motion.div>
           <div>
             <div className="display text-2xl">{student.name}</div>
             <div className="mt-1 font-mono text-sm tracking-[0.14em] text-white/75" dir="ltr">
@@ -59,7 +84,7 @@ export function IdCard({
             className="h-full w-full"
             style={{
               backgroundImage:
-                "conic-gradient(from 90deg, #14212b 0 25%, transparent 0 50%, #14212b 0 75%, transparent 0), linear-gradient(#14212b 0 0), linear-gradient(#14212b 0 0)",
+                "conic-gradient(from 90deg, #0b1c22 0 25%, transparent 0 50%, #0b1c22 0 75%, transparent 0), linear-gradient(#0b1c22 0 0), linear-gradient(#0b1c22 0 0)",
               backgroundPosition: "center, 20% 20%, 80% 80%",
               backgroundSize: "100% 100%, 28% 28%, 28% 28%",
               backgroundRepeat: "no-repeat",

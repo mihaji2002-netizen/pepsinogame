@@ -1,4 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { BRAND } from "@/lib/constants";
+import { springSoft } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export function BrandMark({
@@ -11,27 +15,32 @@ export function BrandMark({
   light?: boolean;
 }) {
   return (
-    <div className={cn("flex items-center gap-3", className)}>
-      <div
+    <motion.div
+      className={cn("flex items-center gap-3", className)}
+      whileHover={{ scale: 1.03 }}
+      transition={springSoft}
+    >
+      <motion.div
         className={cn(
-          "grid h-10 w-10 place-items-center text-lg font-bold",
+          "grid h-11 w-11 place-items-center text-lg font-bold",
           light ? "bg-white text-[var(--ink)]" : "bg-[var(--ink)] text-[var(--mint)]",
         )}
         style={{ fontFamily: "var(--font-display)" }}
+        whileHover={{ rotate: -8 }}
+        transition={springSoft}
       >
         P
-      </div>
+      </motion.div>
       {!compact && (
         <div
           className={cn(
-            "text-xl font-bold leading-none tracking-tight",
+            "display text-xl leading-none tracking-tight",
             light ? "text-white" : "text-[var(--ink)]",
           )}
-          style={{ fontFamily: "var(--font-display)" }}
         >
           {BRAND.name}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

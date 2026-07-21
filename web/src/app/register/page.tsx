@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/button";
+import { KineticText } from "@/components/ui/kinetic-text";
+import { Magnetic } from "@/components/ui/magnetic";
 import { useApp } from "@/lib/store";
 
 export default function RegisterPage() {
@@ -15,19 +18,35 @@ export default function RegisterPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      <div className="hero-dawn opacity-70" aria-hidden />
+      <div className="mesh">
+        <div className="mesh-blob mesh-blob--a" />
+        <div className="mesh-blob mesh-blob--b" />
+        <div className="mesh-blob mesh-blob--c" />
+        <div className="mesh-slash opacity-80" aria-hidden />
+      </div>
       <div className="relative z-10 mx-auto grid min-h-screen max-w-6xl items-center gap-10 px-5 py-10 md:grid-cols-2 md:px-8">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
           <BrandMark />
-          <h1 className="display mt-8 text-5xl font-bold tracking-tight">
-            جایت را در لاب بگیر
-          </h1>
-          <p className="mt-3 max-w-md text-[var(--ink-soft)]">
+          <div className="mt-8">
+            <KineticText
+              text="جایت را در لاب بگیر"
+              className="display text-4xl md:text-6xl"
+              as="h1"
+            />
+          </div>
+          <p className="mt-4 max-w-md text-[var(--ink-soft)]">
             ثبت‌نام، شناسه ثابت دانش‌آموز، کارت دیجیتال و سطح ۱ را خودکار می‌سازد.
           </p>
-        </div>
+        </motion.div>
 
-        <form
+        <motion.form
+          initial={{ opacity: 0, y: 28, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="surface space-y-4 p-6 md:p-8"
           onSubmit={(e) => {
             e.preventDefault();
@@ -58,16 +77,18 @@ export default function RegisterPage() {
               dir="ltr"
             />
           </div>
-          <Button type="submit" variant="flare" className="w-full">
-            ساخت حساب و نمایش کارت
-          </Button>
+          <Magnetic strength={16} className="block w-full">
+            <Button type="submit" variant="flare" className="w-full">
+              ساخت حساب و نمایش کارت
+            </Button>
+          </Magnetic>
           <p className="text-sm text-[var(--ink-soft)]">
             قبلاً ثبت‌نام کردی؟{" "}
             <Link href="/login" className="font-semibold text-[var(--brand-deep)]">
               ورود
             </Link>
           </p>
-        </form>
+        </motion.form>
       </div>
     </div>
   );

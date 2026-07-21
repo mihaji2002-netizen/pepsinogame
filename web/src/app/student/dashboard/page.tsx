@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Coins, Flame, Star, Zap } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/ui/magnetic";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { LABS, xpProgress } from "@/lib/constants";
+import { fadeUp, stagger } from "@/lib/motion";
 import { useApp } from "@/lib/store";
 
 export default function StudentDashboardPage() {
@@ -31,14 +33,20 @@ export default function StudentDashboardPage() {
   return (
     <div className="space-y-6">
       <motion.section
-        initial={false}
-        animate={{ opacity: 1, y: 0 }}
-        className="overflow-hidden p-6 text-white md:p-8"
+        initial={{ opacity: 0, y: 28, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        className="relative overflow-hidden p-6 text-white md:p-8"
         style={{
-          background: `linear-gradient(145deg, ${lab.color} 0%, #134e4a 55%, #14212b 100%)`,
+          background: `linear-gradient(145deg, ${lab.color} 0%, #0f766e 55%, #0b1c22 100%)`,
         }}
       >
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <motion.div
+          className="pointer-events-none absolute -left-16 top-0 h-48 w-48 rounded-full bg-[var(--flare)]/25 blur-3xl"
+          animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
             <div className="text-xs text-white/60">
               لاب {lab.name} · سطح {currentStudent.level}
@@ -50,22 +58,34 @@ export default function StudentDashboardPage() {
                 : nextMission.description}
             </p>
           </div>
-          <Link href="/student/missions">
-            <Button variant="flare">
-              باز کردن بورد مأموریت
-              <ArrowLeft size={16} />
-            </Button>
-          </Link>
+          <Magnetic>
+            <Link href="/student/missions">
+              <Button variant="flare">
+                باز کردن بورد مأموریت
+                <ArrowLeft size={16} />
+              </Button>
+            </Link>
+          </Magnetic>
         </div>
 
-        <div className="mt-8 grid gap-px bg-white/15 sm:grid-cols-2 xl:grid-cols-4">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+          className="relative mt-8 grid gap-px bg-white/15 sm:grid-cols-2 xl:grid-cols-4"
+        >
           {[
             { label: "مأموریت فعلی", value: nextMission.title, icon: Flame },
             { label: "XP", value: `${currentStudent.xp}`, icon: Zap },
             { label: "سطح", value: `${currentStudent.level}`, icon: Star },
             { label: "سکه", value: `${currentStudent.coins}`, icon: Coins },
           ].map((stat) => (
-            <div key={stat.label} className="bg-black/20 p-4 backdrop-blur-sm">
+            <motion.div
+              key={stat.label}
+              variants={fadeUp}
+              whileHover={{ backgroundColor: "rgba(0,0,0,0.35)" }}
+              className="bg-black/20 p-4 backdrop-blur-sm"
+            >
               <div className="flex items-center justify-between text-sm text-white/55">
                 {stat.label}
                 <stat.icon size={16} className="text-[var(--mint)]" />
@@ -77,11 +97,11 @@ export default function StudentDashboardPage() {
                   stat.value
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-8">
+        <div className="relative mt-8">
           <div className="mb-2 flex items-center justify-between text-sm text-white/70">
             <span>پیشرفت سطح</span>
             <span>
@@ -94,16 +114,24 @@ export default function StudentDashboardPage() {
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <section className="space-y-6">
-          <div className="surface p-6">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="surface p-6"
+          >
             <div className="flex items-center justify-between">
               <h2 className="display text-3xl">برنامه‌ریز هفتگی</h2>
               <span className="text-sm text-[var(--ink-soft)]">{plannerPct}٪ انجام‌شده</span>
             </div>
             <ProgressBar value={plannerPct} className="mt-4" color="var(--brand)" />
             <ul className="mt-5 space-y-2">
-              {planner.slice(0, 5).map((task) => (
-                <li
+              {planner.slice(0, 5).map((task, i) => (
+                <motion.li
                   key={task.id}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i }}
                   className="flex items-center justify-between bg-[var(--paper-2)] px-3 py-2 text-sm"
                 >
                   <span>
@@ -113,7 +141,7 @@ export default function StudentDashboardPage() {
                   <span className={task.done ? "text-[var(--success)]" : "text-[var(--ink-soft)]"}>
                     {task.done ? "انجام" : "باز"}
                   </span>
-                </li>
+                </motion.li>
               ))}
             </ul>
             <Link
@@ -122,9 +150,14 @@ export default function StudentDashboardPage() {
             >
               باز کردن برنامه‌ریز کامل
             </Link>
-          </div>
+          </motion.div>
 
-          <div className="surface p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="surface p-6"
+          >
             <h2 className="display text-3xl">فعالیت‌های اخیر</h2>
             <ul className="mt-4 space-y-3">
               {xpHistory.slice(0, 5).map((event) => (
@@ -134,17 +167,23 @@ export default function StudentDashboardPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </section>
 
         <section className="space-y-6">
           <IdCard student={currentStudent} />
-          <div className="surface p-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="surface p-6"
+          >
             <h2 className="display text-3xl">دستاوردها</h2>
             <div className="mt-4 grid grid-cols-2 gap-px bg-[var(--line)]">
               {achievements.map((a) => (
-                <div
+                <motion.div
                   key={a.id}
+                  whileHover={{ scale: 1.02 }}
                   className={`p-3 text-sm ${
                     a.unlocked
                       ? "bg-[var(--ink)] text-[var(--mint)]"
@@ -153,11 +192,16 @@ export default function StudentDashboardPage() {
                 >
                   <div className="font-semibold">{a.title}</div>
                   <div className="mt-1 text-xs opacity-80">{a.description}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
-          <div className="surface p-6">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.28 }}
+            className="surface p-6"
+          >
             <h2 className="display text-3xl">اعلان‌ها</h2>
             <ul className="mt-4 space-y-4">
               {announcements.map((a) => (
@@ -167,7 +211,7 @@ export default function StudentDashboardPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </section>
       </div>
     </div>
