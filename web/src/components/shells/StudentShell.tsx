@@ -64,10 +64,10 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition",
+                  "flex items-center gap-3 px-3 py-2.5 text-sm font-semibold transition",
                   active
-                    ? "bg-[var(--void)] text-[var(--signal)]"
-                    : "text-[var(--ink-soft)] hover:bg-white/70",
+                    ? "bg-[var(--ink)] text-[var(--mint)]"
+                    : "text-[var(--ink-soft)] hover:bg-[var(--paper-2)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />

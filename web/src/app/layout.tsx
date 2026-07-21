@@ -1,25 +1,24 @@
 import type { Metadata } from "next";
-import { Changa, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { El_Messiri, Readex_Pro } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
-const changa = Changa({
+const elMessiri = El_Messiri({
   subsets: ["arabic", "latin"],
-  variable: "--font-changa",
-  weight: ["500", "600", "700", "800"],
+  variable: "--font-el-messiri",
+  weight: ["500", "600", "700"],
 });
 
-const plex = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-plex",
+const readex = Readex_Pro({
+  subsets: ["arabic", "latin"],
+  variable: "--font-readex",
   weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "PEPSINO LAB — سیستم‌عامل آموزشی گیمیفای‌شده",
-  description:
-    "برنامه‌ریزی، منتورینگ، گیمیفیکیشن، آنالیتیکس و انگیزه در یک تجربه یکپارچه آموزشی.",
+  title: "PEPSINO LAB",
+  description: "سیستم‌عامل آموزشی گیمیفای‌شده برای فصل‌های واقعی یادگیری",
 };
 
 export default function RootLayout({
@@ -29,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${changa.variable} ${plex.variable} antialiased`}>
+      <body className={`${elMessiri.variable} ${readex.variable} antialiased`}>
         <AppProvider>
           <div className="relative z-10 min-h-screen">{children}</div>
           <XpToast />

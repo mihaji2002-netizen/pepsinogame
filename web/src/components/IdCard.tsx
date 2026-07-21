@@ -18,19 +18,16 @@ export function IdCard({
   return (
     <motion.div
       initial={false}
-      className={cn(
-        "relative overflow-hidden rounded-[30px] p-6 text-white shadow-[0_30px_80px_rgba(6,20,22,0.35)]",
-        className,
-      )}
+      className={cn("relative overflow-hidden p-6 text-white", className)}
       style={{
-        background: `linear-gradient(150deg, ${lab.color} 0%, #061416 58%, #0b2428 100%)`,
+        background: `linear-gradient(150deg, ${lab.color} 0%, #134e4a 45%, #14212b 100%)`,
       }}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 15% 20%, rgba(47,245,194,0.45), transparent 35%), radial-gradient(circle at 85% 0%, rgba(255,106,61,0.3), transparent 28%)",
+            "radial-gradient(circle at 15% 20%, rgba(153,246,228,0.45), transparent 35%), radial-gradient(circle at 85% 0%, rgba(234,88,12,0.28), transparent 28%)",
         }}
       />
       <div className="relative flex items-start justify-between gap-4">
@@ -40,14 +37,14 @@ export function IdCard({
           </div>
           <div className="display mt-2 text-3xl">PEPSINO LAB</div>
         </div>
-        <div className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold">
+        <div className="border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold">
           لاب {lab.name}
         </div>
       </div>
 
       <div className="relative mt-8 flex items-end justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[var(--signal)] text-xl font-bold text-[var(--void)]">
+          <div className="grid h-16 w-16 place-items-center bg-[var(--mint)] text-xl font-bold text-[var(--ink)]">
             {student.avatar}
           </div>
           <div>
@@ -57,12 +54,12 @@ export function IdCard({
             </div>
           </div>
         </div>
-        <div className="grid h-16 w-16 place-items-center rounded-xl bg-white p-2 text-[var(--ink)]">
+        <div className="grid h-16 w-16 place-items-center bg-white p-2 text-[var(--ink)]">
           <div
             className="h-full w-full"
             style={{
               backgroundImage:
-                "conic-gradient(from 90deg, #061416 0 25%, transparent 0 50%, #061416 0 75%, transparent 0), linear-gradient(#061416 0 0), linear-gradient(#061416 0 0)",
+                "conic-gradient(from 90deg, #14212b 0 25%, transparent 0 50%, #14212b 0 75%, transparent 0), linear-gradient(#14212b 0 0), linear-gradient(#14212b 0 0)",
               backgroundPosition: "center, 20% 20%, 80% 80%",
               backgroundSize: "100% 100%, 28% 28%, 28% 28%",
               backgroundRepeat: "no-repeat",

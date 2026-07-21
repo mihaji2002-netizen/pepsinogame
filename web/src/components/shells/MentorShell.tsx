@@ -45,8 +45,8 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
     <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-5 md:flex-row md:px-6">
       <aside className="no-print surface sticky top-4 h-fit w-full shrink-0 p-4 md:w-72">
         <BrandMark />
-        <div className="mt-5 rounded-2xl bg-[var(--void)] p-3 text-sm text-white">
-          <div className="flex items-center gap-2 font-semibold text-[var(--signal)]">
+        <div className="mt-5 bg-[var(--ink)] p-3 text-sm text-white">
+          <div className="flex items-center gap-2 font-semibold text-[var(--mint)]">
             <Users size={16} />
             فهرست فعال
           </div>
@@ -60,10 +60,10 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-semibold transition",
+                  "flex items-center gap-3 px-3 py-2.5 text-sm font-semibold transition",
                   active
-                    ? "bg-[var(--void)] text-[var(--signal)]"
-                    : "text-[var(--ink-soft)] hover:bg-white/70",
+                    ? "bg-[var(--ink)] text-[var(--mint)]"
+                    : "text-[var(--ink-soft)] hover:bg-[var(--paper-2)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />

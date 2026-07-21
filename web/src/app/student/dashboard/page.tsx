@@ -33,10 +33,9 @@ export default function StudentDashboardPage() {
       <motion.section
         initial={false}
         animate={{ opacity: 1, y: 0 }}
-        className="overflow-hidden rounded-[28px] p-6 text-white md:p-8"
+        className="overflow-hidden p-6 text-white md:p-8"
         style={{
-          background: `linear-gradient(145deg, ${lab.color} 0%, #061416 72%)`,
-          boxShadow: "0 30px 80px rgba(6,20,22,0.28)",
+          background: `linear-gradient(145deg, ${lab.color} 0%, #134e4a 55%, #14212b 100%)`,
         }}
       >
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -52,27 +51,24 @@ export default function StudentDashboardPage() {
             </p>
           </div>
           <Link href="/student/missions">
-            <Button variant="signal">
+            <Button variant="flare">
               باز کردن بورد مأموریت
               <ArrowLeft size={16} />
             </Button>
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-px bg-white/15 sm:grid-cols-2 xl:grid-cols-4">
           {[
             { label: "مأموریت فعلی", value: nextMission.title, icon: Flame },
             { label: "XP", value: `${currentStudent.xp}`, icon: Zap },
             { label: "سطح", value: `${currentStudent.level}`, icon: Star },
             { label: "سکه", value: `${currentStudent.coins}`, icon: Coins },
           ].map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-2xl border border-white/10 bg-white/5 p-4"
-            >
+            <div key={stat.label} className="bg-black/20 p-4 backdrop-blur-sm">
               <div className="flex items-center justify-between text-sm text-white/55">
                 {stat.label}
-                <stat.icon size={16} className="text-[var(--signal)]" />
+                <stat.icon size={16} className="text-[var(--mint)]" />
               </div>
               <div className="display mt-2 text-3xl">
                 {stat.label === "XP" || stat.label === "سکه" || stat.label === "سطح" ? (
@@ -92,7 +88,7 @@ export default function StudentDashboardPage() {
               {progress.current} / {progress.total} XP
             </span>
           </div>
-          <ProgressBar value={progress.percent} color="var(--signal)" />
+          <ProgressBar value={progress.percent} color="var(--mint)" />
         </div>
       </motion.section>
 
@@ -108,7 +104,7 @@ export default function StudentDashboardPage() {
               {planner.slice(0, 5).map((task) => (
                 <li
                   key={task.id}
-                  className="flex items-center justify-between rounded-xl bg-[var(--paper-deep)] px-3 py-2 text-sm"
+                  className="flex items-center justify-between bg-[var(--paper-2)] px-3 py-2 text-sm"
                 >
                   <span>
                     <span className="ml-2 font-semibold text-[var(--ink-soft)]">{task.day}</span>
@@ -145,14 +141,14 @@ export default function StudentDashboardPage() {
           <IdCard student={currentStudent} />
           <div className="surface p-6">
             <h2 className="display text-3xl">دستاوردها</h2>
-            <div className="mt-4 grid grid-cols-2 gap-3">
+            <div className="mt-4 grid grid-cols-2 gap-px bg-[var(--line)]">
               {achievements.map((a) => (
                 <div
                   key={a.id}
-                  className={`rounded-2xl p-3 text-sm ${
+                  className={`p-3 text-sm ${
                     a.unlocked
-                      ? "bg-[var(--void)] text-[var(--signal)]"
-                      : "bg-[var(--paper-deep)] text-[var(--ink-soft)]"
+                      ? "bg-[var(--ink)] text-[var(--mint)]"
+                      : "bg-white text-[var(--ink-soft)]"
                   }`}
                 >
                   <div className="font-semibold">{a.title}</div>

@@ -54,7 +54,7 @@ export default function OnboardingPage() {
             <p className="mx-auto mt-4 max-w-md text-[var(--ink-soft)]">
               فصل از همین‌جا شروع می‌شود. اول هویت، بعد مأموریت.
             </p>
-            <Button className="mt-8" onClick={() => setStep(1)}>
+            <Button variant="flare" className="mt-8" onClick={() => setStep(1)}>
               نمایش کارت شناسایی
             </Button>
           </motion.div>
@@ -75,7 +75,9 @@ export default function OnboardingPage() {
               </p>
             </div>
             <IdCard student={currentStudent} />
-            <Button onClick={() => setStep(2)}>ادامه</Button>
+            <Button variant="flare" onClick={() => setStep(2)}>
+              ادامه
+            </Button>
           </motion.div>
         )}
 
@@ -88,15 +90,15 @@ export default function OnboardingPage() {
             className="surface p-8"
           >
             <div
-              className="h-36 rounded-[24px]"
-              style={{ background: `linear-gradient(145deg, ${lab.color}, #102027)` }}
+              className="h-36"
+              style={{ background: `linear-gradient(145deg, ${lab.color}, #14212b)` }}
             />
             <div className="display mt-6 text-4xl font-bold">لاب {lab.name}</div>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
             <p className="mt-4 text-sm text-[var(--ink-soft)]">
               از سطح ۱ شروع می‌کنی. با XP و مهر منتور از ریسرچ، کاتالیست و پایونیر عبور کن.
             </p>
-            <Button className="mt-6" onClick={() => setStep(3)}>
+            <Button variant="flare" className="mt-6" onClick={() => setStep(3)}>
               آشنایی با بورد مأموریت
             </Button>
           </motion.div>
@@ -114,14 +116,14 @@ export default function OnboardingPage() {
             <p className="mt-3 text-[var(--ink-soft)]">
               روتین و سپس هدف‌های ۱ تا ۶ را کامل کن. هر عمل XP می‌دهد. منتور کیفیت را تأیید می‌کند.
             </p>
-            <div className="mt-6 rounded-2xl bg-[var(--paper-deep)] p-4">
+            <div className="mt-6 border-r-4 border-[var(--flare)] bg-[var(--paper-2)] p-4">
               <div className="text-sm text-[var(--ink-soft)]">امروز</div>
               <div className="display mt-2 text-2xl font-bold">روتین</div>
               <p className="mt-1 text-sm text-[var(--ink-soft)]">
                 مراسم مطالعه روزانه و گرم‌کردن را کامل کن. +۴۰ XP
               </p>
             </div>
-            <Button className="mt-6" onClick={() => setStep(4)}>
+            <Button variant="flare" className="mt-6" onClick={() => setStep(4)}>
               آماده‌ام
             </Button>
           </motion.div>
@@ -139,6 +141,7 @@ export default function OnboardingPage() {
               مأموریت. پیشرفت. XP. سطح. سکه. اول اقدام.
             </p>
             <Button
+              variant="flare"
               className="mt-8"
               onClick={() => {
                 completeOnboarding();
