@@ -98,7 +98,7 @@ export default function MissionsPage() {
               </div>
               <Button
                 className="mt-4 w-full"
-                variant={mission.completed ? "secondary" : "primary"}
+                variant={mission.completed || locked ? "secondary" : "primary"}
                 disabled={mission.completed || locked}
                 onClick={() => completeMission(mission.key)}
               >
