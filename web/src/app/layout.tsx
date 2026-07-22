@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { AppProvider } from "@/lib/store";
+import { MotionProvider } from "@/components/MotionProvider";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
@@ -36,8 +37,10 @@ export default function RootLayout({
         className={`${inter.variable} ${grotesk.variable} ${jbMono.variable} antialiased`}
       >
         <AppProvider>
-          <div className="relative z-10 min-h-screen">{children}</div>
-          <XpToast />
+          <MotionProvider>
+            <div className="relative z-10 min-h-screen">{children}</div>
+            <XpToast />
+          </MotionProvider>
         </AppProvider>
       </body>
     </html>

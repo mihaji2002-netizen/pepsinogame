@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { PartyPopper } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IdCard } from "@/components/IdCard";
@@ -68,9 +69,9 @@ export default function OnboardingPage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }}
-              className="mx-auto grid h-20 w-20 place-items-center rounded-3xl border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.12)] text-4xl"
+              className="mx-auto grid h-20 w-20 place-items-center rounded-3xl border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.12)] text-[var(--brand)]"
             >
-              🎉
+              <PartyPopper size={36} />
             </motion.div>
             <h1 className="display mt-8 text-5xl font-bold md:text-6xl">
               Welcome to <span className="shimmer-text">PEPSINO LAB</span>

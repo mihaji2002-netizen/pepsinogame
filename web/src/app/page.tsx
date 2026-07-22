@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   BookOpen,
   CalendarDays,
+  Check,
   CheckCircle2,
   Flame,
   Sparkles,
@@ -158,11 +159,11 @@ export default function LandingPage() {
                       <span
                         className={
                           m.done
-                            ? "grid h-5 w-5 place-items-center rounded-full bg-[var(--brand)] text-[10px] font-bold text-[var(--brand-ink)]"
+                            ? "grid h-5 w-5 place-items-center rounded-full bg-[var(--brand)] text-[var(--brand-ink)]"
                             : "h-5 w-5 rounded-full border border-[var(--line-strong)]"
                         }
                       >
-                        {m.done ? "✓" : ""}
+                        {m.done ? <Check size={11} strokeWidth={3.5} /> : ""}
                       </span>
                       <span
                         className={m.done ? "text-[var(--ink-faint)] line-through" : ""}

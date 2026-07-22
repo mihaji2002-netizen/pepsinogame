@@ -24,7 +24,8 @@ export default function LeaderboardPage() {
         </p>
       </div>
 
-      <div className="surface overflow-hidden">
+      <div className="surface overflow-x-auto">
+        <div className="min-w-[480px]">
         <div className="mono grid grid-cols-[64px_1fr_110px_90px] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
           <span>Rank</span>
           <span>Student</span>
@@ -70,6 +71,7 @@ export default function LeaderboardPage() {
             </div>
           );
         })}
+        </div>
       </div>
     </div>
   );
