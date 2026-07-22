@@ -220,6 +220,39 @@ select,
     background: var(--bg-raised);
     color: var(--ink);
   }
+
+  /* Infinite marquee strip */
+  .marquee-mask {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+  .marquee-track {
+    animation: marquee linear infinite;
+  }
+
+  /* Shimmer sweep for hero CTAs */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 32%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 68%
+    );
+    transform: translateX(-100%);
+    animation: btn-shimmer 3s ease-in-out infinite;
+  }
 }
 
 /* ---------- Motion ---------- */
@@ -257,6 +290,26 @@ select,
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes btn-shimmer {
+  0%,
+  35% {
+    transform: translateX(-100%);
+  }
+  70%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .floaty {
   animation: floaty 5s ease-in-out infinite;
 }
@@ -281,8 +334,13 @@ select,
 
 @media (prefers-reduced-motion: reduce) {
   .floaty,
-  .shimmer-text {
+  .shimmer-text,
+  .marquee-track {
     animation: none;
+  }
+
+  .btn-shimmer::after {
+    display: none;
   }
 
   html {

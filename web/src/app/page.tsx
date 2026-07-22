@@ -16,7 +16,10 @@ import {
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
+import { Marquee } from "@/components/ui/Marquee";
+import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { BRAND, LABS } from "@/lib/constants";
 
 const fadeUp = {
@@ -25,6 +28,24 @@ const fadeUp = {
   viewport: { once: true, amount: 0.3 },
   transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
 };
+
+const heroStats = [
+  { value: 16, label: "Levels" },
+  { value: 4, label: "Labs" },
+  { value: 1200, label: "XP per level" },
+  { value: 12, label: "Stamps per level" },
+];
+
+const marqueeItems = [
+  "Mission Board",
+  "XP & Coins",
+  "Mentor Stamps",
+  "Digital ID Card",
+  "Weekly Planner",
+  "Leaderboards",
+  "Season Reports",
+  "Four Labs",
+];
 
 const heroMissions = [
   { title: "Routine", xp: 40, done: true },
@@ -35,7 +56,7 @@ const heroMissions = [
 
 export default function LandingPage() {
   return (
-    <div>
+    <motion.div>
       {/* ---------- Nav ---------- */}
       <header className="no-print sticky top-0 z-40">
         <div className="glass mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 md:px-6">
@@ -87,9 +108,9 @@ export default function LandingPage() {
               momentum live together. Plan the week. Clear the board. Level
               through four Labs.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <motion.div className="mt-9 flex flex-wrap items-center gap-4">
               <Link href="/register">
-                <Button className="px-6 py-3 text-base">
+                <Button className="btn-shimmer px-6 py-3 text-base">
                   Start as Student
                   <Sparkles size={17} />
                 </Button>
@@ -100,111 +121,37 @@ export default function LandingPage() {
                   <ArrowUpRight size={17} />
                 </Button>
               </Link>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-              {[
-                ["16", "Levels"],
-                ["4", "Labs"],
-                ["1200", "XP per level"],
-                ["12", "Stamps per level"],
-              ].map(([value, label]) => (
-                <div key={label}>
+            </motion.div>
+            <motion.div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+              {heroStats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
+                >
                   <div className="display text-2xl font-bold text-[var(--brand)]">
-                    {value}
+                    <NumberTicker value={stat.value} delay={i * 120} />
                   </div>
                   <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
-                    {label}
+                    {stat.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* Hero product mock */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div
-              className="absolute -inset-8 rounded-[40px] opacity-40 blur-3xl"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 20%, rgba(47,214,195,0.35), transparent 60%)",
-              }}
-            />
-            <div className="panel-dark relative p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="eyebrow">Neuro Lab · Level 2</div>
-                  <div className="display mt-1 text-2xl font-bold">
-                    Today&apos;s Mission
-                  </div>
-                </div>
-                <div className="chip text-[var(--brand)]">
-                  <Zap size={13} className="fill-current" /> 640 XP
-                </div>
-              </div>
-              <div className="mt-5 space-y-2.5">
-                {heroMissions.map((m, i) => (
-                  <motion.div
-                    key={m.title}
-                    initial={{ opacity: 0, x: 16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + i * 0.12 }}
-                    className="surface-flat flex items-center justify-between px-4 py-3 text-sm"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={
-                          m.done
-                            ? "grid h-5 w-5 place-items-center rounded-full bg-[var(--brand)] text-[var(--brand-ink)]"
-                            : "h-5 w-5 rounded-full border border-[var(--line-strong)]"
-                        }
-                      >
-                        {m.done ? <Check size={11} strokeWidth={3.5} /> : ""}
-                      </span>
-                      <span
-                        className={m.done ? "text-[var(--ink-faint)] line-through" : ""}
-                      >
-                        {m.title}
-                      </span>
-                    </div>
-                    <span className="mono text-xs text-[var(--brand)]">
-                      +{m.xp}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-              <div className="mt-6">
-                <div className="mb-2 flex justify-between text-xs text-[var(--ink-soft)]">
-                  <span>Level progress</span>
-                  <span className="mono">640 / 1200 XP</span>
-                </div>
-                <ProgressBar value={53} />
-              </div>
-            </div>
-
-            {/* Floating stamp card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.1 }}
-              className="glass floaty absolute -bottom-8 -left-4 flex items-center gap-3 rounded-2xl px-4 py-3 md:-left-10"
-            >
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[rgba(242,181,68,0.15)] text-[var(--accent)]">
-                <Stamp size={18} />
-              </div>
-              <div>
-                <div className="text-sm font-bold">Mentor Stamp</div>
-                <div className="text-xs text-[var(--ink-soft)]">
-                  Quality approved · 5 of 12
-                </div>
-              </div>
             </motion.div>
           </motion.div>
         </div>
+      </section>
+
+      {/* ---------- Marquee ---------- */}
+      <section className="border-y border-[var(--line)] py-5">
+        <Marquee className="text-sm font-semibold text-[var(--ink-soft)]" duration={35}>
+          {marqueeItems.map((item) => (
+            <span key={item} className="chip mx-2 shrink-0">
+              {item}
+            </span>
+          ))}
+        </Marquee>
       </section>
 
       {/* ---------- Labs ---------- */}
@@ -228,12 +175,15 @@ export default function LandingPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.6 }}
               whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-[20px] border p-6"
-              style={{
-                borderColor: `${lab.color}33`,
-                background: `linear-gradient(165deg, ${lab.color}14 0%, rgba(10,18,24,0.9) 55%)`,
-              }}
             >
+              <SpotlightCard
+                className="group rounded-[20px] border p-6"
+                color={`${lab.color}26`}
+                style={{
+                  borderColor: `${lab.color}33`,
+                  background: `linear-gradient(165deg, ${lab.color}14 0%, rgba(10,18,24,0.9) 55%)`,
+                }}
+              >
               <div
                 className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition group-hover:opacity-50"
                 style={{ background: lab.color }}
@@ -257,6 +207,7 @@ export default function LandingPage() {
               <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
                 {lab.tagline}
               </p>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>
@@ -514,6 +465,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-    </div>
+    </motion.div>
   );
 }
