@@ -29,7 +29,6 @@ export default function StudentDashboardPage() {
 
   return (
     <div className="space-y-6">
-      {/* ---------- Hero mission panel ---------- */}
       <motion.section
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -49,21 +48,21 @@ export default function StudentDashboardPage() {
               className="mono text-[10px] font-bold uppercase tracking-[0.26em]"
               style={{ color: lab.color }}
             >
-              {lab.name} Lab · Level {currentStudent.level}
+              آزمایشگاه {lab.name} · سطح {currentStudent.level}
             </div>
             <h1 className="display mt-3 text-4xl font-bold tracking-tight md:text-5xl">
-              Today&apos;s Mission
+              ماموریت امروز
             </h1>
             <p className="mt-3 max-w-xl leading-relaxed text-[var(--ink-soft)]">
               {nextMission.completed
-                ? "Board cleared. Reflect in the logbook and prepare tomorrow."
+                ? "تخته پاک شد. در دفترچه بازتاب بنویس و فردا را آماده کن."
                 : nextMission.description}
             </p>
           </div>
           <Link href="/student/missions">
             <Button className="px-6 py-3">
-              Open Mission Board
-              <ArrowRight size={16} />
+              باز کردن تخته ماموریت
+              <ArrowRight size={16} className="rtl:rotate-180" />
             </Button>
           </Link>
         </div>
@@ -71,25 +70,25 @@ export default function StudentDashboardPage() {
         <div className="relative mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {[
             {
-              label: "Current Mission",
+              label: "ماموریت جاری",
               value: nextMission.title,
               icon: Flame,
               tone: lab.color,
             },
             {
-              label: "XP",
+              label: "امتیاز",
               value: `${currentStudent.xp}`,
               icon: Zap,
               tone: "var(--brand)",
             },
             {
-              label: "Level",
+              label: "سطح",
               value: `${currentStudent.level}`,
               icon: Star,
               tone: "var(--accent)",
             },
             {
-              label: "Coins",
+              label: "سکه",
               value: `${currentStudent.coins}`,
               icon: Coins,
               tone: "var(--success)",
@@ -117,9 +116,9 @@ export default function StudentDashboardPage() {
 
         <div className="relative mt-8">
           <div className="mb-2 flex items-center justify-between text-sm">
-            <span className="font-semibold">Level progress</span>
+            <span className="font-semibold">پیشرفت سطح</span>
             <span className="mono text-xs text-[var(--ink-soft)]">
-              {progress.current} / {progress.total} XP
+              {progress.current} / {progress.total} امتیاز
             </span>
           </div>
           <ProgressBar value={progress.percent} color={lab.color} />
@@ -128,11 +127,10 @@ export default function StudentDashboardPage() {
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <section className="space-y-6">
-          {/* Planner */}
           <div className="surface p-6">
             <div className="flex items-center justify-between">
-              <h2 className="display text-2xl font-bold">Weekly Planner</h2>
-              <span className="chip">{plannerPct}% done</span>
+              <h2 className="display text-2xl font-bold">برنامه هفتگی</h2>
+              <span className="chip">{plannerPct}٪ انجام‌شده</span>
             </div>
             <ProgressBar value={plannerPct} className="mt-4" />
             <ul className="mt-5 space-y-2">
@@ -156,7 +154,7 @@ export default function StudentDashboardPage() {
                         : "mono text-xs text-[var(--ink-faint)]"
                     }
                   >
-                    {task.done ? "DONE" : "OPEN"}
+                    {task.done ? "انجام شد" : "باز"}
                   </span>
                 </li>
               ))}
@@ -165,14 +163,13 @@ export default function StudentDashboardPage() {
               href="/student/planner"
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--brand)]"
             >
-              Open full planner
-              <ArrowRight size={14} />
+              برنامه کامل
+              <ArrowRight size={14} className="rtl:rotate-180" />
             </Link>
           </div>
 
-          {/* Activity */}
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Recent Activity</h2>
+            <h2 className="display text-2xl font-bold">فعالیت اخیر</h2>
             <ul className="mt-4 divide-y divide-[var(--line)]">
               {xpHistory.slice(0, 5).map((event) => (
                 <li
@@ -195,9 +192,8 @@ export default function StudentDashboardPage() {
         <section className="space-y-6">
           <IdCard student={currentStudent} />
 
-          {/* Achievements */}
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Achievements</h2>
+            <h2 className="display text-2xl font-bold">دستاوردها</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               {achievements.map((a) => (
                 <div
@@ -217,11 +213,10 @@ export default function StudentDashboardPage() {
             </div>
           </div>
 
-          {/* Announcements */}
           <div className="surface p-6">
             <h2 className="display flex items-center gap-2 text-2xl font-bold">
               <Megaphone size={20} className="text-[var(--accent)]" />
-              Announcements
+              اعلان‌ها
             </h2>
             <ul className="mt-4 space-y-4">
               {announcements.map((a) => (

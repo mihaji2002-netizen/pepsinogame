@@ -2,6 +2,7 @@
 
 import { LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
+import { attendanceLabel } from "@/lib/fa";
 import { formatDate } from "@/lib/utils";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 
@@ -29,10 +30,10 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="eyebrow">Everything in one place</div>
-        <h1 className="display mt-2 text-4xl font-bold">Student Profile</h1>
+        <div className="eyebrow">همه‌چیز در یک جا</div>
+        <h1 className="display mt-2 text-4xl font-bold">پروفایل دانش‌آموز</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Personal information, history, achievements, and mentor notes.
+          اطلاعات شخصی، تاریخچه، دستاوردها و یادداشت‌های منتور.
         </p>
       </div>
 
@@ -60,12 +61,12 @@ export default function ProfilePage() {
           </div>
           <dl className="mt-7 space-y-3.5 text-sm">
             {[
-              ["Email", currentStudent.email],
-              ["Lab", lab.name],
-              ["Level", String(currentStudent.level)],
-              ["Coins", String(currentStudent.coins)],
-              ["Stamps", String(currentStudent.stamps)],
-              ["Joined", formatDate(currentStudent.joinedAt)],
+              ["ایمیل", currentStudent.email],
+              ["آزمایشگاه", lab.name],
+              ["سطح", String(currentStudent.level)],
+              ["سکه", String(currentStudent.coins)],
+              ["مهر", String(currentStudent.stamps)],
+              ["عضویت", formatDate(currentStudent.joinedAt)],
             ].map(([label, value]) => (
               <div
                 key={label}
@@ -78,7 +79,7 @@ export default function ProfilePage() {
           </dl>
           <div className="mt-6">
             <div className="mb-2 flex justify-between text-sm">
-              <span className="font-semibold">XP to next level</span>
+              <span className="font-semibold">امتیاز تا سطح بعد</span>
               <span className="mono text-xs text-[var(--ink-soft)]">
                 {progress.current}/{progress.total}
               </span>
@@ -89,7 +90,7 @@ export default function ProfilePage() {
 
         <section className="space-y-6">
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">XP History</h2>
+            <h2 className="display text-2xl font-bold">تاریخچه امتیاز</h2>
             <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
               {xpHistory.map((e) => (
                 <li key={e.id} className="flex justify-between gap-4 py-2.5">
@@ -103,7 +104,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Exam History</h2>
+            <h2 className="display text-2xl font-bold">تاریخچه آزمون</h2>
             <ul className="mt-4 space-y-3 text-sm">
               {exams.map((exam) => (
                 <li key={exam.id} className="surface-flat p-4">
@@ -114,7 +115,7 @@ export default function ProfilePage() {
                     </span>
                   </div>
                   <div className="mono mt-1.5 text-xs text-[var(--ink-faint)]">
-                    Rank #{exam.rank} · {formatDate(exam.date)}
+                    رتبه #{exam.rank} · {formatDate(exam.date)}
                   </div>
                 </li>
               ))}
@@ -122,7 +123,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Attendance</h2>
+            <h2 className="display text-2xl font-bold">حضور و غیاب</h2>
             <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
               {attendance.map((a) => (
                 <div key={a.session} className="surface-flat p-3 text-center">
@@ -130,7 +131,7 @@ export default function ProfilePage() {
                   <div
                     className={`mt-1 text-[10px] font-bold uppercase tracking-wider ${statusTone[a.status]}`}
                   >
-                    {a.status}
+                    {attendanceLabel(a.status)}
                   </div>
                 </div>
               ))}
@@ -138,7 +139,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Mission History</h2>
+            <h2 className="display text-2xl font-bold">تاریخچه ماموریت</h2>
             <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
               {missions.map((m) => (
                 <li key={m.key} className="flex justify-between py-2.5">
@@ -150,7 +151,7 @@ export default function ProfilePage() {
                         : "text-[var(--ink-faint)]"
                     }`}
                   >
-                    {m.completed ? "Completed" : "Open"}
+                    {m.completed ? "تکمیل‌شده" : "باز"}
                   </span>
                 </li>
               ))}
@@ -158,7 +159,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">Badges</h2>
+            <h2 className="display text-2xl font-bold">نشان‌ها</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {achievements
                 .filter((a) => a.unlocked)
@@ -172,7 +173,7 @@ export default function ProfilePage() {
                 ))}
               {!achievements.some((a) => a.unlocked) && (
                 <span className="text-sm text-[var(--ink-soft)]">
-                  No badges unlocked yet.
+                  هنوز نشانی باز نشده است.
                 </span>
               )}
             </div>

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import type { AttendanceStatus } from "@/lib/types";
+import { attendanceLabel } from "@/lib/fa";
 import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
@@ -29,11 +30,11 @@ export default function AttendancePage() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="eyebrow">Six sessions</div>
-        <h1 className="display mt-2 text-4xl font-bold">Attendance</h1>
+        <div className="eyebrow">شش جلسه</div>
+        <h1 className="display mt-2 text-4xl font-bold">حضور و غیاب</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Six-session attendance for {student?.name ?? "selected student"}.
-          Statistics generate automatically.
+          حضور و غیاب شش جلسه‌ای برای {student?.name ?? "دانش‌آموز انتخاب‌شده"}.
+          آمار به‌صورت خودکار محاسبه می‌شود.
         </p>
       </div>
 
@@ -44,7 +45,7 @@ export default function AttendancePage() {
               className="mono text-[10px] font-bold uppercase tracking-[0.2em]"
               style={{ color: statusTone[status] }}
             >
-              {status}
+              {attendanceLabel(status)}
             </div>
             <div className="display mt-2 text-3xl font-bold">
               {counts[status]}
@@ -60,7 +61,7 @@ export default function AttendancePage() {
             className="surface flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between"
           >
             <div>
-              <div className="font-bold">Session {record.session}</div>
+              <div className="font-bold">جلسه {record.session}</div>
               <div className="mono mt-0.5 text-xs text-[var(--ink-faint)]">
                 {record.date}
               </div>
@@ -70,13 +71,10 @@ export default function AttendancePage() {
                 <Button
                   key={status}
                   variant={record.status === status ? "primary" : "secondary"}
-                  className={cn(
-                    "capitalize",
-                    record.status === status && "lab-glow",
-                  )}
+                  className={cn(record.status === status && "lab-glow")}
                   onClick={() => setAttendance(record.session, status)}
                 >
-                  {status}
+                  {attendanceLabel(status)}
                 </Button>
               ))}
             </div>

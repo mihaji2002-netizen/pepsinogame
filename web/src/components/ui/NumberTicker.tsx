@@ -28,7 +28,7 @@ export function NumberTicker({
   useEffect(() => {
     return spring.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent = Intl.NumberFormat("en-US").format(
+        ref.current.textContent = new Intl.NumberFormat("fa-IR").format(
           Math.round(latest),
         );
       }

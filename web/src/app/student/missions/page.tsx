@@ -17,22 +17,22 @@ export default function MissionsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="eyebrow">Daily loop</div>
-          <h1 className="display mt-2 text-4xl font-bold">Mission Board</h1>
+          <div className="eyebrow">چرخه روزانه</div>
+          <h1 className="display mt-2 text-4xl font-bold">تخته ماموریت</h1>
           <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
-            Routine + six targets. Complete to earn XP and coins. Mentors
-            approve quality.
+            روتین + شش هدف. با تکمیل، امتیاز و سکه بگیرید. منتورها کیفیت را
+            تأیید می‌کنند.
           </p>
         </div>
         <div className="chip">
-          {completed}/{missions.length} cleared today
+          {completed}/{missions.length} امروز پاک شد
         </div>
       </div>
 
       <div className="surface p-5">
         <div className="mb-2 flex justify-between text-xs text-[var(--ink-soft)]">
-          <span className="font-semibold">Board completion</span>
-          <span className="mono">{pct}%</span>
+          <span className="font-semibold">پیشرفت تخته</span>
+          <span className="mono">{pct}٪</span>
         </div>
         <ProgressBar value={pct} />
       </div>
@@ -58,7 +58,7 @@ export default function MissionsPage() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="mono text-[10px] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
-                    {mission.key === "routine" ? "Daily ritual" : "Target"}
+                    {mission.key === "routine" ? "آیین روزانه" : "هدف"}
                   </div>
                   <div className="display mt-1.5 text-2xl font-bold">
                     {mission.title}
@@ -66,7 +66,7 @@ export default function MissionsPage() {
                 </div>
                 {mission.completed ? (
                   <span className="inline-flex items-center gap-1 rounded-full border border-[rgba(74,222,154,0.4)] bg-[rgba(74,222,154,0.12)] px-3 py-1 text-xs font-bold text-[var(--success)]">
-                    <Check size={13} /> Done
+                    <Check size={13} /> انجام شد
                   </span>
                 ) : locked ? (
                   <span className="grid h-8 w-8 place-items-center rounded-full border border-[var(--line)]">
@@ -93,7 +93,7 @@ export default function MissionsPage() {
                       : "text-[var(--ink-faint)]"
                   }`}
                 >
-                  {mission.approved ? "Mentor approved" : "Pending approval"}
+                  {mission.approved ? "تأیید منتور" : "در انتظار تأیید"}
                 </span>
               </div>
               <Button
@@ -103,10 +103,10 @@ export default function MissionsPage() {
                 onClick={() => completeMission(mission.key)}
               >
                 {mission.completed
-                  ? "Completed"
+                  ? "تکمیل‌شده"
                   : locked
-                    ? "Locked"
-                    : "Mark complete"}
+                    ? "قفل"
+                    : "علامت تکمیل"}
               </Button>
             </motion.div>
           );

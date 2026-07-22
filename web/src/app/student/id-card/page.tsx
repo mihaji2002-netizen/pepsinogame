@@ -12,11 +12,11 @@ export default function IdCardPage() {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div>
-        <div className="eyebrow">Permanent identity</div>
-        <h1 className="display mt-2 text-4xl font-bold">Digital ID Card</h1>
+        <div className="eyebrow">هویت دائمی</div>
+        <h1 className="display mt-2 text-4xl font-bold">کارت شناسایی دیجیتال</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Automatically generated. Premium design. Downloadable. Future wallet
-          support.
+          به‌صورت خودکار ساخته می‌شود. طراحی ممتاز. قابل دانلود. پشتیبانی کیف پول
+          در آینده.
         </p>
       </div>
       <div className="print-sheet">
@@ -25,11 +25,11 @@ export default function IdCardPage() {
       <div className="no-print flex flex-wrap items-center gap-3">
         <Button onClick={() => window.print()}>
           <Download size={16} />
-          Download / Print PDF
+          دانلود / چاپ PDF
         </Button>
         <div className="chip">
           <ShieldCheck size={13} className="text-[var(--brand)]" />
-          Student ID never changes · Lab can change
+          شناسه دانش‌آموزی هرگز تغییر نمی‌کند · آزمایشگاه می‌تواند عوض شود
         </div>
       </div>
     </div>

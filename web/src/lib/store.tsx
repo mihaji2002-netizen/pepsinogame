@@ -34,6 +34,7 @@ import type {
   Student,
   XpEvent,
 } from "./types";
+import { fa } from "./fa";
 import { todayKey } from "./utils";
 
 interface AppState {
@@ -86,7 +87,7 @@ const defaultLogbook: LogbookEntry = {
   win: "",
   challenge: "",
   tomorrowFocus: "",
-  mentorNotes: "Keep the focus blocks tight. You’re building Neuro habits.",
+  mentorNotes: "بلوک‌های تمرکز را محکم نگه دار. داری عادت‌های نورو می‌سازی.",
   stamped: false,
 };
 
@@ -102,14 +103,14 @@ const defaultAttendance: AttendanceRecord[] = [
 const defaultAnnouncements: Announcement[] = [
   {
     id: "an-1",
-    title: "Season Pulse",
-    body: "Neuro Lab intensives start this week. Clear Target 1 before Friday.",
+    title: "نبض فصل",
+    body: "فشرده نورو این هفته شروع می‌شود. هدف ۱ را قبل از جمعه تمام کن.",
     at: "2026-07-18",
   },
   {
     id: "an-2",
-    title: "Mentor Office Hours",
-    body: "Stamps and mission reviews every evening at 19:00.",
+    title: "ساعات حضور منتور",
+    body: "بررسی ماموریت‌ها و اعطای مهر هر شب ساعت ۱۹:۰۰.",
     at: "2026-07-19",
   },
 ];
@@ -118,13 +119,13 @@ const defaultXpHistory: XpEvent[] = [
   {
     id: "xp-1",
     amount: 40,
-    reason: "Routine completed",
+    reason: "روتین تکمیل شد",
     at: "2026-07-18T10:00:00Z",
   },
   {
     id: "xp-2",
     amount: 60,
-    reason: "Target 1 completed",
+    reason: "هدف ۱ تکمیل شد",
     at: "2026-07-18T12:00:00Z",
   },
 ];
@@ -383,7 +384,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
             )
           : prev.achievements,
       }));
-      grantXp(currentStudent.id, mission.xpReward, `${mission.title} completed`);
+      grantXp(currentStudent.id, mission.xpReward, fa.xp.missionDone(mission.title));
     },
     approveMission: (_studentId, key) => {
       patchState((prev) => ({
@@ -406,7 +407,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           a.id === "a1" ? { ...a, unlocked: true } : a,
         ),
       }));
-      grantXp(studentId, 25, "Mentor stamp awarded");
+      grantXp(studentId, 25, fa.xp.awarded);
     },
     togglePlannerTask: (id) => {
       patchState((prev) => ({

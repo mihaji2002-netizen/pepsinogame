@@ -7,11 +7,9 @@ import {
   ArrowUpRight,
   BookOpen,
   CalendarDays,
-  Check,
   CheckCircle2,
   Flame,
   Sparkles,
-  Stamp,
   Zap,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
@@ -30,28 +28,21 @@ const fadeUp = {
 };
 
 const heroStats = [
-  { value: 16, label: "Levels" },
-  { value: 4, label: "Labs" },
-  { value: 1200, label: "XP per level" },
-  { value: 12, label: "Stamps per level" },
+  { value: 16, label: "سطح" },
+  { value: 4, label: "آزمایشگاه" },
+  { value: 1200, label: "امتیاز در هر سطح" },
+  { value: 12, label: "مهر در هر سطح" },
 ];
 
 const marqueeItems = [
-  "Mission Board",
-  "XP & Coins",
-  "Mentor Stamps",
-  "Digital ID Card",
-  "Weekly Planner",
-  "Leaderboards",
-  "Season Reports",
-  "Four Labs",
-];
-
-const heroMissions = [
-  { title: "Routine", xp: 40, done: true },
-  { title: "Target 1 · Deep work", xp: 60, done: true },
-  { title: "Target 2 · Practice set", xp: 60, done: false },
-  { title: "Target 3 · Review gaps", xp: 50, done: false },
+  "تخته ماموریت",
+  "امتیاز و سکه",
+  "مهرهای منتور",
+  "کارت شناسایی دیجیتال",
+  "برنامه هفتگی",
+  "رتبه‌بندی",
+  "گزارش فصل",
+  "چهار آزمایشگاه",
 ];
 
 export default function LandingPage() {
@@ -63,25 +54,25 @@ export default function LandingPage() {
           <BrandMark />
           <nav className="hidden items-center gap-7 text-sm text-[var(--ink-soft)] md:flex">
             <a href="#labs" className="transition hover:text-[var(--ink)]">
-              Labs
+              آزمایشگاه‌ها
             </a>
             <a href="#loop" className="transition hover:text-[var(--ink)]">
-              The Loop
+              چرخه
             </a>
             <a href="#mentor" className="transition hover:text-[var(--ink)]">
-              Mentors
+              منتورها
             </a>
             <a href="#faq" className="transition hover:text-[var(--ink)]">
-              FAQ
+              سؤالات
             </a>
             <Link href="/login" className="font-semibold text-[var(--ink)]">
-              Sign in
+              ورود
             </Link>
           </nav>
           <Link href="/register">
             <Button className="px-4 py-2">
-              Enter the Lab
-              <ArrowRight size={15} />
+              ورود به آزمایشگاه
+              <ArrowRight size={15} className="rtl:rotate-180" />
             </Button>
           </Link>
         </div>
@@ -97,32 +88,32 @@ export default function LandingPage() {
           >
             <div className="chip">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] shadow-[0_0_8px_var(--brand)]" />
-              Season 26 enrollment open
+              ثبت‌نام فصل ۲۶ باز است
             </div>
             <h1 className="display mt-6 text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">
-              Study like it&apos;s{" "}
-              <span className="shimmer-text">a season</span>, not a chore.
+              مطالعه را مثل یک{" "}
+              <span className="shimmer-text">فصل</span> تجربه کن، نه یک وظیفه.
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-[var(--ink-soft)]">
-              {BRAND.name} is the education OS where missions, mentors, XP, and
-              momentum live together. Plan the week. Clear the board. Level
-              through four Labs.
+              {BRAND.name} سیستم‌عامل آموزشی است که ماموریت‌ها، منتورها، امتیاز و
+              شتاب را در یک جا جمع می‌کند. هفته را برنامه‌ریزی کن. تخته را پاک
+              کن. از چهار آزمایشگاه عبور کن.
             </p>
-            <motion.div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link href="/register">
                 <Button className="btn-shimmer px-6 py-3 text-base">
-                  Start as Student
+                  شروع به‌عنوان دانش‌آموز
                   <Sparkles size={17} />
                 </Button>
               </Link>
               <Link href="/login">
                 <Button variant="secondary" className="px-6 py-3 text-base">
-                  Mentor Console
+                  کنسول منتور
                   <ArrowUpRight size={17} />
                 </Button>
               </Link>
-            </motion.div>
-            <motion.div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+            </div>
+            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
               {heroStats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -138,7 +129,7 @@ export default function LandingPage() {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -157,13 +148,13 @@ export default function LandingPage() {
       {/* ---------- Labs ---------- */}
       <section id="labs" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
         <motion.div {...fadeUp}>
-          <div className="eyebrow">The Climb</div>
+          <div className="eyebrow">صعود</div>
           <h2 className="display mt-3 text-4xl font-bold md:text-5xl">
-            Four Labs. One climb.
+            چهار آزمایشگاه. یک صعود.
           </h2>
           <p className="mt-4 max-w-2xl text-[var(--ink-soft)]">
-            Neuro → Research → Catalyst → Pioneer. Each Lab carries its own
-            theme, badge, and energy as students level through the season.
+            نورو ← پژوهش ← کاتالیز ← پیشگام. هر آزمایشگاه تم، نشان و انرژی
+            مخصوص خود را دارد.
           </p>
         </motion.div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -200,7 +191,7 @@ export default function LandingPage() {
                   {lab.badge}
                 </div>
                 <div className="mono text-[10px] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
-                  Levels {i * 4 + 1}–{i * 4 + 4}
+                  سطح {i * 4 + 1}–{i * 4 + 4}
                 </div>
               </div>
               <div className="display mt-6 text-2xl font-bold">{lab.name}</div>
@@ -220,20 +211,20 @@ export default function LandingPage() {
           className="surface grid gap-10 overflow-hidden p-8 md:grid-cols-[1.05fr_0.95fr] md:p-12"
         >
           <div>
-            <div className="eyebrow">Built for daily return</div>
+            <div className="eyebrow">ساخته‌شده برای بازگشت روزانه</div>
             <h2 className="display mt-3 text-4xl font-bold">
-              Action first. Menus never.
+              اول اقدام. نه منو.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
-              Students land on the mission — not settings. Mentors run
-              attendance, exams, stamps, and reports without paper.
+              دانش‌آموزان مستقیم روی ماموریت می‌نشینند — نه تنظیمات. منتورها
+              حضور، آزمون، مهر و گزارش را بدون کاغذ مدیریت می‌کنند.
             </p>
             <ul className="mt-8 space-y-4 text-sm">
               {[
-                "Mission Board with Routine + 6 Targets",
-                "XP, Coins, Levels, and Mentor Stamps",
-                "Digital ID Card with permanent Student ID",
-                "Mentor command center with PDF-ready reports",
+                "تخته ماموریت با روتین + ۶ هدف",
+                "امتیاز، سکه، سطح و مهرهای منتور",
+                "کارت شناسایی دیجیتال با شناسه دائمی",
+                "مرکز فرماندهی منتور با گزارش‌های آماده چاپ",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <CheckCircle2
@@ -254,27 +245,27 @@ export default function LandingPage() {
               <div className="flex items-center gap-2 text-[var(--accent)]">
                 <Flame size={18} />
                 <span className="mono text-[10px] uppercase tracking-[0.24em]">
-                  Live now
+                  همین الان
                 </span>
               </div>
               <div className="display mt-4 text-3xl font-bold">
-                Today&apos;s Mission
+                ماموریت امروز
               </div>
               <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)]">
-                Clear Target 1. Log the win. Earn XP before the stamp window
-                closes.
+                هدف ۱ را پاک کن. برد را ثبت کن. قبل از بسته شدن پنجره مهر،
+                امتیاز بگیر.
               </p>
               <div className="mt-8">
                 <ProgressBar value={62} />
                 <div className="mono mt-3 text-xs text-[var(--ink-faint)]">
-                  LEVEL PROGRESS · 62%
+                  پیشرفت سطح · ۶۲٪
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {[
-                  [<Zap key="z" size={14} />, "640", "XP"],
-                  [<BookOpen key="b" size={14} />, "5", "Stamps"],
-                  [<CalendarDays key="c" size={14} />, "88", "Coins"],
+                  [<Zap key="z" size={14} />, "۶۴۰", "امتیاز"],
+                  [<BookOpen key="b" size={14} />, "۵", "مهر"],
+                  [<CalendarDays key="c" size={14} />, "۸۸", "سکه"],
                 ].map(([icon, value, label], idx) => (
                   <div key={idx} className="surface-flat p-3 text-center">
                     <div className="flex justify-center text-[var(--brand)]">
@@ -295,31 +286,30 @@ export default function LandingPage() {
       {/* ---------- The Loop ---------- */}
       <section id="loop" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
         <motion.div {...fadeUp}>
-          <div className="eyebrow">How it works</div>
-          <h2 className="display mt-3 text-4xl font-bold">The Loop</h2>
+          <div className="eyebrow">چطور کار می‌کند</div>
+          <h2 className="display mt-3 text-4xl font-bold">چرخه</h2>
           <p className="mt-4 max-w-xl text-[var(--ink-soft)]">
-            From registration to Pioneer — a single continuous loop of action
-            and feedback.
+            از ثبت‌نام تا پیشگام — یک چرخه پیوسته از اقدام و بازخورد.
           </p>
         </motion.div>
         <div className="relative mt-12 grid gap-4 md:grid-cols-4">
           <div className="absolute left-0 right-0 top-10 hidden h-px bg-gradient-to-r from-transparent via-[var(--line-strong)] to-transparent md:block" />
           {[
             {
-              title: "Register",
-              copy: "Get a permanent Student ID and Neuro Lab assignment.",
+              title: "ثبت‌نام",
+              copy: "شناسه دائمی و تخصیص آزمایشگاه نورو دریافت کن.",
             },
             {
-              title: "Mission",
-              copy: "Complete Routine and Targets. Reflect in the Logbook.",
+              title: "ماموریت",
+              copy: "روتین و اهداف را کامل کن. در دفترچه بازتاب بنویس.",
             },
             {
-              title: "Stamp",
-              copy: "Mentors approve quality and award growth stamps.",
+              title: "مهر",
+              copy: "منتورها کیفیت را تأیید و مهر رشد اعطا می‌کنند.",
             },
             {
-              title: "Ascend",
-              copy: "Level up through Labs with XP and stamps.",
+              title: "صعود",
+              copy: "با امتیاز و مهرها در آزمایشگاه‌ها بالا برو.",
             },
           ].map((step, i) => (
             <motion.div
@@ -347,26 +337,26 @@ export default function LandingPage() {
           className="panel-dark grid gap-10 overflow-hidden p-8 md:grid-cols-2 md:p-12"
         >
           <div>
-            <div className="eyebrow">For mentors</div>
+            <div className="eyebrow">برای منتورها</div>
             <h2 className="display mt-3 text-4xl font-bold">
-              A command center, not a spreadsheet.
+              مرکز فرماندهی، نه صفحه‌گسترده.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
-              Roster, approvals, attendance, exams, coins, XP, and printable
-              reports — every student in one professional view.
+              فهرست، تأییدها، حضور، آزمون، سکه، امتیاز و گزارش‌های قابل چاپ —
+              همه دانش‌آموزان در یک نمای حرفه‌ای.
             </p>
             <Link href="/login" className="mt-8 inline-block">
               <Button variant="secondary">
-                Open Mentor Console
+                باز کردن کنسول منتور
                 <ArrowUpRight size={16} />
               </Button>
             </Link>
           </div>
           <div className="space-y-2.5">
             {[
-              ["Ava Karimi", "PPL-250001", "Neuro · L2", "82%"],
-              ["Nima Rostami", "PPL-250002", "Neuro · L2", "74%"],
-              ["Sara Hosseini", "PPL-250003", "Research · L5", "91%"],
+              ["آوا کریمی", "PPL-250001", "نورو · س۲", "۸۲٪"],
+              ["نیما رستمی", "PPL-250002", "نورو · س۲", "۷۴٪"],
+              ["سارا حسینی", "PPL-250003", "پژوهش · س۵", "۹۱٪"],
             ].map(([name, id, lab, score], i) => (
               <motion.div
                 key={id}
@@ -391,26 +381,26 @@ export default function LandingPage() {
       {/* ---------- FAQ ---------- */}
       <section id="faq" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
         <motion.div {...fadeUp}>
-          <div className="eyebrow">Questions</div>
-          <h2 className="display mt-3 text-4xl font-bold">FAQ</h2>
+          <div className="eyebrow">سؤالات</div>
+          <h2 className="display mt-3 text-4xl font-bold">پرسش‌های متداول</h2>
         </motion.div>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {[
             {
-              q: "Does my Student ID change when I switch Labs?",
-              a: "Never. IDs like PPL-250001 stay permanent. Labs evolve; identity does not.",
+              q: "آیا شناسه دانش‌آموزی با تغییر آزمایشگاه عوض می‌شود؟",
+              a: "هرگز. شناسه‌هایی مثل PPL-250001 دائمی‌اند. آزمایشگاه‌ها تکامل می‌یابند؛ هویت نه.",
             },
             {
-              q: "What is required to level up?",
-              a: "1200 XP and 12 mentor stamps per level across 16 levels and 4 Labs.",
+              q: "برای ارتقای سطح چه چیزی لازم است؟",
+              a: "۱۲۰۰ امتیاز و ۱۲ مهر منتور در هر سطح، در ۱۶ سطح و ۴ آزمایشگاه.",
             },
             {
-              q: "Can mentors export reports?",
-              a: "Yes. Weekly, monthly, and season summaries are print/PDF ready.",
+              q: "آیا منتورها می‌توانند گزارش صادر کنند؟",
+              a: "بله. خلاصه‌های هفتگی، ماهانه و فصل آماده چاپ و PDF هستند.",
             },
             {
-              q: "Is parent access available?",
-              a: "Planned as a future read-only role for progress, attendance, and exams.",
+              q: "دسترسی والدین وجود دارد؟",
+              a: "به‌عنوان نقش فقط‌خواندنی برای پیشرفت، حضور و آزمون در برنامه است.",
             },
           ].map((item, i) => (
             <motion.div
@@ -438,19 +428,19 @@ export default function LandingPage() {
               "radial-gradient(700px 340px at 50% -40%, rgba(47,214,195,0.28), transparent 70%), linear-gradient(180deg, #0b141a, #060b0f)",
           }}
         >
-          <div className="eyebrow text-[var(--brand)]">Season 26</div>
+          <div className="eyebrow text-[var(--brand)]">فصل ۲۶</div>
           <h2 className="display mx-auto mt-4 max-w-2xl text-4xl font-bold md:text-5xl">
-            Ready to run a season students actually return to?
+            آماده‌اید فصلی بسازید که دانش‌آموزان واقعاً برمی‌گردند؟
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--ink-soft)]">
-            Join {BRAND.name} and turn daily study into a living operating
-            system.
+            به {BRAND.name} بپیوندید و مطالعه روزانه را به یک سیستم‌عامل زنده
+            تبدیل کنید.
           </p>
           <div className="mt-9">
             <Link href="/register">
               <Button className="px-7 py-3 text-base">
-                Create student account
-                <ArrowRight size={17} />
+                ساخت حساب دانش‌آموزی
+                <ArrowRight size={17} className="rtl:rotate-180" />
               </Button>
             </Link>
           </div>

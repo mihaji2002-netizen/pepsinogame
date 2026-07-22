@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Vazirmatn } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { MotionProvider } from "@/components/MotionProvider";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const grotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-grotesk",
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazir",
 });
 
 const jbMono = JetBrains_Mono({
@@ -21,9 +16,9 @@ const jbMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PEPSINO LAB — Gamified Education OS",
+  title: "پپسینو لب — سیستم‌عامل آموزشی گیمیفای‌شده",
   description:
-    "Planning, mentoring, gamification, analytics, and motivation in one unified educational ecosystem.",
+    "برنامه‌ریزی، منتورینگ، گیمیفیکیشن، تحلیل و انگیزه در یک اکوسیستم آموزشی یکپارچه.",
 };
 
 export default function RootLayout({
@@ -32,10 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.variable} ${grotesk.variable} ${jbMono.variable} antialiased`}
-      >
+    <html lang="fa" dir="rtl">
+      <body className={`${vazirmatn.variable} ${jbMono.variable} antialiased`}>
         <AppProvider>
           <MotionProvider>
             <div className="relative z-10 min-h-screen">{children}</div>

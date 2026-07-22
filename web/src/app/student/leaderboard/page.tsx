@@ -17,20 +17,20 @@ export default function LeaderboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="eyebrow">Season standings</div>
-        <h1 className="display mt-2 text-4xl font-bold">Leaderboards</h1>
+        <div className="eyebrow">رتبه‌بندی فصل</div>
+        <h1 className="display mt-2 text-4xl font-bold">رتبه‌بندی</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Global XP ranking for the current season demo roster.
+          رتبه‌بندی کلی امتیاز برای فهرست نمایشی فصل جاری.
         </p>
       </div>
 
       <div className="surface overflow-x-auto">
         <div className="min-w-[480px]">
         <div className="mono grid grid-cols-[64px_1fr_110px_90px] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
-          <span>Rank</span>
-          <span>Student</span>
-          <span>Lab</span>
-          <span className="text-right">XP</span>
+          <span>رتبه</span>
+          <span>دانش‌آموز</span>
+          <span>آزمایشگاه</span>
+          <span className="text-right">امتیاز</span>
         </div>
         {ranked.map((student, index) => {
           const lab = LABS.find((l) => l.id === student.lab) ?? LABS[0];
@@ -52,7 +52,7 @@ export default function LeaderboardPage() {
                 <span className="font-bold">{student.name}</span>
                 {isYou && (
                   <span className="ml-2 rounded-full border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.12)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand)]">
-                    YOU
+                    شما
                   </span>
                 )}
                 <div className="mono text-[10px] tracking-wider text-[var(--ink-faint)]">
@@ -63,7 +63,7 @@ export default function LeaderboardPage() {
                 className="text-xs font-bold"
                 style={{ color: lab.color }}
               >
-                {lab.name} · L{student.level}
+                {lab.name} · س{student.level}
               </span>
               <span className="mono text-right font-bold text-[var(--brand)]">
                 {student.xp + (student.level - 1) * 1200}

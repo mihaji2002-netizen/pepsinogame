@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LABS } from "@/lib/constants";
+import { BRAND, LABS } from "@/lib/constants";
 import type { Student } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -51,10 +51,10 @@ export function IdCard({
       <div className="relative flex items-start justify-between gap-4">
         <div>
           <div className="mono text-[10px] uppercase tracking-[0.28em] text-[var(--ink-soft)]">
-            Digital ID · Season 26
+            شناسنامه دیجیتال · فصل ۲۶
           </div>
           <div className="display mt-2 text-2xl font-bold tracking-tight">
-            PEPSINO LAB
+            {BRAND.nameEn}
           </div>
         </div>
         <div
@@ -65,7 +65,7 @@ export function IdCard({
             background: `${lab.color}14`,
           }}
         >
-          {lab.name} Lab
+          آزمایشگاه {lab.name}
         </div>
       </div>
 
@@ -98,16 +98,16 @@ export function IdCard({
               backgroundSize: "100% 100%, 28% 28%, 28% 28%",
               backgroundRepeat: "no-repeat",
             }}
-            aria-label="QR code placeholder"
+            aria-label="جایگاه کد QR"
           />
         </div>
       </div>
 
       <div className="relative mt-8 grid grid-cols-3 gap-3 border-t border-[var(--line)] pt-4">
         {[
-          ["Level", student.level],
-          ["XP", student.xp],
-          ["Coins", student.coins],
+          ["سطح", student.level],
+          ["امتیاز", student.xp],
+          ["سکه", student.coins],
         ].map(([label, value]) => (
           <div key={label}>
             <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">

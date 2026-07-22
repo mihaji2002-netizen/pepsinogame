@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
-import { LABS } from "@/lib/constants";
+import { BRAND, LABS } from "@/lib/constants";
+import { fa } from "@/lib/fa";
 import { useApp } from "@/lib/store";
 
 const steps = ["welcome", "id", "lab", "mission", "start"] as const;
@@ -30,7 +31,7 @@ export default function OnboardingPage() {
   if (!currentStudent) {
     return (
       <div className="grid min-h-screen place-items-center text-[var(--ink-soft)]">
-        Preparing your Lab…
+        {fa.loading.onboarding}
       </div>
     );
   }
@@ -74,14 +75,14 @@ export default function OnboardingPage() {
               <PartyPopper size={36} />
             </motion.div>
             <h1 className="display mt-8 text-5xl font-bold md:text-6xl">
-              Welcome to <span className="shimmer-text">PEPSINO LAB</span>
+              به <span className="shimmer-text">{BRAND.nameEn}</span> خوش آمدید
             </h1>
             <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
-              Your season starts now, {currentStudent.name.split(" ")[0]}.
-              Identity first. Then the mission.
+              فصل شما از همین الان شروع می‌شود، {currentStudent.name.split(" ")[0]}.
+              اول هویت. بعد ماموریت.
             </p>
             <Button className="mt-10 px-7 py-3" onClick={() => setStep(1)}>
-              Reveal my ID Card
+              نمایش کارت شناسایی
             </Button>
           </motion.div>
         )}
@@ -95,18 +96,18 @@ export default function OnboardingPage() {
             className="space-y-8"
           >
             <div className="text-center">
-              <div className="eyebrow">Step 02 · Identity</div>
+              <div className="eyebrow">گام ۰۲ · هویت</div>
               <h1 className="display mt-3 text-4xl font-bold">
-                Your Digital ID
+                شناسنامه دیجیتال شما
               </h1>
               <p className="mt-3 text-[var(--ink-soft)]">
-                Permanent Student ID · never encodes Lab · never changes.
+                شناسه دائمی دانش‌آموزی · آزمایشگاه را کدگذاری نمی‌کند · هرگز تغییر نمی‌کند.
               </p>
             </div>
             <IdCard student={currentStudent} />
             <div className="text-center">
               <Button className="px-7 py-3" onClick={() => setStep(2)}>
-                Continue
+                ادامه
               </Button>
             </div>
           </motion.div>
@@ -142,15 +143,15 @@ export default function OnboardingPage() {
                 {lab.badge}
               </div>
             </div>
-            <div className="eyebrow mt-6">Step 03 · Your Lab</div>
-            <h1 className="display mt-2 text-4xl font-bold">{lab.name} Lab</h1>
+            <div className="eyebrow mt-6">گام ۰۳ · آزمایشگاه شما</div>
+            <h1 className="display mt-2 text-4xl font-bold">آزمایشگاه {lab.name}</h1>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
             <p className="mt-4 text-sm leading-relaxed text-[var(--ink-soft)]">
-              You begin at Level 1. Climb through Research, Catalyst, and
-              Pioneer with XP and mentor stamps.
+              از سطح ۱ شروع می‌کنید. با امتیاز و مهرهای منتور از پژوهش،
+              کاتالیز و پیشگام عبور کنید.
             </p>
             <Button className="mt-8" onClick={() => setStep(3)}>
-              Meet the Mission Board
+              آشنایی با تخته ماموریت
             </Button>
           </motion.div>
         )}
@@ -163,26 +164,26 @@ export default function OnboardingPage() {
             exit={{ opacity: 0, y: -16 }}
             className="surface p-8"
           >
-            <div className="eyebrow">Step 04 · The Loop</div>
-            <h1 className="display mt-2 text-4xl font-bold">First Mission</h1>
+            <div className="eyebrow">گام ۰۴ · چرخه</div>
+            <h1 className="display mt-2 text-4xl font-bold">اولین ماموریت</h1>
             <p className="mt-3 leading-relaxed text-[var(--ink-soft)]">
-              Complete Routine, then Targets 1–6. Each action grants XP.
-              Mentors approve quality and award stamps.
+              روتین را کامل کنید، سپس اهداف ۱ تا ۶. هر اقدام امتیاز می‌دهد.
+              منتورها کیفیت را تأیید و مهر اعطا می‌کنند.
             </p>
             <div className="surface-flat mt-7 p-5">
               <div className="mono text-[10px] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
-                Today
+                امروز
               </div>
-              <div className="display mt-2 text-2xl font-bold">Routine</div>
+              <div className="display mt-2 text-2xl font-bold">روتین</div>
               <p className="mt-1 text-sm text-[var(--ink-soft)]">
-                Complete your daily study ritual and warm-up.
+                آیین روزانه مطالعه و گرم‌کردن را کامل کن.
               </p>
               <div className="mono mt-3 text-sm font-bold text-[var(--brand)]">
-                +40 XP · +5 coins
+                +۴۰ امتیاز · +۵ سکه
               </div>
             </div>
             <Button className="mt-8" onClick={() => setStep(4)}>
-              Ready
+              آماده‌ام
             </Button>
           </motion.div>
         )}
@@ -195,9 +196,9 @@ export default function OnboardingPage() {
             exit={{ opacity: 0 }}
             className="text-center"
           >
-            <h1 className="display text-5xl font-bold">Enter the dashboard</h1>
+            <h1 className="display text-5xl font-bold">ورود به داشبورد</h1>
             <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
-              Mission. Progress. XP. Level. Coins. Action first.
+              ماموریت. پیشرفت. امتیاز. سطح. سکه. اول اقدام.
             </p>
             <Button
               className="mt-10 px-9 py-3.5 text-base"
@@ -206,7 +207,7 @@ export default function OnboardingPage() {
                 router.push("/student/dashboard");
               }}
             >
-              Start
+              شروع
             </Button>
           </motion.div>
         )}

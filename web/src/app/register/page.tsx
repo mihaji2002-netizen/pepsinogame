@@ -26,18 +26,18 @@ export default function RegisterPage() {
           <BrandMark />
         </Link>
         <h1 className="display mt-10 text-5xl font-bold leading-[1.05] tracking-tight">
-          Claim your seat in{" "}
-          <span className="text-[var(--brand)]">Neuro Lab</span>
+          جای خود را در{" "}
+          <span className="text-[var(--brand)]">آزمایشگاه نورو</span> رزرو کنید
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-[var(--ink-soft)]">
-          Registration generates your permanent Student ID, digital ID card,
-          and Level 1 assignment automatically.
+          ثبت‌نام شناسه دائمی دانش‌آموزی، کارت شناسایی دیجیتال و تخصیص
+          خودکار سطح ۱ را ایجاد می‌کند.
         </p>
         <ul className="mt-8 space-y-3 text-sm text-[var(--ink-soft)]">
           {[
-            "Permanent ID — PPL-26XXXX, never changes",
-            "Digital ID card, ready to download",
-            "Level 1 · Neuro Lab · first mission waiting",
+            "شناسه دائمی — PPL-26XXXX، هرگز تغییر نمی‌کند",
+            "کارت شناسایی دیجیتال، آماده دانلود",
+            "سطح ۱ · آزمایشگاه نورو · اولین ماموریت در انتظار",
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <Sparkles size={14} className="shrink-0 text-[var(--accent)]" />
@@ -60,17 +60,17 @@ export default function RegisterPage() {
         }}
       >
         <div>
-          <label className="text-sm font-semibold">Full name</label>
+          <label className="text-sm font-semibold">نام کامل</label>
           <input
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="field mt-2"
-            placeholder="Ava Karimi"
+            placeholder="آوا کریمی"
           />
         </div>
         <div>
-          <label className="text-sm font-semibold">Email</label>
+          <label className="text-sm font-semibold">ایمیل</label>
           <input
             required
             type="email"
@@ -81,12 +81,12 @@ export default function RegisterPage() {
           />
         </div>
         <Button type="submit" className="w-full py-3">
-          Create account &amp; reveal ID card
+          ساخت حساب و نمایش کارت شناسایی
         </Button>
         <p className="text-sm text-[var(--ink-soft)]">
-          Already registered?{" "}
+          قبلاً ثبت‌نام کرده‌اید؟{" "}
           <Link href="/login" className="font-semibold text-[var(--brand)]">
-            Sign in
+            ورود
           </Link>
         </p>
       </motion.form>

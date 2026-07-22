@@ -26,18 +26,18 @@ export default function LoginPage() {
         </Link>
         <div className="chip mt-10">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] shadow-[0_0_8px_var(--brand)]" />
-          Season 26 in progress
+          فصل ۲۶ در جریان است
         </div>
         <h1 className="display mt-5 text-5xl font-bold tracking-tight">
-          Sign in to <span className="text-[var(--brand)]">the Lab</span>
+          ورود به <span className="text-[var(--brand)]">آزمایشگاه</span>
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-[var(--ink-soft)]">
-          MVP demo auth — choose a student email or enter the mentor console.
-          Google and SMS come later.
+          احراز هویت نمایشی — ایمیل دانش‌آموز را انتخاب کنید یا وارد کنسول
+          منتور شوید. ورود با گوگل و پیامک بعداً اضافه می‌شود.
         </p>
         <div className="mt-8 flex items-center gap-3 text-sm text-[var(--ink-faint)]">
           <ShieldCheck size={16} className="text-[var(--brand)]" />
-          Your Student ID never changes. Labs do.
+          شناسه دانش‌آموزی شما هرگز تغییر نمی‌کند. آزمایشگاه‌ها تغییر می‌کنند.
         </div>
       </motion.div>
 
@@ -47,7 +47,7 @@ export default function LoginPage() {
         transition={{ duration: 0.7, delay: 0.1 }}
         className="surface p-6 md:p-8"
       >
-        <label className="text-sm font-semibold">Email</label>
+        <label className="text-sm font-semibold">ایمیل</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -62,8 +62,8 @@ export default function LoginPage() {
               router.push("/student/dashboard");
             }}
           >
-            Continue as Student
-            <ArrowRight size={16} />
+            ادامه به‌عنوان دانش‌آموز
+            <ArrowRight size={16} className="rtl:rotate-180" />
           </Button>
           <Button
             variant="secondary"
@@ -73,13 +73,13 @@ export default function LoginPage() {
               router.push("/mentor/dashboard");
             }}
           >
-            Continue as Mentor
+            ادامه به‌عنوان منتور
           </Button>
         </div>
         <p className="mt-8 text-sm text-[var(--ink-soft)]">
-          New here?{" "}
+          تازه‌واردید؟{" "}
           <Link href="/register" className="font-semibold text-[var(--brand)]">
-            Create a student account
+            ساخت حساب دانش‌آموزی
           </Link>
         </p>
       </motion.div>

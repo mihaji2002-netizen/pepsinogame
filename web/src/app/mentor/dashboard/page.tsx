@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { Search, Stamp, CheckCheck, Coins, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { LABS } from "@/lib/constants";
+import { fa } from "@/lib/fa";
 import { useApp } from "@/lib/store";
 
 export default function MentorDashboardPage() {
@@ -34,29 +35,29 @@ export default function MentorDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="eyebrow">Season 26 operations</div>
+        <div className="eyebrow">عملیات فصل ۲۶</div>
         <h1 className="display mt-2 text-4xl font-bold">
-          Mentor Command Center
+          مرکز فرماندهی منتور
         </h1>
         <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
-          Manage students, approve missions, award stamps, and steer the season
-          without paper.
+          مدیریت دانش‌آموزان، تأیید ماموریت‌ها، اعطای مهر و هدایت فصل بدون
+          کاغذ.
         </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
         {[
-          { label: "Students", value: students.length },
-          { label: "Pending approvals", value: pending.length },
+          { label: "دانش‌آموزان", value: students.length },
+          { label: "در انتظار تأیید", value: pending.length },
           {
-            label: "Avg level",
+            label: "میانگین سطح",
             value: (
               students.reduce((sum, s) => sum + s.level, 0) /
               Math.max(students.length, 1)
             ).toFixed(1),
           },
           {
-            label: "Total stamps",
+            label: "مجموع مهرها",
             value: students.reduce((sum, s) => sum + s.stamps, 0),
           },
         ].map((stat) => (
@@ -79,7 +80,7 @@ export default function MentorDashboardPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search name or Student ID"
+              placeholder="جستجوی نام یا شناسه دانش‌آموزی"
               className="field pl-11"
             />
           </div>
@@ -88,7 +89,7 @@ export default function MentorDashboardPage() {
             onChange={(e) => setLabFilter(e.target.value)}
             className="field md:w-44"
           >
-            <option value="all">All Labs</option>
+            <option value="all">همه آزمایشگاه‌ها</option>
             {LABS.map((lab) => (
               <option key={lab.id} value={lab.id}>
                 {lab.name}
@@ -104,7 +105,7 @@ export default function MentorDashboardPage() {
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-[rgba(242,181,68,0.14)] text-[var(--accent)]">
               <CheckCheck size={16} />
             </span>
-            Mission Approval Queue
+            صف تأیید ماموریت
           </h2>
           <ul className="mt-4 space-y-3">
             {pending.map((mission) => (
@@ -115,8 +116,7 @@ export default function MentorDashboardPage() {
                 <div>
                   <div className="font-bold">{mission.title}</div>
                   <div className="text-sm text-[var(--ink-soft)]">
-                    Awaiting quality approval · +{mission.xpReward} XP already
-                    granted
+                    در انتظار تأیید کیفیت · +{mission.xpReward} امتیاز قبلاً اعطا شده
                   </div>
                 </div>
                 <Button
@@ -126,7 +126,7 @@ export default function MentorDashboardPage() {
                   }
                 >
                   <CheckCheck size={16} />
-                  Approve
+                  تأیید
                 </Button>
               </li>
             ))}
@@ -136,12 +136,12 @@ export default function MentorDashboardPage() {
 
       <div className="surface overflow-hidden">
         <div className="mono grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)] max-md:hidden">
-          <span>Student</span>
-          <span>Lab</span>
-          <span>Level</span>
-          <span>XP</span>
-          <span>Coins</span>
-          <span>Actions</span>
+          <span>دانش‌آموز</span>
+          <span>آزمایشگاه</span>
+          <span>سطح</span>
+          <span>امتیاز</span>
+          <span>سکه</span>
+          <span>اقدامات</span>
         </div>
         {filtered.map((student) => {
           const lab = LABS.find((l) => l.id === student.lab) ?? LABS[0];
@@ -175,15 +175,15 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => awardStamp(student.id)}
-                  title="Award stamp"
+                  title="اعطای مهر"
                 >
                   <Stamp size={14} />
                 </Button>
                 <Button
                   variant="secondary"
                   className="px-3 py-2"
-                  onClick={() => adjustXp(student.id, 50, "Mentor XP boost")}
-                  title="Grant XP"
+                  onClick={() => adjustXp(student.id, 50, fa.xp.mentorBoost)}
+                  title="اعطای امتیاز"
                 >
                   <Zap size={14} />
                 </Button>
@@ -191,7 +191,7 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => adjustCoins(student.id, 10)}
-                  title="Grant coins"
+                  title="اعطای سکه"
                 >
                   <Coins size={14} />
                 </Button>

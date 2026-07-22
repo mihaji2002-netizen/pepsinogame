@@ -20,7 +20,7 @@ export function BrandMark({
             {BRAND.name}
           </div>
           <div className="mono mt-1 text-[10px] uppercase tracking-[0.24em] text-[var(--ink-soft)]">
-            Education OS
+            {BRAND.tagline}
           </div>
         </div>
       )}

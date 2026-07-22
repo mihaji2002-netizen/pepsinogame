@@ -11,11 +11,11 @@ export default function LogbookPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <div className="eyebrow">Daily reflection</div>
-        <h1 className="display mt-2 text-4xl font-bold">Mission Logbook</h1>
+        <div className="eyebrow">بازتاب روزانه</div>
+        <h1 className="display mt-2 text-4xl font-bold">دفترچه ماموریت</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Reflection for <span className="mono text-[var(--brand)]">{logbook.date}</span>.
-          Capture the win, the challenge, and tomorrow&apos;s focus.
+          بازتاب برای <span className="mono text-[var(--brand)]">{logbook.date}</span>.
+          برد، چالش و تمرکز فردا را ثبت کن.
         </p>
       </div>
 
@@ -23,18 +23,18 @@ export default function LogbookPage() {
         {[
           {
             key: "win" as const,
-            label: "Today’s Win",
-            placeholder: "What moved the needle?",
+            label: "برد امروز",
+            placeholder: "چه چیزی پیشرفت را جلو انداخت؟",
           },
           {
             key: "challenge" as const,
-            label: "Today’s Challenge",
-            placeholder: "Where did friction appear?",
+            label: "چالش امروز",
+            placeholder: "کجا اصطکاک پیش آمد؟",
           },
           {
             key: "tomorrowFocus" as const,
-            label: "Tomorrow Focus",
-            placeholder: "One sharp intention for tomorrow.",
+            label: "تمرکز فردا",
+            placeholder: "یک نیت شفاف برای فردا.",
           },
         ].map((field) => (
           <div key={field.key}>
@@ -51,7 +51,7 @@ export default function LogbookPage() {
 
         <div className="surface-flat p-5">
           <div className="flex items-center justify-between">
-            <div className="text-sm font-bold">Mentor Notes</div>
+            <div className="text-sm font-bold">یادداشت منتور</div>
             <div
               className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold ${
                 logbook.stamped
@@ -60,7 +60,7 @@ export default function LogbookPage() {
               }`}
             >
               <Stamp size={13} />
-              {logbook.stamped ? "Stamp awarded" : "No stamp yet"}
+              {logbook.stamped ? "مهر اعطا شد" : "هنوز مهری نیست"}
             </div>
           </div>
           <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)]">
@@ -71,14 +71,14 @@ export default function LogbookPage() {
         <Button
           onClick={() =>
             updateLogbook({
-              win: logbook.win || "Completed deep work without phone.",
-              challenge: logbook.challenge || "Started Target 3 too late.",
+              win: logbook.win || "کار عمیق را بدون موبایل تمام کردم.",
+              challenge: logbook.challenge || "شروع هدف ۳ دیر بود.",
               tomorrowFocus:
-                logbook.tomorrowFocus || "Protect the first focus block.",
+                logbook.tomorrowFocus || "اولین بلوک تمرکز را محافظت کن.",
             })
           }
         >
-          Save reflection
+          ذخیره بازتاب
         </Button>
       </div>
     </div>

@@ -13,14 +13,15 @@ import {
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
+import { fa } from "@/lib/fa";
 import { useApp } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/mentor/dashboard", label: "Command Center", icon: LayoutDashboard },
-  { href: "/mentor/attendance", label: "Attendance", icon: ClipboardList },
-  { href: "/mentor/exams", label: "Exams", icon: GraduationCap },
-  { href: "/mentor/reports", label: "Reports", icon: FileText },
+  { href: "/mentor/dashboard", label: "مرکز فرماندهی", icon: LayoutDashboard },
+  { href: "/mentor/attendance", label: "حضور و غیاب", icon: ClipboardList },
+  { href: "/mentor/exams", label: "آزمون‌ها", icon: GraduationCap },
+  { href: "/mentor/reports", label: "گزارش‌ها", icon: FileText },
 ];
 
 export function MentorShell({ children }: { children: React.ReactNode }) {
@@ -36,7 +37,7 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
   if (!hydrated || !user || user.role !== "mentor") {
     return (
       <div className="grid min-h-screen place-items-center text-[var(--ink-soft)]">
-        Loading mentor console…
+        {fa.loading.mentor}
       </div>
     );
   }
@@ -48,10 +49,10 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
         <div className="surface-flat mt-5 p-3.5 text-sm">
           <div className="flex items-center gap-2 font-bold">
             <Users size={15} className="text-[var(--accent)]" />
-            Active roster
+            فهرست فعال
           </div>
           <div className="mono mt-1.5 text-xs text-[var(--ink-soft)]">
-            {students.length} students · Season 26
+            {students.length} دانش‌آموز · فصل ۲۶
           </div>
         </div>
         <nav className="mt-5 space-y-1">
@@ -83,7 +84,7 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
           }}
         >
           <LogOut size={16} />
-          Sign out
+          خروج
         </Button>
       </aside>
       <main className="min-w-0 flex-1 pb-10">{children}</main>

@@ -9,18 +9,17 @@ import { formatDate } from "@/lib/utils";
 
 export default function ExamsPage() {
   const { exams, addExam } = useApp();
-  const [subject, setSubject] = useState("Mathematics");
+  const [subject, setSubject] = useState("ریاضی");
   const [score, setScore] = useState(85);
   const [comment, setComment] = useState("");
 
   return (
     <div className="space-y-6">
       <div>
-        <div className="eyebrow">Assessment</div>
-        <h1 className="display mt-2 text-4xl font-bold">Exam System</h1>
+        <div className="eyebrow">ارزیابی</div>
+        <h1 className="display mt-2 text-4xl font-bold">سیستم آزمون</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          Create exams with subject, score, percentage, rank, and mentor
-          commentary.
+          ایجاد آزمون با موضوع، نمره، درصد، رتبه و توضیحات منتور.
         </p>
       </div>
 
@@ -34,13 +33,13 @@ export default function ExamsPage() {
             score,
             percentage: score,
             rank: Math.max(1, Math.round((100 - score) / 8) + 1),
-            comment: comment || "Solid attempt. Keep drilling weak topics.",
+            comment: comment || "تلاش خوبی بود. موضوعات ضعیف را بیشتر تمرین کن.",
           });
           setComment("");
         }}
       >
         <div>
-          <label className="text-sm font-bold">Subject</label>
+          <label className="text-sm font-bold">موضوع</label>
           <input
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -48,7 +47,7 @@ export default function ExamsPage() {
           />
         </div>
         <div>
-          <label className="text-sm font-bold">Score / Percentage</label>
+          <label className="text-sm font-bold">نمره / درصد</label>
           <input
             type="number"
             min={0}
@@ -59,18 +58,18 @@ export default function ExamsPage() {
           />
         </div>
         <div className="md:col-span-2">
-          <label className="text-sm font-bold">Mentor Comment</label>
+          <label className="text-sm font-bold">توضیح منتور</label>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             rows={3}
             className="field mt-2 resize-none"
-            placeholder="Strengths, weaknesses, next focus…"
+            placeholder="نقاط قوت، ضعف، تمرکز بعدی…"
           />
         </div>
         <Button type="submit" className="md:col-span-2 md:w-fit">
           <Plus size={16} />
-          Create Exam Record
+          ثبت آزمون
         </Button>
       </form>
 
@@ -81,7 +80,7 @@ export default function ExamsPage() {
               <div>
                 <div className="display text-2xl font-bold">{exam.subject}</div>
                 <div className="mono mt-1 text-xs text-[var(--ink-faint)]">
-                  {formatDate(exam.date)} · Rank #{exam.rank}
+                  {formatDate(exam.date)} · رتبه #{exam.rank}
                 </div>
               </div>
               <div className="text-right">
@@ -89,7 +88,7 @@ export default function ExamsPage() {
                   {exam.percentage}%
                 </div>
                 <div className="mono text-xs text-[var(--ink-faint)]">
-                  Score {exam.score}
+                  نمره {exam.score}
                 </div>
               </div>
             </div>

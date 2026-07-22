@@ -2,7 +2,7 @@
 
 import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { LABS, xpProgress } from "@/lib/constants";
+import { BRAND, LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 
 export default function ReportsPage() {
@@ -26,15 +26,15 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div className="no-print flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div className="eyebrow">Weekly · Monthly · Season</div>
-          <h1 className="display mt-2 text-4xl font-bold">Reports</h1>
+          <div className="eyebrow">هفتگی · ماهانه · فصل</div>
+          <h1 className="display mt-2 text-4xl font-bold">گزارش‌ها</h1>
           <p className="mt-2 text-[var(--ink-soft)]">
-            Printable and PDF-ready summaries with a premium finish.
+            خلاصه‌های قابل چاپ و PDF با ظاهر ممتاز.
           </p>
         </div>
         <Button onClick={() => window.print()}>
           <Printer size={16} />
-          Export PDF / Print
+          خروجی PDF / چاپ
         </Button>
       </div>
 
@@ -58,33 +58,33 @@ export default function ReportsPage() {
             </div>
             <div>
               <div className="display text-base font-bold leading-none">
-                PEPSINO LAB
+                {BRAND.nameEn}
               </div>
               <div className="mono mt-1 text-[10px] uppercase tracking-[0.24em] text-white/50">
-                Education OS
+                {BRAND.tagline}
               </div>
             </div>
           </div>
-          <div className="display mt-8 text-4xl font-bold">Season Summary</div>
+          <div className="display mt-8 text-4xl font-bold">خلاصه فصل</div>
           <p className="mt-2 max-w-xl text-white/65">
-            Automatically generated snapshot for {student.name} ·{" "}
+            نمای خودکار برای {student.name} ·{" "}
             <span className="mono">{student.studentId}</span>
           </p>
         </div>
 
         <div className="grid gap-8 p-8 md:grid-cols-2">
           <section>
-            <h2 className="display text-2xl font-bold">Core Metrics</h2>
+            <h2 className="display text-2xl font-bold">شاخص‌های اصلی</h2>
             <dl className="mt-4 space-y-3 text-sm">
               {[
-                ["Lab", lab.name],
-                ["Level", String(student.level)],
-                ["XP Progress", `${progress.current}/${progress.total}`],
-                ["Coins", String(student.coins)],
-                ["Mentor Stamps", String(student.stamps)],
-                ["Attendance", `${present}/6 sessions`],
-                ["Mission Completion", `${Math.round(missionRate)}%`],
-                ["Exam Average", `${avgExam.toFixed(1)}%`],
+                ["آزمایشگاه", lab.name],
+                ["سطح", String(student.level)],
+                ["پیشرفت امتیاز", `${progress.current}/${progress.total}`],
+                ["سکه", String(student.coins)],
+                ["مهرهای منتور", String(student.stamps)],
+                ["حضور", `${present}/۶ جلسه`],
+                ["تکمیل ماموریت", `${Math.round(missionRate)}٪`],
+                ["میانگین آزمون", `${avgExam.toFixed(1)}٪`],
               ].map(([label, value]) => (
                 <div
                   key={label}
@@ -98,29 +98,27 @@ export default function ReportsPage() {
           </section>
 
           <section>
-            <h2 className="display text-2xl font-bold">Growth Narrative</h2>
+            <h2 className="display text-2xl font-bold">روایت رشد</h2>
             <div className="mt-4 space-y-4 text-sm leading-relaxed text-[#52676d]">
               <p>
-                <strong className="text-[#12232a]">Strengths:</strong>{" "}
-                Consistent mission cadence and improving exam trajectory in
-                core subjects.
+                <strong className="text-[#12232a]">نقاط قوت:</strong>{" "}
+                ریتم مداوم ماموریت و بهبود روند آزمون در دروس اصلی.
               </p>
               <p>
-                <strong className="text-[#12232a]">Weaknesses:</strong>{" "}
-                Occasional late starts on Target blocks; protect the first
-                deep-work window.
+                <strong className="text-[#12232a]">نقاط ضعف:</strong>{" "}
+                گاهی شروع دیر هدف‌ها؛ اولین بلوک کار عمیق را محافظت کن.
               </p>
               <p>
-                <strong className="text-[#12232a]">Mentor Notes:</strong> Keep
-                the Neuro habits tight. Stamp quality over speed. Prepare for
-                Research Lab unlock.
+                <strong className="text-[#12232a]">یادداشت منتور:</strong> عادت‌های
+                نورو را محکم نگه دار. کیفیت مهر بر سرعت. برای باز شدن آزمایشگاه
+                پژوهش آماده شو.
               </p>
             </div>
           </section>
         </div>
 
         <div className="mono border-t border-[rgba(18,35,42,0.12)] px-8 py-5 text-[10px] uppercase tracking-[0.22em] text-[#7d9096]">
-          PEPSINO LAB · Weekly / Monthly / Season · Premium printable report
+          {BRAND.nameEn} · هفتگی / ماهانه / فصل · گزارش چاپی ممتاز
         </div>
       </article>
     </div>
