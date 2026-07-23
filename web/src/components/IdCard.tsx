@@ -49,15 +49,15 @@ export function IdCard({
 
       <div className="relative flex items-start justify-between gap-4">
         <div>
-          <div className="mono text-[10px] uppercase tracking-[0.28em] text-[var(--ink-soft)]">
+          <div className="mono text-[10px] text-[var(--ink-soft)]">
             کارت شناسایی موضوعی
           </div>
-          <div className="display mt-2 text-sm font-semibold tracking-[0.18em] text-[var(--ink-soft)]">
+          <div className="display mt-2 text-sm font-semibold text-[var(--ink-soft)]">
             {BRAND.nameEn}
           </div>
         </div>
         <div
-          className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+          className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-bold"
           style={{
             color: lab.color,
             borderColor: `${lab.color}55`,
@@ -70,12 +70,12 @@ export function IdCard({
       </div>
 
       <div
-        className="display relative mt-8 text-4xl font-bold tracking-tight md:text-5xl"
+        className="display relative mt-8 text-4xl font-bold md:text-5xl"
         style={{ color: lab.color }}
       >
         {student.studentId}
       </div>
-      <div className="mono relative mt-1 text-[10px] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
+      <div className="mono relative mt-1 text-[10px] text-[var(--ink-faint)]">
         subject id · permanent
       </div>
 
@@ -92,7 +92,7 @@ export function IdCard({
             {lab.badge}
           </div>
           <div>
-            <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+            <div className="mono text-[10px] text-[var(--ink-faint)]">
               آزمایشگاه
             </div>
             <div className="display text-lg font-bold">{lab.nameEn}</div>
@@ -121,7 +121,7 @@ export function IdCard({
           ["مهر", student.stamps],
         ].map(([label, value]) => (
           <div key={label}>
-            <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+            <div className="mono text-[10px] text-[var(--ink-faint)]">
               {label}
             </div>
             <div className="display mt-1 text-xl font-bold">{value}</div>
@@ -133,7 +133,7 @@ export function IdCard({
         {["نظم را حفظ کن", "به فرایند اعتماد کن", "آنزیم باش"].map((slogan) => (
           <span
             key={slogan}
-            className="mono rounded-full border border-[var(--line)] bg-[rgba(80,200,120,0.06)] px-2.5 py-1 text-[9px] uppercase tracking-[0.16em] text-[var(--ink-soft)]"
+            className="mono rounded-full border border-[var(--line)] bg-[rgba(80,200,120,0.06)] px-2.5 py-1 text-[9px] text-[var(--ink-soft)]"
           >
             {slogan}
           </span>

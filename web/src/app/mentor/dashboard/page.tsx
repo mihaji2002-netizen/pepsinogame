@@ -36,7 +36,7 @@ export default function MentorDashboardPage() {
     <div className="space-y-6">
       <div>
         <div className="eyebrow">عملیات فصل ۲۶</div>
-        <h1 className="display mt-2 text-4xl font-bold">
+        <h1 className="display mt-2 text-4xl">
           مرکز فرماندهی منتور
         </h1>
         <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
@@ -62,7 +62,7 @@ export default function MentorDashboardPage() {
           },
         ].map((stat) => (
           <div key={stat.label} className="surface p-5">
-            <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+            <div className="mono text-[10px] text-[var(--ink-faint)]">
               {stat.label}
             </div>
             <div className="display mt-2 text-3xl font-bold">{stat.value}</div>
@@ -101,7 +101,7 @@ export default function MentorDashboardPage() {
 
       {pending.length > 0 && (
         <div className="surface border-[rgba(242,181,68,0.3)] p-5">
-          <h2 className="display flex items-center gap-2 text-2xl font-bold">
+          <h2 className="display flex items-center gap-2 text-2xl">
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-[rgba(242,181,68,0.14)] text-[var(--accent)]">
               <CheckCheck size={16} />
             </span>
@@ -135,7 +135,7 @@ export default function MentorDashboardPage() {
       )}
 
       <div className="surface overflow-hidden">
-        <div className="mono grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)] max-md:hidden">
+        <div className="mono grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] text-[var(--ink-faint)] max-md:hidden">
           <span>دانش‌آموز</span>
           <span>آزمایشگاه</span>
           <span>سطح</span>
@@ -157,7 +157,7 @@ export default function MentorDashboardPage() {
                 >
                   {student.name}
                 </Link>
-                <div className="mono text-xs tracking-wider text-[var(--ink-faint)]">
+                <div className="mono text-xs text-[var(--ink-faint)]">
                   {student.studentId}
                 </div>
               </div>

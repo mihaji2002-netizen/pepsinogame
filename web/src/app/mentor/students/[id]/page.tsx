@@ -64,8 +64,8 @@ export default function MentorStudentDetailPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="eyebrow">جزئیات دانش‌آموز</div>
-          <h1 className="display mt-2 text-4xl font-bold">{student.name}</h1>
-          <p className="mono mt-2 text-sm tracking-[0.14em] text-[var(--ink-soft)]">
+          <h1 className="display mt-2 text-4xl">{student.name}</h1>
+          <p className="mono mt-2 text-sm text-[var(--ink-soft)]">
             {student.studentId} ·{" "}
             <span style={{ color: lab.color }}>آزمایشگاه {lab.name}</span>
           </p>
@@ -92,7 +92,7 @@ export default function MentorStudentDetailPage() {
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <IdCard student={student} />
         <div className="surface p-6">
-          <h2 className="display text-2xl font-bold">نمای کلی رشد</h2>
+          <h2 className="display text-2xl">نمای کلی رشد</h2>
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
               ["آزمایشگاه", lab.name],
@@ -101,7 +101,7 @@ export default function MentorStudentDetailPage() {
               ["حضور", `${presentCount}/6`],
             ].map(([label, value]) => (
               <div key={label} className="surface-flat p-3.5">
-                <div className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
+                <div className="mono text-[10px] text-[var(--ink-faint)]">
                   {label}
                 </div>
                 <div className="display mt-1.5 text-lg font-bold">{value}</div>
@@ -122,7 +122,7 @@ export default function MentorStudentDetailPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">خط زمانی امتیاز</h2>
+          <h2 className="display text-2xl">خط زمانی امتیاز</h2>
           <ul className="mt-4 space-y-3 text-sm">
             {xpHistory.map((event) => (
               <li
@@ -144,7 +144,7 @@ export default function MentorStudentDetailPage() {
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">آزمون‌ها</h2>
+          <h2 className="display text-2xl">آزمون‌ها</h2>
           <ul className="mt-4 space-y-3">
             {exams.map((exam) => (
               <li key={exam.id} className="surface-flat p-4">
@@ -163,13 +163,13 @@ export default function MentorStudentDetailPage() {
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">حضور و غیاب</h2>
+          <h2 className="display text-2xl">حضور و غیاب</h2>
           <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
             {attendance.map((a) => (
               <div key={a.session} className="surface-flat p-3 text-center">
                 <div className="mono text-xs font-bold">S{a.session}</div>
                 <div
-                  className={`mt-1 text-[10px] font-bold uppercase tracking-wider ${statusTone[a.status]}`}
+                  className={`mt-1 text-[10px] font-bold ${statusTone[a.status]}`}
                 >
                     {attendanceLabel(a.status)}
                 </div>
@@ -179,13 +179,13 @@ export default function MentorStudentDetailPage() {
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl font-bold">ماموریت‌ها و یادداشت‌ها</h2>
+          <h2 className="display text-2xl">ماموریت‌ها و یادداشت‌ها</h2>
           <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
             {missions.map((m) => (
               <li key={m.key} className="flex justify-between py-2.5">
                 <span>{m.title}</span>
                 <span
-                  className={`mono text-[10px] font-bold uppercase tracking-wider ${
+                  className={`mono text-[10px] font-bold ${
                     m.completed
                       ? m.approved
                         ? "text-[var(--success)]"

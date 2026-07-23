@@ -27,7 +27,7 @@ export default function ReportsPage() {
       <div className="no-print flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="eyebrow">هفتگی · ماهانه · فصل</div>
-          <h1 className="display mt-2 text-4xl font-bold">گزارش‌ها</h1>
+          <h1 className="display mt-2 text-4xl">گزارش‌ها</h1>
           <p className="mt-2 text-[var(--ink-soft)]">
             خلاصه‌های قابل چاپ و PDF با ظاهر ممتاز.
           </p>
@@ -60,7 +60,7 @@ export default function ReportsPage() {
               <div className="display text-base font-bold leading-none">
                 {BRAND.nameEn}
               </div>
-              <div className="mono mt-1 text-[10px] uppercase tracking-[0.24em] text-white/50">
+              <div className="mono mt-1 text-[10px] text-white/50">
                 {BRAND.tagline}
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function ReportsPage() {
 
         <div className="grid gap-8 p-8 md:grid-cols-2">
           <section>
-            <h2 className="display text-2xl font-bold">شاخص‌های اصلی</h2>
+            <h2 className="display text-2xl">شاخص‌های اصلی</h2>
             <dl className="mt-4 space-y-3 text-sm">
               {[
                 ["آزمایشگاه", lab.name],
@@ -98,7 +98,7 @@ export default function ReportsPage() {
           </section>
 
           <section>
-            <h2 className="display text-2xl font-bold">روایت رشد</h2>
+            <h2 className="display text-2xl">روایت رشد</h2>
             <div className="mt-4 space-y-4 text-sm leading-relaxed text-[#52676d]">
               <p>
                 <strong className="text-[#12232a]">نقاط قوت:</strong>{" "}
@@ -117,7 +117,7 @@ export default function ReportsPage() {
           </section>
         </div>
 
-        <div className="mono border-t border-[rgba(18,35,42,0.12)] px-8 py-5 text-[10px] uppercase tracking-[0.22em] text-[#7d9096]">
+        <div className="mono border-t border-[rgba(18,35,42,0.12)] px-8 py-5 text-[10px] text-[#7d9096]">
           {BRAND.nameEn} · هفتگی / ماهانه / فصل · گزارش چاپی ممتاز
         </div>
       </article>

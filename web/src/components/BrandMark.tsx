@@ -17,10 +17,10 @@ export function BrandMark({
       </div>
       {!compact && (
         <div>
-          <div className="display text-base font-bold leading-none tracking-tight">
+          <div className="display text-base font-bold leading-none">
             {BRAND.name}
           </div>
-          <div className="mono mt-1 text-[10px] uppercase tracking-[0.24em] text-[var(--ink-soft)]">
+          <div className="mono mt-1 text-[10px] text-[var(--ink-soft)]">
             {BRAND.motto}
           </div>
         </div>

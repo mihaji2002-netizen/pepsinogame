@@ -104,7 +104,7 @@ export default function LandingPage() {
               />
               ثبت‌نام فصل ۲۶ باز است
             </motion.div>
-            <h1 className="fa-heading mt-8 text-[2.4rem] font-black leading-[1.3] md:text-6xl md:leading-[1.25]">
+            <h1 className="fa-heading mt-8 text-[2.4rem] md:text-6xl">
               <TextReveal text="مطالعه را مثل یک" delay={0.15} />
               <br />
               <GradientText>
@@ -143,7 +143,7 @@ export default function LandingPage() {
                   whileHover={{ y: -4, scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="fa-heading text-3xl font-black text-[var(--brand)]">
+                  <div className="fa-heading text-3xl text-[var(--brand)]">
                     <NumberTicker value={stat.value} delay={i * 120} />
                   </div>
                   <div className="mt-1 text-sm text-[var(--ink-faint)]">{stat.label}</div>
@@ -171,7 +171,7 @@ export default function LandingPage() {
       <section id="labs" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
         <motion.div {...viewFade}>
           <div className="eyebrow">صعود</div>
-          <h2 className="display mt-3 text-4xl font-bold md:text-5xl">
+          <h2 className="display mt-3 text-4xl md:text-5xl">
             چهار آزمایشگاه. یک صعود.
           </h2>
           <p className="mt-4 max-w-2xl text-[var(--ink-soft)]">
@@ -212,12 +212,12 @@ export default function LandingPage() {
                 >
                   {lab.badge}
                 </div>
-                <div className="mono text-[10px] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
+                <div className="mono text-[10px] text-[var(--ink-faint)]">
                   سطح {i * 4 + 1}–{i * 4 + 4}
                 </div>
               </div>
               <div className="display mt-6 text-2xl font-bold">{lab.name}</div>
-              <div className="mono mt-1 text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
+              <div className="mono mt-1 text-[10px] text-[var(--ink-faint)]">
                 {lab.nameEn}
               </div>
               <p className="mt-2 text-xs font-medium text-[var(--brand)]">{lab.focus}</p>
@@ -238,7 +238,7 @@ export default function LandingPage() {
         >
           <div>
             <div className="eyebrow">ساخته‌شده برای بازگشت روزانه</div>
-            <h2 className="display mt-3 text-4xl font-bold">
+            <h2 className="display mt-3 text-4xl">
               اول اقدام. نه منو.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
@@ -270,7 +270,7 @@ export default function LandingPage() {
             <div className="relative">
               <div className="flex items-center gap-2 text-[var(--accent)]">
                 <Flame size={18} />
-                <span className="mono text-[10px] uppercase tracking-[0.24em]">
+                <span className="mono text-[10px]">
                   همین الان
                 </span>
               </div>
@@ -298,7 +298,7 @@ export default function LandingPage() {
                       {icon}
                     </div>
                     <div className="display mt-1 text-lg font-bold">{value}</div>
-                    <div className="mono text-[9px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
+                    <div className="mono text-[9px] text-[var(--ink-faint)]">
                       {label}
                     </div>
                   </div>
@@ -313,7 +313,7 @@ export default function LandingPage() {
       <section id="loop" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
         <motion.div {...viewFade}>
           <div className="eyebrow">چطور کار می‌کند</div>
-          <h2 className="display mt-3 text-4xl font-bold">چرخه</h2>
+          <h2 className="display mt-3 text-4xl">چرخه</h2>
           <p className="mt-4 max-w-xl text-[var(--ink-soft)]">
             از ثبت‌نام تا پیشگام — یک چرخه پیوسته از اقدام و بازخورد.
           </p>
@@ -346,7 +346,7 @@ export default function LandingPage() {
               <div className="mono grid h-9 w-9 place-items-center rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.1)] text-xs font-bold text-[var(--brand)]">
                 0{i + 1}
               </div>
-              <div className="display mt-5 text-2xl font-bold">{step.title}</div>
+              <div className="display mt-5 text-2xl">{step.title}</div>
               <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
                 {step.copy}
               </p>
@@ -363,7 +363,7 @@ export default function LandingPage() {
         >
           <div>
             <div className="eyebrow">برای منتورها</div>
-            <h2 className="display mt-3 text-4xl font-bold">
+            <h2 className="display mt-3 text-4xl">
               مرکز فرماندهی، نه صفحه‌گسترده.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
@@ -392,7 +392,7 @@ export default function LandingPage() {
                 className="surface-flat flex items-center justify-between px-4 py-3.5 text-sm"
               >
                 <div>
-                  <div className="mono font-semibold tracking-[0.1em]">{id}</div>
+                  <div className="mono font-semibold">{id}</div>
                   <div className="text-xs text-[var(--ink-faint)]">شناسه موضوعی</div>
                 </div>
                 <div className="text-xs text-[var(--ink-soft)]">{lab}</div>
@@ -407,7 +407,7 @@ export default function LandingPage() {
       <section id="faq" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
         <motion.div {...viewFade}>
           <div className="eyebrow">سؤالات</div>
-          <h2 className="display mt-3 text-4xl font-bold">پرسش‌های متداول</h2>
+          <h2 className="display mt-3 text-4xl">پرسش‌های متداول</h2>
         </motion.div>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {[
@@ -427,7 +427,7 @@ export default function LandingPage() {
               q: "دسترسی والدین وجود دارد؟",
               a: "به‌عنوان نقش فقط‌خواندنی برای پیشرفت، حضور و آزمون در برنامه است.",
             },
-          ].map((item, i) => (
+          ].map((item) => (
             <motion.div
               key={item.q}
               {...viewFade}
@@ -453,7 +453,7 @@ export default function LandingPage() {
           }}
         >
           <div className="eyebrow text-[var(--brand)]">فصل ۲۶</div>
-          <h2 className="display mx-auto mt-4 max-w-2xl text-4xl font-bold md:text-5xl">
+          <h2 className="display mx-auto mt-4 max-w-2xl text-4xl md:text-5xl">
             آماده‌اید فصلی بسازید که دانش‌آموزان واقعاً برمی‌گردند؟
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--ink-soft)]">
@@ -475,7 +475,7 @@ export default function LandingPage() {
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <BrandMark />
-            <div className="mono text-xs tracking-wider">studio@pepsinolab.dev</div>
+            <div className="mono text-xs">studio@pepsinolab.dev</div>
           </div>
           <div className="flex flex-wrap gap-2">
             {BRAND_SLOGANS.map((slogan) => (

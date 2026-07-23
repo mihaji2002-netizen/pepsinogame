@@ -1,35 +1,5 @@
 @import "tailwindcss";
 
-/* ---------- Estedad — modern Persian typeface ---------- */
-@font-face {
-  font-family: "Estedad";
-  src: url("https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@v7.3.0/Fonts/woff2/Estedad-Regular.woff2")
-    format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Estedad";
-  src: url("https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@v7.3.0/Fonts/woff2/Estedad-Medium.woff2")
-    format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Estedad";
-  src: url("https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@v7.3.0/Fonts/woff2/Estedad-Bold.woff2")
-    format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Estedad";
-  src: url("https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@v7.3.0/Fonts/woff2/Estedad-Black.woff2")
-    format("woff2");
-  font-weight: 900;
-  font-display: swap;
-}
-
 :root {
   --bg: #070f0b;
   --bg-raised: #12241a;
@@ -55,9 +25,8 @@
   --shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   --radius: 22px;
 
-  --font-body: "Estedad", Tahoma, sans-serif;
-  --font-display: "Estedad", var(--font-syne), sans-serif;
-  --font-mono: var(--font-jbmono), "JetBrains Mono", monospace;
+  --font-body: var(--font-vazir), Tahoma, sans-serif;
+  --font-heading: var(--font-estedad), Tahoma, sans-serif;
 }
 
 @theme inline {
@@ -72,6 +41,7 @@
 
 html {
   scroll-behavior: smooth;
+  direction: rtl;
 }
 
 body {
@@ -79,12 +49,38 @@ body {
   min-height: 100vh;
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.9;
+  font-size: 16px;
+  line-height: 2;
   font-weight: 400;
+  letter-spacing: normal;
+  text-align: right;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   background: var(--bg);
+}
+
+h1,
+.h1 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+h2,
+.h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: normal;
 }
 
 body::before {
@@ -203,24 +199,25 @@ select,
 @layer components {
   .display,
   .fa-heading {
-    font-family: var(--font-display);
-    font-weight: 800;
-    line-height: 1.35;
-    letter-spacing: 0;
+    font-family: var(--font-heading);
+    line-height: 1.5;
+    letter-spacing: normal;
   }
 
   .fa-body {
+    font-family: var(--font-body);
     line-height: 2;
     font-weight: 400;
+    letter-spacing: normal;
   }
 
   .mono,
   .label-en {
-    font-family: var(--font-mono);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: 600;
+    font-family: var(--font-body);
+    letter-spacing: normal;
+    text-transform: none;
+    font-size: 12px;
+    font-weight: 500;
   }
 
   .eyebrow {
@@ -339,7 +336,7 @@ select,
     color: var(--ink);
     outline: none;
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 2;
     transition:
       border-color 0.25s ease,
       box-shadow 0.25s ease,

@@ -18,7 +18,7 @@ export default function PlannerPage() {
     <div className="space-y-6">
       <div>
         <div className="eyebrow">برنامه‌ریزی هفته</div>
-        <h1 className="display mt-2 text-4xl font-bold">برنامه هفتگی</h1>
+        <h1 className="display mt-2 text-4xl">برنامه هفتگی</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           نسخه دیجیتال برنامه قابل چاپ. وظایف را تیک بزن. پیشرفت را دنبال کن.
         </p>
@@ -39,8 +39,8 @@ export default function PlannerPage() {
           return (
             <div key={day} className="surface p-5">
               <div className="flex items-baseline justify-between">
-                <div className="display text-2xl font-bold">{day}</div>
-                <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+                <div className="display text-2xl">{day}</div>
+                <div className="mono text-[10px] text-[var(--ink-faint)]">
                   {tasks.filter((t) => t.done).length}/{tasks.length}
                 </div>
               </div>

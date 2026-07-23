@@ -18,7 +18,7 @@ export default function LeaderboardPage() {
     <div className="space-y-6">
       <div>
         <div className="eyebrow">رتبه‌بندی فصل</div>
-        <h1 className="display mt-2 text-4xl font-bold">رتبه‌بندی</h1>
+        <h1 className="display mt-2 text-4xl">رتبه‌بندی</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           رتبه‌بندی کلی امتیاز برای فهرست نمایشی فصل جاری.
         </p>
@@ -26,7 +26,7 @@ export default function LeaderboardPage() {
 
       <div className="surface overflow-x-auto">
         <div className="min-w-[480px]">
-        <div className="mono grid grid-cols-[64px_1fr_110px_90px] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+        <div className="mono grid grid-cols-[64px_1fr_110px_90px] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] text-[var(--ink-faint)]">
           <span>رتبه</span>
           <span>شناسه موضوعی</span>
           <span>آزمایشگاه</span>
@@ -49,7 +49,7 @@ export default function LeaderboardPage() {
                 #{index + 1}
               </span>
               <span>
-                <span className="mono font-bold tracking-[0.08em]">{student.studentId}</span>
+                <span className="mono font-bold">{student.studentId}</span>
                 {isYou && (
                   <span className="ml-2 rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.12)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand)]">
                     شما

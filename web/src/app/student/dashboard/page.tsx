@@ -50,12 +50,12 @@ export default function StudentDashboardPage() {
         <div className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
             <div
-              className="mono text-[10px] font-bold uppercase tracking-[0.26em]"
+              className="mono text-[10px] font-bold"
               style={{ color: lab.color }}
             >
               آزمایشگاه {lab.name} · سطح {currentStudent.level}
             </div>
-            <h1 className="display mt-3 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="display mt-3 text-4xl md:text-5xl">
               ماموریت امروز
             </h1>
             <p className="mt-3 max-w-xl leading-relaxed text-[var(--ink-soft)]">
@@ -107,7 +107,7 @@ export default function StudentDashboardPage() {
               className="surface-flat p-4"
             >
               <div className="flex items-center justify-between">
-                <span className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
+                <span className="mono text-[10px] text-[var(--ink-faint)]">
                   {stat.label}
                 </span>
                 <stat.icon size={15} style={{ color: stat.tone }} />
@@ -134,7 +134,7 @@ export default function StudentDashboardPage() {
         <section className="space-y-6">
           <div className="surface p-6">
             <div className="flex items-center justify-between">
-              <h2 className="display text-2xl font-bold">برنامه هفتگی</h2>
+              <h2 className="display text-2xl">برنامه هفتگی</h2>
               <span className="chip">{plannerPct}٪ انجام‌شده</span>
             </div>
             <ProgressBar value={plannerPct} className="mt-4" />
@@ -145,7 +145,7 @@ export default function StudentDashboardPage() {
                   className="surface-flat flex items-center justify-between px-3.5 py-2.5 text-sm"
                 >
                   <span className="flex items-center gap-3">
-                    <span className="mono w-8 text-[10px] font-bold uppercase tracking-wider text-[var(--ink-faint)]">
+                    <span className="mono w-8 text-[10px] font-bold text-[var(--ink-faint)]">
                       {task.day}
                     </span>
                     <span className={task.done ? "text-[var(--ink-faint)] line-through" : ""}>
@@ -174,7 +174,7 @@ export default function StudentDashboardPage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">فعالیت اخیر</h2>
+            <h2 className="display text-2xl">فعالیت اخیر</h2>
             <ul className="mt-4 divide-y divide-[var(--line)]">
               {xpHistory.slice(0, 5).map((event) => (
                 <li
@@ -198,7 +198,7 @@ export default function StudentDashboardPage() {
           <IdCard student={currentStudent} />
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">دستاوردها</h2>
+            <h2 className="display text-2xl">دستاوردها</h2>
             <div className="mt-4 grid grid-cols-2 gap-3">
               {achievements.map((a) => (
                 <div
@@ -219,7 +219,7 @@ export default function StudentDashboardPage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display flex items-center gap-2 text-2xl font-bold">
+            <h2 className="display flex items-center gap-2 text-2xl">
               <Megaphone size={20} className="text-[var(--accent)]" />
               اعلان‌ها
             </h2>

@@ -102,7 +102,7 @@ export function HeroVisual() {
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="label-en">SUBJECT ID</div>
-            <div className="fa-heading mt-2 text-4xl font-black text-[var(--brand)]">
+            <div className="fa-heading mt-2 text-4xl text-[var(--brand)]">
               N-021
             </div>
           </div>

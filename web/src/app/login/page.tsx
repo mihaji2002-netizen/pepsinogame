@@ -28,7 +28,7 @@ export default function LoginPage() {
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] shadow-[0_0_8px_var(--brand)]" />
           فصل ۲۶ در جریان است
         </div>
-        <h1 className="display mt-5 text-5xl font-bold tracking-tight">
+        <h1 className="display mt-5 text-5xl">
           ورود به <span className="text-[var(--brand)]">آزمایشگاه</span>
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-[var(--ink-soft)]">

@@ -12,7 +12,7 @@ export default function LogbookPage() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <div className="eyebrow">بازتاب روزانه</div>
-        <h1 className="display mt-2 text-4xl font-bold">دفترچه ماموریت</h1>
+        <h1 className="display mt-2 text-4xl">دفترچه ماموریت</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           بازتاب برای <span className="mono text-[var(--brand)]">{logbook.date}</span>.
           برد، چالش و تمرکز فردا را ثبت کن.

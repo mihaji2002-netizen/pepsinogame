@@ -25,7 +25,7 @@ export default function RegisterPage() {
         <Link href="/">
           <BrandMark />
         </Link>
-        <h1 className="display mt-10 text-5xl font-bold leading-[1.05] tracking-tight">
+        <h1 className="display mt-10 text-5xl">
           جای خود را در{" "}
           <span className="text-[var(--brand)]">آزمایشگاه نورو</span> رزرو کنید
         </h1>

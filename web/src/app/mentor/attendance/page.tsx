@@ -31,7 +31,7 @@ export default function AttendancePage() {
     <div className="space-y-6">
       <div>
         <div className="eyebrow">شش جلسه</div>
-        <h1 className="display mt-2 text-4xl font-bold">حضور و غیاب</h1>
+        <h1 className="display mt-2 text-4xl">حضور و غیاب</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           حضور و غیاب شش جلسه‌ای برای {student?.name ?? "دانش‌آموز انتخاب‌شده"}.
           آمار به‌صورت خودکار محاسبه می‌شود.
@@ -42,7 +42,7 @@ export default function AttendancePage() {
         {statuses.map((status) => (
           <div key={status} className="surface p-5">
             <div
-              className="mono text-[10px] font-bold uppercase tracking-[0.2em]"
+              className="mono text-[10px] font-bold"
               style={{ color: statusTone[status] }}
             >
               {attendanceLabel(status)}

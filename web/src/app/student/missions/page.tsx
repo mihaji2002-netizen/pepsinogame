@@ -18,7 +18,7 @@ export default function MissionsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="eyebrow">چرخه روزانه</div>
-          <h1 className="display mt-2 text-4xl font-bold">تخته ماموریت</h1>
+          <h1 className="display mt-2 text-4xl">تخته ماموریت</h1>
           <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
             روتین + شش هدف. با تکمیل، امتیاز و سکه بگیرید. منتورها کیفیت را
             تأیید می‌کنند.
@@ -57,7 +57,7 @@ export default function MissionsPage() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <div className="mono text-[10px] uppercase tracking-[0.22em] text-[var(--ink-faint)]">
+                  <div className="mono text-[10px] text-[var(--ink-faint)]">
                     {mission.key === "routine" ? "آیین روزانه" : "هدف"}
                   </div>
                   <div className="display mt-1.5 text-2xl font-bold">
@@ -87,7 +87,7 @@ export default function MissionsPage() {
                   </span>
                 </span>
                 <span
-                  className={`mono text-[10px] uppercase tracking-wider ${
+                  className={`mono text-[10px] ${
                     mission.approved
                       ? "text-[var(--success)]"
                       : "text-[var(--ink-faint)]"

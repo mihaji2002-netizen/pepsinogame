@@ -97,7 +97,7 @@ export default function OnboardingPage() {
           >
             <div className="text-center">
               <div className="eyebrow">گام ۰۲ · هویت</div>
-              <h1 className="display mt-3 text-4xl font-bold">
+              <h1 className="display mt-3 text-4xl">
                 شناسنامه دیجیتال شما
               </h1>
               <p className="mt-3 text-[var(--ink-soft)]">
@@ -144,7 +144,7 @@ export default function OnboardingPage() {
               </div>
             </div>
             <div className="eyebrow mt-6">گام ۰۳ · آزمایشگاه شما</div>
-            <h1 className="display mt-2 text-4xl font-bold">آزمایشگاه {lab.name}</h1>
+            <h1 className="display mt-2 text-4xl">آزمایشگاه {lab.name}</h1>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
             <p className="mt-4 text-sm leading-relaxed text-[var(--ink-soft)]">
               از سطح ۱ شروع می‌کنید. با امتیاز و مهرهای منتور از پژوهش،
@@ -165,13 +165,13 @@ export default function OnboardingPage() {
             className="surface p-8"
           >
             <div className="eyebrow">گام ۰۴ · چرخه</div>
-            <h1 className="display mt-2 text-4xl font-bold">اولین ماموریت</h1>
+            <h1 className="display mt-2 text-4xl">اولین ماموریت</h1>
             <p className="mt-3 leading-relaxed text-[var(--ink-soft)]">
               روتین را کامل کنید، سپس اهداف ۱ تا ۶. هر اقدام امتیاز می‌دهد.
               منتورها کیفیت را تأیید و مهر اعطا می‌کنند.
             </p>
             <div className="surface-flat mt-7 p-5">
-              <div className="mono text-[10px] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
+              <div className="mono text-[10px] text-[var(--ink-faint)]">
                 امروز
               </div>
               <div className="display mt-2 text-2xl font-bold">روتین</div>
@@ -196,7 +196,7 @@ export default function OnboardingPage() {
             exit={{ opacity: 0 }}
             className="text-center"
           >
-            <h1 className="display text-5xl font-bold">ورود به داشبورد</h1>
+            <h1 className="display text-5xl">ورود به داشبورد</h1>
             <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
               ماموریت. پیشرفت. امتیاز. سطح. سکه. اول اقدام.
             </p>

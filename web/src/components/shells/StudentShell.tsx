@@ -82,7 +82,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
               {currentStudent.avatar}
             </div>
             <div className="min-w-0">
-              <div className="mono truncate text-sm font-bold tracking-[0.12em]">
+              <div className="mono truncate text-sm font-bold">
                 {currentStudent.studentId}
               </div>
               <div className="truncate text-[10px] text-[var(--ink-faint)]">

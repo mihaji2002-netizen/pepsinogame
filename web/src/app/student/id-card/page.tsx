@@ -13,7 +13,7 @@ export default function IdCardPage() {
     <div className="mx-auto max-w-xl space-y-6">
       <div>
         <div className="eyebrow">هویت دائمی</div>
-        <h1 className="display mt-2 text-4xl font-bold">کارت شناسایی دیجیتال</h1>
+        <h1 className="display mt-2 text-4xl">کارت شناسایی دیجیتال</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           به‌صورت خودکار ساخته می‌شود. طراحی ممتاز. قابل دانلود. پشتیبانی کیف پول
           در آینده.

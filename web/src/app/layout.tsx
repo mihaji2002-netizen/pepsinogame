@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Syne } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { MotionProvider } from "@/components/MotionProvider";
 import { AmbientBackground } from "@/components/effects/AmbientBackground";
 import { XpToast } from "@/components/ui/XpToast";
+import { estedad, vazirmatn } from "@/lib/fonts";
 import "./globals.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["500", "600", "700", "800"],
-});
-
-const jbMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jbmono",
-});
 
 export const metadata: Metadata = {
   title: "پپسینو لب — سیستم‌عامل آموزشی گیمیفای‌شده",
@@ -30,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${syne.variable} ${jbMono.variable} antialiased`}>
+      <body
+        className={`${vazirmatn.variable} ${estedad.variable} antialiased`}
+      >
         <AmbientBackground />
         <AppProvider>
           <MotionProvider>

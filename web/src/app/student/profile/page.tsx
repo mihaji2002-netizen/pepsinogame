@@ -31,7 +31,7 @@ export default function ProfilePage() {
     <div className="space-y-6">
       <div>
         <div className="eyebrow">همه‌چیز در یک جا</div>
-        <h1 className="display mt-2 text-4xl font-bold">پروفایل دانش‌آموز</h1>
+        <h1 className="display mt-2 text-4xl">پروفایل دانش‌آموز</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           اطلاعات شخصی، تاریخچه، دستاوردها و یادداشت‌های منتور.
         </p>
@@ -54,7 +54,7 @@ export default function ProfilePage() {
               <div className="display text-3xl font-bold">
                 {currentStudent.name}
               </div>
-              <div className="mono text-sm tracking-[0.14em] text-[var(--ink-soft)]">
+              <div className="mono text-sm text-[var(--ink-soft)]">
                 {currentStudent.studentId}
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function ProfilePage() {
 
         <section className="space-y-6">
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">تاریخچه امتیاز</h2>
+            <h2 className="display text-2xl">تاریخچه امتیاز</h2>
             <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
               {xpHistory.map((e) => (
                 <li key={e.id} className="flex justify-between gap-4 py-2.5">
@@ -104,7 +104,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">تاریخچه آزمون</h2>
+            <h2 className="display text-2xl">تاریخچه آزمون</h2>
             <ul className="mt-4 space-y-3 text-sm">
               {exams.map((exam) => (
                 <li key={exam.id} className="surface-flat p-4">
@@ -123,13 +123,13 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">حضور و غیاب</h2>
+            <h2 className="display text-2xl">حضور و غیاب</h2>
             <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
               {attendance.map((a) => (
                 <div key={a.session} className="surface-flat p-3 text-center">
                   <div className="mono text-xs font-bold">S{a.session}</div>
                   <div
-                    className={`mt-1 text-[10px] font-bold uppercase tracking-wider ${statusTone[a.status]}`}
+                    className={`mt-1 text-[10px] font-bold ${statusTone[a.status]}`}
                   >
                     {attendanceLabel(a.status)}
                   </div>
@@ -139,13 +139,13 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">تاریخچه ماموریت</h2>
+            <h2 className="display text-2xl">تاریخچه ماموریت</h2>
             <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
               {missions.map((m) => (
                 <li key={m.key} className="flex justify-between py-2.5">
                   <span>{m.title}</span>
                   <span
-                    className={`mono text-[10px] font-bold uppercase tracking-wider ${
+                    className={`mono text-[10px] font-bold ${
                       m.completed
                         ? "text-[var(--success)]"
                         : "text-[var(--ink-faint)]"
@@ -159,7 +159,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl font-bold">نشان‌ها</h2>
+            <h2 className="display text-2xl">نشان‌ها</h2>
             <div className="mt-4 flex flex-wrap gap-2">
               {achievements
                 .filter((a) => a.unlocked)

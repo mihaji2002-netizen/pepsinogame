@@ -17,7 +17,7 @@ export default function ExamsPage() {
     <div className="space-y-6">
       <div>
         <div className="eyebrow">ارزیابی</div>
-        <h1 className="display mt-2 text-4xl font-bold">سیستم آزمون</h1>
+        <h1 className="display mt-2 text-4xl">سیستم آزمون</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           ایجاد آزمون با موضوع، نمره، درصد، رتبه و توضیحات منتور.
         </p>
@@ -78,7 +78,7 @@ export default function ExamsPage() {
           <div key={exam.id} className="surface p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <div className="display text-2xl font-bold">{exam.subject}</div>
+                <div className="display text-2xl">{exam.subject}</div>
                 <div className="mono mt-1 text-xs text-[var(--ink-faint)]">
                   {formatDate(exam.date)} · رتبه #{exam.rank}
                 </div>
