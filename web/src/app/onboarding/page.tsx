@@ -49,8 +49,8 @@ export default function OnboardingPage() {
             className="h-1 w-10 rounded-full transition-all duration-500"
             style={{
               background:
-                i <= step ? "var(--brand)" : "rgba(148,210,216,0.15)",
-              boxShadow: i <= step ? "0 0 10px rgba(47,214,195,0.5)" : "none",
+                i <= step ? "var(--brand)" : "rgba(80,200,120,0.15)",
+              boxShadow: i <= step ? "0 0 10px rgba(80,200,120,0.5)" : "none",
             }}
           />
         ))}
@@ -70,7 +70,7 @@ export default function OnboardingPage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }}
-              className="mx-auto grid h-20 w-20 place-items-center rounded-3xl border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.12)] text-[var(--brand)]"
+              className="mx-auto grid h-20 w-20 place-items-center rounded-3xl border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.12)] text-[var(--brand)]"
             >
               <PartyPopper size={36} />
             </motion.div>

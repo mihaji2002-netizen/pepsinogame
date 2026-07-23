@@ -18,7 +18,7 @@ import { Marquee } from "@/components/ui/Marquee";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
-import { BRAND, LABS } from "@/lib/constants";
+import { BRAND, BRAND_SLOGANS, LABS } from "@/lib/constants";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -195,6 +195,10 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="display mt-6 text-2xl font-bold">{lab.name}</div>
+              <div className="mono mt-1 text-[10px] uppercase tracking-[0.18em] text-[var(--ink-faint)]">
+                {lab.nameEn}
+              </div>
+              <p className="mt-2 text-xs font-medium text-[var(--brand)]">{lab.focus}</p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
                 {lab.tagline}
               </p>
@@ -318,7 +322,7 @@ export default function LandingPage() {
               transition={{ ...fadeUp.transition, delay: i * 0.08 }}
               className="surface relative p-6"
             >
-              <div className="mono grid h-9 w-9 place-items-center rounded-full border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.1)] text-xs font-bold text-[var(--brand)]">
+              <div className="mono grid h-9 w-9 place-items-center rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.1)] text-xs font-bold text-[var(--brand)]">
                 0{i + 1}
               </div>
               <div className="display mt-5 text-2xl font-bold">{step.title}</div>
@@ -354,10 +358,10 @@ export default function LandingPage() {
           </div>
           <div className="space-y-2.5">
             {[
-              ["آوا کریمی", "PPL-250001", "نورو · س۲", "۸۲٪"],
-              ["نیما رستمی", "PPL-250002", "نورو · س۲", "۷۴٪"],
-              ["سارا حسینی", "PPL-250003", "پژوهش · س۵", "۹۱٪"],
-            ].map(([name, id, lab, score], i) => (
+              ["N-021", "NEURO LAB · س۳", "۸۲٪"],
+              ["N-022", "NEURO LAB · س۲", "۷۴٪"],
+              ["R-003", "RESEARCH LAB · س۵", "۹۱٪"],
+            ].map(([id, lab, score], i) => (
               <motion.div
                 key={id}
                 initial={{ opacity: 0, x: 20 }}
@@ -367,8 +371,8 @@ export default function LandingPage() {
                 className="surface-flat flex items-center justify-between px-4 py-3.5 text-sm"
               >
                 <div>
-                  <div className="font-semibold">{name}</div>
-                  <div className="mono text-xs text-[var(--ink-faint)]">{id}</div>
+                  <div className="mono font-semibold tracking-[0.1em]">{id}</div>
+                  <div className="text-xs text-[var(--ink-faint)]">شناسه موضوعی</div>
                 </div>
                 <div className="text-xs text-[var(--ink-soft)]">{lab}</div>
                 <div className="mono font-bold text-[var(--brand)]">{score}</div>
@@ -388,7 +392,7 @@ export default function LandingPage() {
           {[
             {
               q: "آیا شناسه دانش‌آموزی با تغییر آزمایشگاه عوض می‌شود؟",
-              a: "هرگز. شناسه‌هایی مثل PPL-250001 دائمی‌اند. آزمایشگاه‌ها تکامل می‌یابند؛ هویت نه.",
+              a: "هرگز. شناسه‌هایی مثل N-021 دائمی‌اند. آزمایشگاه‌ها تکامل می‌یابند؛ هویت نه.",
             },
             {
               q: "برای ارتقای سطح چه چیزی لازم است؟",
@@ -422,10 +426,10 @@ export default function LandingPage() {
       <section className="mx-auto max-w-6xl px-5 pb-24 md:px-8">
         <motion.div
           {...fadeUp}
-          className="relative overflow-hidden rounded-[28px] border border-[rgba(47,214,195,0.3)] px-8 py-16 text-center md:px-14"
+          className="relative overflow-hidden rounded-[28px] border border-[rgba(80,200,120,0.3)] px-8 py-16 text-center md:px-14"
           style={{
             background:
-              "radial-gradient(700px 340px at 50% -40%, rgba(47,214,195,0.28), transparent 70%), linear-gradient(180deg, #0b141a, #060b0f)",
+              "radial-gradient(700px 340px at 50% -40%, rgba(80,200,120,0.28), transparent 70%), linear-gradient(180deg, var(--forest), var(--bg))",
           }}
         >
           <div className="eyebrow text-[var(--brand)]">فصل ۲۶</div>
@@ -448,10 +452,17 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t border-[var(--line)] px-5 py-10 text-sm text-[var(--ink-soft)] md:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <BrandMark />
-          <div className="mono text-xs tracking-wider">
-            studio@pepsinolab.dev
+        <div className="mx-auto flex max-w-6xl flex-col gap-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <BrandMark />
+            <div className="mono text-xs tracking-wider">studio@pepsinolab.dev</div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {BRAND_SLOGANS.map((slogan) => (
+              <span key={slogan} className="chip text-[11px]">
+                {slogan}
+              </span>
+            ))}
           </div>
         </div>
       </footer>

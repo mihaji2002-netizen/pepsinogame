@@ -148,7 +148,7 @@ export default function MentorDashboardPage() {
           return (
             <div
               key={student.id}
-              className="grid items-center gap-3 border-b border-[var(--line)] px-5 py-4 transition last:border-none hover:bg-[rgba(148,210,216,0.04)] md:grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr]"
+              className="grid items-center gap-3 border-b border-[var(--line)] px-5 py-4 transition last:border-none hover:bg-[rgba(80,200,120,0.04)] md:grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr]"
             >
               <div>
                 <Link

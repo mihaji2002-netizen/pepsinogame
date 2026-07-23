@@ -66,7 +66,7 @@ export function MentorShell({ children }: { children: React.ReactNode }) {
                   "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                   active
                     ? "bg-[var(--accent)] font-bold text-[#2b1c02] shadow-[0_8px_24px_rgba(242,181,68,0.28)]"
-                    : "text-[var(--ink-soft)] hover:bg-[rgba(148,210,216,0.08)] hover:text-[var(--ink)]",
+                    : "text-[var(--ink-soft)] hover:bg-[rgba(80,200,120,0.08)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />

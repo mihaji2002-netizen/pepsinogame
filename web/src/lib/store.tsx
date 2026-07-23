@@ -324,12 +324,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         studentId: nextStudentId(sequence),
         name,
         email,
-        avatar: name
-          .split(" ")
-          .map((p) => p[0])
-          .join("")
-          .slice(0, 2)
-          .toUpperCase(),
+        avatar: "N",
         lab: "neuro",
         level: 1,
         xp: 0,

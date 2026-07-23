@@ -16,6 +16,8 @@ export type MissionKey =
 export interface LabTheme {
   id: LabId;
   name: string;
+  nameEn: string;
+  focus: string;
   tagline: string;
   color: string;
   soft: string;

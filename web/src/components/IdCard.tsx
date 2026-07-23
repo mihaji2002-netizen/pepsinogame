@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ShieldCheck } from "lucide-react";
 import { BRAND, LABS } from "@/lib/constants";
 import type { Student } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -28,22 +29,20 @@ export function IdCard({
       )}
       style={{
         borderColor: `${lab.color}44`,
-        background: `linear-gradient(150deg, ${lab.color}26 0%, #0a1218 42%, #05090c 100%)`,
+        background: `linear-gradient(150deg, ${lab.color}22 0%, var(--forest) 42%, var(--bg) 100%)`,
       }}
     >
-      {/* Holographic sweep */}
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
         style={{
-          backgroundImage: `radial-gradient(circle at 18% 12%, ${lab.color}30, transparent 38%), radial-gradient(circle at 85% -5%, rgba(242,181,68,0.14), transparent 32%)`,
+          backgroundImage: `radial-gradient(circle at 18% 12%, ${lab.color}30, transparent 38%), radial-gradient(circle at 85% -5%, rgba(232,197,71,0.12), transparent 32%)`,
         }}
       />
-      {/* Micro grid */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="pointer-events-none absolute inset-0 opacity-25"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(148,210,216,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,210,216,0.07) 1px, transparent 1px)",
+            "linear-gradient(rgba(80,200,120,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,200,120,0.07) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -51,41 +50,53 @@ export function IdCard({
       <div className="relative flex items-start justify-between gap-4">
         <div>
           <div className="mono text-[10px] uppercase tracking-[0.28em] text-[var(--ink-soft)]">
-            شناسنامه دیجیتال · فصل ۲۶
+            کارت شناسایی موضوعی
           </div>
-          <div className="display mt-2 text-2xl font-bold tracking-tight">
+          <div className="display mt-2 text-sm font-semibold tracking-[0.18em] text-[var(--ink-soft)]">
             {BRAND.nameEn}
           </div>
         </div>
         <div
-          className="rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider"
+          className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
           style={{
             color: lab.color,
             borderColor: `${lab.color}55`,
             background: `${lab.color}14`,
           }}
         >
-          آزمایشگاه {lab.name}
+          <ShieldCheck size={12} />
+          فعال
         </div>
+      </div>
+
+      <div
+        className="display relative mt-8 text-4xl font-bold tracking-tight md:text-5xl"
+        style={{ color: lab.color }}
+      >
+        {student.studentId}
+      </div>
+      <div className="mono relative mt-1 text-[10px] uppercase tracking-[0.24em] text-[var(--ink-faint)]">
+        subject id · permanent
       </div>
 
       <div className="relative mt-8 flex items-end justify-between gap-4">
         <div className="flex items-center gap-4">
           <div
-            className="grid h-16 w-16 place-items-center rounded-2xl border text-xl font-bold"
+            className="grid h-16 w-16 place-items-center rounded-2xl border text-lg font-bold"
             style={{
               color: lab.color,
               borderColor: `${lab.color}55`,
               background: `${lab.color}18`,
             }}
           >
-            {student.avatar}
+            {lab.badge}
           </div>
           <div>
-            <div className="display text-2xl font-bold">{student.name}</div>
-            <div className="mono mt-1 text-sm tracking-[0.18em] text-[var(--ink-soft)]">
-              {student.studentId}
+            <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
+              آزمایشگاه
             </div>
+            <div className="display text-lg font-bold">{lab.nameEn}</div>
+            <div className="mt-1 text-sm text-[var(--ink-soft)]">{lab.focus}</div>
           </div>
         </div>
         <div className="grid h-16 w-16 place-items-center rounded-xl bg-white p-2">
@@ -93,7 +104,7 @@ export function IdCard({
             className="h-full w-full"
             style={{
               backgroundImage:
-                "conic-gradient(from 90deg, #05090c 0 25%, transparent 0 50%, #05090c 0 75%, transparent 0), linear-gradient(#05090c 0 0), linear-gradient(#05090c 0 0)",
+                "conic-gradient(from 90deg, var(--bg) 0 25%, transparent 0 50%, var(--bg) 0 75%, transparent 0), linear-gradient(var(--bg) 0 0), linear-gradient(var(--bg) 0 0)",
               backgroundPosition: "center, 20% 20%, 80% 80%",
               backgroundSize: "100% 100%, 28% 28%, 28% 28%",
               backgroundRepeat: "no-repeat",
@@ -107,7 +118,7 @@ export function IdCard({
         {[
           ["سطح", student.level],
           ["امتیاز", student.xp],
-          ["سکه", student.coins],
+          ["مهر", student.stamps],
         ].map(([label, value]) => (
           <div key={label}>
             <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
@@ -115,6 +126,17 @@ export function IdCard({
             </div>
             <div className="display mt-1 text-xl font-bold">{value}</div>
           </div>
+        ))}
+      </div>
+
+      <div className="relative mt-5 flex flex-wrap gap-2 border-t border-[var(--line)] pt-4">
+        {["نظم را حفظ کن", "به فرایند اعتماد کن", "آنزیم باش"].map((slogan) => (
+          <span
+            key={slogan}
+            className="mono rounded-full border border-[var(--line)] bg-[rgba(80,200,120,0.06)] px-2.5 py-1 text-[9px] uppercase tracking-[0.16em] text-[var(--ink-soft)]"
+          >
+            {slogan}
+          </span>
         ))}
       </div>
     </motion.div>

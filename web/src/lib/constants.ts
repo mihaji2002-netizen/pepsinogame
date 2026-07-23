@@ -1,11 +1,19 @@
-import type { Achievement, ExamRecord, LabTheme, MissionItem, PlannerTask, Student } from "./types";
+import type { Achievement, ExamRecord, LabId, LabTheme, MissionItem, PlannerTask, Student } from "./types";
 
 export const BRAND = {
   name: "پپسینو لب",
   nameEn: "PEPSINO LAB",
   short: "PPL",
-  tagline: "سیستم‌عامل آموزشی گیمیفای‌شده",
+  tagline: "فعال شو تا رشد کنی",
+  motto: "GET ACTIVE TO GROW",
 };
+
+export const BRAND_SLOGANS = [
+  "بدون نام واقعی — فقط شناسه موضوعی",
+  "هر روز یک ماموریت است، هر ماموریت تو را قوی‌تر می‌کند",
+  "با دیگران رقابت نمی‌کنیم، با دیروز خودمان رقابت می‌کنیم",
+  "پتانسیلت را فعال کن، آنزیم شو",
+] as const;
 
 export const XP_PER_LEVEL = 1200;
 export const LEVELS_PER_LAB = 4;
@@ -18,33 +26,41 @@ export const LABS: LabTheme[] = [
   {
     id: "neuro",
     name: "نورو",
-    tagline: "پایه‌ها را ببند. تمرکز را زیر فشار بساز.",
-    color: "#2FD6C3",
-    soft: "rgba(47, 214, 195, 0.14)",
+    nameEn: "NEURO LAB",
+    focus: "ذهن · حافظه · نظم",
+    tagline: "پایه‌های ذهنی را بساز. تمرکز را تحت فشار تقویت کن.",
+    color: "#50C878",
+    soft: "rgba(80, 200, 120, 0.14)",
     badge: "N",
   },
   {
     id: "research",
     name: "پژوهش",
-    tagline: "سؤال‌های تیزتر بپرس. هر ادعا را ثابت کن.",
-    color: "#F2B544",
-    soft: "rgba(242, 181, 68, 0.14)",
+    nameEn: "RESEARCH LAB",
+    focus: "استراتژی · تحلیل · دقت",
+    tagline: "سؤال‌های تیز بپرس. هر ادعا را با شواهد ثابت کن.",
+    color: "#4A9EFF",
+    soft: "rgba(74, 158, 255, 0.14)",
     badge: "R",
   },
   {
     id: "catalyst",
     name: "کاتالیز",
+    nameEn: "CATALYST LAB",
+    focus: "تحول · رشد · بازیابی",
     tagline: "خروجی را شتاب بده. مطالعه را به سیستم تبدیل کن.",
-    color: "#FF6B81",
-    soft: "rgba(255, 107, 129, 0.14)",
+    color: "#E8C547",
+    soft: "rgba(232, 197, 71, 0.14)",
     badge: "C",
   },
   {
     id: "pioneer",
     name: "پیشگام",
+    nameEn: "PIONEER LAB",
+    focus: "رهبری · چشم‌انداز · دستاورد",
     tagline: "در خط مقدم بایست. فصل را مال خودت کن.",
-    color: "#8AA5FF",
-    soft: "rgba(138, 165, 255, 0.14)",
+    color: "#9B6DFF",
+    soft: "rgba(155, 109, 255, 0.14)",
     badge: "P",
   },
 ];
@@ -131,38 +147,38 @@ export const DEFAULT_PLANNER: PlannerTask[] = [
 export const DEFAULT_ACHIEVEMENTS: Achievement[] = [
   {
     id: "a1",
-    title: "اولین مهر",
-    description: "اولین مهر منتور را دریافت کن.",
+    title: "استاد تمرکز",
+    description: "۷ روز پیاپی ماموریت روتین را کامل کن.",
     unlocked: false,
   },
   {
     id: "a2",
-    title: "هفته کامل",
-    description: "۷ روز پیاپی همه ماموریت‌ها را تمام کن.",
+    title: "استاد پیوستگی",
+    description: "۳۰ روز پیاپی بدون غیبت در ماموریت‌ها.",
     unlocked: false,
   },
   {
     id: "a3",
-    title: "۱۰۰۰ XP",
-    description: "آستانه ۱۰۰۰ XP را رد کن.",
+    title: "جایزه کاتالیز",
+    description: "آزمایشگاه کاتالیز را باز کن.",
     unlocked: false,
   },
   {
     id: "a4",
-    title: "استاد ماموریت",
-    description: "یک تخته ماموریت کامل را پاک کن.",
+    title: "مدال پیشگام",
+    description: "به سطح ۱۳ و آزمایشگاه پیشگام برس.",
     unlocked: false,
   },
   {
     id: "a5",
-    title: "قهرمان حضور",
-    description: "در شش جلسه حاضر بمان.",
+    title: "مهر ۷ روزه",
+    description: "۷ روز پیاپی مهر منتور دریافت کن.",
     unlocked: false,
   },
   {
     id: "a6",
-    title: "پژوهشگر",
-    description: "آزمایشگاه پژوهش را باز کن.",
+    title: "مهر ۳۰ روزه",
+    description: "۳۰ روز پیاپی مهر منتور دریافت کن.",
     unlocked: false,
   },
 ];
@@ -170,25 +186,25 @@ export const DEFAULT_ACHIEVEMENTS: Achievement[] = [
 export const DEMO_STUDENTS: Student[] = [
   {
     id: "stu-1",
-    studentId: "PPL-250001",
+    studentId: "N-021",
     name: "آوا کریمی",
     email: "ava@pepsinolab.dev",
-    avatar: "آک",
+    avatar: "N-",
     lab: "neuro",
-    level: 1,
-    xp: 180,
+    level: 3,
+    xp: 1250,
     coins: 42,
-    stamps: 2,
+    stamps: 5,
     mentorId: "men-1",
     joinedAt: "2026-07-01",
     hasCompletedOnboarding: true,
   },
   {
     id: "stu-2",
-    studentId: "PPL-250002",
+    studentId: "N-022",
     name: "نیما رستمی",
     email: "nima@pepsinolab.dev",
-    avatar: "نر",
+    avatar: "N-",
     lab: "neuro",
     level: 2,
     xp: 640,
@@ -200,10 +216,10 @@ export const DEMO_STUDENTS: Student[] = [
   },
   {
     id: "stu-3",
-    studentId: "PPL-250003",
+    studentId: "R-003",
     name: "سارا حسینی",
     email: "sara@pepsinolab.dev",
-    avatar: "سح",
+    avatar: "R-",
     lab: "research",
     level: 5,
     xp: 210,
@@ -249,6 +265,7 @@ export function xpProgress(xp: number) {
   };
 }
 
-export function nextStudentId(sequence: number, year = 25) {
-  return `PPL-${year}${String(sequence).padStart(4, "0")}`;
+export function nextStudentId(sequence: number, labId: LabId = "neuro") {
+  const badge = LABS.find((l) => l.id === labId)?.badge ?? "N";
+  return `${badge}-${String(sequence).padStart(3, "0")}`;
 }

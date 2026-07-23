@@ -200,7 +200,7 @@ export default function StudentDashboardPage() {
                   key={a.id}
                   className={`rounded-2xl border p-3.5 text-sm transition ${
                     a.unlocked
-                      ? "border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.08)]"
+                      ? "border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.08)]"
                       : "border-[var(--line)] bg-transparent opacity-50"
                   }`}
                 >

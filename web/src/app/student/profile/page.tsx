@@ -166,7 +166,7 @@ export default function ProfilePage() {
                 .map((a) => (
                   <span
                     key={a.id}
-                    className="rounded-full border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.1)] px-3.5 py-1.5 text-sm font-bold text-[var(--brand)]"
+                    className="rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.1)] px-3.5 py-1.5 text-sm font-bold text-[var(--brand)]"
                   >
                     {a.title}
                   </span>

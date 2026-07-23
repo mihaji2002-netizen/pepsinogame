@@ -35,7 +35,7 @@ export default function RegisterPage() {
         </p>
         <ul className="mt-8 space-y-3 text-sm text-[var(--ink-soft)]">
           {[
-            "شناسه دائمی — PPL-26XXXX، هرگز تغییر نمی‌کند",
+            "شناسه دائمی — N-XXX، R-XXX، C-XXX یا P-XXX؛ هرگز تغییر نمی‌کند",
             "کارت شناسایی دیجیتال، آماده دانلود",
             "سطح ۱ · آزمایشگاه نورو · اولین ماموریت در انتظار",
           ].map((item) => (

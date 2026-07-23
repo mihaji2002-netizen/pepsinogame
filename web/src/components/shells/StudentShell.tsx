@@ -82,11 +82,11 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
               {currentStudent.avatar}
             </div>
             <div className="min-w-0">
-              <div className="truncate text-sm font-bold">
-                {currentStudent.name}
-              </div>
-              <div className="mono text-[10px] tracking-[0.14em] text-[var(--ink-faint)]">
+              <div className="mono truncate text-sm font-bold tracking-[0.12em]">
                 {currentStudent.studentId}
+              </div>
+              <div className="truncate text-[10px] text-[var(--ink-faint)]">
+                {lab.nameEn}
               </div>
             </div>
           </div>
@@ -111,8 +111,8 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                   active
-                    ? "bg-[var(--brand)] font-bold text-[var(--brand-ink)] shadow-[0_8px_24px_rgba(47,214,195,0.3)]"
-                    : "text-[var(--ink-soft)] hover:bg-[rgba(148,210,216,0.08)] hover:text-[var(--ink)]",
+                    ? "bg-[var(--brand)] font-bold text-[var(--brand-ink)] shadow-[0_8px_24px_rgba(80,200,120,0.3)]"
+                    : "text-[var(--ink-soft)] hover:bg-[rgba(80,200,120,0.08)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />

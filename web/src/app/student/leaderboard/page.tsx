@@ -28,7 +28,7 @@ export default function LeaderboardPage() {
         <div className="min-w-[480px]">
         <div className="mono grid grid-cols-[64px_1fr_110px_90px] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
           <span>رتبه</span>
-          <span>دانش‌آموز</span>
+          <span>شناسه موضوعی</span>
           <span>آزمایشگاه</span>
           <span className="text-right">امتیاز</span>
         </div>
@@ -39,7 +39,7 @@ export default function LeaderboardPage() {
             <div
               key={student.id}
               className={`grid grid-cols-[64px_1fr_110px_90px] items-center gap-3 border-b border-[var(--line)] px-5 py-4 text-sm last:border-none ${
-                isYou ? "bg-[rgba(47,214,195,0.08)]" : ""
+                isYou ? "bg-[rgba(80,200,120,0.08)]" : ""
               }`}
             >
               <span className="flex items-center gap-1.5 font-bold">
@@ -49,15 +49,13 @@ export default function LeaderboardPage() {
                 #{index + 1}
               </span>
               <span>
-                <span className="font-bold">{student.name}</span>
+                <span className="mono font-bold tracking-[0.08em]">{student.studentId}</span>
                 {isYou && (
-                  <span className="ml-2 rounded-full border border-[rgba(47,214,195,0.4)] bg-[rgba(47,214,195,0.12)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand)]">
+                  <span className="ml-2 rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.12)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand)]">
                     شما
                   </span>
                 )}
-                <div className="mono text-[10px] tracking-wider text-[var(--ink-faint)]">
-                  {student.studentId}
-                </div>
+                <div className="text-[10px] text-[var(--ink-faint)]">{lab.nameEn}</div>
               </span>
               <span
                 className="text-xs font-bold"
