@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -13,19 +13,15 @@ import {
   Zap,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
+import { HeroVisual } from "@/components/effects/HeroVisual";
+import { GradientText, TextReveal } from "@/components/effects/TextReveal";
 import { Button } from "@/components/ui/Button";
 import { Marquee } from "@/components/ui/Marquee";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { BRAND, BRAND_SLOGANS, LABS } from "@/lib/constants";
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 },
-  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
-};
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const heroStats = [
   { value: 16, label: "سطح" },
@@ -46,11 +42,24 @@ const marqueeItems = [
 ];
 
 export default function LandingPage() {
+  const { scrollY } = useScroll();
+  const navY = useTransform(scrollY, [0, 120], [0, -4]);
+
+  const viewFade = {
+    variants: fadeUp,
+    initial: "hidden" as const,
+    whileInView: "show" as const,
+    viewport: { once: true, amount: 0.25 },
+  };
+
   return (
     <motion.div>
       {/* ---------- Nav ---------- */}
       <header className="no-print sticky top-0 z-40">
-        <div className="glass mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 md:px-6">
+        <motion.div
+          style={{ y: navY }}
+          className="glass mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-2xl px-4 py-3 md:px-6"
+        >
           <BrandMark />
           <nav className="hidden items-center gap-7 text-sm text-[var(--ink-soft)] md:flex">
             <a href="#labs" className="transition hover:text-[var(--ink)]">
@@ -75,62 +84,75 @@ export default function LandingPage() {
               <ArrowRight size={15} className="rtl:rotate-180" />
             </Button>
           </Link>
-        </div>
+        </motion.div>
       </header>
 
       {/* ---------- Hero ---------- */}
-      <section className="relative mx-auto max-w-6xl px-5 pb-24 pt-20 md:px-8 md:pt-28">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative mx-auto max-w-6xl px-5 pb-24 pt-16 md:px-8 md:pt-24">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            variants={staggerContainer(0.1, 0.1)}
+            initial="hidden"
+            animate="show"
           >
-            <div className="chip">
-              <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] shadow-[0_0_8px_var(--brand)]" />
+            <motion.div variants={fadeUp} className="chip">
+              <motion.span
+                className="inline-block h-2 w-2 rounded-full bg-[var(--brand)]"
+                animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ boxShadow: "0 0 12px var(--brand)" }}
+              />
               ثبت‌نام فصل ۲۶ باز است
-            </div>
-            <h1 className="display mt-6 text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl">
-              مطالعه را مثل یک{" "}
-              <span className="shimmer-text">فصل</span> تجربه کن، نه یک وظیفه.
+            </motion.div>
+            <h1 className="fa-heading mt-8 text-[2.4rem] font-black leading-[1.3] md:text-6xl md:leading-[1.25]">
+              <TextReveal text="مطالعه را مثل یک" delay={0.15} />
+              <br />
+              <GradientText>
+                <TextReveal text="فصل" delay={0.45} />
+              </GradientText>{" "}
+              <TextReveal text="تجربه کن." delay={0.55} />
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-[var(--ink-soft)]">
+            <motion.p
+              variants={fadeUp}
+              className="fa-body mt-7 max-w-lg text-lg text-[var(--ink-soft)]"
+            >
               {BRAND.name} سیستم‌عامل آموزشی است که ماموریت‌ها، منتورها، امتیاز و
-              شتاب را در یک جا جمع می‌کند. هفته را برنامه‌ریزی کن. تخته را پاک
-              کن. از چهار آزمایشگاه عبور کن.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+              شتاب را در یک اکوسیستم زنده جمع می‌کند.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-4">
               <Link href="/register">
-                <Button className="btn-shimmer px-6 py-3 text-base">
+                <Button className="btn-shimmer px-7 py-3.5 text-base">
                   شروع به‌عنوان دانش‌آموز
                   <Sparkles size={17} />
                 </Button>
               </Link>
               <Link href="/login">
-                <Button variant="secondary" className="px-6 py-3 text-base">
+                <Button variant="secondary" className="px-7 py-3.5 text-base">
                   کنسول منتور
                   <ArrowUpRight size={17} />
                 </Button>
               </Link>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+            </motion.div>
+            <motion.div
+              variants={fadeUp}
+              className="mt-12 grid grid-cols-2 gap-6 sm:flex sm:flex-wrap sm:gap-x-10"
+            >
               {heroStats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 + i * 0.1 }}
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="display text-2xl font-bold text-[var(--brand)]">
+                  <div className="fa-heading text-3xl font-black text-[var(--brand)]">
                     <NumberTicker value={stat.value} delay={i * 120} />
                   </div>
-                  <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--ink-faint)]">
-                    {stat.label}
-                  </div>
+                  <div className="mt-1 text-sm text-[var(--ink-faint)]">{stat.label}</div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
+
+          <HeroVisual />
         </div>
       </section>
 
@@ -147,7 +169,7 @@ export default function LandingPage() {
 
       {/* ---------- Labs ---------- */}
       <section id="labs" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
-        <motion.div {...fadeUp}>
+        <motion.div {...viewFade}>
           <div className="eyebrow">صعود</div>
           <h2 className="display mt-3 text-4xl font-bold md:text-5xl">
             چهار آزمایشگاه. یک صعود.
@@ -211,7 +233,7 @@ export default function LandingPage() {
       {/* ---------- Feature split ---------- */}
       <section className="mx-auto max-w-6xl px-5 py-10 md:px-8">
         <motion.div
-          {...fadeUp}
+          {...viewFade}
           className="surface grid gap-10 overflow-hidden p-8 md:grid-cols-[1.05fr_0.95fr] md:p-12"
         >
           <div>
@@ -289,7 +311,7 @@ export default function LandingPage() {
 
       {/* ---------- The Loop ---------- */}
       <section id="loop" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
-        <motion.div {...fadeUp}>
+        <motion.div {...viewFade}>
           <div className="eyebrow">چطور کار می‌کند</div>
           <h2 className="display mt-3 text-4xl font-bold">چرخه</h2>
           <p className="mt-4 max-w-xl text-[var(--ink-soft)]">
@@ -318,8 +340,7 @@ export default function LandingPage() {
           ].map((step, i) => (
             <motion.div
               key={step.title}
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.08 }}
+              {...viewFade}
               className="surface relative p-6"
             >
               <div className="mono grid h-9 w-9 place-items-center rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.1)] text-xs font-bold text-[var(--brand)]">
@@ -337,7 +358,7 @@ export default function LandingPage() {
       {/* ---------- Mentor strip ---------- */}
       <section id="mentor" className="mx-auto max-w-6xl px-5 py-10 md:px-8">
         <motion.div
-          {...fadeUp}
+          {...viewFade}
           className="panel-dark grid gap-10 overflow-hidden p-8 md:grid-cols-2 md:p-12"
         >
           <div>
@@ -384,7 +405,7 @@ export default function LandingPage() {
 
       {/* ---------- FAQ ---------- */}
       <section id="faq" className="mx-auto max-w-6xl px-5 py-24 md:px-8">
-        <motion.div {...fadeUp}>
+        <motion.div {...viewFade}>
           <div className="eyebrow">سؤالات</div>
           <h2 className="display mt-3 text-4xl font-bold">پرسش‌های متداول</h2>
         </motion.div>
@@ -409,8 +430,7 @@ export default function LandingPage() {
           ].map((item, i) => (
             <motion.div
               key={item.q}
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.05 }}
+              {...viewFade}
               className="surface p-6"
             >
               <div className="font-semibold">{item.q}</div>
@@ -425,7 +445,7 @@ export default function LandingPage() {
       {/* ---------- Final CTA ---------- */}
       <section className="mx-auto max-w-6xl px-5 pb-24 md:px-8">
         <motion.div
-          {...fadeUp}
+          {...viewFade}
           className="relative overflow-hidden rounded-[28px] border border-[rgba(80,200,120,0.3)] px-8 py-16 text-center md:px-14"
           style={{
             background:

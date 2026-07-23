@@ -7,6 +7,7 @@ import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { LABS, xpProgress } from "@/lib/constants";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 import { useApp } from "@/lib/store";
 
 export default function StudentDashboardPage() {
@@ -28,10 +29,14 @@ export default function StudentDashboardPage() {
   const plannerPct = Math.round((plannerDone / planner.length) * 100);
 
   return (
-    <div className="space-y-6">
+    <motion.div
+      className="space-y-6"
+      variants={staggerContainer(0.08, 0.05)}
+      initial="hidden"
+      animate="show"
+    >
       <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        variants={fadeUp}
         className="relative overflow-hidden rounded-[22px] border p-6 md:p-8"
         style={{
           borderColor: `${lab.color}33`,
@@ -231,6 +236,6 @@ export default function StudentDashboardPage() {
           </div>
         </section>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
-import { Exo_2, JetBrains_Mono, Vazirmatn } from "next/font/google";
+import { JetBrains_Mono, Syne } from "next/font/google";
 import { AppProvider } from "@/lib/store";
 import { MotionProvider } from "@/components/MotionProvider";
+import { AmbientBackground } from "@/components/effects/AmbientBackground";
 import { XpToast } from "@/components/ui/XpToast";
 import "./globals.css";
 
-const vazirmatn = Vazirmatn({
-  subsets: ["arabic"],
-  variable: "--font-vazir",
-});
-
-const exo2 = Exo_2({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-exo",
+  variable: "--font-syne",
+  weight: ["500", "600", "700", "800"],
 });
 
 const jbMono = JetBrains_Mono({
@@ -33,7 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirmatn.variable} ${exo2.variable} ${jbMono.variable} antialiased`}>
+      <body className={`${syne.variable} ${jbMono.variable} antialiased`}>
+        <AmbientBackground />
         <AppProvider>
           <MotionProvider>
             <div className="relative z-10 min-h-screen">{children}</div>
