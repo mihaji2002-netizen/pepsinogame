@@ -157,7 +157,7 @@ export default function StudentDashboardPage() {
                 آزمون‌های اختصاص‌داده‌شده توسط منتور
               </p>
             </motion.div>
-          </motion.div>
+          </div>
           <Link href="/student/exams">
             <Button variant="secondary">رفتن به Exams</Button>
           </Link>
