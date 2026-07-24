@@ -4,6 +4,10 @@ export type LabId = "neuro" | "research" | "catalyst" | "pioneer";
 
 export type Gender = "female" | "male";
 
+export type SchoolGrade = 10 | 11 | 12;
+
+export type StudyField = "math" | "experimental" | "humanities";
+
 export type AvatarKey = 1 | 2 | 3;
 
 export type AttendanceStatus = "present" | "late" | "absent" | "excused";
@@ -36,6 +40,8 @@ export interface Student {
   name: string;
   email: string;
   gender: Gender;
+  grade: SchoolGrade;
+  studyField: StudyField;
   avatarKey: AvatarKey;
   lab: LabId;
   level: number;

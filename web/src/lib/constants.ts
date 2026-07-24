@@ -1,4 +1,4 @@
-import type { Achievement, ExamRecord, LabId, LabTheme, MissionItem, PlannerTask, Student, AvatarKey, Gender } from "./types";
+import type { Achievement, ExamRecord, LabId, LabTheme, MissionItem, PlannerTask, SchoolGrade, Student, StudyField, AvatarKey, Gender } from "./types";
 
 export const BRAND = {
   name: "پپسینو لب",
@@ -19,6 +19,26 @@ export const XP_PER_LEVEL = 1200;
 export const LEVELS_PER_LAB = 4;
 export const TOTAL_LEVELS = 16;
 export const STAMPS_PER_LEVEL = 12;
+
+export const SCHOOL_GRADE_OPTIONS: { id: SchoolGrade; label: string }[] = [
+  { id: 10, label: "دهم" },
+  { id: 11, label: "یازدهم" },
+  { id: 12, label: "دوازدهم" },
+];
+
+export const STUDY_FIELD_OPTIONS: { id: StudyField; label: string }[] = [
+  { id: "math", label: "ریاضی" },
+  { id: "experimental", label: "تجربی" },
+  { id: "humanities", label: "انسانی" },
+];
+
+export function studyFieldLabel(field: StudyField): string {
+  return STUDY_FIELD_OPTIONS.find((o) => o.id === field)?.label ?? field;
+}
+
+export function schoolGradeLabel(grade: SchoolGrade): string {
+  return SCHOOL_GRADE_OPTIONS.find((o) => o.id === grade)?.label ?? String(grade);
+}
 
 export const PLANNER_DAYS = ["دو", "سه", "چه", "پن", "جم", "شن", "یک"] as const;
 
@@ -198,6 +218,8 @@ export const DEMO_STUDENTS: Student[] = [
     name: "آوا کریمی",
     email: "ava@pepsinolab.dev",
     gender: "female",
+    grade: 12,
+    studyField: "experimental",
     avatarKey: 1,
     lab: "neuro",
     level: 3,
@@ -214,6 +236,8 @@ export const DEMO_STUDENTS: Student[] = [
     name: "نیما رستمی",
     email: "nima@pepsinolab.dev",
     gender: "male",
+    grade: 11,
+    studyField: "math",
     avatarKey: 2,
     lab: "neuro",
     level: 2,
@@ -230,6 +254,8 @@ export const DEMO_STUDENTS: Student[] = [
     name: "سارا حسینی",
     email: "sara@pepsinolab.dev",
     gender: "female",
+    grade: 12,
+    studyField: "math",
     avatarKey: 2,
     lab: "research",
     level: 5,

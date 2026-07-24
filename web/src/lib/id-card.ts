@@ -28,7 +28,9 @@ export function syncStudentLab<T extends Pick<Student, "level" | "lab">>(student
 export function normalizeStudent(raw: Student & { avatar?: string }): Student {
   const gender: Gender =
     raw.gender ?? (raw.name?.includes("نیما") ? "male" : "female");
+  const grade = raw.grade ?? 12;
+  const studyField = raw.studyField ?? "experimental";
   const avatarKey: AvatarKey = raw.avatarKey ?? 1;
   const { avatar: _legacy, ...rest } = raw;
-  return syncStudentLab({ ...rest, gender, avatarKey });
+  return syncStudentLab({ ...rest, gender, grade, studyField, avatarKey });
 }

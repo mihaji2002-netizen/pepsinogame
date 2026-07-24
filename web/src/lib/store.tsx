@@ -23,7 +23,7 @@ import {
   nextStudentId,
 } from "./constants";
 import { syncStudentLab, normalizeStudent } from "./id-card";
-import type { AvatarKey, Gender } from "./types";
+import type { AvatarKey, Gender, SchoolGrade, StudyField } from "./types";
 import type {
   Achievement,
   Announcement,
@@ -55,7 +55,13 @@ interface AppState {
   xpToast: number | null;
   loginAsStudent: (email?: string) => void;
   loginAsMentor: () => void;
-  registerStudent: (name: string, email: string, gender: Gender) => Student;
+  registerStudent: (
+    name: string,
+    email: string,
+    gender: Gender,
+    grade: SchoolGrade,
+    studyField: StudyField,
+  ) => Student;
   logout: () => void;
   completeOnboarding: () => void;
   completeMission: (key: MissionKey) => void;
@@ -263,10 +269,66 @@ export function AppProvider({ children }: { children: ReactNode }) {
           studentId: s.studentId,
           name: s.name,
           email: s.email,
+          gender: s.gender,
+          grade: s.grade,
+          studyField: s.studyField,
+          level: s.level,
+          xp: s.xp,
+          coins: s.coins,
+          stamps: s.stamps,
+          lab: s.lab,
+          joinedAt: s.joinedAt,
+          missions,
+          xpHistory,
         })),
       }),
     }).catch(() => {});
-  }, [hydrated, students]);
+  }, [hydrated, students, missions, xpHistory]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    let cancelled = false;
+
+    async function pullServerRewards() {
+      try {
+        const res = await fetch("/api/pepsino/students");
+        if (!res.ok || cancelled) return;
+        const data = await res.json();
+        const remote = (data.students ?? []) as Array<{
+          id: string;
+          xp?: number;
+          coins?: number;
+          stamps?: number;
+          level?: number;
+          lab?: string;
+        }>;
+        if (remote.length === 0) return;
+
+        patchState((prev) => ({
+          ...prev,
+          students: prev.students.map((s) => {
+            const match = remote.find((r) => r.id === s.id);
+            if (!match || match.xp == null) return s;
+            return syncStudentLab({
+              ...s,
+              xp: match.xp,
+              coins: match.coins ?? s.coins,
+              stamps: match.stamps ?? s.stamps,
+              level: match.level ?? s.level,
+              lab: (match.lab as Student["lab"]) ?? s.lab,
+            });
+          }),
+        }));
+      } catch {
+        // ignore
+      }
+    }
+
+    pullServerRewards();
+    return () => {
+      cancelled = true;
+    };
+  }, [hydrated]);
 
   const updateStudent = useCallback(
     (studentId: string, updater: (s: Student) => Student) => {
@@ -339,7 +401,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         ...prev,
         user: { role: "mentor", mentorId: "men-1" },
       })),
-    registerStudent: (name, email, gender) => {
+    registerStudent: (name, email, gender, grade, studyField) => {
       const sequence = students.length + 1;
       const student: Student = syncStudentLab({
         id: `stu-${Date.now()}`,
@@ -347,6 +409,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
         name,
         email,
         gender,
+        grade,
+        studyField,
         avatarKey: 1,
         lab: "neuro",
         level: 1,
@@ -455,7 +519,29 @@ export function AppProvider({ children }: { children: ReactNode }) {
         exams: [{ ...exam, id: `ex-${Date.now()}` }, ...prev.exams],
       }));
     },
-    adjustXp: (studentId, amount, reason) => grantXp(studentId, amount, reason),
+    adjustXp: (studentId, amount, reason) => {
+      if (amount >= 0) {
+        grantXp(studentId, amount, reason);
+        return;
+      }
+      patchState((prev) => ({
+        ...prev,
+        students: prev.students.map((s) =>
+          s.id === studentId
+            ? applyLevelRules({ ...s, xp: Math.max(0, s.xp + amount) })
+            : s,
+        ),
+        xpHistory: [
+          {
+            id: `xp-${Date.now()}`,
+            amount,
+            reason,
+            at: new Date().toISOString(),
+          },
+          ...prev.xpHistory,
+        ],
+      }));
+    },
     adjustCoins: (studentId, amount) => {
       updateStudent(studentId, (s) => ({
         ...s,

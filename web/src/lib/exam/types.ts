@@ -141,7 +141,7 @@ export function parseAnswerKeyInput(raw: string, questionCount: number, optionCo
 export function calculateScore(
   answers: Record<string, number>,
   answerKey: Record<string, number>
-): { correctCount: number; totalQuestions: number; percentage: number } {
+): { correctCount: number; wrongCount: number; totalQuestions: number; percentage: number } {
   const keys = Object.keys(answerKey);
   const totalQuestions = keys.length;
   let correctCount = 0;
@@ -152,8 +152,13 @@ export function calculateScore(
     }
   }
 
-  const percentage = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
-  return { correctCount, totalQuestions, percentage };
+  const wrongCount = totalQuestions - correctCount;
+  const raw =
+    totalQuestions > 0
+      ? ((correctCount * 3 - wrongCount) / (totalQuestions * 3)) * 100
+      : 0;
+  const percentage = Math.max(0, Math.min(100, Math.round(raw)));
+  return { correctCount, wrongCount, totalQuestions, percentage };
 }
 
 export function formatDuration(minutes: number): string {

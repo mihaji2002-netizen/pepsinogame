@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ArrowLeft, Coins, Stamp, Zap } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
-import { LABS, xpProgress } from "@/lib/constants";
+import { LABS, schoolGradeLabel, studyFieldLabel, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { attendanceLabel, fa } from "@/lib/fa";
 import { formatDate } from "@/lib/utils";
@@ -33,6 +34,28 @@ export default function MentorStudentDetailPage() {
   } = useApp();
 
   const student = students.find((s) => s.id === params.id);
+  const [onlineExams, setOnlineExams] = useState<
+    Array<{ subject: string; percentage: number; rank: number | null; date: string }>
+  >([]);
+
+  useEffect(() => {
+    if (!student) return;
+    fetch(`/api/students/${student.id}/exam-results`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.results) {
+          setOnlineExams(
+            data.results.map((r: { subject: string; percentage: number; rank: number | null; date: string }) => ({
+              subject: r.subject,
+              percentage: r.percentage,
+              rank: r.rank,
+              date: r.date,
+            })),
+          );
+        }
+      })
+      .catch(() => {});
+  }, [student]);
   if (!student) {
     return (
       <div className="surface p-8">
@@ -67,7 +90,8 @@ export default function MentorStudentDetailPage() {
           <h1 className="display mt-2 text-4xl">{student.name}</h1>
           <p className="mono mt-2 text-sm text-[var(--ink-soft)]">
             {student.studentId} ·{" "}
-            <span style={{ color: lab.color }}>{lab.nameEn}</span>
+            <span style={{ color: lab.color }}>{lab.nameEn}</span> ·{" "}
+            {schoolGradeLabel(student.grade)} · {studyFieldLabel(student.studyField)}
           </p>
         </div>
         <div className="no-print flex flex-wrap gap-2">
@@ -82,9 +106,20 @@ export default function MentorStudentDetailPage() {
             <Zap size={15} />
             +۱۰۰ XP
           </Button>
+          <Button
+            variant="secondary"
+            onClick={() => adjustXp(student.id, -100, "کسر XP توسط منتور")}
+          >
+            <Zap size={15} />
+            −۱۰۰ XP
+          </Button>
           <Button variant="secondary" onClick={() => adjustCoins(student.id, 15)}>
             <Coins size={15} />
             +۱۵ Coin
+          </Button>
+          <Button variant="secondary" onClick={() => adjustCoins(student.id, -15)}>
+            <Coins size={15} />
+            −۱۵ Coin
           </Button>
         </div>
       </div>
@@ -146,17 +181,20 @@ export default function MentorStudentDetailPage() {
         <section className="surface p-6">
           <h2 className="display text-2xl">آزمون‌ها</h2>
           <ul className="mt-4 space-y-3">
-            {exams.map((exam) => (
-              <li key={exam.id} className="surface-flat p-4">
+            {[...onlineExams, ...exams.map((e) => ({
+              subject: e.subject,
+              percentage: e.percentage,
+              rank: e.rank,
+              date: e.date,
+            }))].map((exam, index) => (
+              <li key={`${exam.subject}-${exam.date}-${index}`} className="surface-flat p-4">
                 <div className="flex justify-between font-bold">
                   <span>{exam.subject}</span>
                   <span className="mono text-[var(--brand)]">
                     {exam.percentage}%
+                    {exam.rank ? ` · رتبه ${exam.rank}` : ""}
                   </span>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
-                  {exam.comment}
-                </p>
               </li>
             ))}
           </ul>

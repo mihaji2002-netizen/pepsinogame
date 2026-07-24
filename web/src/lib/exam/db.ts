@@ -153,6 +153,26 @@ function migrateSchema(database: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_student_exam_results_student
       ON student_exam_results(student_id);
   `);
+
+  const pepsinoColumns: Array<[string, string]> = [
+    ["gender", "TEXT"],
+    ["grade", "INTEGER"],
+    ["study_field", "TEXT"],
+    ["level", "INTEGER NOT NULL DEFAULT 1"],
+    ["xp", "INTEGER NOT NULL DEFAULT 0"],
+    ["coins", "INTEGER NOT NULL DEFAULT 0"],
+    ["stamps", "INTEGER NOT NULL DEFAULT 0"],
+    ["lab", "TEXT"],
+    ["joined_at", "TEXT"],
+    ["missions_json", "TEXT NOT NULL DEFAULT '[]'"],
+    ["xp_history_json", "TEXT NOT NULL DEFAULT '[]'"],
+  ];
+
+  for (const [column, definition] of pepsinoColumns) {
+    if (!columnExists(database, "pepsino_students", column)) {
+      database.exec(`ALTER TABLE pepsino_students ADD COLUMN ${column} ${definition}`);
+    }
+  }
 }
 
 function initSchema(database: Database.Database) {

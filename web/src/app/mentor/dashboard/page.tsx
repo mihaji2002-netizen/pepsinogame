@@ -5,9 +5,10 @@ import { useMemo, useState } from "react";
 import { Search, Stamp, CheckCheck, Coins, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { LabArt } from "@/components/LabArt";
-import { LABS } from "@/lib/constants";
+import { LABS, SCHOOL_GRADE_OPTIONS, schoolGradeLabel, STUDY_FIELD_OPTIONS, studyFieldLabel } from "@/lib/constants";
 import { fa } from "@/lib/fa";
 import { useApp } from "@/lib/store";
+import type { SchoolGrade, StudyField } from "@/lib/types";
 
 export default function MentorDashboardPage() {
   const {
@@ -20,6 +21,8 @@ export default function MentorDashboardPage() {
   } = useApp();
   const [query, setQuery] = useState("");
   const [labFilter, setLabFilter] = useState("all");
+  const [gradeFilter, setGradeFilter] = useState<SchoolGrade | "all">("all");
+  const [fieldFilter, setFieldFilter] = useState<StudyField | "all">("all");
 
   const filtered = useMemo(() => {
     return students.filter((s) => {
@@ -27,9 +30,11 @@ export default function MentorDashboardPage() {
         s.name.toLowerCase().includes(query.toLowerCase()) ||
         s.studentId.toLowerCase().includes(query.toLowerCase());
       const matchesLab = labFilter === "all" || s.lab === labFilter;
-      return matchesQuery && matchesLab;
+      const matchesGrade = gradeFilter === "all" || s.grade === gradeFilter;
+      const matchesField = fieldFilter === "all" || s.studyField === fieldFilter;
+      return matchesQuery && matchesLab && matchesGrade && matchesField;
     });
-  }, [students, query, labFilter]);
+  }, [students, query, labFilter, gradeFilter, fieldFilter]);
 
   const pending = missions.filter((m) => m.completed && !m.approved);
 
@@ -97,6 +102,34 @@ export default function MentorDashboardPage() {
               </option>
             ))}
           </select>
+          <select
+            value={gradeFilter}
+            onChange={(e) =>
+              setGradeFilter(
+                e.target.value === "all" ? "all" : (Number(e.target.value) as SchoolGrade),
+              )
+            }
+            className="field md:w-36"
+          >
+            <option value="all">همه پایه‌ها</option>
+            {SCHOOL_GRADE_OPTIONS.map((g) => (
+              <option key={g.id} value={g.id}>
+                {g.label}
+              </option>
+            ))}
+          </select>
+          <select
+            value={fieldFilter}
+            onChange={(e) => setFieldFilter(e.target.value as StudyField | "all")}
+            className="field md:w-36"
+          >
+            <option value="all">همه رشته‌ها</option>
+            {STUDY_FIELD_OPTIONS.map((f) => (
+              <option key={f.id} value={f.id}>
+                {f.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -159,7 +192,8 @@ export default function MentorDashboardPage() {
                   {student.name}
                 </Link>
                 <div className="mono text-xs text-[var(--ink-faint)]">
-                  {student.studentId}
+                  {student.studentId} · {schoolGradeLabel(student.grade)} ·{" "}
+                  {studyFieldLabel(student.studyField)}
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -191,10 +225,18 @@ export default function MentorDashboardPage() {
                 <Button
                   variant="secondary"
                   className="px-3 py-2"
-                  onClick={() => adjustCoins(student.id, 10)}
-                  title="اعطای Coin"
+                  onClick={() => adjustXp(student.id, -50, "کسر XP توسط منتور")}
+                  title="کسر XP"
                 >
-                  <Coins size={14} />
+                  <Zap size={14} className="text-[var(--danger)]" />
+                </Button>
+                <Button
+                  variant="secondary"
+                  className="px-3 py-2"
+                  onClick={() => adjustCoins(student.id, -10)}
+                  title="کسر Coin"
+                >
+                  <Coins size={14} className="text-[var(--danger)]" />
                 </Button>
               </div>
             </div>

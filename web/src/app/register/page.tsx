@@ -8,7 +8,8 @@ import { Sparkles } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
 import { GENDER_OPTIONS } from "@/lib/avatars";
-import type { Gender } from "@/lib/types";
+import { SCHOOL_GRADE_OPTIONS, STUDY_FIELD_OPTIONS } from "@/lib/constants";
+import type { Gender, SchoolGrade, StudyField } from "@/lib/types";
 import { useApp } from "@/lib/store";
 
 export default function RegisterPage() {
@@ -17,6 +18,8 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState<Gender>("female");
+  const [grade, setGrade] = useState<SchoolGrade>(12);
+  const [studyField, setStudyField] = useState<StudyField>("experimental");
 
   return (
     <motion.div className="mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-5 py-10 md:grid-cols-2 md:px-8">
@@ -57,7 +60,7 @@ export default function RegisterPage() {
         onSubmit={(e) => {
           e.preventDefault();
           if (!name.trim() || !email.trim()) return;
-          registerStudent(name.trim(), email.trim(), gender);
+          registerStudent(name.trim(), email.trim(), gender, grade, studyField);
           router.push("/onboarding");
         }}
       >
@@ -101,6 +104,44 @@ export default function RegisterPage() {
             ))}
           </div>
         </motion.div>
+        <div>
+          <label className="text-sm font-semibold">پایه تحصیلی</label>
+          <motion.div className="mt-2 grid grid-cols-3 gap-2">
+            {SCHOOL_GRADE_OPTIONS.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setGrade(opt.id)}
+                className={
+                  grade === opt.id
+                    ? "rounded-xl border border-[var(--brand)] bg-[rgba(var(--brand-rgb),0.12)] py-3 font-bold text-[var(--brand)]"
+                    : "rounded-xl border border-[var(--line)] py-3 font-semibold text-[var(--ink-soft)] hover:border-[var(--line-strong)]"
+                }
+              >
+                {opt.label}
+              </button>
+            ))}
+          </motion.div>
+        </div>
+        <div>
+          <label className="text-sm font-semibold">رشته تحصیلی</label>
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {STUDY_FIELD_OPTIONS.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setStudyField(opt.id)}
+                className={
+                  studyField === opt.id
+                    ? "rounded-xl border border-[var(--brand)] bg-[rgba(var(--brand-rgb),0.12)] py-3 font-bold text-[var(--brand)]"
+                    : "rounded-xl border border-[var(--line)] py-3 font-semibold text-[var(--ink-soft)] hover:border-[var(--line-strong)]"
+                }
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
         <Button type="submit" className="w-full py-3">
           ساخت حساب و انتخاب آواتار
         </Button>
