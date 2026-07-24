@@ -40,7 +40,7 @@ export default function StudentDashboardPage() {
         className="relative overflow-hidden rounded-[22px] border p-6 md:p-8"
         style={{
           borderColor: `${lab.color}33`,
-          background: `radial-gradient(640px 300px at 8% -20%, ${lab.color}22, transparent 65%), linear-gradient(180deg, #0b141a, #070f14)`,
+          background: `radial-gradient(640px 300px at 8% -20%, ${lab.color}22, transparent 65%), linear-gradient(180deg, #12121c, #05050a)`,
         }}
       >
         <div
@@ -205,7 +205,7 @@ export default function StudentDashboardPage() {
                   key={a.id}
                   className={`rounded-2xl border p-3.5 text-sm transition ${
                     a.unlocked
-                      ? "border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.08)]"
+                      ? "border-[rgba(var(--brand-rgb),0.4)] bg-[rgba(var(--brand-rgb),0.08)]"
                       : "border-[var(--line)] bg-transparent opacity-50"
                   }`}
                 >

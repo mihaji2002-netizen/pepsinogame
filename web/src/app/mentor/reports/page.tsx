@@ -42,7 +42,7 @@ export default function ReportsPage() {
         <div
           className="relative overflow-hidden px-8 py-10 text-white"
           style={{
-            background: `radial-gradient(500px 260px at 85% -30%, ${lab.color}55, transparent 70%), linear-gradient(140deg, #0b141a, #05090c 75%)`,
+            background: `radial-gradient(500px 260px at 85% -30%, ${lab.color}55, transparent 70%), linear-gradient(140deg, #12121c, #05050a 75%)`,
           }}
         >
           <div className="flex items-center gap-3">

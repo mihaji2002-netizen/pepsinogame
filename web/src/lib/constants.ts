@@ -29,8 +29,8 @@ export const LABS: LabTheme[] = [
     nameEn: "NEURO LAB",
     focus: "ذهن · حافظه · نظم",
     tagline: "پایه‌های ذهنی را بساز. تمرکز را تحت فشار تقویت کن.",
-    color: "#50C878",
-    soft: "rgba(80, 200, 120, 0.14)",
+    color: "#00FF9D",
+    soft: "rgba(0, 255, 157, 0.14)",
     badge: "N",
   },
   {
@@ -39,8 +39,8 @@ export const LABS: LabTheme[] = [
     nameEn: "RESEARCH LAB",
     focus: "استراتژی · تحلیل · دقت",
     tagline: "سؤال‌های تیز بپرس. هر ادعا را با شواهد ثابت کن.",
-    color: "#4A9EFF",
-    soft: "rgba(74, 158, 255, 0.14)",
+    color: "#3B9EFF",
+    soft: "rgba(59, 158, 255, 0.14)",
     badge: "R",
   },
   {
@@ -49,8 +49,8 @@ export const LABS: LabTheme[] = [
     nameEn: "CATALYST LAB",
     focus: "تحول · رشد · بازیابی",
     tagline: "خروجی را شتاب بده. مطالعه را به سیستم تبدیل کن.",
-    color: "#E8C547",
-    soft: "rgba(232, 197, 71, 0.14)",
+    color: "#FFB020",
+    soft: "rgba(255, 176, 32, 0.14)",
     badge: "C",
   },
   {
@@ -59,8 +59,8 @@ export const LABS: LabTheme[] = [
     nameEn: "PIONEER LAB",
     focus: "رهبری · چشم‌انداز · دستاورد",
     tagline: "در خط مقدم بایست. فصل را مال خودت کن.",
-    color: "#9B6DFF",
-    soft: "rgba(155, 109, 255, 0.14)",
+    color: "#B44BFF",
+    soft: "rgba(180, 75, 255, 0.14)",
     badge: "P",
   },
 ];

@@ -50,7 +50,7 @@ export function HeroVisual() {
         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute inset-[18%] rounded-full border border-dashed border-[rgba(80,200,120,0.25)]"
+        className="absolute inset-[18%] rounded-full border border-dashed border-[rgba(var(--brand-rgb),0.25)]"
         style={{ rotateX, rotateY }}
         animate={{ rotate: -360 }}
         transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
@@ -90,11 +90,11 @@ export function HeroVisual() {
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
-          borderColor: "rgba(80,200,120,0.35)",
+          borderColor: "rgba(var(--brand-rgb),0.35)",
           background:
-            "linear-gradient(145deg, rgba(80,200,120,0.18) 0%, rgba(15,29,22,0.95) 45%, rgba(8,16,12,0.98) 100%)",
+            "linear-gradient(145deg, rgba(var(--brand-rgb),0.18) 0%, rgba(12,12,20,0.95) 45%, rgba(5,5,10,0.98) 100%)",
           boxShadow:
-            "0 40px 100px rgba(0,0,0,0.55), 0 0 80px rgba(80,200,120,0.15), inset 0 1px 0 rgba(255,255,255,0.08)",
+            "0 40px 100px rgba(0,0,0,0.55), 0 0 80px rgba(var(--brand-rgb),0.15), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -107,7 +107,7 @@ export function HeroVisual() {
             </div>
           </div>
           <motion.div
-            className="grid h-12 w-12 place-items-center rounded-2xl border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.12)] text-[var(--brand)]"
+            className="grid h-12 w-12 place-items-center rounded-2xl border border-[rgba(var(--brand-rgb),0.4)] bg-[rgba(var(--brand-rgb),0.12)] text-[var(--brand)]"
             animate={{ rotate: [0, 8, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
@@ -124,7 +124,7 @@ export function HeroVisual() {
             <motion.div
               key={k}
               className="rounded-2xl border border-[var(--line)] bg-[rgba(0,0,0,0.25)] p-3 text-center"
-              whileHover={{ scale: 1.04, borderColor: "rgba(80,200,120,0.4)" }}
+              whileHover={{ scale: 1.04, borderColor: "rgba(var(--brand-rgb),0.4)" }}
             >
               <div className="text-[11px] text-[var(--ink-faint)]">{k}</div>
               <div className="fa-heading mt-1 text-xl font-bold">{v}</div>
@@ -133,12 +133,12 @@ export function HeroVisual() {
         </div>
 
         <motion.div
-          className="mt-5 flex items-center gap-2 rounded-2xl border border-[rgba(232,197,71,0.3)] bg-[rgba(232,197,71,0.08)] px-4 py-3 text-sm"
+          className="mt-5 flex items-center gap-2 rounded-2xl border border-[rgba(var(--accent-rgb),0.3)] bg-[rgba(var(--accent-rgb),0.08)] px-4 py-3 text-sm"
           animate={{
             boxShadow: [
-              "0 0 0 rgba(232,197,71,0)",
-              "0 0 24px rgba(232,197,71,0.15)",
-              "0 0 0 rgba(232,197,71,0)",
+              "0 0 0 rgba(var(--accent-rgb),0)",
+              "0 0 24px rgba(var(--accent-rgb),0.15)",
+              "0 0 0 rgba(var(--accent-rgb),0)",
             ],
           }}
           transition={{ duration: 2.5, repeat: Infinity }}

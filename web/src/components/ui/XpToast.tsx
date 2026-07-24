@@ -24,10 +24,10 @@ export function XpToast() {
           transition={{ type: "spring", stiffness: 400, damping: 26 }}
           className="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2"
         >
-          <div className="flex items-center gap-2 rounded-full border border-[rgba(80,200,120,0.4)] bg-[var(--forest)] px-5 py-3 text-sm font-bold text-[var(--brand)] shadow-[0_16px_50px_rgba(80,200,120,0.35)]">
+          <motion.div className="flex items-center gap-2 rounded-full border border-[rgba(var(--brand-rgb),0.4)] bg-[var(--deck)] px-5 py-3 text-sm font-bold text-[var(--brand)] shadow-[0_16px_50px_rgba(var(--brand-rgb),0.35)]">
             <Zap size={16} className="fill-current" />
             +{xpToast} امتیاز
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

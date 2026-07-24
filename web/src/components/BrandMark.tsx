@@ -11,7 +11,7 @@ export function BrandMark({
 }) {
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      <div className="relative grid h-10 w-10 place-items-center rounded-xl border border-[rgba(80,200,120,0.45)] bg-gradient-to-b from-[rgba(80,200,120,0.22)] to-[rgba(80,200,120,0.06)] text-[var(--brand)] shadow-[0_8px_28px_rgba(80,200,120,0.28)]">
+      <div className="relative grid h-10 w-10 place-items-center rounded-xl border border-[rgba(var(--brand-rgb),0.45)] bg-gradient-to-b from-[rgba(var(--brand-rgb),0.22)] to-[rgba(var(--brand-rgb),0.06)] text-[var(--brand)] shadow-[0_8px_28px_rgba(var(--brand-rgb),0.28)]">
         <FlaskConical size={18} strokeWidth={2.2} />
         <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[var(--accent)] shadow-[0_0_10px_rgba(232,197,71,0.8)]" />
       </div>

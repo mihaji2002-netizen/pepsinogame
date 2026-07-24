@@ -29,7 +29,7 @@ export function IdCard({
       )}
       style={{
         borderColor: `${lab.color}44`,
-        background: `linear-gradient(150deg, ${lab.color}22 0%, var(--forest) 42%, var(--bg) 100%)`,
+        background: `linear-gradient(150deg, ${lab.color}22 0%, var(--deck) 42%, var(--bg) 100%)`,
       }}
     >
       <div
@@ -42,7 +42,7 @@ export function IdCard({
         className="pointer-events-none absolute inset-0 opacity-25"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(80,200,120,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(80,200,120,0.07) 1px, transparent 1px)",
+            "linear-gradient(rgba(var(--brand-rgb),0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--brand-rgb),0.07) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />
@@ -133,7 +133,7 @@ export function IdCard({
         {["نظم را حفظ کن", "به فرایند اعتماد کن", "آنزیم باش"].map((slogan) => (
           <span
             key={slogan}
-            className="mono rounded-full border border-[var(--line)] bg-[rgba(80,200,120,0.06)] px-2.5 py-1 text-[9px] text-[var(--ink-soft)]"
+            className="mono rounded-full border border-[var(--line)] bg-[rgba(var(--brand-rgb),0.06)] px-2.5 py-1 text-[9px] text-[var(--ink-soft)]"
           >
             {slogan}
           </span>

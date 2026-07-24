@@ -194,7 +194,7 @@ export default function LandingPage() {
                 color={`${lab.color}26`}
                 style={{
                   borderColor: `${lab.color}33`,
-                  background: `linear-gradient(165deg, ${lab.color}14 0%, rgba(10,18,24,0.9) 55%)`,
+                  background: `linear-gradient(165deg, ${lab.color}14 0%, rgba(8,8,16,0.9) 55%)`,
                 }}
               >
               <div
@@ -343,7 +343,7 @@ export default function LandingPage() {
               {...viewFade}
               className="surface relative p-6"
             >
-              <div className="mono grid h-9 w-9 place-items-center rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.1)] text-xs font-bold text-[var(--brand)]">
+              <div className="mono grid h-9 w-9 place-items-center rounded-full border border-[rgba(var(--brand-rgb),0.4)] bg-[rgba(var(--brand-rgb),0.1)] text-xs font-bold text-[var(--brand)]">
                 0{i + 1}
               </div>
               <div className="display mt-5 text-2xl">{step.title}</div>
@@ -446,10 +446,10 @@ export default function LandingPage() {
       <section className="mx-auto max-w-6xl px-5 pb-24 md:px-8">
         <motion.div
           {...viewFade}
-          className="relative overflow-hidden rounded-[28px] border border-[rgba(80,200,120,0.3)] px-8 py-16 text-center md:px-14"
+          className="relative overflow-hidden rounded-[28px] border border-[rgba(var(--brand-rgb),0.3)] px-8 py-16 text-center md:px-14"
           style={{
             background:
-              "radial-gradient(700px 340px at 50% -40%, rgba(80,200,120,0.28), transparent 70%), linear-gradient(180deg, var(--forest), var(--bg))",
+              "radial-gradient(700px 340px at 50% -40%, rgba(var(--brand-rgb),0.28), transparent 70%), linear-gradient(180deg, var(--deck), var(--bg))",
           }}
         >
           <div className="eyebrow text-[var(--brand)]">فصل ۲۶</div>

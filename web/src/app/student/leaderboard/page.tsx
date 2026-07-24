@@ -39,7 +39,7 @@ export default function LeaderboardPage() {
             <div
               key={student.id}
               className={`grid grid-cols-[64px_1fr_110px_90px] items-center gap-3 border-b border-[var(--line)] px-5 py-4 text-sm last:border-none ${
-                isYou ? "bg-[rgba(80,200,120,0.08)]" : ""
+                isYou ? "bg-[rgba(var(--brand-rgb),0.08)]" : ""
               }`}
             >
               <span className="flex items-center gap-1.5 font-bold">
@@ -51,7 +51,7 @@ export default function LeaderboardPage() {
               <span>
                 <span className="mono font-bold">{student.studentId}</span>
                 {isYou && (
-                  <span className="ml-2 rounded-full border border-[rgba(80,200,120,0.4)] bg-[rgba(80,200,120,0.12)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand)]">
+                  <span className="ml-2 rounded-full border border-[rgba(var(--brand-rgb),0.4)] bg-[rgba(var(--brand-rgb),0.12)] px-2 py-0.5 text-[10px] font-bold text-[var(--brand)]">
                     شما
                   </span>
                 )}

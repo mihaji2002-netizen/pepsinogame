@@ -53,7 +53,7 @@ export default function PlannerPage() {
                         "flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left text-sm transition",
                         task.done
                           ? "border-[rgba(74,222,154,0.35)] bg-[rgba(74,222,154,0.08)]"
-                          : "border-[var(--line)] bg-transparent hover:border-[var(--line-strong)] hover:bg-[rgba(80,200,120,0.06)]",
+                          : "border-[var(--line)] bg-transparent hover:border-[var(--line-strong)] hover:bg-[rgba(var(--brand-rgb),0.06)]",
                       )}
                     >
                       <span

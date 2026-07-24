@@ -111,8 +111,8 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all",
                   active
-                    ? "bg-[var(--brand)] font-bold text-[var(--brand-ink)] shadow-[0_8px_24px_rgba(80,200,120,0.3)]"
-                    : "text-[var(--ink-soft)] hover:bg-[rgba(80,200,120,0.08)] hover:text-[var(--ink)]",
+                    ? "bg-[var(--brand)] font-bold text-[var(--brand-ink)] shadow-[0_8px_24px_rgba(var(--brand-rgb),0.3)]"
+                    : "text-[var(--ink-soft)] hover:bg-[rgba(var(--brand-rgb),0.08)] hover:text-[var(--ink)]",
                 )}
               >
                 <Icon size={18} />
