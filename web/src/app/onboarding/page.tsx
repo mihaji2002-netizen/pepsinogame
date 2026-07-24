@@ -102,7 +102,8 @@ export default function OnboardingPage() {
                 شناسنامه دیجیتال شما
               </h1>
               <p className="mt-3 text-[var(--ink-soft)]">
-                شناسه دائمی دانش‌آموزی · آزمایشگاه را کدگذاری نمی‌کند · هرگز تغییر نمی‌کند.
+                شناسه دائمی موضوعی · آزمایشگاه را کدگذاری نمی‌کند · با هر لول‌آپ
+                آواتار و تم کارت عوض می‌شود.
               </p>
             </div>
             <IdCard student={currentStudent} />
