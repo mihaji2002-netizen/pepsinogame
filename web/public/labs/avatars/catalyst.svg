@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 360" fill="none" role="img" aria-label="Catalyst subject avatar">
+  <defs>
+    <radialGradient id="aura" cx="50%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#FFB020" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FFB020" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gear" x1="140" y1="90" x2="140" y2="310">
+      <stop stop-color="#2a2418"/>
+      <stop offset="1" stop-color="#0f0d0a"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <ellipse cx="140" cy="205" rx="115" ry="135" fill="url(#aura)"/>
+  <path d="M74 120c0-36 26-64 66-64s66 28 66 64v40c0 50-26 88-66 88s-66-38-66-88v-40z" fill="#c9956a"/>
+  <path d="M62 148l16 158c2 18 18 32 38 32h84c20 0 36-14 38-32l16-158-86-30-86 30z" fill="url(#gear)"/>
+  <path d="M100 200h80M95 220h90" stroke="#FFB020" stroke-opacity="0.25" stroke-width="2"/>
+  <path d="M140 165l8 14 16 2-12 11 3 16-15-8-15 8 3-16-12-11 16-2z" fill="#FFB020" filter="url(#glow)"/>
+  <circle cx="75" cy="175" r="4" fill="#FFB020" opacity="0.8"/>
+  <circle cx="205" cy="185" r="3" fill="#FFB020" opacity="0.6"/>
+  <circle cx="190" cy="140" r="2" fill="#FFB020" opacity="0.5"/>
+  <path d="M120 95c10-14 30-22 40-22s30 8 40 22" stroke="#FFB020" stroke-opacity="0.3" stroke-width="2"/>
+</svg>

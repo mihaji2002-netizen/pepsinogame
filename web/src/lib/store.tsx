@@ -21,6 +21,7 @@ import {
   labForLevel,
   nextStudentId,
 } from "./constants";
+import { syncStudentLab } from "./id-card";
 import type {
   Achievement,
   Announcement,
@@ -165,7 +166,7 @@ function readPersisted(): PersistedState {
     const parsed = JSON.parse(raw) as Partial<PersistedState>;
     return {
       user: parsed.user ?? null,
-      students: parsed.students ?? DEMO_STUDENTS,
+      students: (parsed.students ?? DEMO_STUDENTS).map(syncStudentLab),
       missions: parsed.missions ?? DEFAULT_MISSIONS,
       planner: parsed.planner ?? DEFAULT_PLANNER,
       logbook: parsed.logbook ?? defaultLogbook,
@@ -319,7 +320,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       })),
     registerStudent: (name, email) => {
       const sequence = students.length + 1;
-      const student: Student = {
+      const student: Student = syncStudentLab({
         id: `stu-${Date.now()}`,
         studentId: nextStudentId(sequence),
         name,
@@ -333,7 +334,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         mentorId: "men-1",
         joinedAt: todayKey(),
         hasCompletedOnboarding: false,
-      };
+      });
       patchState((prev) => ({
         ...prev,
         students: [...prev.students, student],

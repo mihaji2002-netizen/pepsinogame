@@ -528,4 +528,9 @@ select,
     box-shadow: none !important;
     background: #fff !important;
   }
+
+  .subject-id-card {
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
 }

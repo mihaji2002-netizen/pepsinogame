@@ -34,6 +34,8 @@ export const LABS: LabTheme[] = [
     badge: "N",
     image: "/labs/neuro.svg",
     imageAlt: "آیکون آزمایشگاه نورو — مغز و شبکه عصبی",
+    avatar: "/labs/avatars/neuro.svg",
+    avatarAlt: "آواتار نورو — هودی با نشان مغز درخشان",
   },
   {
     id: "research",
@@ -46,6 +48,8 @@ export const LABS: LabTheme[] = [
     badge: "R",
     image: "/labs/research.svg",
     imageAlt: "آیکون آزمایشگاه پژوهش — میکروسکوپ",
+    avatar: "/labs/avatars/research.svg",
+    avatarAlt: "آواتار پژوهش — کت آزمایشگاهی",
   },
   {
     id: "catalyst",
@@ -58,6 +62,8 @@ export const LABS: LabTheme[] = [
     badge: "C",
     image: "/labs/catalyst.svg",
     imageAlt: "آیکون آزمایشگاه کاتالیز — فلاسک شیمی",
+    avatar: "/labs/avatars/catalyst.svg",
+    avatarAlt: "آواتار کاتالیز — تِک‌ویر با انرژی طلایی",
   },
   {
     id: "pioneer",
@@ -70,6 +76,8 @@ export const LABS: LabTheme[] = [
     badge: "P",
     image: "/labs/pioneer.svg",
     imageAlt: "آیکون آزمایشگاه پیشگام — راکت",
+    avatar: "/labs/avatars/pioneer.svg",
+    avatarAlt: "آواتار پیشگام — یونیفرم فضایی بنفش",
   },
 ];
 

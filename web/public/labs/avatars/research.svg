@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 360" fill="none" role="img" aria-label="Research subject avatar">
+  <defs>
+    <radialGradient id="aura" cx="50%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#3B9EFF" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#3B9EFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="coat" x1="140" y1="100" x2="140" y2="310">
+      <stop stop-color="#eef5ff"/>
+      <stop offset="1" stop-color="#b8cfe8"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <ellipse cx="140" cy="200" rx="110" ry="130" fill="url(#aura)"/>
+  <path d="M72 118c0-38 28-66 68-66s68 28 68 66v42c0 52-28 90-68 90s-68-38-68-90v-42z" fill="#e8c9a8"/>
+  <path d="M58 155l12 155c2 16 16 28 34 28h92c18 0 32-12 34-28l12-155-85-25-85 25z" fill="url(#coat)"/>
+  <path d="M95 130h90M100 155h80" stroke="#3B9EFF" stroke-opacity="0.2" stroke-width="1"/>
+  <rect x="118" y="175" width="44" height="52" rx="6" fill="#0d1a28" stroke="#3B9EFF" stroke-width="1.5" filter="url(#glow)"/>
+  <path d="M128 190h24M128 200h18M128 210h22" stroke="#3B9EFF" stroke-opacity="0.7" stroke-width="1.5"/>
+  <circle cx="140" cy="108" r="8" fill="none" stroke="#3B9EFF" stroke-opacity="0.35"/>
+  <path d="M115 95c8-12 25-20 25-20s17 8 25 20" stroke="#1a3050" stroke-width="3" stroke-linecap="round"/>
+</svg>

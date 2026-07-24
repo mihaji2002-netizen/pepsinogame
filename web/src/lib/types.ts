@@ -24,6 +24,8 @@ export interface LabTheme {
   badge: string;
   image: string;
   imageAlt: string;
+  avatar: string;
+  avatarAlt: string;
 }
 
 export interface Student {

@@ -15,8 +15,8 @@ export default function IdCardPage() {
         <div className="eyebrow">هویت دائمی</div>
         <h1 className="display mt-2 text-4xl">کارت شناسایی دیجیتال</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          به‌صورت خودکار ساخته می‌شود. طراحی ممتاز. قابل دانلود. پشتیبانی کیف پول
-          در آینده.
+          به‌صورت خودکار از سطح و آزمایشگاه شما ساخته می‌شود. با لول‌آپ، آواتار و
+          تم کارت عوض می‌شود — از نورو تا پیشگام.
         </p>
       </div>
       <div className="print-sheet">
@@ -29,7 +29,7 @@ export default function IdCardPage() {
         </Button>
         <div className="chip">
           <ShieldCheck size={13} className="text-[var(--brand)]" />
-          شناسه دانش‌آموزی هرگز تغییر نمی‌کند · آزمایشگاه می‌تواند عوض شود
+          شناسه موضوعی هرگز تغییر نمی‌کند · آزمایشگاه با لول‌آپ عوض می‌شود
         </div>
       </div>
     </div>
