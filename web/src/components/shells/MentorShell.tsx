@@ -9,6 +9,7 @@ import {
   LayoutDashboard,
   LogOut,
   GraduationCap,
+  ClipboardCheck,
   Users,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
@@ -21,6 +22,7 @@ const links = [
   { href: "/mentor/dashboard", label: "مرکز فرماندهی", icon: LayoutDashboard },
   { href: "/mentor/attendance", label: "حضور و غیاب", icon: ClipboardList },
   { href: "/mentor/exams", label: "آزمون‌ها", icon: GraduationCap },
+  { href: "/admin", label: "برگزاری آزمون", icon: ClipboardCheck },
   { href: "/mentor/reports", label: "گزارش‌ها", icon: FileText },
 ];
 
