@@ -12,7 +12,7 @@ export default function LogbookPage() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <div className="eyebrow">بازتاب روزانه</div>
-        <h1 className="display mt-2 text-4xl">دفترچه ماموریت</h1>
+        <h1 className="display mt-2 text-4xl">Logbook</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
           بازتاب برای <span className="mono text-[var(--brand)]">{logbook.date}</span>.
           برد، چالش و تمرکز فردا را ثبت کن.
@@ -60,7 +60,7 @@ export default function LogbookPage() {
               }`}
             >
               <Stamp size={13} />
-              {logbook.stamped ? "مهر اعطا شد" : "هنوز مهری نیست"}
+              {logbook.stamped ? "Stamp اعطا شد" : "هنوز Stamp نیست"}
             </div>
           </div>
           <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)]">
@@ -72,7 +72,7 @@ export default function LogbookPage() {
           onClick={() =>
             updateLogbook({
               win: logbook.win || "کار عمیق را بدون موبایل تمام کردم.",
-              challenge: logbook.challenge || "شروع هدف ۳ دیر بود.",
+              challenge: logbook.challenge || "شروع Target 3 دیر بود.",
               tomorrowFocus:
                 logbook.tomorrowFocus || "اولین بلوک تمرکز را محافظت کن.",
             })

@@ -30,16 +30,16 @@ export default function RegisterPage() {
         </Link>
         <h1 className="display mt-10 text-5xl">
           جای خود را در{" "}
-          <span className="text-[var(--brand)]">آزمایشگاه نورو</span> رزرو کنید
+          <span className="text-[var(--brand)]">NEURO LAB</span> رزرو کنید
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-[var(--ink-soft)]">
-          ثبت‌نام شناسه دائمی موضوعی، انتخاب آواتار و کارت شناسایی دیجیتال سطح ۱.
+          ثبت‌نام Subject ID دائمی، انتخاب آواتار و کارت Subject ID دیجیتال Level 1.
         </p>
         <ul className="mt-8 space-y-3 text-sm text-[var(--ink-soft)]">
           {[
-            "شناسه دائمی — هرگز تغییر نمی‌کند",
+            "Subject ID دائمی — هرگز تغییر نمی‌کند",
             "آواتار مخصوص دختر یا پسر — قابل تغییر بعداً",
-            "سطح ۱ · نورو لب · اولین ماموریت در انتظار",
+            "Level 1 · NEURO LAB · اولین Mission در انتظار",
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <Sparkles size={14} className="shrink-0 text-[var(--accent)]" />

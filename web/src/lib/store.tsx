@@ -90,7 +90,7 @@ const defaultLogbook: LogbookEntry = {
   win: "",
   challenge: "",
   tomorrowFocus: "",
-  mentorNotes: "بلوک‌های تمرکز را محکم نگه دار. داری عادت‌های نورو می‌سازی.",
+  mentorNotes: "بلوک‌های تمرکز را محکم نگه دار. داری عادت‌های NEURO LAB می‌سازی.",
   stamped: false,
 };
 
@@ -107,13 +107,13 @@ const defaultAnnouncements: Announcement[] = [
   {
     id: "an-1",
     title: "نبض فصل",
-    body: "فشرده نورو این هفته شروع می‌شود. هدف ۱ را قبل از جمعه تمام کن.",
+    body: "فشرده NEURO LAB این هفته شروع می‌شود. Target 1 را قبل از جمعه تمام کن.",
     at: "2026-07-18",
   },
   {
     id: "an-2",
     title: "ساعات حضور منتور",
-    body: "بررسی ماموریت‌ها و اعطای مهر هر شب ساعت ۱۹:۰۰.",
+    body: "بررسی Missionها و اعطای Stamp هر شب ساعت ۱۹:۰۰.",
     at: "2026-07-19",
   },
 ];
@@ -122,13 +122,13 @@ const defaultXpHistory: XpEvent[] = [
   {
     id: "xp-1",
     amount: 40,
-    reason: "روتین تکمیل شد",
+    reason: "Routine تکمیل شد",
     at: "2026-07-18T10:00:00Z",
   },
   {
     id: "xp-2",
     amount: 60,
-    reason: "هدف ۱ تکمیل شد",
+    reason: "Target 1 تکمیل شد",
     at: "2026-07-18T12:00:00Z",
   },
 ];

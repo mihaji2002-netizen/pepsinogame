@@ -29,7 +29,7 @@ export default function LoginPage() {
           فصل ۲۶ در جریان است
         </div>
         <h1 className="display mt-5 text-5xl">
-          ورود به <span className="text-[var(--brand)]">آزمایشگاه</span>
+          ورود به <span className="text-[var(--brand)]">Lab</span>
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-[var(--ink-soft)]">
           احراز هویت نمایشی — ایمیل دانش‌آموز را انتخاب کنید یا وارد کنسول
@@ -37,7 +37,7 @@ export default function LoginPage() {
         </p>
         <div className="mt-8 flex items-center gap-3 text-sm text-[var(--ink-faint)]">
           <ShieldCheck size={16} className="text-[var(--brand)]" />
-          شناسه دانش‌آموزی شما هرگز تغییر نمی‌کند. آزمایشگاه‌ها تغییر می‌کنند.
+          Subject ID شما هرگز تغییر نمی‌کند. Labها تغییر می‌کنند.
         </div>
       </motion.div>
 

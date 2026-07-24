@@ -50,10 +50,10 @@ export default function ProfilePage() {
           <dl className="mt-7 space-y-3.5 text-sm">
             {[
               ["ایمیل", currentStudent.email],
-              ["آزمایشگاه", lab.name],
-              ["سطح", String(currentStudent.level)],
-              ["سکه", String(currentStudent.coins)],
-              ["مهر", String(currentStudent.stamps)],
+              ["Lab", lab.nameEn],
+              ["Level", String(currentStudent.level)],
+              ["Coin", String(currentStudent.coins)],
+              ["Stamp", String(currentStudent.stamps)],
               ["عضویت", formatDate(currentStudent.joinedAt)],
             ].map(([label, value]) => (
               <div
@@ -67,7 +67,7 @@ export default function ProfilePage() {
           </dl>
           <div className="mt-6">
             <div className="mb-2 flex justify-between text-sm">
-              <span className="font-semibold">امتیاز تا سطح بعد</span>
+              <span className="font-semibold">XP تا Level بعد</span>
               <span className="mono text-xs text-[var(--ink-soft)]">
                 {progress.current}/{progress.total}
               </span>
@@ -77,8 +77,8 @@ export default function ProfilePage() {
           <div className="mt-8">
             <h2 className="display text-xl">آواتار کارت شناسایی</h2>
             <p className="mt-1 text-sm text-[var(--ink-soft)]">
-              {currentStudent.gender === "female" ? "دختر" : "پسر"} — با لول‌آپ، نسخهٔ
-              آزمایشگاهی همین استایل روی کارت می‌آید.
+              {currentStudent.gender === "female" ? "دختر" : "پسر"} — با Level-up، نسخهٔ
+              Lab همین استایل روی کارت می‌آید.
             </p>
             <AvatarPicker
               className="mt-4"
@@ -92,7 +92,7 @@ export default function ProfilePage() {
 
         <section className="space-y-6">
           <div className="surface p-6">
-            <h2 className="display text-2xl">تاریخچه امتیاز</h2>
+            <h2 className="display text-2xl">تاریخچه XP</h2>
             <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
               {xpHistory.map((e) => (
                 <li key={e.id} className="flex justify-between gap-4 py-2.5">
@@ -141,7 +141,7 @@ export default function ProfilePage() {
           </div>
 
           <div className="surface p-6">
-            <h2 className="display text-2xl">تاریخچه ماموریت</h2>
+            <h2 className="display text-2xl">تاریخچه Mission</h2>
             <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
               {missions.map((m) => (
                 <li key={m.key} className="flex justify-between py-2.5">

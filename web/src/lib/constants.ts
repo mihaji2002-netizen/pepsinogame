@@ -9,8 +9,8 @@ export const BRAND = {
 };
 
 export const BRAND_SLOGANS = [
-  "بدون نام واقعی — فقط شناسه موضوعی",
-  "هر روز یک ماموریت است، هر ماموریت تو را قوی‌تر می‌کند",
+  "بدون نام واقعی — فقط Subject ID",
+  "هر روز یک Mission است، هر Mission تو را قوی‌تر می‌کند",
   "با دیگران رقابت نمی‌کنیم، با دیروز خودمان رقابت می‌کنیم",
   "پتانسیلت را فعال کن، آنزیم شو",
 ] as const;
@@ -25,7 +25,7 @@ export const PLANNER_DAYS = ["دو", "سه", "چه", "پن", "جم", "شن", "ی
 export const LABS: LabTheme[] = [
   {
     id: "neuro",
-    name: "نورو",
+    name: "NEURO LAB",
     nameEn: "NEURO LAB",
     focus: "ذهن · حافظه · نظم",
     tagline: "پایه‌های ذهنی را بساز. تمرکز را تحت فشار تقویت کن.",
@@ -33,11 +33,11 @@ export const LABS: LabTheme[] = [
     soft: "rgba(0, 255, 157, 0.14)",
     badge: "N",
     image: "/labs/neuro.svg",
-    imageAlt: "آیکون آزمایشگاه نورو — مغز و شبکه عصبی",
+    imageAlt: "NEURO LAB icon — brain and neural network",
   },
   {
     id: "research",
-    name: "پژوهش",
+    name: "RESEARCH LAB",
     nameEn: "RESEARCH LAB",
     focus: "استراتژی · تحلیل · دقت",
     tagline: "سؤال‌های تیز بپرس. هر ادعا را با شواهد ثابت کن.",
@@ -45,11 +45,11 @@ export const LABS: LabTheme[] = [
     soft: "rgba(59, 158, 255, 0.14)",
     badge: "R",
     image: "/labs/research.svg",
-    imageAlt: "آیکون آزمایشگاه پژوهش — میکروسکوپ",
+    imageAlt: "RESEARCH LAB icon — microscope",
   },
   {
     id: "catalyst",
-    name: "کاتالیز",
+    name: "CATALYST LAB",
     nameEn: "CATALYST LAB",
     focus: "تحول · رشد · بازیابی",
     tagline: "خروجی را شتاب بده. مطالعه را به سیستم تبدیل کن.",
@@ -57,11 +57,11 @@ export const LABS: LabTheme[] = [
     soft: "rgba(255, 176, 32, 0.14)",
     badge: "C",
     image: "/labs/catalyst.svg",
-    imageAlt: "آیکون آزمایشگاه کاتالیز — فلاسک شیمی",
+    imageAlt: "CATALYST LAB icon — chemistry flask",
   },
   {
     id: "pioneer",
-    name: "پیشگام",
+    name: "PIONEER LAB",
     nameEn: "PIONEER LAB",
     focus: "رهبری · چشم‌انداز · دستاورد",
     tagline: "در خط مقدم بایست. فصل را مال خودت کن.",
@@ -69,14 +69,14 @@ export const LABS: LabTheme[] = [
     soft: "rgba(180, 75, 255, 0.14)",
     badge: "P",
     image: "/labs/pioneer.svg",
-    imageAlt: "آیکون آزمایشگاه پیشگام — راکت",
+    imageAlt: "PIONEER LAB icon — rocket",
   },
 ];
 
 export const DEFAULT_MISSIONS: MissionItem[] = [
   {
     key: "routine",
-    title: "روتین",
+    title: "Routine",
     description: "آیین روزانه مطالعه و گرم‌کردن را کامل کن.",
     xpReward: 40,
     coinReward: 5,
@@ -85,7 +85,7 @@ export const DEFAULT_MISSIONS: MissionItem[] = [
   },
   {
     key: "target1",
-    title: "هدف ۱",
+    title: "Target 1",
     description: "اولین بلوک کار عمیق را با تمرکز کامل تمام کن.",
     xpReward: 60,
     coinReward: 8,
@@ -94,7 +94,7 @@ export const DEFAULT_MISSIONS: MissionItem[] = [
   },
   {
     key: "target2",
-    title: "هدف ۲",
+    title: "Target 2",
     description: "مسائل تمرینی را بدون حواس‌پرتی حل کن.",
     xpReward: 60,
     coinReward: 8,
@@ -103,7 +103,7 @@ export const DEFAULT_MISSIONS: MissionItem[] = [
   },
   {
     key: "target3",
-    title: "هدف ۳",
+    title: "Target 3",
     description: "یادداشت‌ها را مرور کن و شکاف‌های دانشی را ببند.",
     xpReward: 50,
     coinReward: 6,
@@ -112,7 +112,7 @@ export const DEFAULT_MISSIONS: MissionItem[] = [
   },
   {
     key: "target4",
-    title: "هدف ۴",
+    title: "Target 4",
     description: "تمرین‌های زمان‌دار برای سرعت و دقت انجام بده.",
     xpReward: 70,
     coinReward: 10,
@@ -121,7 +121,7 @@ export const DEFAULT_MISSIONS: MissionItem[] = [
   },
   {
     key: "target5",
-    title: "هدف ۵",
+    title: "Target 5",
     description: "یک مفهوم را با کلمات خودت توضیح بده.",
     xpReward: 55,
     coinReward: 7,
@@ -130,7 +130,7 @@ export const DEFAULT_MISSIONS: MissionItem[] = [
   },
   {
     key: "target6",
-    title: "هدف ۶",
+    title: "Target 6",
     description: "برنامه فردا را قفل کن و بازتاب امروز را ثبت کن.",
     xpReward: 45,
     coinReward: 6,
@@ -143,7 +143,7 @@ export const DEFAULT_PLANNER: PlannerTask[] = [
   { id: "p1", day: "دو", title: "ریاضی · کار عمیق ۹۰ دقیقه", done: true },
   { id: "p2", day: "دو", title: "فیزیک · مرور ۴۵ دقیقه", done: true },
   { id: "p3", day: "سه", title: "شیمی · تمرین ۶۰ دقیقه", done: false },
-  { id: "p4", day: "سه", title: "دفترچه ماموریت", done: false },
+  { id: "p4", day: "سه", title: "Logbook", done: false },
   { id: "p5", day: "چه", title: "آزمون آزمایشی", done: false },
   { id: "p6", day: "چه", title: "یادداشت جلسه منتور", done: false },
   { id: "p7", day: "پن", title: "ترمیم موضوعات ضعیف", done: false },
@@ -156,37 +156,37 @@ export const DEFAULT_ACHIEVEMENTS: Achievement[] = [
   {
     id: "a1",
     title: "استاد تمرکز",
-    description: "۷ روز پیاپی ماموریت روتین را کامل کن.",
+    description: "۷ روز پیاپی Mission Routine را کامل کن.",
     unlocked: false,
   },
   {
     id: "a2",
     title: "استاد پیوستگی",
-    description: "۳۰ روز پیاپی بدون غیبت در ماموریت‌ها.",
+    description: "۳۰ روز پیاپی بدون غیبت در Missionها.",
     unlocked: false,
   },
   {
     id: "a3",
-    title: "جایزه کاتالیز",
-    description: "آزمایشگاه کاتالیز را باز کن.",
+    title: "Catalyst Prize",
+    description: "CATALYST LAB را باز کن.",
     unlocked: false,
   },
   {
     id: "a4",
-    title: "مدال پیشگام",
-    description: "به سطح ۱۳ و آزمایشگاه پیشگام برس.",
+    title: "Pioneer Medal",
+    description: "به Level ۱۳ و PIONEER LAB برس.",
     unlocked: false,
   },
   {
     id: "a5",
-    title: "مهر ۷ روزه",
-    description: "۷ روز پیاپی مهر منتور دریافت کن.",
+    title: "7-Day Stamp",
+    description: "۷ روز پیاپی Stamp منتور دریافت کن.",
     unlocked: false,
   },
   {
     id: "a6",
-    title: "مهر ۳۰ روزه",
-    description: "۳۰ روز پیاپی مهر منتور دریافت کن.",
+    title: "30-Day Stamp",
+    description: "۳۰ روز پیاپی Stamp منتور دریافت کن.",
     unlocked: false,
   },
 ];

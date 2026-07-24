@@ -13,10 +13,10 @@ export default function IdCardPage() {
     <div className="mx-auto max-w-xl space-y-6">
       <div>
         <div className="eyebrow">هویت دائمی</div>
-        <h1 className="display mt-2 text-4xl">کارت شناسایی دیجیتال</h1>
+        <h1 className="display mt-2 text-4xl">کارت Subject ID دیجیتال</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          به‌صورت خودکار از سطح و آزمایشگاه شما ساخته می‌شود. با لول‌آپ، آواتار و
-          تم کارت عوض می‌شود — از نورو تا پیشگام.
+          به‌صورت خودکار از Level و Lab شما ساخته می‌شود. با Level-up، آواتار و
+          تم کارت عوض می‌شود — از NEURO LAB تا PIONEER LAB.
         </p>
       </div>
       <div className="print-sheet">
@@ -29,7 +29,7 @@ export default function IdCardPage() {
         </Button>
         <div className="chip">
           <ShieldCheck size={13} className="text-[var(--brand)]" />
-          شناسه موضوعی هرگز تغییر نمی‌کند · آزمایشگاه با لول‌آپ عوض می‌شود
+          Subject ID هرگز تغییر نمی‌کند · Lab با Level-up عوض می‌شود
         </div>
       </div>
     </div>

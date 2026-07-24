@@ -69,13 +69,13 @@ export default function ReportsPage() {
             <h2 className="display text-2xl">شاخص‌های اصلی</h2>
             <dl className="mt-4 space-y-3 text-sm">
               {[
-                ["آزمایشگاه", lab.name],
-                ["سطح", String(student.level)],
-                ["پیشرفت امتیاز", `${progress.current}/${progress.total}`],
-                ["سکه", String(student.coins)],
-                ["مهرهای منتور", String(student.stamps)],
+                ["Lab", lab.nameEn],
+                ["Level", String(student.level)],
+                ["پیشرفت XP", `${progress.current}/${progress.total}`],
+                ["Coin", String(student.coins)],
+                ["Stampهای منتور", String(student.stamps)],
                 ["حضور", `${present}/۶ جلسه`],
-                ["تکمیل ماموریت", `${Math.round(missionRate)}٪`],
+                ["تکمیل Mission", `${Math.round(missionRate)}٪`],
                 ["میانگین آزمون", `${avgExam.toFixed(1)}٪`],
               ].map(([label, value]) => (
                 <div
@@ -94,16 +94,16 @@ export default function ReportsPage() {
             <div className="mt-4 space-y-4 text-sm leading-relaxed text-[#52676d]">
               <p>
                 <strong className="text-[#12232a]">نقاط قوت:</strong>{" "}
-                ریتم مداوم ماموریت و بهبود روند آزمون در دروس اصلی.
+                ریتم مداوم Mission و بهبود روند آزمون در دروس اصلی.
               </p>
               <p>
                 <strong className="text-[#12232a]">نقاط ضعف:</strong>{" "}
-                گاهی شروع دیر هدف‌ها؛ اولین بلوک کار عمیق را محافظت کن.
+                گاهی شروع دیر Targetها؛ اولین بلوک کار عمیق را محافظت کن.
               </p>
               <p>
                 <strong className="text-[#12232a]">یادداشت منتور:</strong> عادت‌های
-                نورو را محکم نگه دار. کیفیت مهر بر سرعت. برای باز شدن آزمایشگاه
-                پژوهش آماده شو.
+                NEURO LAB را محکم نگه دار. کیفیت Stamp بر سرعت. برای باز شدن
+                RESEARCH LAB آماده شو.
               </p>
             </div>
           </section>

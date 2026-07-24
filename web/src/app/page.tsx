@@ -25,21 +25,21 @@ import { BRAND, BRAND_SLOGANS, LABS } from "@/lib/constants";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 const heroStats = [
-  { value: 16, label: "سطح" },
-  { value: 4, label: "آزمایشگاه" },
-  { value: 1200, label: "امتیاز در هر سطح" },
-  { value: 12, label: "مهر در هر سطح" },
+  { value: 16, label: "Level" },
+  { value: 4, label: "Lab" },
+  { value: 1200, label: "XP per Level" },
+  { value: 12, label: "Stamp per Level" },
 ];
 
 const marqueeItems = [
-  "تخته ماموریت",
-  "امتیاز و سکه",
-  "مهرهای منتور",
-  "کارت شناسایی دیجیتال",
-  "برنامه هفتگی",
-  "رتبه‌بندی",
-  "گزارش فصل",
-  "چهار آزمایشگاه",
+  "Mission Board",
+  "XP & Coin",
+  "Mentor Stamps",
+  "Subject ID Card",
+  "Weekly Planner",
+  "Leaderboard",
+  "Season Report",
+  "Four Labs",
 ];
 
 export default function LandingPage() {
@@ -64,7 +64,7 @@ export default function LandingPage() {
           <BrandMark />
           <nav className="hidden items-center gap-7 text-sm text-[var(--ink-soft)] md:flex">
             <a href="#labs" className="transition hover:text-[var(--ink)]">
-              آزمایشگاه‌ها
+              Labs
             </a>
             <a href="#loop" className="transition hover:text-[var(--ink)]">
               چرخه
@@ -81,7 +81,7 @@ export default function LandingPage() {
           </nav>
           <Link href="/register">
             <Button className="px-4 py-2">
-              ورود به آزمایشگاه
+              Enter Lab
               <ArrowRight size={15} className="rtl:rotate-180" />
             </Button>
           </Link>
@@ -117,7 +117,7 @@ export default function LandingPage() {
               variants={fadeUp}
               className="fa-body mt-7 max-w-lg text-lg text-[var(--ink-soft)]"
             >
-              {BRAND.name} سیستم‌عامل آموزشی است که ماموریت‌ها، منتورها، امتیاز و
+              {BRAND.name} سیستم‌عامل آموزشی است که Missionها، منتورها، XP و
               شتاب را در یک اکوسیستم زنده جمع می‌کند.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center gap-4">
@@ -173,11 +173,11 @@ export default function LandingPage() {
         <motion.div {...viewFade}>
           <div className="eyebrow">صعود</div>
           <h2 className="display mt-3 text-4xl md:text-5xl">
-            چهار آزمایشگاه. یک صعود.
+            چهار Lab. یک صعود.
           </h2>
           <p className="mt-4 max-w-2xl text-[var(--ink-soft)]">
-            نورو ← پژوهش ← کاتالیز ← پیشگام. هر آزمایشگاه تم، نشان و انرژی
-            مخصوص خود را دارد.
+            NEURO LAB ← RESEARCH LAB ← CATALYST LAB ← PIONEER LAB. هر Lab تم،
+            نشان و انرژی مخصوص خود را دارد.
           </p>
         </motion.div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -205,13 +205,10 @@ export default function LandingPage() {
               <div className="flex items-start justify-between gap-3">
                 <LabArt lab={lab} size="lg" animate showBadge />
                 <div className="mono text-[10px] text-[var(--ink-faint)]">
-                  سطح {i * 4 + 1}–{i * 4 + 4}
+                  Level {i * 4 + 1}–{i * 4 + 4}
                 </div>
               </div>
-              <div className="display mt-5 text-2xl font-bold">{lab.name}</div>
-              <div className="mono mt-1 text-[10px] text-[var(--ink-faint)]">
-                {lab.nameEn}
-              </div>
+              <div className="display mt-5 text-2xl font-bold">{lab.nameEn}</div>
               <p className="mt-2 text-xs font-medium text-[var(--brand)]">{lab.focus}</p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--ink-soft)]">
                 {lab.tagline}
@@ -234,14 +231,14 @@ export default function LandingPage() {
               اول اقدام. نه منو.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
-              دانش‌آموزان مستقیم روی ماموریت می‌نشینند — نه تنظیمات. منتورها
-              حضور، آزمون، مهر و گزارش را بدون کاغذ مدیریت می‌کنند.
+              دانش‌آموزان مستقیم روی Mission می‌نشینند — نه تنظیمات. منتورها
+              حضور، آزمون، Stamp و گزارش را بدون کاغذ مدیریت می‌کنند.
             </p>
             <ul className="mt-8 space-y-4 text-sm">
               {[
-                "تخته ماموریت با روتین + ۶ هدف",
-                "امتیاز، سکه، سطح و مهرهای منتور",
-                "کارت شناسایی دیجیتال با شناسه دائمی",
+                "Mission Board با Routine + ۶ Target",
+                "XP، Coin، Level و Stampهای منتور",
+                "کارت Subject ID با شناسه دائمی",
                 "مرکز فرماندهی منتور با گزارش‌های آماده چاپ",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -267,23 +264,23 @@ export default function LandingPage() {
                 </span>
               </div>
               <div className="display mt-4 text-3xl font-bold">
-                ماموریت امروز
+                Mission امروز
               </div>
               <p className="mt-3 text-sm leading-relaxed text-[var(--ink-soft)]">
-                هدف ۱ را پاک کن. برد را ثبت کن. قبل از بسته شدن پنجره مهر،
-                امتیاز بگیر.
+                Target 1 را پاک کن. برد را ثبت کن. قبل از بسته شدن پنجره Stamp،
+                XP بگیر.
               </p>
               <div className="mt-8">
                 <ProgressBar value={62} />
                 <div className="mono mt-3 text-xs text-[var(--ink-faint)]">
-                  پیشرفت سطح · ۶۲٪
+                  Level Progress · ۶۲٪
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-3 gap-3">
                 {[
-                  [<Zap key="z" size={14} />, "۶۴۰", "امتیاز"],
-                  [<BookOpen key="b" size={14} />, "۵", "مهر"],
-                  [<CalendarDays key="c" size={14} />, "۸۸", "سکه"],
+                  [<Zap key="z" size={14} />, "۶۴۰", "XP"],
+                  [<BookOpen key="b" size={14} />, "۵", "Stamp"],
+                  [<CalendarDays key="c" size={14} />, "۸۸", "Coin"],
                 ].map(([icon, value, label], idx) => (
                   <div key={idx} className="surface-flat p-3 text-center">
                     <div className="flex justify-center text-[var(--brand)]">
@@ -307,7 +304,7 @@ export default function LandingPage() {
           <div className="eyebrow">چطور کار می‌کند</div>
           <h2 className="display mt-3 text-4xl">چرخه</h2>
           <p className="mt-4 max-w-xl text-[var(--ink-soft)]">
-            از ثبت‌نام تا پیشگام — یک چرخه پیوسته از اقدام و بازخورد.
+            از ثبت‌نام تا PIONEER LAB — یک چرخه پیوسته از اقدام و بازخورد.
           </p>
         </motion.div>
         <div className="relative mt-12 grid gap-4 md:grid-cols-4">
@@ -315,19 +312,19 @@ export default function LandingPage() {
           {[
             {
               title: "ثبت‌نام",
-              copy: "شناسه دائمی و تخصیص آزمایشگاه نورو دریافت کن.",
+              copy: "Subject ID دائمی و تخصیص NEURO LAB دریافت کن.",
             },
             {
-              title: "ماموریت",
-              copy: "روتین و اهداف را کامل کن. در دفترچه بازتاب بنویس.",
+              title: "Mission",
+              copy: "Routine و Targetها را کامل کن. در Logbook بازتاب بنویس.",
             },
             {
-              title: "مهر",
-              copy: "منتورها کیفیت را تأیید و مهر رشد اعطا می‌کنند.",
+              title: "Stamp",
+              copy: "منتورها کیفیت را تأیید و Stamp رشد اعطا می‌کنند.",
             },
             {
               title: "صعود",
-              copy: "با امتیاز و مهرها در آزمایشگاه‌ها بالا برو.",
+              copy: "با XP و Stampها در Labها بالا برو.",
             },
           ].map((step, i) => (
             <motion.div
@@ -359,7 +356,7 @@ export default function LandingPage() {
               مرکز فرماندهی، نه صفحه‌گسترده.
             </h2>
             <p className="mt-4 leading-relaxed text-[var(--ink-soft)]">
-              فهرست، تأییدها، حضور، آزمون، سکه، امتیاز و گزارش‌های قابل چاپ —
+              فهرست، تأییدها، حضور، آزمون، Coin، XP و گزارش‌های قابل چاپ —
               همه دانش‌آموزان در یک نمای حرفه‌ای.
             </p>
             <Link href="/login" className="mt-8 inline-block">
@@ -404,12 +401,12 @@ export default function LandingPage() {
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {[
             {
-              q: "آیا شناسه دانش‌آموزی با تغییر آزمایشگاه عوض می‌شود؟",
-              a: "هرگز. شناسه‌هایی مثل N-021 دائمی‌اند. آزمایشگاه‌ها تکامل می‌یابند؛ هویت نه.",
+              q: "آیا Subject ID با تغییر Lab عوض می‌شود؟",
+              a: "هرگز. شناسه‌هایی مثل N-021 دائمی‌اند. Labها تکامل می‌یابند؛ هویت نه.",
             },
             {
-              q: "برای ارتقای سطح چه چیزی لازم است؟",
-              a: "۱۲۰۰ امتیاز و ۱۲ مهر منتور در هر سطح، در ۱۶ سطح و ۴ آزمایشگاه.",
+              q: "برای ارتقای Level چه چیزی لازم است؟",
+              a: "۱۲۰۰ XP و ۱۲ Stamp منتور در هر Level، در ۱۶ Level و ۴ Lab.",
             },
             {
               q: "آیا منتورها می‌توانند گزارش صادر کنند؟",

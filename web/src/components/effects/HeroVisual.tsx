@@ -112,9 +112,9 @@ export function HeroVisual() {
 
         <div className="mt-8 grid grid-cols-3 gap-3">
           {[
-            ["سطح", "۳"],
-            ["امتیاز", "۱٬۲۵۰"],
-            ["مهر", "۵"],
+            ["Level", "۳"],
+            ["XP", "۱٬۲۵۰"],
+            ["Stamp", "۵"],
           ].map(([k, v]) => (
             <motion.div
               key={k}
@@ -139,7 +139,7 @@ export function HeroVisual() {
           transition={{ duration: 2.5, repeat: Infinity }}
         >
           <Sparkles size={16} className="text-[var(--accent)]" />
-          <span className="text-[var(--ink-soft)]">ماموریت امروز آماده است</span>
+          <span className="text-[var(--ink-soft)]">Mission امروز آماده است</span>
           <Zap size={14} className="mr-auto text-[var(--brand)]" />
         </motion.div>
       </motion.div>

@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/student/dashboard", label: "داشبورد", icon: LayoutDashboard },
-  { href: "/student/missions", label: "ماموریت‌ها", icon: Target },
+  { href: "/student/missions", label: "Missions", icon: Target },
   { href: "/student/logbook", label: "دفترچه", icon: BookOpen },
   { href: "/student/planner", label: "برنامه هفتگی", icon: CalendarDays },
   { href: "/student/id-card", label: "کارت شناسایی", icon: CreditCard },
@@ -84,7 +84,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="mt-3 flex items-center justify-between text-xs">
             <span style={{ color: lab.color }} className="font-bold">
-              {lab.name} · سطح {currentStudent.level}
+              {lab.nameEn} · Level {currentStudent.level}
             </span>
             <span className="mono flex items-center gap-1 text-[var(--ink-soft)]">
               <Zap size={11} className="text-[var(--brand)]" />

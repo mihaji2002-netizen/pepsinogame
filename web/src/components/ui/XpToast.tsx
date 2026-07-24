@@ -26,7 +26,7 @@ export function XpToast() {
         >
           <motion.div className="flex items-center gap-2 rounded-full border border-[rgba(var(--brand-rgb),0.4)] bg-[var(--deck)] px-5 py-3 text-sm font-bold text-[var(--brand)] shadow-[0_16px_50px_rgba(var(--brand-rgb),0.35)]">
             <Zap size={16} className="fill-current" />
-            +{xpToast} امتیاز
+            +{xpToast} XP
           </motion.div>
         </motion.div>
       )}

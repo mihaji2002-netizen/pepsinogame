@@ -14,10 +14,10 @@ export const fa = {
   loading: {
     app: "در حال بارگذاری پپسینو لب…",
     mentor: "در حال بارگذاری کنسول منتور…",
-    onboarding: "در حال آماده‌سازی آزمایشگاه…",
+    onboarding: "در حال آماده‌سازی Lab…",
   },
   xp: {
-    awarded: "مهر منتور اعطا شد",
+    awarded: "Stamp منتور اعطا شد",
     missionDone: (title: string) => `${title} تکمیل شد`,
     mentorBoost: "تقویت XP توسط منتور",
     mentorAdjust: "تنظیم XP توسط منتور",

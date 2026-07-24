@@ -15,7 +15,7 @@ export function SubjectAvatar({
   className?: string;
 }) {
   const src = resolveStudentAvatar(student, lab.id);
-  const alt = `آواتار ${lab.name} — استایل ${student.avatarKey}`;
+  const alt = `${lab.nameEn} avatar — style ${student.avatarKey}`;
 
   return (
     <div className={className}>

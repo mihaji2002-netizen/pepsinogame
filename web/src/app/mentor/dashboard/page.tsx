@@ -41,7 +41,7 @@ export default function MentorDashboardPage() {
           مرکز فرماندهی منتور
         </h1>
         <p className="mt-2 max-w-xl text-[var(--ink-soft)]">
-          مدیریت دانش‌آموزان، تأیید ماموریت‌ها، اعطای مهر و هدایت فصل بدون
+          مدیریت دانش‌آموزان، تأیید Missionها، اعطای Stamp و هدایت فصل بدون
           کاغذ.
         </p>
       </div>
@@ -51,14 +51,14 @@ export default function MentorDashboardPage() {
           { label: "دانش‌آموزان", value: students.length },
           { label: "در انتظار تأیید", value: pending.length },
           {
-            label: "میانگین سطح",
+            label: "میانگین Level",
             value: (
               students.reduce((sum, s) => sum + s.level, 0) /
               Math.max(students.length, 1)
             ).toFixed(1),
           },
           {
-            label: "مجموع مهرها",
+            label: "مجموع Stampها",
             value: students.reduce((sum, s) => sum + s.stamps, 0),
           },
         ].map((stat) => (
@@ -90,10 +90,10 @@ export default function MentorDashboardPage() {
             onChange={(e) => setLabFilter(e.target.value)}
             className="field md:w-44"
           >
-            <option value="all">همه آزمایشگاه‌ها</option>
+            <option value="all">همه Labها</option>
             {LABS.map((lab) => (
               <option key={lab.id} value={lab.id}>
-                {lab.name}
+                {lab.nameEn}
               </option>
             ))}
           </select>
@@ -106,7 +106,7 @@ export default function MentorDashboardPage() {
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-[rgba(242,181,68,0.14)] text-[var(--accent)]">
               <CheckCheck size={16} />
             </span>
-            صف تأیید ماموریت
+            صف تأیید Mission
           </h2>
           <ul className="mt-4 space-y-3">
             {pending.map((mission) => (
@@ -117,7 +117,7 @@ export default function MentorDashboardPage() {
                 <div>
                   <div className="font-bold">{mission.title}</div>
                   <div className="text-sm text-[var(--ink-soft)]">
-                    در انتظار تأیید کیفیت · +{mission.xpReward} امتیاز قبلاً اعطا شده
+                    در انتظار تأیید کیفیت · +{mission.xpReward} XP قبلاً اعطا شده
                   </div>
                 </div>
                 <Button
@@ -138,10 +138,10 @@ export default function MentorDashboardPage() {
       <div className="surface overflow-hidden">
         <div className="mono grid grid-cols-[1.2fr_0.7fr_0.5fr_0.5fr_0.5fr_1fr] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] text-[var(--ink-faint)] max-md:hidden">
           <span>دانش‌آموز</span>
-          <span>آزمایشگاه</span>
-          <span>سطح</span>
-          <span>امتیاز</span>
-          <span>سکه</span>
+          <span>Lab</span>
+          <span>Level</span>
+          <span>XP</span>
+          <span>Coin</span>
           <span>اقدامات</span>
         </div>
         {filtered.map((student) => {
@@ -165,7 +165,7 @@ export default function MentorDashboardPage() {
               <div className="flex items-center gap-2">
                 <LabArt lab={lab} size="xs" />
                 <span className="text-xs font-bold" style={{ color: lab.color }}>
-                  {lab.name}
+                  {lab.nameEn}
                 </span>
               </div>
               <div className="mono text-sm">{student.level}</div>
@@ -176,7 +176,7 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => awardStamp(student.id)}
-                  title="اعطای مهر"
+                  title="اعطای Stamp"
                 >
                   <Stamp size={14} />
                 </Button>
@@ -184,7 +184,7 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => adjustXp(student.id, 50, fa.xp.mentorBoost)}
-                  title="اعطای امتیاز"
+                  title="اعطای XP"
                 >
                   <Zap size={14} />
                 </Button>
@@ -192,7 +192,7 @@ export default function MentorDashboardPage() {
                   variant="secondary"
                   className="px-3 py-2"
                   onClick={() => adjustCoins(student.id, 10)}
-                  title="اعطای سکه"
+                  title="اعطای Coin"
                 >
                   <Coins size={14} />
                 </Button>

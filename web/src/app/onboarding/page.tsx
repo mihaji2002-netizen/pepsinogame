@@ -81,7 +81,7 @@ export default function OnboardingPage() {
             </h1>
             <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
               فصل شما از همین الان شروع می‌شود، {currentStudent.name.split(" ")[0]}.
-              اول هویت. بعد ماموریت.
+              اول هویت. بعد Mission.
             </p>
             <Button className="mt-10 px-7 py-3" onClick={() => setStep(1)}>
               انتخاب آواتار
@@ -102,7 +102,7 @@ export default function OnboardingPage() {
               <h1 className="display mt-3 text-4xl">شخصیت کارت خود را انتخاب کن</h1>
               <p className="mt-3 text-[var(--ink-soft)]">
                 برای {currentStudent.gender === "female" ? "دختران" : "پسران"} —
-                با لول‌آپ، نسخهٔ آزمایشگاهی همین آواتار روی کارت می‌آید.
+                با Level-up، نسخهٔ Lab همین آواتار روی کارت می‌آید.
               </p>
             </div>
             <AvatarPicker
@@ -133,7 +133,7 @@ export default function OnboardingPage() {
                 شناسنامه دیجیتال شما
               </h1>
               <p className="mt-3 text-[var(--ink-soft)]">
-                شناسه دائمی موضوعی · آزمایشگاه را کدگذاری نمی‌کند · با هر لول‌آپ
+                Subject ID دائمی · Lab را کدگذاری نمی‌کند · با هر Level-up
                 آواتار و تم کارت عوض می‌شود.
               </p>
             </div>
@@ -169,15 +169,15 @@ export default function OnboardingPage() {
                 <LabArt lab={lab} size="xl" animate />
               </div>
             </div>
-            <motion.div className="eyebrow mt-6">گام ۰۴ · آزمایشگاه شما</motion.div>
-            <h1 className="display mt-2 text-4xl">آزمایشگاه {lab.name}</h1>
+            <motion.div className="eyebrow mt-6">گام ۰۴ · Lab شما</motion.div>
+            <h1 className="display mt-2 text-4xl">{lab.nameEn}</h1>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
             <p className="mt-4 text-sm leading-relaxed text-[var(--ink-soft)]">
-              از سطح ۱ شروع می‌کنید. با امتیاز و مهرهای منتور از پژوهش،
-              کاتالیز و پیشگام عبور کنید.
+              از Level ۱ شروع می‌کنید. با XP و Stampهای منتور از RESEARCH LAB،
+              CATALYST LAB و PIONEER LAB عبور کنید.
             </p>
             <Button className="mt-8" onClick={() => setStep(4)}>
-              آشنایی با تخته ماموریت
+              آشنایی با Mission Board
             </Button>
           </motion.div>
         )}
@@ -191,21 +191,21 @@ export default function OnboardingPage() {
             className="surface p-8"
           >
             <motion.div className="eyebrow">گام ۰۵ · چرخه</motion.div>
-            <h1 className="display mt-2 text-4xl">اولین ماموریت</h1>
+            <h1 className="display mt-2 text-4xl">اولین Mission</h1>
             <p className="mt-3 leading-relaxed text-[var(--ink-soft)]">
-              روتین را کامل کنید، سپس اهداف ۱ تا ۶. هر اقدام امتیاز می‌دهد.
-              منتورها کیفیت را تأیید و مهر اعطا می‌کنند.
+              Routine را کامل کنید، سپس Target 1 تا 6. هر اقدام XP می‌دهد.
+              منتورها کیفیت را تأیید و Stamp اعطا می‌کنند.
             </p>
             <div className="surface-flat mt-7 p-5">
               <div className="mono text-[10px] text-[var(--ink-faint)]">
                 امروز
               </div>
-              <div className="display mt-2 text-2xl font-bold">روتین</div>
+              <div className="display mt-2 text-2xl font-bold">Routine</div>
               <p className="mt-1 text-sm text-[var(--ink-soft)]">
                 آیین روزانه مطالعه و گرم‌کردن را کامل کن.
               </p>
               <div className="mono mt-3 text-sm font-bold text-[var(--brand)]">
-                +۴۰ امتیاز · +۵ سکه
+                +۴۰ XP · +۵ Coin
               </div>
             </div>
             <Button className="mt-8" onClick={() => setStep(5)}>
@@ -224,7 +224,7 @@ export default function OnboardingPage() {
           >
             <h1 className="display text-5xl">ورود به داشبورد</h1>
             <p className="mx-auto mt-5 max-w-md leading-relaxed text-[var(--ink-soft)]">
-              ماموریت. پیشرفت. امتیاز. سطح. سکه. اول اقدام.
+              Mission. پیشرفت. XP. Level. Coin. اول اقدام.
             </p>
             <Button
               className="mt-10 px-9 py-3.5 text-base"

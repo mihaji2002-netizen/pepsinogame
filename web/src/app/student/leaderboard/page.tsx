@@ -20,7 +20,7 @@ export default function LeaderboardPage() {
         <div className="eyebrow">رتبه‌بندی فصل</div>
         <h1 className="display mt-2 text-4xl">رتبه‌بندی</h1>
         <p className="mt-2 text-[var(--ink-soft)]">
-          رتبه‌بندی کلی امتیاز برای فهرست نمایشی فصل جاری.
+          رتبه‌بندی کلی XP برای فهرست نمایشی فصل جاری.
         </p>
       </div>
 
@@ -28,9 +28,9 @@ export default function LeaderboardPage() {
         <div className="min-w-[480px]">
         <div className="mono grid grid-cols-[64px_1fr_110px_90px] gap-3 border-b border-[var(--line)] px-5 py-3.5 text-[10px] text-[var(--ink-faint)]">
           <span>رتبه</span>
-          <span>شناسه موضوعی</span>
-          <span>آزمایشگاه</span>
-          <span className="text-right">امتیاز</span>
+          <span>Subject ID</span>
+          <span>Lab</span>
+          <span className="text-right">XP</span>
         </div>
         {ranked.map((student, index) => {
           const lab = LABS.find((l) => l.id === student.lab) ?? LABS[0];
@@ -61,7 +61,7 @@ export default function LeaderboardPage() {
                 className="text-xs font-bold"
                 style={{ color: lab.color }}
               >
-                {lab.name} · س{student.level}
+                {lab.nameEn} · L{student.level}
               </span>
               <span className="mono text-right font-bold text-[var(--brand)]">
                 {student.xp + (student.level - 1) * 1200}

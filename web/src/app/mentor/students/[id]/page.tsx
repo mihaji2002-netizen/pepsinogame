@@ -67,24 +67,24 @@ export default function MentorStudentDetailPage() {
           <h1 className="display mt-2 text-4xl">{student.name}</h1>
           <p className="mono mt-2 text-sm text-[var(--ink-soft)]">
             {student.studentId} ·{" "}
-            <span style={{ color: lab.color }}>آزمایشگاه {lab.name}</span>
+            <span style={{ color: lab.color }}>{lab.nameEn}</span>
           </p>
         </div>
         <div className="no-print flex flex-wrap gap-2">
           <Button onClick={() => awardStamp(student.id)}>
             <Stamp size={15} />
-            اعطای مهر
+            اعطای Stamp
           </Button>
           <Button
             variant="secondary"
             onClick={() => adjustXp(student.id, 100, fa.xp.mentorAdjust)}
           >
             <Zap size={15} />
-            +۱۰۰ امتیاز
+            +۱۰۰ XP
           </Button>
           <Button variant="secondary" onClick={() => adjustCoins(student.id, 15)}>
             <Coins size={15} />
-            +۱۵ سکه
+            +۱۵ Coin
           </Button>
         </div>
       </div>
@@ -95,9 +95,9 @@ export default function MentorStudentDetailPage() {
           <h2 className="display text-2xl">نمای کلی رشد</h2>
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {[
-              ["آزمایشگاه", lab.name],
-              ["سطح", String(student.level)],
-              ["مهر", String(student.stamps)],
+              ["Lab", lab.nameEn],
+              ["Level", String(student.level)],
+              ["Stamp", String(student.stamps)],
               ["حضور", `${presentCount}/6`],
             ].map(([label, value]) => (
               <div key={label} className="surface-flat p-3.5">
@@ -110,7 +110,7 @@ export default function MentorStudentDetailPage() {
           </div>
           <div className="mt-6">
             <div className="mb-2 flex justify-between text-sm">
-              <span className="font-semibold">پیشرفت امتیاز</span>
+              <span className="font-semibold">پیشرفت XP</span>
               <span className="mono text-xs text-[var(--ink-soft)]">
                 {progress.current}/{progress.total}
               </span>
@@ -122,7 +122,7 @@ export default function MentorStudentDetailPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="surface p-6">
-          <h2 className="display text-2xl">خط زمانی امتیاز</h2>
+          <h2 className="display text-2xl">خط زمانی XP</h2>
           <ul className="mt-4 space-y-3 text-sm">
             {xpHistory.map((event) => (
               <li
@@ -179,7 +179,7 @@ export default function MentorStudentDetailPage() {
         </section>
 
         <section className="surface p-6">
-          <h2 className="display text-2xl">ماموریت‌ها و یادداشت‌ها</h2>
+          <h2 className="display text-2xl">Missionها و یادداشت‌ها</h2>
           <ul className="mt-4 divide-y divide-[var(--line)] text-sm">
             {missions.map((m) => (
               <li key={m.key} className="flex justify-between py-2.5">

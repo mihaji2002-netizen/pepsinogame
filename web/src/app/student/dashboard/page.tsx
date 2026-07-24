@@ -55,20 +55,20 @@ export default function StudentDashboardPage() {
               className="mono text-[10px] font-bold"
               style={{ color: lab.color }}
             >
-              آزمایشگاه {lab.name} · سطح {currentStudent.level}
+              {lab.nameEn} · Level {currentStudent.level}
             </div>
             <h1 className="display mt-3 text-4xl md:text-5xl">
-              ماموریت امروز
+              Mission امروز
             </h1>
             <p className="mt-3 max-w-xl leading-relaxed text-[var(--ink-soft)]">
               {nextMission.completed
-                ? "تخته پاک شد. در دفترچه بازتاب بنویس و فردا را آماده کن."
+                ? "Mission Board پاک شد. در Logbook بازتاب بنویس و فردا را آماده کن."
                 : nextMission.description}
             </p>
           </div>
           <Link href="/student/missions">
             <Button className="px-6 py-3">
-              باز کردن تخته ماموریت
+              باز کردن Mission Board
               <ArrowRight size={16} className="rtl:rotate-180" />
             </Button>
           </Link>
@@ -77,25 +77,25 @@ export default function StudentDashboardPage() {
         <div className="relative mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {[
             {
-              label: "ماموریت جاری",
+              label: "Mission جاری",
               value: nextMission.title,
               icon: Flame,
               tone: lab.color,
             },
             {
-              label: "امتیاز",
+              label: "XP",
               value: `${currentStudent.xp}`,
               icon: Zap,
               tone: "var(--brand)",
             },
             {
-              label: "سطح",
+              label: "Level",
               value: `${currentStudent.level}`,
               icon: Star,
               tone: "var(--accent)",
             },
             {
-              label: "سکه",
+              label: "Coin",
               value: `${currentStudent.coins}`,
               icon: Coins,
               tone: "var(--success)",
@@ -123,9 +123,9 @@ export default function StudentDashboardPage() {
 
         <div className="relative mt-8">
           <div className="mb-2 flex items-center justify-between text-sm">
-            <span className="font-semibold">پیشرفت سطح</span>
+            <span className="font-semibold">Level Progress</span>
             <span className="mono text-xs text-[var(--ink-soft)]">
-              {progress.current} / {progress.total} امتیاز
+              {progress.current} / {progress.total} XP
             </span>
           </div>
           <ProgressBar value={progress.percent} color={lab.color} />
