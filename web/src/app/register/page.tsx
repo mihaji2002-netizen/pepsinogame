@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
+import { GENDER_OPTIONS } from "@/lib/avatars";
+import type { Gender } from "@/lib/types";
 import { useApp } from "@/lib/store";
 
 export default function RegisterPage() {
@@ -14,9 +16,10 @@ export default function RegisterPage() {
   const { registerStudent } = useApp();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [gender, setGender] = useState<Gender>("female");
 
   return (
-    <div className="mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-5 py-10 md:grid-cols-2 md:px-8">
+    <motion.div className="mx-auto grid min-h-screen max-w-6xl items-center gap-12 px-5 py-10 md:grid-cols-2 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -30,14 +33,13 @@ export default function RegisterPage() {
           <span className="text-[var(--brand)]">آزمایشگاه نورو</span> رزرو کنید
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-[var(--ink-soft)]">
-          ثبت‌نام شناسه دائمی دانش‌آموزی، کارت شناسایی دیجیتال و تخصیص
-          خودکار سطح ۱ را ایجاد می‌کند.
+          ثبت‌نام شناسه دائمی موضوعی، انتخاب آواتار و کارت شناسایی دیجیتال سطح ۱.
         </p>
         <ul className="mt-8 space-y-3 text-sm text-[var(--ink-soft)]">
           {[
-            "شناسه دائمی — N-XXX، R-XXX، C-XXX یا P-XXX؛ هرگز تغییر نمی‌کند",
-            "کارت شناسایی دیجیتال، آماده دانلود",
-            "سطح ۱ · آزمایشگاه نورو · اولین ماموریت در انتظار",
+            "شناسه دائمی — هرگز تغییر نمی‌کند",
+            "آواتار مخصوص دختر یا پسر — قابل تغییر بعداً",
+            "سطح ۱ · نورو لب · اولین ماموریت در انتظار",
           ].map((item) => (
             <li key={item} className="flex items-center gap-3">
               <Sparkles size={14} className="shrink-0 text-[var(--accent)]" />
@@ -55,7 +57,7 @@ export default function RegisterPage() {
         onSubmit={(e) => {
           e.preventDefault();
           if (!name.trim() || !email.trim()) return;
-          registerStudent(name.trim(), email.trim());
+          registerStudent(name.trim(), email.trim(), gender);
           router.push("/onboarding");
         }}
       >
@@ -80,8 +82,27 @@ export default function RegisterPage() {
             placeholder="ava@school.edu"
           />
         </div>
+        <motion.div>
+          <label className="text-sm font-semibold">جنسیت (برای آواتار کارت)</label>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            {GENDER_OPTIONS.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => setGender(opt.id)}
+                className={
+                  gender === opt.id
+                    ? "rounded-xl border border-[var(--brand)] bg-[rgba(var(--brand-rgb),0.12)] py-3 font-bold text-[var(--brand)]"
+                    : "rounded-xl border border-[var(--line)] py-3 font-semibold text-[var(--ink-soft)] hover:border-[var(--line-strong)]"
+                }
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </motion.div>
         <Button type="submit" className="w-full py-3">
-          ساخت حساب و نمایش کارت شناسایی
+          ساخت حساب و انتخاب آواتار
         </Button>
         <p className="text-sm text-[var(--ink-soft)]">
           قبلاً ثبت‌نام کرده‌اید؟{" "}
@@ -90,6 +111,6 @@ export default function RegisterPage() {
           </Link>
         </p>
       </motion.form>
-    </div>
+    </motion.div>
   );
 }

@@ -2,6 +2,10 @@ export type UserRole = "student" | "mentor" | "admin";
 
 export type LabId = "neuro" | "research" | "catalyst" | "pioneer";
 
+export type Gender = "female" | "male";
+
+export type AvatarKey = 1 | 2 | 3;
+
 export type AttendanceStatus = "present" | "late" | "absent" | "excused";
 
 export type MissionKey =
@@ -24,8 +28,6 @@ export interface LabTheme {
   badge: string;
   image: string;
   imageAlt: string;
-  avatar: string;
-  avatarAlt: string;
 }
 
 export interface Student {
@@ -33,7 +35,8 @@ export interface Student {
   studentId: string;
   name: string;
   email: string;
-  avatar: string;
+  gender: Gender;
+  avatarKey: AvatarKey;
   lab: LabId;
   level: number;
   xp: number;

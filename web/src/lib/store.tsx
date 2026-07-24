@@ -21,7 +21,8 @@ import {
   labForLevel,
   nextStudentId,
 } from "./constants";
-import { syncStudentLab } from "./id-card";
+import { syncStudentLab, normalizeStudent } from "./id-card";
+import type { AvatarKey, Gender } from "./types";
 import type {
   Achievement,
   Announcement,
@@ -53,7 +54,7 @@ interface AppState {
   xpToast: number | null;
   loginAsStudent: (email?: string) => void;
   loginAsMentor: () => void;
-  registerStudent: (name: string, email: string) => Student;
+  registerStudent: (name: string, email: string, gender: Gender) => Student;
   logout: () => void;
   completeOnboarding: () => void;
   completeMission: (key: MissionKey) => void;
@@ -65,6 +66,7 @@ interface AppState {
   addExam: (exam: Omit<ExamRecord, "id">) => void;
   adjustXp: (studentId: string, amount: number, reason: string) => void;
   adjustCoins: (studentId: string, amount: number) => void;
+  setAvatarKey: (avatarKey: AvatarKey) => void;
   clearXpToast: () => void;
   currentStudent: Student | null;
 }
@@ -166,7 +168,9 @@ function readPersisted(): PersistedState {
     const parsed = JSON.parse(raw) as Partial<PersistedState>;
     return {
       user: parsed.user ?? null,
-      students: (parsed.students ?? DEMO_STUDENTS).map(syncStudentLab),
+      students: (parsed.students ?? DEMO_STUDENTS).map((s) =>
+        normalizeStudent(s as Student & { avatar?: string }),
+      ),
       missions: parsed.missions ?? DEFAULT_MISSIONS,
       planner: parsed.planner ?? DEFAULT_PLANNER,
       logbook: parsed.logbook ?? defaultLogbook,
@@ -318,14 +322,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
         ...prev,
         user: { role: "mentor", mentorId: "men-1" },
       })),
-    registerStudent: (name, email) => {
+    registerStudent: (name, email, gender) => {
       const sequence = students.length + 1;
       const student: Student = syncStudentLab({
         id: `stu-${Date.now()}`,
         studentId: nextStudentId(sequence),
         name,
         email,
-        avatar: "N",
+        gender,
+        avatarKey: 1,
         lab: "neuro",
         level: 1,
         xp: 0,
@@ -439,6 +444,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
         ...s,
         coins: Math.max(0, s.coins + amount),
       }));
+    },
+    setAvatarKey: (avatarKey) => {
+      if (!currentStudent) return;
+      updateStudent(currentStudent.id, (s) => ({ ...s, avatarKey }));
     },
     clearXpToast: () => setXpToast(null),
   };

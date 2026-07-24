@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PartyPopper } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AvatarPicker } from "@/components/AvatarPicker";
 import { IdCard } from "@/components/IdCard";
 import { LabArt } from "@/components/LabArt";
 import { Button } from "@/components/ui/Button";
@@ -11,11 +12,11 @@ import { BRAND, LABS } from "@/lib/constants";
 import { fa } from "@/lib/fa";
 import { useApp } from "@/lib/store";
 
-const steps = ["welcome", "id", "lab", "mission", "start"] as const;
+const steps = ["welcome", "avatar", "id", "lab", "mission", "start"] as const;
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const { hydrated, currentStudent, completeOnboarding, user } = useApp();
+  const { hydrated, currentStudent, completeOnboarding, user, setAvatarKey } = useApp();
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -83,8 +84,38 @@ export default function OnboardingPage() {
               اول هویت. بعد ماموریت.
             </p>
             <Button className="mt-10 px-7 py-3" onClick={() => setStep(1)}>
-              نمایش کارت شناسایی
+              انتخاب آواتار
             </Button>
+          </motion.div>
+        )}
+
+        {key === "avatar" && (
+          <motion.div
+            key="avatar"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            className="space-y-8"
+          >
+            <div className="text-center">
+              <motion.div className="eyebrow">گام ۰۲ · آواتار</motion.div>
+              <h1 className="display mt-3 text-4xl">شخصیت کارت خود را انتخاب کن</h1>
+              <p className="mt-3 text-[var(--ink-soft)]">
+                برای {currentStudent.gender === "female" ? "دختران" : "پسران"} —
+                با لول‌آپ، نسخهٔ آزمایشگاهی همین آواتار روی کارت می‌آید.
+              </p>
+            </div>
+            <AvatarPicker
+              gender={currentStudent.gender}
+              labId={lab.id}
+              value={currentStudent.avatarKey}
+              onChange={setAvatarKey}
+            />
+            <div className="text-center">
+              <Button className="px-7 py-3" onClick={() => setStep(2)}>
+                ادامه به کارت شناسایی
+              </Button>
+            </div>
           </motion.div>
         )}
 
@@ -97,7 +128,7 @@ export default function OnboardingPage() {
             className="space-y-8"
           >
             <div className="text-center">
-              <div className="eyebrow">گام ۰۲ · هویت</div>
+              <motion.div className="eyebrow">گام ۰۳ · هویت</motion.div>
               <h1 className="display mt-3 text-4xl">
                 شناسنامه دیجیتال شما
               </h1>
@@ -108,7 +139,7 @@ export default function OnboardingPage() {
             </div>
             <IdCard student={currentStudent} />
             <div className="text-center">
-              <Button className="px-7 py-3" onClick={() => setStep(2)}>
+              <Button className="px-7 py-3" onClick={() => setStep(3)}>
                 ادامه
               </Button>
             </div>
@@ -138,14 +169,14 @@ export default function OnboardingPage() {
                 <LabArt lab={lab} size="xl" animate />
               </div>
             </div>
-            <div className="eyebrow mt-6">گام ۰۳ · آزمایشگاه شما</div>
+            <motion.div className="eyebrow mt-6">گام ۰۴ · آزمایشگاه شما</motion.div>
             <h1 className="display mt-2 text-4xl">آزمایشگاه {lab.name}</h1>
             <p className="mt-3 text-[var(--ink-soft)]">{lab.tagline}</p>
             <p className="mt-4 text-sm leading-relaxed text-[var(--ink-soft)]">
               از سطح ۱ شروع می‌کنید. با امتیاز و مهرهای منتور از پژوهش،
               کاتالیز و پیشگام عبور کنید.
             </p>
-            <Button className="mt-8" onClick={() => setStep(3)}>
+            <Button className="mt-8" onClick={() => setStep(4)}>
               آشنایی با تخته ماموریت
             </Button>
           </motion.div>
@@ -159,7 +190,7 @@ export default function OnboardingPage() {
             exit={{ opacity: 0, y: -16 }}
             className="surface p-8"
           >
-            <div className="eyebrow">گام ۰۴ · چرخه</div>
+            <motion.div className="eyebrow">گام ۰۵ · چرخه</motion.div>
             <h1 className="display mt-2 text-4xl">اولین ماموریت</h1>
             <p className="mt-3 leading-relaxed text-[var(--ink-soft)]">
               روتین را کامل کنید، سپس اهداف ۱ تا ۶. هر اقدام امتیاز می‌دهد.
@@ -177,7 +208,7 @@ export default function OnboardingPage() {
                 +۴۰ امتیاز · +۵ سکه
               </div>
             </div>
-            <Button className="mt-8" onClick={() => setStep(4)}>
+            <Button className="mt-8" onClick={() => setStep(5)}>
               آماده‌ام
             </Button>
           </motion.div>

@@ -1,4 +1,4 @@
-import type { Achievement, ExamRecord, LabId, LabTheme, MissionItem, PlannerTask, Student } from "./types";
+import type { Achievement, ExamRecord, LabId, LabTheme, MissionItem, PlannerTask, Student, AvatarKey, Gender } from "./types";
 
 export const BRAND = {
   name: "پپسینو لب",
@@ -34,8 +34,6 @@ export const LABS: LabTheme[] = [
     badge: "N",
     image: "/labs/neuro.svg",
     imageAlt: "آیکون آزمایشگاه نورو — مغز و شبکه عصبی",
-    avatar: "/labs/avatars/neuro.png",
-    avatarAlt: "آواتار نورو — هودی با نشان مغز درخشان",
   },
   {
     id: "research",
@@ -48,8 +46,6 @@ export const LABS: LabTheme[] = [
     badge: "R",
     image: "/labs/research.svg",
     imageAlt: "آیکون آزمایشگاه پژوهش — میکروسکوپ",
-    avatar: "/labs/avatars/research.png",
-    avatarAlt: "آواتار پژوهش — کت آزمایشگاهی",
   },
   {
     id: "catalyst",
@@ -62,8 +58,6 @@ export const LABS: LabTheme[] = [
     badge: "C",
     image: "/labs/catalyst.svg",
     imageAlt: "آیکون آزمایشگاه کاتالیز — فلاسک شیمی",
-    avatar: "/labs/avatars/catalyst.png",
-    avatarAlt: "آواتار کاتالیز — تِک‌ویر با انرژی طلایی",
   },
   {
     id: "pioneer",
@@ -76,8 +70,6 @@ export const LABS: LabTheme[] = [
     badge: "P",
     image: "/labs/pioneer.svg",
     imageAlt: "آیکون آزمایشگاه پیشگام — راکت",
-    avatar: "/labs/avatars/pioneer.png",
-    avatarAlt: "آواتار پیشگام — یونیفرم فضایی بنفش",
   },
 ];
 
@@ -205,7 +197,8 @@ export const DEMO_STUDENTS: Student[] = [
     studentId: "N-021",
     name: "آوا کریمی",
     email: "ava@pepsinolab.dev",
-    avatar: "N-",
+    gender: "female",
+    avatarKey: 1,
     lab: "neuro",
     level: 3,
     xp: 1250,
@@ -220,7 +213,8 @@ export const DEMO_STUDENTS: Student[] = [
     studentId: "N-022",
     name: "نیما رستمی",
     email: "nima@pepsinolab.dev",
-    avatar: "N-",
+    gender: "male",
+    avatarKey: 2,
     lab: "neuro",
     level: 2,
     xp: 640,
@@ -235,7 +229,8 @@ export const DEMO_STUDENTS: Student[] = [
     studentId: "R-003",
     name: "سارا حسینی",
     email: "sara@pepsinolab.dev",
-    avatar: "R-",
+    gender: "female",
+    avatarKey: 2,
     lab: "research",
     level: 5,
     xp: 210,

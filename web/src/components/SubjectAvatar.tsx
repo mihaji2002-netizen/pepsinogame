@@ -2,20 +2,26 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import type { LabTheme } from "@/lib/types";
+import { resolveStudentAvatar } from "@/lib/avatars";
+import type { LabTheme, Student } from "@/lib/types";
 
 export function SubjectAvatar({
+  student,
   lab,
   className,
 }: {
+  student: Pick<Student, "gender" | "avatarKey" | "level">;
   lab: LabTheme;
   className?: string;
 }) {
+  const src = resolveStudentAvatar(student, lab.id);
+  const alt = `آواتار ${lab.name} — استایل ${student.avatarKey}`;
+
   return (
     <div className={className}>
       <AnimatePresence mode="wait">
         <motion.div
-          key={lab.id}
+          key={`${lab.id}-${student.gender}-${student.avatarKey}`}
           initial={{ opacity: 0, scale: 0.94, filter: "blur(10px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           exit={{ opacity: 0, scale: 1.03, filter: "blur(8px)" }}
@@ -39,8 +45,8 @@ export function SubjectAvatar({
             }}
           />
           <Image
-            src={lab.avatar}
-            alt={lab.avatarAlt}
+            src={src}
+            alt={alt}
             width={400}
             height={520}
             sizes="(max-width: 768px) 45vw, 200px"

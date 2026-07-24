@@ -106,7 +106,7 @@ export function IdCard({
 
         <div className="mt-4 grid flex-1 grid-cols-[1.05fr_0.95fr] gap-3">
           <div className="relative min-h-[220px]">
-            <SubjectAvatar lab={lab} className="absolute inset-0" />
+            <SubjectAvatar student={student} lab={lab} className="absolute inset-0" />
             <motion.div
               key={lab.id}
               className="absolute bottom-2 left-2 rounded-lg border px-2 py-1 text-[9px] font-bold tracking-wider"

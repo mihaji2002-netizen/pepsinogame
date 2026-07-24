@@ -1,11 +1,13 @@
 "use client";
 
-import { LABS, xpProgress } from "@/lib/constants";
+import { xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { attendanceLabel } from "@/lib/fa";
 import { formatDate } from "@/lib/utils";
+import { AvatarPicker } from "@/components/AvatarPicker";
 import { LabArt } from "@/components/LabArt";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { studentLab } from "@/lib/id-card";
 
 const statusTone: Record<string, string> = {
   present: "text-[var(--success)]",
@@ -15,17 +17,11 @@ const statusTone: Record<string, string> = {
 };
 
 export default function ProfilePage() {
-  const {
-    currentStudent,
-    xpHistory,
-    exams,
-    attendance,
-    achievements,
-    missions,
-  } = useApp();
+  const { currentStudent, xpHistory, exams, attendance, achievements, missions, setAvatarKey } =
+    useApp();
   if (!currentStudent) return null;
 
-  const lab = LABS.find((l) => l.id === currentStudent.lab) ?? LABS[0];
+  const lab = studentLab(currentStudent);
   const progress = xpProgress(currentStudent.xp);
 
   return (
@@ -77,6 +73,20 @@ export default function ProfilePage() {
               </span>
             </div>
             <ProgressBar value={progress.percent} color={lab.color} />
+          </div>
+          <div className="mt-8">
+            <h2 className="display text-xl">آواتار کارت شناسایی</h2>
+            <p className="mt-1 text-sm text-[var(--ink-soft)]">
+              {currentStudent.gender === "female" ? "دختر" : "پسر"} — با لول‌آپ، نسخهٔ
+              آزمایشگاهی همین استایل روی کارت می‌آید.
+            </p>
+            <AvatarPicker
+              className="mt-4"
+              gender={currentStudent.gender}
+              labId={lab.id}
+              value={currentStudent.avatarKey}
+              onChange={setAvatarKey}
+            />
           </div>
         </section>
 
