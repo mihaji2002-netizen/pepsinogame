@@ -1,11 +1,13 @@
 import { deleteAttemptFiles, deleteExamFiles } from "./file-storage";
 import { getDb } from "./db";
+import { getPepsinoStudentById, splitStudentName } from "./pepsino-students";
 import type { Attempt, Exam, ExamListItem, ExamQuestionItem, ExamSourceType, GradingStatus, GradeLevel, RankingEntry, StudyTrack } from "./types";
 import {
   calculateDescriptiveGrade,
   normalizeParticipantName,
   parseExamQuestions,
   validateQuestionScores,
+  getAvailabilityMessage,
 } from "./types";
 
 type ExamRow = {
@@ -160,6 +162,8 @@ export function deleteExam(id: number) {
     deleteAttemptFiles(attempt.id);
   }
   db.prepare(`DELETE FROM attempts WHERE exam_id = ?`).run(id);
+  db.prepare(`DELETE FROM exam_assignments WHERE exam_id = ?`).run(id);
+  db.prepare(`DELETE FROM student_exam_results WHERE exam_id = ?`).run(id);
   db.prepare(`DELETE FROM exams WHERE id = ?`).run(id);
   deleteExamFiles(id);
 }
@@ -168,13 +172,22 @@ export function createAttempt(data: {
   exam_id: number;
   first_name: string;
   last_name: string;
+  student_id?: string | null;
 }): number {
   const db = getDb();
   const firstName = normalizeParticipantName(data.first_name);
   const lastName = normalizeParticipantName(data.last_name);
   const result = db
-    .prepare(`INSERT INTO attempts (exam_id, first_name, last_name) VALUES (?, ?, ?)`)
-    .run(data.exam_id, firstName, lastName);
+    .prepare(
+      `INSERT INTO attempts (exam_id, first_name, last_name, student_id) VALUES (?, ?, ?, ?)`,
+    )
+    .run(data.exam_id, firstName, lastName, data.student_id ?? null);
+  if (data.student_id) {
+    db.prepare(
+      `UPDATE exam_assignments SET status = 'started'
+       WHERE exam_id = ? AND student_id = ? AND status = 'assigned'`,
+    ).run(data.exam_id, data.student_id);
+  }
   return Number(result.lastInsertRowid);
 }
 
@@ -183,6 +196,7 @@ type AttemptRow = {
   exam_id: number;
   first_name: string;
   last_name: string;
+  student_id: string | null;
   answers_json: string;
   correct_count: number;
   total_questions: number;
@@ -201,6 +215,7 @@ function mapAttemptRow(row: AttemptRow): Attempt {
     exam_id: row.exam_id,
     first_name: row.first_name,
     last_name: row.last_name,
+    student_id: row.student_id,
     answers: JSON.parse(row.answers_json),
     correct_count: row.correct_count,
     total_questions: row.total_questions,
@@ -218,7 +233,7 @@ export function getAttemptById(id: number): Attempt | null {
   const db = getDb();
   const row = db
     .prepare(
-      `SELECT id, exam_id, first_name, last_name, answers_json, correct_count, total_questions,
+      `SELECT id, exam_id, first_name, last_name, student_id, answers_json, correct_count, total_questions,
               percentage, grading_status, question_scores_json, graded_at, started_at, finished_at
        FROM attempts WHERE id = ?`
     )
@@ -256,8 +271,9 @@ export function finishAttempt(
     data.total_questions,
     data.percentage,
     data.grading_status ?? null,
-    id
+    id,
   );
+  syncStudentExamResult(id);
 }
 
 export function gradeDescriptiveAttempt(
@@ -295,6 +311,7 @@ export function gradeDescriptiveAttempt(
   if (result.changes === 0) {
     throw new Error("ثبت نمره انجام نشد");
   }
+  syncStudentExamResult(attemptId);
 }
 
 export function getDescriptiveSubmissions(examId: number) {
@@ -442,4 +459,214 @@ export function hasActiveAttempt(examId: number, firstName: string, lastName: st
 export function hasFinishedAttempt(examId: number, firstName: string, lastName: string): boolean {
   const matches = findAttemptByName(examId, firstName, lastName);
   return matches.some((a) => !!a.finished_at);
+}
+
+export function hasFinishedAttemptForStudent(examId: number, studentId: string): boolean {
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT id FROM attempts WHERE exam_id = ? AND student_id = ? AND finished_at IS NOT NULL LIMIT 1`,
+    )
+    .get(examId, studentId) as { id: number } | undefined;
+  return !!row;
+}
+
+export function hasActiveAttemptForStudent(examId: number, studentId: string): number | null {
+  const db = getDb();
+  const row = db
+    .prepare(
+      `SELECT id FROM attempts WHERE exam_id = ? AND student_id = ? AND finished_at IS NULL LIMIT 1`,
+    )
+    .get(examId, studentId) as { id: number } | undefined;
+  return row?.id ?? null;
+}
+
+export function assignExamToStudents(examId: number, studentIds: string[]) {
+  const db = getDb();
+  const insert = db.prepare(
+    `INSERT INTO exam_assignments (exam_id, student_id) VALUES (?, ?)
+     ON CONFLICT(exam_id, student_id) DO NOTHING`,
+  );
+  const tx = db.transaction((ids: string[]) => {
+    for (const studentId of ids) {
+      insert.run(examId, studentId);
+    }
+  });
+  tx(studentIds);
+}
+
+export function getExamAssignmentStudentIds(examId: number): string[] {
+  const db = getDb();
+  return (
+    db
+      .prepare(`SELECT student_id FROM exam_assignments WHERE exam_id = ? ORDER BY assigned_at ASC`)
+      .all(examId) as Array<{ student_id: string }>
+  ).map((r) => r.student_id);
+}
+
+export type StudentAssignedExam = {
+  exam_id: number;
+  title: string;
+  exam_type: "test" | "descriptive";
+  duration_minutes: number;
+  question_count: number;
+  option_count: number;
+  access_code: string;
+  is_active: number;
+  active_from: string | null;
+  active_until: string | null;
+  assignment_status: "assigned" | "started" | "completed";
+  attempt_id: number | null;
+  percentage: number | null;
+  rank: number | null;
+  finished_at: string | null;
+  grading_status: GradingStatus | null;
+};
+
+export function getAssignedExamsForStudent(studentId: string): StudentAssignedExam[] {
+  const db = getDb();
+  const rows = db
+    .prepare(
+      `SELECT
+         e.id as exam_id,
+         e.title,
+         e.exam_type,
+         e.duration_minutes,
+         e.question_count,
+         e.option_count,
+         e.access_code,
+         e.is_active,
+         e.active_from,
+         e.active_until,
+         a.status as assignment_status,
+         att.id as attempt_id,
+         att.percentage,
+         att.finished_at,
+         att.grading_status
+       FROM exam_assignments a
+       JOIN exams e ON e.id = a.exam_id
+       LEFT JOIN attempts att ON att.exam_id = e.id AND att.student_id = a.student_id
+       WHERE a.student_id = ?
+       ORDER BY a.assigned_at DESC`,
+    )
+    .all(studentId) as Array<
+    Omit<StudentAssignedExam, "rank"> & {
+      grading_status: GradingStatus | null;
+    }
+  >;
+
+  return rows.map((row) => ({
+    ...row,
+    rank: row.attempt_id && row.finished_at ? getRankForAttempt(row.exam_id, row.attempt_id) : null,
+  }));
+}
+
+export function isStudentAssignedToExam(examId: number, studentId: string): boolean {
+  const db = getDb();
+  const row = db
+    .prepare(`SELECT id FROM exam_assignments WHERE exam_id = ? AND student_id = ?`)
+    .get(examId, studentId) as { id: number } | undefined;
+  return !!row;
+}
+
+export type StudentExamResultRow = {
+  id: number;
+  student_id: string;
+  exam_id: number;
+  attempt_id: number;
+  subject: string;
+  percentage: number;
+  score: number;
+  rank: number | null;
+  finished_at: string;
+  comment: string;
+};
+
+export function getStudentExamResults(studentId: string): StudentExamResultRow[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT id, student_id, exam_id, attempt_id, subject, percentage, score, rank, finished_at, comment
+       FROM student_exam_results
+       WHERE student_id = ?
+       ORDER BY finished_at DESC`,
+    )
+    .all(studentId) as StudentExamResultRow[];
+}
+
+export function syncStudentExamResult(attemptId: number) {
+  const attempt = getAttemptById(attemptId);
+  if (!attempt?.student_id || !attempt.finished_at) return;
+
+  const exam = getExamById(attempt.exam_id);
+  if (!exam) return;
+
+  if (exam.exam_type === "descriptive" && attempt.grading_status !== "graded") {
+    return;
+  }
+
+  const db = getDb();
+  const rank = getRankForAttempt(attempt.exam_id, attempt.id);
+  db.prepare(
+    `INSERT INTO student_exam_results (
+       student_id, exam_id, attempt_id, subject, percentage, score, rank, finished_at
+     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT(attempt_id) DO UPDATE SET
+       percentage = excluded.percentage,
+       score = excluded.score,
+       rank = excluded.rank,
+       finished_at = excluded.finished_at`,
+  ).run(
+    attempt.student_id,
+    attempt.exam_id,
+    attempt.id,
+    exam.title,
+    attempt.percentage,
+    attempt.percentage,
+    rank,
+    attempt.finished_at,
+  );
+
+  db.prepare(
+    `UPDATE exam_assignments SET status = 'completed'
+     WHERE exam_id = ? AND student_id = ?`,
+  ).run(attempt.exam_id, attempt.student_id);
+}
+
+export function startAssignedExam(studentId: string, examId: number) {
+  if (!isStudentAssignedToExam(examId, studentId)) {
+    throw new Error("این آزمون به شما اختصاص داده نشده است");
+  }
+
+  const exam = getExamById(examId);
+  if (!exam || !exam.is_active) {
+    throw new Error("آزمون یافت نشد یا غیرفعال است");
+  }
+
+  const availabilityMessage = getAvailabilityMessage(exam);
+  if (availabilityMessage) {
+    throw new Error(availabilityMessage);
+  }
+
+  const student = getPepsinoStudentById(studentId);
+  if (!student) {
+    throw new Error("دانش‌آموز یافت نشد");
+  }
+
+  if (hasFinishedAttemptForStudent(examId, studentId)) {
+    throw new Error("شما قبلاً این آزمون را تکمیل کرده‌اید");
+  }
+
+  const activeAttemptId = hasActiveAttemptForStudent(examId, studentId);
+  if (activeAttemptId) return { attemptId: activeAttemptId, exam };
+
+  const { first_name, last_name } = splitStudentName(student.name);
+  const attemptId = createAttempt({
+    exam_id: examId,
+    first_name,
+    last_name,
+    student_id: studentId,
+  });
+
+  return { attemptId, exam };
 }

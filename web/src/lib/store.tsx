@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   useSyncExternalStore,
@@ -250,6 +251,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (!user?.studentId) return null;
     return students.find((s) => s.id === user.studentId) ?? null;
   }, [user, students]);
+
+  useEffect(() => {
+    if (!hydrated || students.length === 0) return;
+    fetch("/api/pepsino/students", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        students: students.map((s) => ({
+          id: s.id,
+          studentId: s.studentId,
+          name: s.name,
+          email: s.email,
+        })),
+      }),
+    }).catch(() => {});
+  }, [hydrated, students]);
 
   const updateStudent = useCallback(
     (studentId: string, updater: (s: Student) => Student) => {

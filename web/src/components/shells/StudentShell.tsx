@@ -13,6 +13,7 @@ import {
   Trophy,
   UserRound,
   Zap,
+  FileCheck2,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { LabArt } from "@/components/LabArt";
@@ -25,6 +26,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/student/dashboard", label: "داشبورد", icon: LayoutDashboard },
   { href: "/student/missions", label: "Missions", icon: Target },
+  { href: "/student/exams", label: "Exams", icon: FileCheck2 },
   { href: "/student/logbook", label: "دفترچه", icon: BookOpen },
   { href: "/student/planner", label: "برنامه هفتگی", icon: CalendarDays },
   { href: "/student/id-card", label: "کارت شناسایی", icon: CreditCard },

@@ -61,6 +61,7 @@ export interface Attempt {
   exam_id: number;
   first_name: string;
   last_name: string;
+  student_id?: string | null;
   answers: ExamAnswers;
   correct_count: number;
   total_questions: number;

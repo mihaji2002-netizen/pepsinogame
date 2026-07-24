@@ -109,6 +109,50 @@ function migrateSchema(database: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_question_bank_curriculum
       ON question_bank(grade, track, subject_id, chapter_id);
   `);
+
+  if (!columnExists(database, "attempts", "student_id")) {
+    database.exec(`ALTER TABLE attempts ADD COLUMN student_id TEXT`);
+  }
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS pepsino_students (
+      id TEXT PRIMARY KEY,
+      student_code TEXT NOT NULL,
+      name TEXT NOT NULL,
+      email TEXT,
+      updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
+    );
+
+    CREATE TABLE IF NOT EXISTS exam_assignments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      exam_id INTEGER NOT NULL,
+      student_id TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'assigned',
+      assigned_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+      FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE,
+      UNIQUE(exam_id, student_id)
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_exam_assignments_student
+      ON exam_assignments(student_id);
+
+    CREATE TABLE IF NOT EXISTS student_exam_results (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      student_id TEXT NOT NULL,
+      exam_id INTEGER NOT NULL,
+      attempt_id INTEGER NOT NULL UNIQUE,
+      subject TEXT NOT NULL,
+      percentage REAL NOT NULL,
+      score REAL NOT NULL,
+      rank INTEGER,
+      finished_at TEXT NOT NULL,
+      comment TEXT NOT NULL DEFAULT '',
+      FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_student_exam_results_student
+      ON student_exam_results(student_id);
+  `);
 }
 
 function initSchema(database: Database.Database) {

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Coins, Flame, Megaphone, Star, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Coins, FileCheck2, Flame, Megaphone, Star, Zap } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
 import { LabArt } from "@/components/LabArt";
 import { Button } from "@/components/ui/Button";
@@ -20,6 +21,20 @@ export default function StudentDashboardPage() {
     announcements,
     xpHistory,
   } = useApp();
+  const [pendingExams, setPendingExams] = useState(0);
+
+  useEffect(() => {
+    if (!currentStudent) return;
+    fetch(`/api/students/${currentStudent.id}/exams`)
+      .then((res) => res.json())
+      .then((data) => {
+        const count = (data.exams ?? []).filter(
+          (e: { assignment_status: string }) => e.assignment_status !== "completed",
+        ).length;
+        setPendingExams(count);
+      })
+      .catch(() => {});
+  }, [currentStudent]);
 
   if (!currentStudent) return null;
 
@@ -131,6 +146,23 @@ export default function StudentDashboardPage() {
           <ProgressBar value={progress.percent} color={lab.color} />
         </div>
       </motion.section>
+
+      {pendingExams > 0 && (
+        <motion.section variants={fadeUp} className="surface flex flex-wrap items-center justify-between gap-4 p-5">
+          <div className="flex items-center gap-3">
+            <FileCheck2 className="text-[var(--brand)]" size={22} />
+            <motion.div>
+              <div className="font-bold">{pendingExams} Exam در انتظار شما</div>
+              <p className="text-sm text-[var(--ink-soft)]">
+                آزمون‌های اختصاص‌داده‌شده توسط منتور
+              </p>
+            </motion.div>
+          </motion.div>
+          <Link href="/student/exams">
+            <Button variant="secondary">رفتن به Exams</Button>
+          </Link>
+        </motion.section>
+      )}
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <section className="space-y-6">

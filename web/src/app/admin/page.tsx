@@ -5,6 +5,7 @@ import Logo from "@/components/exam/Logo";
 import CurriculumTree from "@/components/exam/CurriculumTree";
 import GradingPanel from "@/components/exam/GradingPanel";
 import QuestionBankPanel from "@/components/exam/QuestionBankPanel";
+import { ExamAssignModal } from "@/components/exam/ExamAssignModal";
 import { getCurriculumSubjects } from "@/lib/exam/curriculum";
 import type {
   BankQuestion,
@@ -84,6 +85,7 @@ export default function AdminPage() {
   const [createError, setCreateError] = useState("");
   const [createSuccess, setCreateSuccess] = useState("");
   const [creating, setCreating] = useState(false);
+  const [assignExam, setAssignExam] = useState<{ id: number; title: string } | null>(null);
 
   const questionNumbers = useMemo(
     () => buildQuestionNumbers(questionCount),
@@ -514,7 +516,13 @@ export default function AdminPage() {
                       </span>
                     </p>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setAssignExam({ id: exam.id, title: exam.title })}
+                      className="btn-secondary text-sm"
+                    >
+                      تخصیص دانش‌آموز
+                    </button>
                     <button
                       onClick={() => loadRankings(exam.id)}
                       className="btn-secondary text-sm"
@@ -1033,6 +1041,15 @@ export default function AdminPage() {
           </div>
         )}
       </div>
+
+      {assignExam && (
+        <ExamAssignModal
+          examId={assignExam.id}
+          examTitle={assignExam.title}
+          onClose={() => setAssignExam(null)}
+          onSaved={() => setCreateSuccess("دانش‌آموزان با موفقیت تخصیص داده شدند")}
+        />
+      )}
     </main>
   );
 }

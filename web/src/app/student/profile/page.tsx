@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { attendanceLabel } from "@/lib/fa";
@@ -8,6 +9,7 @@ import { AvatarPicker } from "@/components/AvatarPicker";
 import { LabArt } from "@/components/LabArt";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { studentLab } from "@/lib/id-card";
+import type { ExamRecord } from "@/lib/types";
 
 const statusTone: Record<string, string> = {
   present: "text-[var(--success)]",
@@ -19,6 +21,27 @@ const statusTone: Record<string, string> = {
 export default function ProfilePage() {
   const { currentStudent, xpHistory, exams, attendance, achievements, missions, setAvatarKey } =
     useApp();
+  const [onlineExams, setOnlineExams] = useState<ExamRecord[]>([]);
+
+  useEffect(() => {
+    if (!currentStudent) return;
+    fetch(`/api/students/${currentStudent.id}/exam-results`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data.results)) setOnlineExams(data.results);
+      })
+      .catch(() => {});
+  }, [currentStudent]);
+
+  const allExams = useMemo(() => {
+    const seen = new Set(onlineExams.map((e) => e.id));
+    const merged = [...onlineExams];
+    for (const exam of exams) {
+      if (!seen.has(exam.id)) merged.push(exam);
+    }
+    return merged;
+  }, [exams, onlineExams]);
+
   if (!currentStudent) return null;
 
   const lab = studentLab(currentStudent);
@@ -108,7 +131,7 @@ export default function ProfilePage() {
           <div className="surface p-6">
             <h2 className="display text-2xl">تاریخچه آزمون</h2>
             <ul className="mt-4 space-y-3 text-sm">
-              {exams.map((exam) => (
+              {allExams.map((exam) => (
                 <li key={exam.id} className="surface-flat p-4">
                   <div className="flex justify-between font-bold">
                     <span>{exam.subject}</span>
