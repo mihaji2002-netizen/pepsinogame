@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
+import { LabArt } from "@/components/LabArt";
 import { BRAND, LABS } from "@/lib/constants";
 import type { Student } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -81,16 +82,7 @@ export function IdCard({
 
       <div className="relative mt-8 flex items-end justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div
-            className="grid h-16 w-16 place-items-center rounded-2xl border text-lg font-bold"
-            style={{
-              color: lab.color,
-              borderColor: `${lab.color}55`,
-              background: `${lab.color}18`,
-            }}
-          >
-            {lab.badge}
-          </div>
+          <LabArt lab={lab} size="lg" showBadge />
           <div>
             <div className="mono text-[10px] text-[var(--ink-faint)]">
               آزمایشگاه

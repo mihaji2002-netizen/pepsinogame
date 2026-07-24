@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Pioneer Lab">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="flame" x1="100" y1="130" x2="100" y2="170">
+      <stop stop-color="#B44BFF" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#B44BFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="176" height="176" rx="18" stroke="#B44BFF" stroke-opacity="0.25" stroke-width="1.5"/>
+  <path d="M100 44l36 64H64L100 44z" fill="rgba(180,75,255,0.15)" stroke="#B44BFF" stroke-width="2" filter="url(#glow)"/>
+  <rect x="82" y="108" width="36" height="44" rx="4" fill="rgba(180,75,255,0.12)" stroke="#B44BFF" stroke-width="2"/>
+  <path d="M88 152h24" stroke="#B44BFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M76 120h48" stroke="#B44BFF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <path d="M100 152c-8 10-14 18-14 18s12-2 14-8 14 8 14 8-6-8-14-18z" fill="url(#flame)" filter="url(#glow)"/>
+  <circle cx="52" cy="72" r="2" fill="#B44BFF" opacity="0.6"/>
+  <circle cx="148" cy="88" r="2" fill="#B44BFF" opacity="0.5"/>
+  <circle cx="140" cy="56" r="1.5" fill="#B44BFF" opacity="0.4"/>
+  <path d="M44 140h20M136 132h20" stroke="#B44BFF" stroke-opacity="0.25" stroke-width="1" stroke-linecap="round"/>
+</svg>

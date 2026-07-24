@@ -2,8 +2,9 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { FlaskConical, Sparkles, Zap } from "lucide-react";
+import { Sparkles, Zap } from "lucide-react";
 import { LABS } from "@/lib/constants";
+import { LabArt } from "@/components/LabArt";
 
 const orbitItems = [
   { label: "N-021", color: LABS[0].color, delay: 0 },
@@ -106,13 +107,7 @@ export function HeroVisual() {
               N-021
             </div>
           </div>
-          <motion.div
-            className="grid h-12 w-12 place-items-center rounded-2xl border border-[rgba(var(--brand-rgb),0.4)] bg-[rgba(var(--brand-rgb),0.12)] text-[var(--brand)]"
-            animate={{ rotate: [0, 8, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          >
-            <FlaskConical size={22} />
-          </motion.div>
+          <LabArt lab={LABS[0]} size="sm" animate />
         </div>
 
         <div className="mt-8 grid grid-cols-3 gap-3">

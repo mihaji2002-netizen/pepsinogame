@@ -5,6 +5,7 @@ import { PartyPopper } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IdCard } from "@/components/IdCard";
+import { LabArt } from "@/components/LabArt";
 import { Button } from "@/components/ui/Button";
 import { BRAND, LABS } from "@/lib/constants";
 import { fa } from "@/lib/fa";
@@ -122,7 +123,7 @@ export default function OnboardingPage() {
             className="surface overflow-hidden p-8"
           >
             <div
-              className="relative h-40 overflow-hidden rounded-[18px] border"
+              className="relative flex h-44 items-center justify-center overflow-hidden rounded-[18px] border"
               style={{
                 borderColor: `${lab.color}44`,
                 background: `linear-gradient(150deg, ${lab.color}30, #0c0c14 70%)`,
@@ -132,15 +133,8 @@ export default function OnboardingPage() {
                 className="absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-40 blur-2xl"
                 style={{ background: lab.color }}
               />
-              <div
-                className="absolute bottom-4 left-5 grid h-14 w-14 place-items-center rounded-2xl border text-2xl font-bold"
-                style={{
-                  color: lab.color,
-                  borderColor: `${lab.color}55`,
-                  background: "rgba(5,9,12,0.5)",
-                }}
-              >
-                {lab.badge}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <LabArt lab={lab} size="xl" animate />
               </div>
             </div>
             <div className="eyebrow mt-6">گام ۰۳ · آزمایشگاه شما</div>

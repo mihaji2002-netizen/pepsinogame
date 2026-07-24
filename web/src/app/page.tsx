@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
+import { LabArt } from "@/components/LabArt";
 import { HeroVisual } from "@/components/effects/HeroVisual";
 import { GradientText, TextReveal } from "@/components/effects/TextReveal";
 import { Button } from "@/components/ui/Button";
@@ -201,22 +202,13 @@ export default function LandingPage() {
                 className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-25 blur-2xl transition group-hover:opacity-50"
                 style={{ background: lab.color }}
               />
-              <div className="flex items-center justify-between">
-                <div
-                  className="grid h-12 w-12 place-items-center rounded-xl border text-lg font-bold"
-                  style={{
-                    color: lab.color,
-                    borderColor: `${lab.color}55`,
-                    background: `${lab.color}14`,
-                  }}
-                >
-                  {lab.badge}
-                </div>
+              <div className="flex items-start justify-between gap-3">
+                <LabArt lab={lab} size="lg" animate showBadge />
                 <div className="mono text-[10px] text-[var(--ink-faint)]">
                   سطح {i * 4 + 1}–{i * 4 + 4}
                 </div>
               </div>
-              <div className="display mt-6 text-2xl font-bold">{lab.name}</div>
+              <div className="display mt-5 text-2xl font-bold">{lab.name}</div>
               <div className="mono mt-1 text-[10px] text-[var(--ink-faint)]">
                 {lab.nameEn}
               </div>

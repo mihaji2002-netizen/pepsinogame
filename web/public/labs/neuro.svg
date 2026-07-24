@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Neuro Lab">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="brainFill" x1="40" y1="30" x2="160" y2="170">
+      <stop stop-color="#00FF9D" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#00FF9D" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="176" height="176" rx="18" stroke="#00FF9D" stroke-opacity="0.25" stroke-width="1.5"/>
+  <path d="M100 42c-28 0-42 18-42 40 0 12 4 22 12 30-8 6-12 16-12 28 0 22 18 38 42 38s42-16 42-38c0-12-4-22-12-28 8-8 12-18 12-30 0-22-14-40-42-40z" fill="url(#brainFill)" stroke="#00FF9D" stroke-width="2" filter="url(#glow)"/>
+  <path d="M100 58v84M72 78c10-8 20-8 28 0M100 98c-12 6-20 6-28 0M128 118c-8 8-18 8-28 0" stroke="#00FF9D" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="78" cy="72" r="4" fill="#00FF9D" filter="url(#glow)"/>
+  <circle cx="122" cy="72" r="4" fill="#00FF9D" filter="url(#glow)"/>
+  <circle cx="68" cy="118" r="3" fill="#00FF9D" opacity="0.8"/>
+  <circle cx="132" cy="118" r="3" fill="#00FF9D" opacity="0.8"/>
+  <circle cx="100" cy="138" r="3" fill="#00FF9D" opacity="0.8"/>
+  <path d="M78 72l22 26M122 72l-22 26M68 118l32-20M132 118l-32-20" stroke="#00FF9D" stroke-opacity="0.35" stroke-width="1"/>
+</svg>

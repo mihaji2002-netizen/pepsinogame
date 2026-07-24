@@ -15,6 +15,7 @@ import {
   Zap,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
+import { LabArt } from "@/components/LabArt";
 import { Button } from "@/components/ui/Button";
 import { LABS } from "@/lib/constants";
 import { fa } from "@/lib/fa";
@@ -71,16 +72,7 @@ export function StudentShell({ children }: { children: React.ReactNode }) {
           }}
         >
           <div className="flex items-center gap-3">
-            <div
-              className="grid h-10 w-10 place-items-center rounded-xl border text-sm font-bold"
-              style={{
-                color: lab.color,
-                borderColor: `${lab.color}55`,
-                background: `${lab.color}14`,
-              }}
-            >
-              {currentStudent.avatar}
-            </div>
+            <LabArt lab={lab} size="sm" showBadge />
             <div className="min-w-0">
               <div className="mono truncate text-sm font-bold">
                 {currentStudent.studentId}

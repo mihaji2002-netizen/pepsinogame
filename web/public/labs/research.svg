@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="Research Lab">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="lens" x1="90" y1="50" x2="150" y2="110">
+      <stop stop-color="#3B9EFF" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#3B9EFF" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="176" height="176" rx="18" stroke="#3B9EFF" stroke-opacity="0.25" stroke-width="1.5"/>
+  <path d="M58 150h84" stroke="#3B9EFF" stroke-width="2.5" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M100 150V92" stroke="#3B9EFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M72 92h56" stroke="#3B9EFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M84 92V68c0-10 7-18 16-18s16 8 16 18v24" stroke="#3B9EFF" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="118" cy="118" r="28" fill="url(#lens)" stroke="#3B9EFF" stroke-width="2" filter="url(#glow)"/>
+  <circle cx="118" cy="118" r="14" stroke="#3B9EFF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <path d="M136 136l22 22" stroke="#3B9EFF" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M52 62h18M61 53v18" stroke="#3B9EFF" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="64" cy="58" r="2" fill="#3B9EFF"/>
+</svg>

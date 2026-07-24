@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Coins, Flame, Megaphone, Star, Zap } from "lucide-react";
 import { IdCard } from "@/components/IdCard";
+import { LabArt } from "@/components/LabArt";
 import { Button } from "@/components/ui/Button";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { LABS, xpProgress } from "@/lib/constants";
@@ -43,10 +44,11 @@ export default function StudentDashboardPage() {
           background: `radial-gradient(640px 300px at 8% -20%, ${lab.color}22, transparent 65%), linear-gradient(180deg, #12121c, #05050a)`,
         }}
       >
-        <div
+        <motion.div
           className="absolute -right-16 -top-16 h-52 w-52 rounded-full opacity-20 blur-3xl"
           style={{ background: lab.color }}
         />
+        <LabArt lab={lab} size="xl" className="absolute -left-4 -top-6 hidden opacity-90 md:block" animate />
         <div className="relative flex flex-wrap items-end justify-between gap-4">
           <div>
             <div

@@ -4,6 +4,7 @@ import { LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 import { attendanceLabel } from "@/lib/fa";
 import { formatDate } from "@/lib/utils";
+import { LabArt } from "@/components/LabArt";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 
 const statusTone: Record<string, string> = {
@@ -40,16 +41,7 @@ export default function ProfilePage() {
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <section className="surface h-fit p-6">
           <div className="flex items-center gap-4">
-            <div
-              className="grid h-16 w-16 place-items-center rounded-2xl border text-xl font-bold"
-              style={{
-                color: lab.color,
-                borderColor: `${lab.color}55`,
-                background: `${lab.color}16`,
-              }}
-            >
-              {currentStudent.avatar}
-            </div>
+            <LabArt lab={lab} size="lg" showBadge />
             <div>
               <div className="display text-3xl font-bold">
                 {currentStudent.name}

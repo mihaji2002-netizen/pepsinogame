@@ -22,6 +22,8 @@ export interface LabTheme {
   color: string;
   soft: string;
   badge: string;
+  image: string;
+  imageAlt: string;
 }
 
 export interface Student {

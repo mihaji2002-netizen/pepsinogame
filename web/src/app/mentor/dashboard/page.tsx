@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Search, Stamp, CheckCheck, Coins, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { LabArt } from "@/components/LabArt";
 import { LABS } from "@/lib/constants";
 import { fa } from "@/lib/fa";
 import { useApp } from "@/lib/store";
@@ -161,11 +162,11 @@ export default function MentorDashboardPage() {
                   {student.studentId}
                 </div>
               </div>
-              <div
-                className="text-xs font-bold"
-                style={{ color: lab.color }}
-              >
-                {lab.name}
+              <div className="flex items-center gap-2">
+                <LabArt lab={lab} size="xs" />
+                <span className="text-xs font-bold" style={{ color: lab.color }}>
+                  {lab.name}
+                </span>
               </div>
               <div className="mono text-sm">{student.level}</div>
               <div className="mono text-sm">{student.xp}</div>

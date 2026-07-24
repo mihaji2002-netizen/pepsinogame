@@ -2,6 +2,7 @@
 
 import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { LabArt } from "@/components/LabArt";
 import { BRAND, LABS, xpProgress } from "@/lib/constants";
 import { useApp } from "@/lib/store";
 
@@ -46,16 +47,7 @@ export default function ReportsPage() {
           }}
         >
           <div className="flex items-center gap-3">
-            <div
-              className="grid h-10 w-10 place-items-center rounded-xl border text-base font-bold"
-              style={{
-                color: lab.color,
-                borderColor: `${lab.color}66`,
-                background: `${lab.color}1c`,
-              }}
-            >
-              P
-            </div>
+            <LabArt lab={lab} size="sm" showBadge />
             <div>
               <div className="display text-base font-bold leading-none">
                 {BRAND.nameEn}
