@@ -233,6 +233,14 @@ export default function MentorDashboardPage() {
                 <Button
                   variant="secondary"
                   className="px-3 py-2"
+                  onClick={() => adjustCoins(student.id, 10)}
+                  title="اعطای Coin"
+                >
+                  <Coins size={14} />
+                </Button>
+                <Button
+                  variant="secondary"
+                  className="px-3 py-2"
                   onClick={() => adjustCoins(student.id, -10)}
                   title="کسر Coin"
                 >
