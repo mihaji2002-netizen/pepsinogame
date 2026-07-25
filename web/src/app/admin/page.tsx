@@ -7,6 +7,7 @@ import GradingPanel from "@/components/exam/GradingPanel";
 import QuestionBankPanel from "@/components/exam/QuestionBankPanel";
 import { ExamAssignModal } from "@/components/exam/ExamAssignModal";
 import AdminStudentsPanel from "@/components/exam/AdminStudentsPanel";
+import ProgramBuilderPanel from "@/components/program/ProgramBuilderPanel";
 import { getCurriculumSubjects } from "@/lib/exam/curriculum";
 import type {
   BankQuestion,
@@ -59,7 +60,7 @@ export default function AdminPage() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [exams, setExams] = useState<ExamListItem[]>([]);
-  const [activeTab, setActiveTab] = useState<"list" | "create" | "questionBank" | "rankings" | "grading" | "students">("list");
+  const [activeTab, setActiveTab] = useState<"list" | "create" | "questionBank" | "rankings" | "grading" | "students" | "programBuilder">("list");
   const [selectedExamId, setSelectedExamId] = useState<number | null>(null);
   const [rankings, setRankings] = useState<RankingEntry[]>([]);
   const [exportingPdf, setExportingPdf] = useState(false);
@@ -454,7 +455,7 @@ export default function AdminPage() {
 
       <div className="max-w-5xl mx-auto p-4">
         <div className="flex gap-2 mb-6 flex-wrap">
-          {(["list", "create", "questionBank", "grading", "rankings", "students"] as const).map((tab) => (
+          {(["list", "create", "questionBank", "grading", "rankings", "students", "programBuilder"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -470,6 +471,7 @@ export default function AdminPage() {
               {tab === "grading" && "تصحیح تشریحی"}
               {tab === "rankings" && "رتبه‌بندی"}
               {tab === "students" && "دانش‌آموزان"}
+              {tab === "programBuilder" && "برنامه‌ساز"}
             </button>
           ))}
         </div>
@@ -940,6 +942,8 @@ export default function AdminPage() {
         {activeTab === "grading" && <GradingPanel exams={exams} />}
 
         {activeTab === "students" && <AdminStudentsPanel />}
+
+        {activeTab === "programBuilder" && <ProgramBuilderPanel />}
 
         {activeTab === "rankings" && (
           <div className="card">

@@ -173,6 +173,27 @@ function migrateSchema(database: Database.Database) {
       database.exec(`ALTER TABLE pepsino_students ADD COLUMN ${column} ${definition}`);
     }
   }
+
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS subject_themes (
+      name TEXT PRIMARY KEY,
+      hex_color TEXT NOT NULL,
+      palette_json TEXT NOT NULL,
+      updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
+    );
+
+    CREATE TABLE IF NOT EXISTS weekly_programs (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      program_json TEXT NOT NULL,
+      subject_name TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime')),
+      updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_weekly_programs_subject
+      ON weekly_programs(subject_name);
+  `);
 }
 
 function initSchema(database: Database.Database) {
