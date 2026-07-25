@@ -11,6 +11,7 @@ import {
   GraduationCap,
   ClipboardCheck,
   Users,
+  CalendarDays,
 } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
@@ -22,6 +23,7 @@ const links = [
   { href: "/mentor/dashboard", label: "مرکز فرماندهی", icon: LayoutDashboard },
   { href: "/mentor/attendance", label: "حضور و غیاب", icon: ClipboardList },
   { href: "/mentor/exams", label: "آزمون‌ها", icon: GraduationCap },
+  { href: "/program-studio", label: "برنامه‌ساز", icon: CalendarDays },
   { href: "/admin", label: "برگزاری آزمون", icon: ClipboardCheck },
   { href: "/mentor/reports", label: "گزارش‌ها", icon: FileText },
 ];

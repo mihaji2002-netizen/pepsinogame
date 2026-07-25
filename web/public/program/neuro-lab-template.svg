@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3300 2550" width="3300" height="2550">
+  <defs>
+    <linearGradient id="hdr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b4d3e"/>
+      <stop offset="100%" stop-color="#143d31"/>
+    </linearGradient>
+    <pattern id="neuron" width="120" height="120" patternUnits="userSpaceOnUse">
+      <circle cx="60" cy="60" r="18" fill="none" stroke="#1b4d3e" stroke-opacity="0.06" stroke-width="2"/>
+      <line x1="60" y1="42" x2="60" y2="20" stroke="#1b4d3e" stroke-opacity="0.05"/>
+      <line x1="60" y1="78" x2="60" y2="100" stroke="#1b4d3e" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="3300" height="2550" fill="#fdfbf4"/>
+  <rect width="3300" height="2550" fill="url(#neuron)"/>
+  <rect x="0" y="0" width="3300" height="195" fill="url(#hdr)"/>
+  <rect x="0" y="2340" width="3300" height="210" fill="url(#hdr)"/>
+  <text x="120" y="95" fill="#c5a059" font-family="serif" font-size="42" font-weight="bold">pepsino LAB</text>
+  <text x="120" y="140" fill="#dff5ea" font-family="serif" font-size="28">GET ACTIVE TO GROW</text>
+  <text x="620" y="110" fill="#c5a059" font-family="serif" font-size="72" font-weight="bold">NEURO LAB</text>
+  <text x="620" y="165" fill="#dff5ea" font-family="serif" font-size="32">NEURO DEPARTMENT</text>
+  <rect x="1180" y="35" width="520" height="125" fill="none" stroke="#c5a059" stroke-width="2" rx="8"/>
+  <text x="1200" y="70" fill="#c5a059" font-size="22">SUBJECT INFORMATION</text>
+  <text x="1200" y="105" fill="#dff5ea" font-size="20">SUBJECT NAME:</text>
+  <text x="1200" y="135" fill="#dff5ea" font-size="20">SUBJECT ID:</text>
+  <rect x="1750" y="35" width="480" height="125" fill="none" stroke="#c5a059" stroke-width="2" rx="8"/>
+  <text x="1770" y="70" fill="#c5a059" font-size="22">SUBJECT STATUS</text>
+  <rect x="2280" y="35" width="380" height="125" fill="none" stroke="#c5a059" stroke-width="2" rx="8"/>
+  <text x="2300" y="80" fill="#c5a059" font-size="22">SUBJECT ID CARD</text>
+  <rect x="80" y="220" width="520" height="520" fill="#fff" fill-opacity="0.7" stroke="#c5a059" stroke-width="2" rx="10"/>
+  <text x="100" y="260" fill="#1b4d3e" font-size="24" font-weight="bold">ROUTINE</text>
+  <rect x="80" y="770" width="520" height="420" fill="#fff" fill-opacity="0.7" stroke="#c5a059" stroke-width="2" rx="10"/>
+  <text x="100" y="810" fill="#1b4d3e" font-size="24" font-weight="bold">WEEKLY MISSIONS</text>
+  <rect x="640" y="220" width="2580" height="1280" fill="#fff" fill-opacity="0.75" stroke="#1b4d3e" stroke-width="3" rx="12"/>
+  <text x="1680" y="280" fill="#1b4d3e" font-size="36" font-weight="bold" text-anchor="middle">WEEKLY MISSION BOARD</text>
+  <g stroke="#c5a059" stroke-width="1.5">
+    <line x1="640" y1="320" x2="3220" y2="320"/>
+    <line x1="640" y1="500" x2="3220" y2="500"/>
+    <line x1="640" y1="680" x2="3220" y2="680"/>
+    <line x1="640" y1="860" x2="3220" y2="860"/>
+    <line x1="640" y1="1040" x2="3220" y2="1040"/>
+    <line x1="640" y1="1220" x2="3220" y2="1220"/>
+    <line x1="640" y1="1400" x2="3220" y2="1400"/>
+    <line x1="900" y1="320" x2="900" y2="1500"/>
+    <line x1="1200" y1="320" x2="1200" y2="1500"/>
+    <line x1="1500" y1="320" x2="1500" y2="1500"/>
+    <line x1="1800" y1="320" x2="1800" y2="1500"/>
+    <line x1="2100" y1="320" x2="2100" y2="1500"/>
+    <line x1="2400" y1="320" x2="2400" y2="1500"/>
+    <line x1="2700" y1="320" x2="2700" y2="1500"/>
+    <line x1="3000" y1="320" x2="3000" y2="1500"/>
+  </g>
+  <rect x="80" y="1540" width="620" height="360" fill="#fff" fill-opacity="0.75" stroke="#c5a059" stroke-width="2" rx="10"/>
+  <text x="100" y="1585" fill="#1b4d3e" font-size="24" font-weight="bold">WEEKLY REPORT</text>
+  <rect x="740" y="1540" width="620" height="360" fill="#fff" fill-opacity="0.75" stroke="#c5a059" stroke-width="2" rx="10"/>
+  <text x="760" y="1585" fill="#1b4d3e" font-size="24" font-weight="bold">WEEKLY NOTES</text>
+  <rect x="1400" y="1540" width="620" height="360" fill="#fff" fill-opacity="0.75" stroke="#c5a059" stroke-width="2" rx="10"/>
+  <text x="1420" y="1585" fill="#1b4d3e" font-size="24" font-weight="bold">WEEKLY REFLECTION</text>
+  <rect x="2060" y="1540" width="620" height="360" fill="#fff" fill-opacity="0.75" stroke="#c5a059" stroke-width="2" rx="10"/>
+  <text x="2080" y="1585" fill="#1b4d3e" font-size="24" font-weight="bold">SUBJECT OF THE WEEK</text>
+  <text x="1650" y="2480" fill="#c5a059" font-size="28" text-anchor="middle">FOCUS · LEARN · ADAPT · EVOLVE</text>
+</svg>
