@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ImageLightbox from "@/components/exam/ImageLightbox";
+import { EXAM_STUDENT_ENTRY } from "@/lib/exam/config";
 import {
   buildQuestionNumbers,
   getExamTypeLabel,
@@ -222,7 +223,7 @@ export default function ExamPage() {
       <main className="min-h-screen flex items-center justify-center p-4">
         <div className="card max-w-md text-center">
           <p className="text-red-600 mb-4">{error || "آزمون یافت نشد"}</p>
-          <a href="/" className="btn-primary inline-block">
+          <a href={EXAM_STUDENT_ENTRY} className="btn-primary inline-block">
             بازگشت
           </a>
         </div>
