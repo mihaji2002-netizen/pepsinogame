@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import ImageLightbox from "@/components/exam/ImageLightbox";
+import { EXAM_STUDENT_ENTRY } from "@/lib/exam/config";
 import {
   buildQuestionNumbers,
   getExamTypeLabel,
@@ -91,7 +92,7 @@ export default function ResultPage() {
       <main className="min-h-screen flex items-center justify-center p-4">
         <div className="card max-w-md text-center">
           <p className="text-red-600 mb-4">{error}</p>
-          <a href="/" className="btn-primary inline-block">
+          <a href={EXAM_STUDENT_ENTRY} className="btn-primary inline-block">
             بازگشت
           </a>
         </div>
@@ -202,8 +203,8 @@ export default function ResultPage() {
             >
               {showAnswerSheet ? "بستن پاسخنامه PDF" : "مشاهده پاسخنامه PDF"}
             </button>
-            <a href="/" className="btn-primary w-full text-center">
-              خروج
+            <a href={EXAM_STUDENT_ENTRY} className="btn-primary w-full text-center">
+              تمام شد
             </a>
           </div>
         </div>
