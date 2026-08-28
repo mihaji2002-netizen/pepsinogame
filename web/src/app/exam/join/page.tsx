@@ -113,10 +113,8 @@ export default function HomePage() {
           </form>
         </div>
 
-        <p className="text-center text-sm text-slate-400 mt-6">
-          <a href="/admin" className="hover:text-emerald-700 transition-colors font-medium">
-            ورود مشاور
-          </a>
+        <p className="text-center text-xs text-slate-400 mt-6">
+          Pepsino LAB · سامانه آزمون آنلاین
         </p>
       </div>
     </main>

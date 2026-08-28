@@ -1,6 +1,7 @@
 import { deleteAttemptFiles, deleteExamFiles } from "./file-storage";
 import { getDb } from "./db";
 import { getPepsinoStudentById, splitStudentName } from "./pepsino-students";
+import { notifyAttemptFinished, notifyAttemptGraded } from "./telegram";
 import type { Attempt, Exam, ExamListItem, ExamQuestionItem, ExamSourceType, GradingStatus, GradeLevel, RankingEntry, StudyTrack } from "./types";
 import {
   calculateDescriptiveGrade,
@@ -274,6 +275,11 @@ export function finishAttempt(
     id,
   );
   syncStudentExamResult(id);
+  const finished = getAttemptById(id);
+  const finishedExam = finished ? getExamById(finished.exam_id) : null;
+  if (finished && finishedExam) {
+    void notifyAttemptFinished(finished, finishedExam);
+  }
 }
 
 export function gradeDescriptiveAttempt(
@@ -312,6 +318,11 @@ export function gradeDescriptiveAttempt(
     throw new Error("ثبت نمره انجام نشد");
   }
   syncStudentExamResult(attemptId);
+  const graded = getAttemptById(attemptId);
+  const gradedExam = graded ? getExamById(graded.exam_id) : null;
+  if (graded && gradedExam) {
+    void notifyAttemptGraded(graded, gradedExam);
+  }
 }
 
 export function getDescriptiveSubmissions(examId: number) {
