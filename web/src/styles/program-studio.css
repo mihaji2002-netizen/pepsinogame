@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
+@font-face {
+  font-family: "B Kamran";
+  src:
+    url("/fonts/b-kamran/BKamran.woff2") format("woff2"),
+    url("/fonts/b-kamran/BKamran.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.program-studio {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #f4faf6 0%, #e8f2ec 50%, #f8fbf9 100%);
+  color: #1a2e28;
+}
+
+.program-studio .studio-card {
+  background: #fff;
+  border: 1px solid #c5ddd2;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(27, 77, 62, 0.08);
+}
+
+.program-studio .studio-input {
+  width: 100%;
+  border: 1px solid #c5ddd2;
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  background: #fff;
+}
+
+.program-studio .studio-input:focus {
+  outline: 2px solid #1b4d3e44;
+  border-color: #1b4d3e;
+}
+
+.program-studio .studio-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1b4d3e;
+  margin-bottom: 0.25rem;
+}
+
+.program-studio .studio-btn {
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.program-studio .studio-btn-primary {
+  background: #1b4d3e;
+  color: #fff;
+}
+
+.program-studio .studio-btn-secondary {
+  background: #fff;
+  border: 1px solid #c5ddd2;
+  color: #1b4d3e;
+}
+
+.template-canvas-root {
+  width: 100%;
+  overflow: auto;
+  background: #e8ece9;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.template-canvas {
+  position: relative;
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  aspect-ratio: 3300 / 2550;
+}
+
+.template-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.template-overlays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.template-overlay {
+  position: absolute;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 1.25;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.template-fa {
+  font-family: "B Kamran", var(--font-estedad, "Estedad"), Tahoma, sans-serif;
+  direction: rtl;
+}
+
+.template-en {
+  font-family: "Freestyle Script", "Great Vibes", "Brush Script MT", cursive;
+  direction: ltr;
+}
+
+@media print {
+  .program-studio .no-print {
+    display: none !important;
+  }
+
+  .template-canvas-root {
+    padding: 0;
+    background: white;
+  }
+}
